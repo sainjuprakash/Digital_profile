@@ -2,6 +2,8 @@ import 'package:digital_profile/resources/family_details.dart';
 import 'package:digital_profile/resources/repository.dart';
 import 'package:flutter/material.dart';
 
+import '../resources/individual_family_data.dart';
+
 class DropDown extends StatefulWidget {
   const DropDown({super.key});
 
@@ -58,28 +60,34 @@ class _DropDownState extends State<DropDown> {
               ),
             ),
             Expanded(
-              child: FutureBuilder<List<FamilyDetailsModel>>(
-                  future: LoadFamilyData(),
-                  builder: (context, snapshot) {
-                    if (snapshot.hasData) {
-                      print(snapshot);
-                      print(
-                          '<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>');
-                      List<FamilyDetailsModel>? loadedData = snapshot.data;
-                      return ListView.builder(
-                          itemCount: loadedData?.length,
-                          itemBuilder: (context, index) {
-                            return ListTile(
-                              title: Text(loadedData![index].respondent),
-                            );
-                          });
-                    } else if (snapshot.hasError) {
-                      const Text('Data fetch failure');
-                      print(snapshot.);
-                    }
-                    return const Center(child:                    CircularProgressIndicator());
-                  }),
-            )
+                child: FutureBuilder<List<IndividualFamilyData>>(
+              future: loadIndividualData(),
+              builder: (context, snapshot) {
+                List<IndividualFamilyData>? loadedIndividualData =
+                    snapshot.data;
+                if (snapshot.hasData) {
+                  print('-----------------------------------------------');
+                  print(snapshot);
+                  return ListView.builder(
+                      itemCount: loadedIndividualData?.length,
+                      itemBuilder: (context, index) {
+                        return Card(
+                          child: Column(
+                            children: [
+                              Text(loadedIndividualData![index].name),
+                              Text(loadedIndividualData[index].name),
+                              Text(loadedIndividualData[index].name),
+                            ],
+                          ),
+                        );
+                      });
+                } else if (snapshot.hasError) {
+                  const Text('Data fetch failure');
+                  // print(snapshot.);
+                }
+                return const CircularProgressIndicator();
+              },
+            ))
           ],
         ),
       ),

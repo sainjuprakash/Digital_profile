@@ -1,5 +1,7 @@
 import 'package:digital_profile/bar_graph/bar_data.dart';
+import 'package:digital_profile/pages/all_household_data.dart';
 import 'package:digital_profile/pages/household_data.dart';
+import 'package:digital_profile/pages/report_page.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 
@@ -57,9 +59,21 @@ class _MyHomePageState extends State<MyHomePage> {
                 onTap: () {},
               ),
               ListTile(
+                leading: const Icon(Icons.warehouse),
+                title: const Text('All Household Data'),
+                onTap: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => AllHouseholdData()));
+                },
+              ),
+              ListTile(
                 leading: const Icon(Icons.report),
                 title: const Text('Report'),
-                onTap: () {},
+                onTap: () {
+                  Navigator.push(context, MaterialPageRoute(builder : (context)=> const ReportPage()));
+                },
               ),
             ],
           ),
@@ -246,7 +260,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       child: Padding(
                         padding: const EdgeInsets.only(top: 18.0),
                         child: BarChart(BarChartData(
-                          // barTouchData: BarTouchData(longPressDuration: Duration(milliseconds: 600)),
+                            // barTouchData: BarTouchData(longPressDuration: Duration(milliseconds: 600)),
                             minY: 0,
                             maxY: 100,
                             barGroups: barData.barData
@@ -254,13 +268,13 @@ class _MyHomePageState extends State<MyHomePage> {
                                       x: e.x,
                                       barRods: [
                                         BarChartRodData(
-                                            toY: e.y,
-                                            width: 20,
-                                            borderRadius:
-                                            BorderRadius.circular(2),
-                                            color: Colors.blueAccent,
-                                            //fromY: 20,
-                                            //borderDashArray: [5, 10],
+                                          toY: e.y,
+                                          width: 20,
+                                          borderRadius:
+                                              BorderRadius.circular(2),
+                                          color: Colors.blueAccent,
+                                          //fromY: 20,
+                                          //borderDashArray: [5, 10],
                                         )
                                       ],
                                     ))

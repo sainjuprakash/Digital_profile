@@ -20,25 +20,30 @@ FamilyDetailsModel _$FamilyDetailsModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$FamilyDetailsModel {
+  @JsonKey(name: "_id")
   int get id => throw _privateConstructorUsedError;
-  @JsonKey(name: "ward_no")
-  int get wardNo => throw _privateConstructorUsedError;
-  @JsonKey(name: "sett_name")
+  @JsonKey(name: "group_settlement/survey_ward_no")
+  String get wardNo => throw _privateConstructorUsedError;
+  @JsonKey(name: "group_settlement/Sett_Name")
   String get setName => throw _privateConstructorUsedError;
-  @JsonKey(name: "set_road")
+  @JsonKey(name: "group_settlement/Road")
   String get road => throw _privateConstructorUsedError;
-  @JsonKey(name: "road_to_house")
+  @JsonKey(name: "group_settlement/road_to_house")
   String get roadToHouse => throw _privateConstructorUsedError;
-  @JsonKey(name: "respondent")
+  @JsonKey(name: "group_repondent/Respondent")
   String get respondent => throw _privateConstructorUsedError;
-  @JsonKey(name: "phone_num")
-  int get phoneNumber => throw _privateConstructorUsedError;
-  @JsonKey(name: "relation")
+  @JsonKey(name: "group_repondent/respondent_mobile")
+  String get phoneNumber => throw _privateConstructorUsedError;
+  @JsonKey(name: "group_repondent/Relation")
   String get relation => throw _privateConstructorUsedError;
-  @JsonKey(name: "migration_type")
+  @JsonKey(name: "group_repondent/migration_type")
   String get migrationType => throw _privateConstructorUsedError;
-  @JsonKey(name: "family_count")
-  int get familyCount => throw _privateConstructorUsedError;
+  @JsonKey(name: "group_repondent/Family_number")
+  String get familyCount => throw _privateConstructorUsedError;
+  @JsonKey(name: "group_deathqty/Death")
+  String get isDeath => throw _privateConstructorUsedError;
+  @JsonKey(name: "group_insu/Insurance")
+  String get insurance => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -53,16 +58,18 @@ abstract class $FamilyDetailsModelCopyWith<$Res> {
       _$FamilyDetailsModelCopyWithImpl<$Res, FamilyDetailsModel>;
   @useResult
   $Res call(
-      {int id,
-      @JsonKey(name: "ward_no") int wardNo,
-      @JsonKey(name: "sett_name") String setName,
-      @JsonKey(name: "set_road") String road,
-      @JsonKey(name: "road_to_house") String roadToHouse,
-      @JsonKey(name: "respondent") String respondent,
-      @JsonKey(name: "phone_num") int phoneNumber,
-      @JsonKey(name: "relation") String relation,
-      @JsonKey(name: "migration_type") String migrationType,
-      @JsonKey(name: "family_count") int familyCount});
+      {@JsonKey(name: "_id") int id,
+      @JsonKey(name: "group_settlement/survey_ward_no") String wardNo,
+      @JsonKey(name: "group_settlement/Sett_Name") String setName,
+      @JsonKey(name: "group_settlement/Road") String road,
+      @JsonKey(name: "group_settlement/road_to_house") String roadToHouse,
+      @JsonKey(name: "group_repondent/Respondent") String respondent,
+      @JsonKey(name: "group_repondent/respondent_mobile") String phoneNumber,
+      @JsonKey(name: "group_repondent/Relation") String relation,
+      @JsonKey(name: "group_repondent/migration_type") String migrationType,
+      @JsonKey(name: "group_repondent/Family_number") String familyCount,
+      @JsonKey(name: "group_deathqty/Death") String isDeath,
+      @JsonKey(name: "group_insu/Insurance") String insurance});
 }
 
 /// @nodoc
@@ -88,6 +95,8 @@ class _$FamilyDetailsModelCopyWithImpl<$Res, $Val extends FamilyDetailsModel>
     Object? relation = null,
     Object? migrationType = null,
     Object? familyCount = null,
+    Object? isDeath = null,
+    Object? insurance = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -97,7 +106,7 @@ class _$FamilyDetailsModelCopyWithImpl<$Res, $Val extends FamilyDetailsModel>
       wardNo: null == wardNo
           ? _value.wardNo
           : wardNo // ignore: cast_nullable_to_non_nullable
-              as int,
+              as String,
       setName: null == setName
           ? _value.setName
           : setName // ignore: cast_nullable_to_non_nullable
@@ -117,7 +126,7 @@ class _$FamilyDetailsModelCopyWithImpl<$Res, $Val extends FamilyDetailsModel>
       phoneNumber: null == phoneNumber
           ? _value.phoneNumber
           : phoneNumber // ignore: cast_nullable_to_non_nullable
-              as int,
+              as String,
       relation: null == relation
           ? _value.relation
           : relation // ignore: cast_nullable_to_non_nullable
@@ -129,7 +138,15 @@ class _$FamilyDetailsModelCopyWithImpl<$Res, $Val extends FamilyDetailsModel>
       familyCount: null == familyCount
           ? _value.familyCount
           : familyCount // ignore: cast_nullable_to_non_nullable
-              as int,
+              as String,
+      isDeath: null == isDeath
+          ? _value.isDeath
+          : isDeath // ignore: cast_nullable_to_non_nullable
+              as String,
+      insurance: null == insurance
+          ? _value.insurance
+          : insurance // ignore: cast_nullable_to_non_nullable
+              as String,
     ) as $Val);
   }
 }
@@ -143,16 +160,18 @@ abstract class _$$FamilyDetailsModelImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {int id,
-      @JsonKey(name: "ward_no") int wardNo,
-      @JsonKey(name: "sett_name") String setName,
-      @JsonKey(name: "set_road") String road,
-      @JsonKey(name: "road_to_house") String roadToHouse,
-      @JsonKey(name: "respondent") String respondent,
-      @JsonKey(name: "phone_num") int phoneNumber,
-      @JsonKey(name: "relation") String relation,
-      @JsonKey(name: "migration_type") String migrationType,
-      @JsonKey(name: "family_count") int familyCount});
+      {@JsonKey(name: "_id") int id,
+      @JsonKey(name: "group_settlement/survey_ward_no") String wardNo,
+      @JsonKey(name: "group_settlement/Sett_Name") String setName,
+      @JsonKey(name: "group_settlement/Road") String road,
+      @JsonKey(name: "group_settlement/road_to_house") String roadToHouse,
+      @JsonKey(name: "group_repondent/Respondent") String respondent,
+      @JsonKey(name: "group_repondent/respondent_mobile") String phoneNumber,
+      @JsonKey(name: "group_repondent/Relation") String relation,
+      @JsonKey(name: "group_repondent/migration_type") String migrationType,
+      @JsonKey(name: "group_repondent/Family_number") String familyCount,
+      @JsonKey(name: "group_deathqty/Death") String isDeath,
+      @JsonKey(name: "group_insu/Insurance") String insurance});
 }
 
 /// @nodoc
@@ -176,6 +195,8 @@ class __$$FamilyDetailsModelImplCopyWithImpl<$Res>
     Object? relation = null,
     Object? migrationType = null,
     Object? familyCount = null,
+    Object? isDeath = null,
+    Object? insurance = null,
   }) {
     return _then(_$FamilyDetailsModelImpl(
       id: null == id
@@ -185,7 +206,7 @@ class __$$FamilyDetailsModelImplCopyWithImpl<$Res>
       wardNo: null == wardNo
           ? _value.wardNo
           : wardNo // ignore: cast_nullable_to_non_nullable
-              as int,
+              as String,
       setName: null == setName
           ? _value.setName
           : setName // ignore: cast_nullable_to_non_nullable
@@ -205,7 +226,7 @@ class __$$FamilyDetailsModelImplCopyWithImpl<$Res>
       phoneNumber: null == phoneNumber
           ? _value.phoneNumber
           : phoneNumber // ignore: cast_nullable_to_non_nullable
-              as int,
+              as String,
       relation: null == relation
           ? _value.relation
           : relation // ignore: cast_nullable_to_non_nullable
@@ -217,7 +238,15 @@ class __$$FamilyDetailsModelImplCopyWithImpl<$Res>
       familyCount: null == familyCount
           ? _value.familyCount
           : familyCount // ignore: cast_nullable_to_non_nullable
-              as int,
+              as String,
+      isDeath: null == isDeath
+          ? _value.isDeath
+          : isDeath // ignore: cast_nullable_to_non_nullable
+              as String,
+      insurance: null == insurance
+          ? _value.insurance
+          : insurance // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -226,54 +255,66 @@ class __$$FamilyDetailsModelImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$FamilyDetailsModelImpl extends _FamilyDetailsModel {
   _$FamilyDetailsModelImpl(
-      {required this.id,
-      @JsonKey(name: "ward_no") required this.wardNo,
-      @JsonKey(name: "sett_name") required this.setName,
-      @JsonKey(name: "set_road") required this.road,
-      @JsonKey(name: "road_to_house") required this.roadToHouse,
-      @JsonKey(name: "respondent") required this.respondent,
-      @JsonKey(name: "phone_num") required this.phoneNumber,
-      @JsonKey(name: "relation") required this.relation,
-      @JsonKey(name: "migration_type") required this.migrationType,
-      @JsonKey(name: "family_count") required this.familyCount})
+      {@JsonKey(name: "_id") required this.id,
+      @JsonKey(name: "group_settlement/survey_ward_no") required this.wardNo,
+      @JsonKey(name: "group_settlement/Sett_Name") required this.setName,
+      @JsonKey(name: "group_settlement/Road") required this.road,
+      @JsonKey(name: "group_settlement/road_to_house")
+      required this.roadToHouse,
+      @JsonKey(name: "group_repondent/Respondent") required this.respondent,
+      @JsonKey(name: "group_repondent/respondent_mobile")
+      required this.phoneNumber,
+      @JsonKey(name: "group_repondent/Relation") required this.relation,
+      @JsonKey(name: "group_repondent/migration_type")
+      required this.migrationType,
+      @JsonKey(name: "group_repondent/Family_number") required this.familyCount,
+      @JsonKey(name: "group_deathqty/Death") required this.isDeath,
+      @JsonKey(name: "group_insu/Insurance") required this.insurance})
       : super._();
 
   factory _$FamilyDetailsModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$FamilyDetailsModelImplFromJson(json);
 
   @override
+  @JsonKey(name: "_id")
   final int id;
   @override
-  @JsonKey(name: "ward_no")
-  final int wardNo;
+  @JsonKey(name: "group_settlement/survey_ward_no")
+  final String wardNo;
   @override
-  @JsonKey(name: "sett_name")
+  @JsonKey(name: "group_settlement/Sett_Name")
   final String setName;
   @override
-  @JsonKey(name: "set_road")
+  @JsonKey(name: "group_settlement/Road")
   final String road;
   @override
-  @JsonKey(name: "road_to_house")
+  @JsonKey(name: "group_settlement/road_to_house")
   final String roadToHouse;
   @override
-  @JsonKey(name: "respondent")
+  @JsonKey(name: "group_repondent/Respondent")
   final String respondent;
   @override
-  @JsonKey(name: "phone_num")
-  final int phoneNumber;
+  @JsonKey(name: "group_repondent/respondent_mobile")
+  final String phoneNumber;
   @override
-  @JsonKey(name: "relation")
+  @JsonKey(name: "group_repondent/Relation")
   final String relation;
   @override
-  @JsonKey(name: "migration_type")
+  @JsonKey(name: "group_repondent/migration_type")
   final String migrationType;
   @override
-  @JsonKey(name: "family_count")
-  final int familyCount;
+  @JsonKey(name: "group_repondent/Family_number")
+  final String familyCount;
+  @override
+  @JsonKey(name: "group_deathqty/Death")
+  final String isDeath;
+  @override
+  @JsonKey(name: "group_insu/Insurance")
+  final String insurance;
 
   @override
   String toString() {
-    return 'FamilyDetailsModel(id: $id, wardNo: $wardNo, setName: $setName, road: $road, roadToHouse: $roadToHouse, respondent: $respondent, phoneNumber: $phoneNumber, relation: $relation, migrationType: $migrationType, familyCount: $familyCount)';
+    return 'FamilyDetailsModel(id: $id, wardNo: $wardNo, setName: $setName, road: $road, roadToHouse: $roadToHouse, respondent: $respondent, phoneNumber: $phoneNumber, relation: $relation, migrationType: $migrationType, familyCount: $familyCount, isDeath: $isDeath, insurance: $insurance)';
   }
 
   @override
@@ -296,7 +337,10 @@ class _$FamilyDetailsModelImpl extends _FamilyDetailsModel {
             (identical(other.migrationType, migrationType) ||
                 other.migrationType == migrationType) &&
             (identical(other.familyCount, familyCount) ||
-                other.familyCount == familyCount));
+                other.familyCount == familyCount) &&
+            (identical(other.isDeath, isDeath) || other.isDeath == isDeath) &&
+            (identical(other.insurance, insurance) ||
+                other.insurance == insurance));
   }
 
   @JsonKey(ignore: true)
@@ -312,7 +356,9 @@ class _$FamilyDetailsModelImpl extends _FamilyDetailsModel {
       phoneNumber,
       relation,
       migrationType,
-      familyCount);
+      familyCount,
+      isDeath,
+      insurance);
 
   @JsonKey(ignore: true)
   @override
@@ -331,51 +377,67 @@ class _$FamilyDetailsModelImpl extends _FamilyDetailsModel {
 
 abstract class _FamilyDetailsModel extends FamilyDetailsModel {
   factory _FamilyDetailsModel(
-          {required final int id,
-          @JsonKey(name: "ward_no") required final int wardNo,
-          @JsonKey(name: "sett_name") required final String setName,
-          @JsonKey(name: "set_road") required final String road,
-          @JsonKey(name: "road_to_house") required final String roadToHouse,
-          @JsonKey(name: "respondent") required final String respondent,
-          @JsonKey(name: "phone_num") required final int phoneNumber,
-          @JsonKey(name: "relation") required final String relation,
-          @JsonKey(name: "migration_type") required final String migrationType,
-          @JsonKey(name: "family_count") required final int familyCount}) =
-      _$FamilyDetailsModelImpl;
+      {@JsonKey(name: "_id") required final int id,
+      @JsonKey(name: "group_settlement/survey_ward_no")
+      required final String wardNo,
+      @JsonKey(name: "group_settlement/Sett_Name")
+      required final String setName,
+      @JsonKey(name: "group_settlement/Road") required final String road,
+      @JsonKey(name: "group_settlement/road_to_house")
+      required final String roadToHouse,
+      @JsonKey(name: "group_repondent/Respondent")
+      required final String respondent,
+      @JsonKey(name: "group_repondent/respondent_mobile")
+      required final String phoneNumber,
+      @JsonKey(name: "group_repondent/Relation") required final String relation,
+      @JsonKey(name: "group_repondent/migration_type")
+      required final String migrationType,
+      @JsonKey(name: "group_repondent/Family_number")
+      required final String familyCount,
+      @JsonKey(name: "group_deathqty/Death") required final String isDeath,
+      @JsonKey(name: "group_insu/Insurance")
+      required final String insurance}) = _$FamilyDetailsModelImpl;
   _FamilyDetailsModel._() : super._();
 
   factory _FamilyDetailsModel.fromJson(Map<String, dynamic> json) =
       _$FamilyDetailsModelImpl.fromJson;
 
   @override
+  @JsonKey(name: "_id")
   int get id;
   @override
-  @JsonKey(name: "ward_no")
-  int get wardNo;
+  @JsonKey(name: "group_settlement/survey_ward_no")
+  String get wardNo;
   @override
-  @JsonKey(name: "sett_name")
+  @JsonKey(name: "group_settlement/Sett_Name")
   String get setName;
   @override
-  @JsonKey(name: "set_road")
+  @JsonKey(name: "group_settlement/Road")
   String get road;
   @override
-  @JsonKey(name: "road_to_house")
+  @JsonKey(name: "group_settlement/road_to_house")
   String get roadToHouse;
   @override
-  @JsonKey(name: "respondent")
+  @JsonKey(name: "group_repondent/Respondent")
   String get respondent;
   @override
-  @JsonKey(name: "phone_num")
-  int get phoneNumber;
+  @JsonKey(name: "group_repondent/respondent_mobile")
+  String get phoneNumber;
   @override
-  @JsonKey(name: "relation")
+  @JsonKey(name: "group_repondent/Relation")
   String get relation;
   @override
-  @JsonKey(name: "migration_type")
+  @JsonKey(name: "group_repondent/migration_type")
   String get migrationType;
   @override
-  @JsonKey(name: "family_count")
-  int get familyCount;
+  @JsonKey(name: "group_repondent/Family_number")
+  String get familyCount;
+  @override
+  @JsonKey(name: "group_deathqty/Death")
+  String get isDeath;
+  @override
+  @JsonKey(name: "group_insu/Insurance")
+  String get insurance;
   @override
   @JsonKey(ignore: true)
   _$$FamilyDetailsModelImplCopyWith<_$FamilyDetailsModelImpl> get copyWith =>
