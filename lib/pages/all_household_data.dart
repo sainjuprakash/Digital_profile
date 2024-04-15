@@ -1,3 +1,4 @@
+import 'package:digital_profile/pages/individual_page.dart';
 import 'package:flutter/material.dart';
 
 import '../resources/family_details.dart';
@@ -33,102 +34,118 @@ class _AllHouseholdDataState extends State<AllHouseholdData> {
                   builder: (context, snapshot) {
                     List<FamilyDetailsModel>? loadedData = snapshot.data;
                     if (snapshot.hasData) {
-                      print(snapshot);
-                      print(
-                          '<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>');
+                      // print(snapshot);
+                      // print(
+                      //     '<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>');
 
                       return ListView.builder(
                           itemCount: loadedData?.length,
                           itemBuilder: (context, index) {
                             return Padding(
                               padding: const EdgeInsets.all(5.0),
-                              child: Card(
-                                  elevation: 2,
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Column(
-                                      children: [
-                                        Row(
-                                          children: [
-                                            const Text('Respondent : '),
-                                            Text(loadedData![index].respondent)
-                                          ],
-                                        ),
-                                        Row(
-                                          children: [
-                                            const Text('Ward Number : '),
-                                            Text(loadedData![index].wardNo)
-                                          ],
-                                        ),
-                                        Row(
-                                          children: [
-                                            const Text('Settlement Name : '),
-                                            Text(loadedData![index].setName)
-                                          ],
-                                        ),
-                                        Row(
-                                          children: [
-                                            const Text('Settlement Road : '),
-                                            Text(loadedData![index].road)
-                                          ],
-                                        ),
-                                        Row(
-                                          children: [
-                                            const Text('Road to House : '),
-                                            Text(loadedData![index].roadToHouse)
-                                          ],
-                                        ),
-                                        Row(
-                                          children: [
-                                            const Text('Respondent Contact : '),
-                                            Text(loadedData![index].phoneNumber)
-                                          ],
-                                        ),
-                                        Row(
-                                          children: [
-                                            const Text(
-                                                'Respondent Relation : '),
-                                            Text(loadedData![index].relation)
-                                          ],
-                                        ),
-                                        Row(
-                                          children: [
-                                            const Text('Migration Type : '),
-                                            Text(loadedData![index]
-                                                .migrationType)
-                                          ],
-                                        ),
-                                        Row(
-                                          children: [
-                                            const Text('Family Number : '),
-                                            Text(loadedData![index].familyCount)
-                                          ],
-                                        ),
-                                        Row(
-                                          children: [
-                                            const Text('Family Death : '),
-                                            Text(loadedData![index].isDeath)
-                                          ],
-                                        ),
-                                        Row(
-                                          children: [
-                                            const Text('Insurance : '),
-                                            Text(loadedData![index].insurance)
-                                          ],
-                                        ),
-                                        ListView.builder(
-                                          shrinkWrap: true,
-                                          itemBuilder: (context, valueIndex) {
-                                            return Text(
-                                                "Family Individual : ${loadedData[index].individualData[valueIndex].individualName}");
-                                          },
-                                          itemCount: loadedData[index]
-                                              .individualData
-                                              .length,
-                                        )
-                                      ],
-                                    ),
-                                  )),
+                              child: InkWell(
+                                onTap: () {
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => IndividualPage(
+                                              indexOfCard: index)));
+                                 // print(index);
+                                },
+                                child: Card(
+                                    elevation: 2,
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: Column(
+                                        children: [
+                                          Row(
+                                            children: [
+                                              const Text('Respondent : '),
+                                              Text(
+                                                  loadedData![index].respondent)
+                                            ],
+                                          ),
+                                          Row(
+                                            children: [
+                                              const Text('Ward Number : '),
+                                              Text(loadedData![index].wardNo)
+                                            ],
+                                          ),
+                                          Row(
+                                            children: [
+                                              const Text('Settlement Name : '),
+                                              Text(loadedData![index].setName)
+                                            ],
+                                          ),
+                                          Row(
+                                            children: [
+                                              const Text('Settlement Road : '),
+                                              Text(loadedData![index].road)
+                                            ],
+                                          ),
+                                          Row(
+                                            children: [
+                                              const Text('Road to House : '),
+                                              Text(loadedData![index]
+                                                  .roadToHouse)
+                                            ],
+                                          ),
+                                          Row(
+                                            children: [
+                                              const Text(
+                                                  'Respondent Contact : '),
+                                              Text(loadedData![index]
+                                                  .phoneNumber)
+                                            ],
+                                          ),
+                                          Row(
+                                            children: [
+                                              const Text(
+                                                  'Respondent Relation : '),
+                                              Text(loadedData![index].relation)
+                                            ],
+                                          ),
+                                          Row(
+                                            children: [
+                                              const Text('Migration Type : '),
+                                              Text(loadedData![index]
+                                                  .migrationType)
+                                            ],
+                                          ),
+                                          Row(
+                                            children: [
+                                              const Text('Family Number : '),
+                                              Text(loadedData![index]
+                                                  .familyCount)
+                                            ],
+                                          ),
+                                          Row(
+                                            children: [
+                                              const Text('Family Death : '),
+                                              Text(loadedData![index].isDeath)
+                                            ],
+                                          ),
+                                          Row(
+                                            children: [
+                                              const Text('Insurance : '),
+                                              Text(loadedData![index].insurance)
+                                            ],
+                                          ),
+                                          ListView.builder(
+                                            shrinkWrap: true,
+                                            itemBuilder: (context, valueIndex) {
+                                              print(valueIndex);
+                                              return Text(
+                                                  "Family Individual : ${loadedData[index].individualData[valueIndex].individualName}");
+                                            },
+                                            itemCount: loadedData[index]
+                                                .individualData
+                                                .length,
+                                          )
+                                        ],
+                                      ),
+                                    )),
+                              ),
                             );
                           });
                     } else if (snapshot.hasError) {
