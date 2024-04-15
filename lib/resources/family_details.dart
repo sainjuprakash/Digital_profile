@@ -1,9 +1,10 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
+import 'individual_family_data.dart';
+
 part 'family_details.freezed.dart';
 part 'family_details.g.dart';
 
-@JsonSerializable()
 @freezed
 class FamilyDetailsModel with _$FamilyDetailsModel {
   const FamilyDetailsModel._();
@@ -24,10 +25,10 @@ class FamilyDetailsModel with _$FamilyDetailsModel {
     @JsonKey(name: "group_repondent/Family_number") required String familyCount,
     @JsonKey(name: "group_deathqty/Death") required String isDeath,
     @JsonKey(name: "group_insu/Insurance") required String insurance,
-    //  required List<IndividualFamilyData> individualData,
+    @JsonKey(name: "group_family")
+    required List<IndividualFamilyData> individualData,
   }) = _FamilyDetailsModel;
 
   factory FamilyDetailsModel.fromJson(Map<String, dynamic> json) =>
       _$FamilyDetailsModelFromJson(json);
 }
-

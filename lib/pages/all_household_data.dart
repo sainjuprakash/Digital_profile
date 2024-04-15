@@ -1,6 +1,4 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 import '../resources/family_details.dart';
 import '../resources/repository.dart';
@@ -19,15 +17,22 @@ class _AllHouseholdDataState extends State<AllHouseholdData> {
       body: SafeArea(
         child: Column(
           children: [
-             const Text('All HouseHold Data',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 25,),),
-            const SizedBox(height: 20,),
+            const Text(
+              'All HouseHold Data',
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 25,
+              ),
+            ),
+            const SizedBox(
+              height: 20,
+            ),
             Expanded(
               child: FutureBuilder<List<FamilyDetailsModel>>(
                   future: LoadFamilyData(),
                   builder: (context, snapshot) {
                     List<FamilyDetailsModel>? loadedData = snapshot.data;
                     if (snapshot.hasData) {
-
                       print(snapshot);
                       print(
                           '<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>');
@@ -38,55 +43,89 @@ class _AllHouseholdDataState extends State<AllHouseholdData> {
                             return Padding(
                               padding: const EdgeInsets.all(5.0),
                               child: Card(
-                                elevation: 2,
-                                  child:Padding(
+                                  elevation: 2,
+                                  child: Padding(
                                     padding: const EdgeInsets.all(8.0),
                                     child: Column(
                                       children: [
                                         Row(
-                                          children: [const Text('Respondent : '),
-                                          Text(loadedData![index].respondent)],
+                                          children: [
+                                            const Text('Respondent : '),
+                                            Text(loadedData![index].respondent)
+                                          ],
                                         ),
                                         Row(
-                                          children: [const Text('Ward Number : '),
-                                            Text(loadedData![index].wardNo)],
+                                          children: [
+                                            const Text('Ward Number : '),
+                                            Text(loadedData![index].wardNo)
+                                          ],
                                         ),
                                         Row(
-                                          children: [const Text('Settlement Name : '),
-                                            Text(loadedData![index].setName)],
+                                          children: [
+                                            const Text('Settlement Name : '),
+                                            Text(loadedData![index].setName)
+                                          ],
                                         ),
                                         Row(
-                                          children: [const Text('Settlement Road : '),
-                                            Text(loadedData![index].road)],
+                                          children: [
+                                            const Text('Settlement Road : '),
+                                            Text(loadedData![index].road)
+                                          ],
                                         ),
                                         Row(
-                                          children: [const Text('Road to House : '),
-                                            Text(loadedData![index].roadToHouse)],
+                                          children: [
+                                            const Text('Road to House : '),
+                                            Text(loadedData![index].roadToHouse)
+                                          ],
                                         ),
                                         Row(
-                                          children: [const Text('Respondent Contact : '),
-                                            Text(loadedData![index].phoneNumber)],
+                                          children: [
+                                            const Text('Respondent Contact : '),
+                                            Text(loadedData![index].phoneNumber)
+                                          ],
                                         ),
                                         Row(
-                                          children: [const Text('Respondent Relation : '),
-                                            Text(loadedData![index].relation)],
+                                          children: [
+                                            const Text(
+                                                'Respondent Relation : '),
+                                            Text(loadedData![index].relation)
+                                          ],
                                         ),
                                         Row(
-                                          children: [const Text('Migration Type : '),
-                                            Text(loadedData![index].migrationType)],
+                                          children: [
+                                            const Text('Migration Type : '),
+                                            Text(loadedData![index]
+                                                .migrationType)
+                                          ],
                                         ),
                                         Row(
-                                          children: [const Text('Family Number : '),
-                                            Text(loadedData![index].familyCount)],
+                                          children: [
+                                            const Text('Family Number : '),
+                                            Text(loadedData![index].familyCount)
+                                          ],
                                         ),
                                         Row(
-                                          children: [const Text('Family Death : '),
-                                            Text(loadedData![index].isDeath)],
+                                          children: [
+                                            const Text('Family Death : '),
+                                            Text(loadedData![index].isDeath)
+                                          ],
                                         ),
                                         Row(
-                                          children: [const Text('Insurance : '),
-                                            Text(loadedData![index].insurance)],
+                                          children: [
+                                            const Text('Insurance : '),
+                                            Text(loadedData![index].insurance)
+                                          ],
                                         ),
+                                        ListView.builder(
+                                          shrinkWrap: true,
+                                          itemBuilder: (context, valueIndex) {
+                                            return Text(
+                                                "Family Individual : ${loadedData[index].individualData[valueIndex].individualName}");
+                                          },
+                                          itemCount: loadedData[index]
+                                              .individualData
+                                              .length,
+                                        )
                                       ],
                                     ),
                                   )),
