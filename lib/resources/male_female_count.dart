@@ -8,13 +8,13 @@ class PopulationCount with _$PopulationCount {
   const PopulationCount._();
 
   factory PopulationCount({
-    @JsonKey(name: "survey_ward_no")  required String wardNum,
-    @JsonKey(name: "male_count") String? maleCount,
-    @JsonKey(name: "female_count") String? femaleCount,
-    @JsonKey(name: "other_count") String? otherCount,
-    @JsonKey(name: "total_ward_population") required String totalWardPopulation,
-    @JsonKey(name: "male_hh_count") required int maleHhCount,
-    @JsonKey(name: "female_hh_count") required int femaleHhCount,
+    @JsonKey(name: "survey_ward_no")   int? wardNum,
+    @JsonKey(name: "male_count") double? maleCount,
+    @JsonKey(name: "female_count") double? femaleCount,
+    @JsonKey(name: "other_count") int? otherCount,
+    @JsonKey(name: "total_ward_population")int? totalWardPopulation,
+    @JsonKey(name: "male_hh_count")  int? maleHhCount,
+    @JsonKey(name: "female_hh_count")  int? femaleHhCount,
     @JsonKey(name: "total_ward_hh_population")
     required int totalWardHhPopulation,
   }) = _PopulationCount;

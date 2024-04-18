@@ -15,6 +15,7 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   List<double> barGraphData = [42, 50, 30, 90, 60, 55, 80];
+  final Future<List<PopulationCount>> popData = loadPopulationData();
   @override
   Widget build(BuildContext context) {
     BarData barData = BarData(
@@ -85,6 +86,7 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
       ),
       body: SingleChildScrollView(
+        scrollDirection: Axis.vertical,
         child: Column(
           children: [
             Card(
@@ -257,45 +259,73 @@ class _MyHomePageState extends State<MyHomePage> {
                     'साक्षरताको स्थिति',
                     style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
                   ),
-                  SingleChildScrollView(
-                    scrollDirection: Axis.horizontal,
-                    child: SizedBox(
-                      height: 500,
-                      width: 600,
-                      child: Padding(
-                        padding: const EdgeInsets.only(top: 18.0),
-                        child: BarChart(BarChartData(
-                            // barTouchData: BarTouchData(longPressDuration: Duration(milliseconds: 600)),
-                            minY: 0,
-                            maxY: 100,
-                            barGroups: barData.barData
-                                .map((e) => BarChartGroupData(
-                                      x: e.x,
-                                      barRods: [
-                                        BarChartRodData(
-                                          toY: e.y,
-                                          width: 20,
-                                          borderRadius:
-                                              BorderRadius.circular(2),
-                                          color: Colors.blueAccent,
-                                          //fromY: 20,
-                                          //borderDashArray: [5, 10],
-                                        ),
-                                        BarChartRodData(
-                                          toY: e.y,
-                                          width: 20,
-                                          borderRadius:
-                                              BorderRadius.circular(2),
-                                          color: Colors.blueAccent,
-                                          //fromY: 20,
-                                          //borderDashArray: [5, 10],
-                                        )
-                                      ],
-                                    ))
-                                .toList())),
-                      ),
-                    ),
-                  ),
+                  FutureBuilder<List<PopulationCount>>(
+                      future: loadPopulationData(),
+                      builder: (context, snapshot) {
+                        //print(snapshot);
+                        List<PopulationCount>? loadedPopulationData =
+                            snapshot.data;
+                        //print(loadedPopulationData);
+                        if (snapshot.hasData) {
+                          // int? malehhcount =
+                          //     loadedPopulationData[index].maleCount;
+                          //  print(malehhcount);
+                          return SingleChildScrollView(
+                            scrollDirection: Axis.horizontal,
+                            child: SizedBox(
+                              height: 600,
+                              width: 600,
+                              child: BarChart(BarChartData(
+                                minY: 0,
+                                maxY: 600,
+                                barGroups: loadedPopulationData
+                                    ?.map((e) => BarChartGroupData(
+                                            x: e.wardNum ?? 0,
+                                            barRods: [
+                                              BarChartRodData(
+                                                toY: e.maleCount ?? 0,
+                                                // toY: loadedPopulationData[index]
+                                                //     .maleCount,
+                                                width: 20,
+                                                borderRadius:
+                                                    BorderRadius.circular(2),
+                                                color: Colors.orangeAccent,
+                                                //fromY: 20,
+                                                //borderDashArray: [5, 10],
+                                              ),
+                                              BarChartRodData(
+                                                toY: e.femaleCount ?? 0,
+                                                // toY: loadedPopulationData[index]
+                                                //     .maleCount,
+                                                width: 20,
+                                                borderRadius:
+                                                    BorderRadius.circular(2),
+                                                color: Colors.blueAccent,
+                                                //fromY: 20,
+                                                //borderDashArray: [5, 10],
+                                              ),
+                                              BarChartRodData(
+                                                toY: e.otherCount?.toDouble() ??
+                                                    0,
+                                                // toY: loadedPopulationData[index]
+                                                //     .maleCount,
+                                                width: 20,
+                                                borderRadius:
+                                                    BorderRadius.circular(2),
+                                                color: Colors.pinkAccent,
+                                                //fromY: 20,
+                                                //borderDashArray: [5, 10],
+                                              ),
+                                            ]))
+                                    .toList(),
+                              )),
+                            ),
+                          );
+                        } else if (snapshot.hasError) {
+                          return const Text('error has occured');
+                        }
+                        return const CircularProgressIndicator();
+                      }),
                 ],
               ),
             ),
@@ -305,22 +335,3 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 }
-
-// List<Widget> representation() {
-//   List<Color> colors = [Colors.red, Colors.yellow, Colors.green, Colors.blue];
-//   List<String> casts = ['Rai', 'limbu', 'Newar', 'Tamang'];
-//   return List.generate(4, (index) {
-//     return Card(
-//       child: Row(
-//         children: [
-//           Container(
-//             height: 10,
-//             width: 10,
-//             color: colors[index],
-//           ),
-//           Text(casts[index])
-//         ],
-//       ),
-//     );
-//   });
-// }

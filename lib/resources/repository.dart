@@ -33,9 +33,10 @@ Future<List<IndividualFamilyData>> loadIndividualData() async {
 Future<List<PopulationCount>> loadPopulationData() async {
   String jsonData = await rootBundle.loadString('assets/population_count.json');
   // print('-----');
-   print(jsonData.runtimeType);
+  // print(jsonData.runtimeType);
+  //print(jsonData);
   List<dynamic> jsonList = json.decode(jsonData);
   // print('-----');
-  print(jsonList);
+  //print(jsonList);
   return jsonList.map((e) => PopulationCount.fromJson(e)).toList();
 }

@@ -59,86 +59,11 @@ class _DropDownState extends State<DropDown> {
                   return DropdownMenuItem<String>(
                     value: value,
                     child: Text(value),
-                    onTap: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => ReportPage()));
-                    },
+                    onTap: () {},
                   );
                 }).toList(),
               ),
             ),
-            Expanded(
-              child: FutureBuilder<List<PopulationCount>>(
-                  future: loadPopulationData(),
-                  builder: (context, snapshot) {
-                    //print(snapshot);
-                    List<PopulationCount>? loadedPopulationData = snapshot.data;
-                    //print(loadedPopulationData);
-                    if (snapshot.hasData) {
-                      return ListView.builder(
-                        itemCount: loadedPopulationData!.length,
-                        itemBuilder: (context, index) {
-                          return Container(
-                            height: 500,
-                            child: BarChart(BarChartData(
-                              minY: 0,
-                              maxY: 100,
-                              barGroups: loadedPopulationData
-                                  .map((e) => BarChartGroupData(x: 1, barRods: [
-                                        BarChartRodData(
-                                          toY: 015,
-                                          // toY: loadedPopulationData[index]
-                                          //     .maleCount,
-                                          width: 20,
-                                          borderRadius:
-                                              BorderRadius.circular(2),
-                                          color: Colors.blueAccent,
-                                          //fromY: 20,
-                                          //borderDashArray: [5, 10],
-                                        ),
-                                      ]))
-                                  .toList(),
-                            )),
-                          );
-                        },
-                      );
-                    } else if (snapshot.hasError) {
-                      return const Text('error has occured');
-                    }
-                    return const CircularProgressIndicator();
-                  }),
-            )
-            // Expanded(
-            //     child: FutureBuilder<List<IndividualFamilyData>>(
-            //   future: loadIndividualData(),
-            //   builder: (context, snapshot) {
-            //     List<IndividualFamilyData>? loadedIndividualData =
-            //         snapshot.data;
-            //     if (snapshot.hasData) {
-            //       print('-----------------------------------------------');
-            //       print(snapshot);
-            //       return ListView.builder(
-            //           itemCount: loadedIndividualData?.length,
-            //           itemBuilder: (context, index) {
-            //             return Card(
-            //               child: Column(
-            //                 children: [
-            //                   Text(loadedIndividualData![index].name),
-            //                   Text(loadedIndividualData[index].name),
-            //                   Text(loadedIndividualData[index].name),
-            //                 ],
-            //               ),
-            //             );
-            //           });
-            //     } else if (snapshot.hasError) {
-            //       const Text('Data fetch failure');
-            //       // print(snapshot.);
-            //     }
-            //     return const CircularProgressIndicator();
-            //   },
-            // )),
           ],
         ),
       ),
