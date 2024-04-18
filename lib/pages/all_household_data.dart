@@ -21,9 +21,9 @@ class _AllHouseholdDataState extends State<AllHouseholdData> {
             const Text(
               'All HouseHold Data',
               style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 25,
-              ),
+                  fontWeight: FontWeight.bold,
+                  fontSize: 25,
+                  color: Colors.blueAccent),
             ),
             const SizedBox(
               height: 20,
@@ -50,7 +50,7 @@ class _AllHouseholdDataState extends State<AllHouseholdData> {
                                       MaterialPageRoute(
                                           builder: (context) => IndividualPage(
                                               indexOfCard: index)));
-                                 // print(index);
+                                  // print(index);
                                 },
                                 child: Card(
                                     elevation: 2,
@@ -131,17 +131,17 @@ class _AllHouseholdDataState extends State<AllHouseholdData> {
                                               Text(loadedData![index].insurance)
                                             ],
                                           ),
-                                          ListView.builder(
-                                            shrinkWrap: true,
-                                            itemBuilder: (context, valueIndex) {
-                                              print(valueIndex);
-                                              return Text(
-                                                  "Family Individual : ${loadedData[index].individualData[valueIndex].individualName}");
-                                            },
-                                            itemCount: loadedData[index]
-                                                .individualData
-                                                .length,
-                                          )
+                                          // ListView.builder(
+                                          //   shrinkWrap: true,
+                                          //   itemBuilder: (context, valueIndex) {
+                                          //     print(valueIndex);
+                                          //     return Text(
+                                          //         "Family Individual : ${loadedData[index].individualData[valueIndex].individualName}");
+                                          //   },
+                                          //   itemCount: loadedData[index]
+                                          //       .individualData
+                                          //       .length,
+                                          // )
                                         ],
                                       ),
                                     )),

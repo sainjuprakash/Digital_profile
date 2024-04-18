@@ -2,6 +2,7 @@
 
 import 'dart:convert';
 
+import 'package:digital_profile/resources/male_female_count.dart';
 import 'package:flutter/services.dart';
 
 import 'family_details.dart';
@@ -10,8 +11,6 @@ import 'individual_family_data.dart';
 Future<List<FamilyDetailsModel>> LoadFamilyData() async {
   String jsonData = await rootBundle.loadString('assets/familyData.json');
   List<dynamic> jsonList = json.decode(jsonData);
- // print('-------------------------');
-  //print(jsonList);
   return jsonList.map((json) => FamilyDetailsModel.fromJson(json)).toList();
 }
 
@@ -21,7 +20,7 @@ Future<List<IndividualFamilyData>> loadIndividualData() async {
   List<dynamic> jsonList = json.decode(jsonType);
   List<dynamic> groupFamily = jsonList.map((e) => e['group_family']).toList();
   return groupFamily.map((e) {
-    print("group family item: ${e}");
+   // print("group family item: ${e}");
     return IndividualFamilyData.fromJson(e);
   }).toList();
   return jsonList.map((e) {
@@ -29,4 +28,14 @@ Future<List<IndividualFamilyData>> loadIndividualData() async {
     final testObject = IndividualFamilyData.fromJson(e['group_family'][0]);
     return IndividualFamilyData.fromJson(e['group_family']);
   }).toList();
+}
+
+Future<List<PopulationCount>> loadPopulationData() async {
+  String jsonData = await rootBundle.loadString('assets/population_count.json');
+  // print('-----');
+   print(jsonData.runtimeType);
+  List<dynamic> jsonList = json.decode(jsonData);
+  // print('-----');
+  print(jsonList);
+  return jsonList.map((e) => PopulationCount.fromJson(e)).toList();
 }

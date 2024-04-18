@@ -2,6 +2,8 @@ import 'package:digital_profile/bar_graph/bar_data.dart';
 import 'package:digital_profile/pages/all_household_data.dart';
 import 'package:digital_profile/pages/household_data.dart';
 import 'package:digital_profile/pages/report_page.dart';
+import 'package:digital_profile/resources/male_female_count.dart';
+import 'package:digital_profile/resources/repository.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 
@@ -72,7 +74,10 @@ class _MyHomePageState extends State<MyHomePage> {
                 leading: const Icon(Icons.report),
                 title: const Text('Report'),
                 onTap: () {
-                  Navigator.push(context, MaterialPageRoute(builder : (context)=> const ReportPage()));
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const ReportPage()));
                 },
               ),
             ],
@@ -267,6 +272,15 @@ class _MyHomePageState extends State<MyHomePage> {
                                 .map((e) => BarChartGroupData(
                                       x: e.x,
                                       barRods: [
+                                        BarChartRodData(
+                                          toY: e.y,
+                                          width: 20,
+                                          borderRadius:
+                                              BorderRadius.circular(2),
+                                          color: Colors.blueAccent,
+                                          //fromY: 20,
+                                          //borderDashArray: [5, 10],
+                                        ),
                                         BarChartRodData(
                                           toY: e.y,
                                           width: 20,

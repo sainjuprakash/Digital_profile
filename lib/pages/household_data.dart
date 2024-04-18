@@ -1,8 +1,11 @@
+import 'package:digital_profile/pages/report_page.dart';
 import 'package:digital_profile/resources/family_details.dart';
 import 'package:digital_profile/resources/repository.dart';
+import 'package:fl_chart/fl_chart.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
 import '../resources/individual_family_data.dart';
+import '../resources/male_female_count.dart';
 
 class DropDown extends StatefulWidget {
   const DropDown({super.key});
@@ -14,6 +17,7 @@ class DropDown extends StatefulWidget {
 class _DropDownState extends State<DropDown> {
   // String defaultDropDown = 'one';
   // List<String> list=['one','two','three'];
+  List<int> wardNumber = [1, 2, 3, 4, 5, 6, 7, 8, 9];
   List<String> dropDownOptions = [
     'Table 1 - 1.1 पारिवारिक तथा जनसंख्या विवरण',
     'Table 2 - 1.2 उमेर अनुसार जनसंख्या',
@@ -55,39 +59,86 @@ class _DropDownState extends State<DropDown> {
                   return DropdownMenuItem<String>(
                     value: value,
                     child: Text(value),
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => ReportPage()));
+                    },
                   );
                 }).toList(),
               ),
             ),
             Expanded(
-                child: FutureBuilder<List<IndividualFamilyData>>(
-              future: loadIndividualData(),
-              builder: (context, snapshot) {
-                List<IndividualFamilyData>? loadedIndividualData =
-                    snapshot.data;
-                if (snapshot.hasData) {
-                  print('-----------------------------------------------');
-                  print(snapshot);
-                  return ListView.builder(
-                      itemCount: loadedIndividualData?.length,
-                      itemBuilder: (context, index) {
-                        return Card(
-                          child: Column(
-                            children: [
-                              Text(loadedIndividualData![index].name),
-                              Text(loadedIndividualData[index].name),
-                              Text(loadedIndividualData[index].name),
-                            ],
-                          ),
-                        );
-                      });
-                } else if (snapshot.hasError) {
-                  const Text('Data fetch failure');
-                  // print(snapshot.);
-                }
-                return const CircularProgressIndicator();
-              },
-            ))
+              child: FutureBuilder<List<PopulationCount>>(
+                  future: loadPopulationData(),
+                  builder: (context, snapshot) {
+                    //print(snapshot);
+                    List<PopulationCount>? loadedPopulationData = snapshot.data;
+                    //print(loadedPopulationData);
+                    if (snapshot.hasData) {
+                      return ListView.builder(
+                        itemCount: loadedPopulationData!.length,
+                        itemBuilder: (context, index) {
+                          return Container(
+                            height: 500,
+                            child: BarChart(BarChartData(
+                              minY: 0,
+                              maxY: 100,
+                              barGroups: loadedPopulationData
+                                  .map((e) => BarChartGroupData(x: 1, barRods: [
+                                        BarChartRodData(
+                                          toY: 015,
+                                          // toY: loadedPopulationData[index]
+                                          //     .maleCount,
+                                          width: 20,
+                                          borderRadius:
+                                              BorderRadius.circular(2),
+                                          color: Colors.blueAccent,
+                                          //fromY: 20,
+                                          //borderDashArray: [5, 10],
+                                        ),
+                                      ]))
+                                  .toList(),
+                            )),
+                          );
+                        },
+                      );
+                    } else if (snapshot.hasError) {
+                      return const Text('error has occured');
+                    }
+                    return const CircularProgressIndicator();
+                  }),
+            )
+            // Expanded(
+            //     child: FutureBuilder<List<IndividualFamilyData>>(
+            //   future: loadIndividualData(),
+            //   builder: (context, snapshot) {
+            //     List<IndividualFamilyData>? loadedIndividualData =
+            //         snapshot.data;
+            //     if (snapshot.hasData) {
+            //       print('-----------------------------------------------');
+            //       print(snapshot);
+            //       return ListView.builder(
+            //           itemCount: loadedIndividualData?.length,
+            //           itemBuilder: (context, index) {
+            //             return Card(
+            //               child: Column(
+            //                 children: [
+            //                   Text(loadedIndividualData![index].name),
+            //                   Text(loadedIndividualData[index].name),
+            //                   Text(loadedIndividualData[index].name),
+            //                 ],
+            //               ),
+            //             );
+            //           });
+            //     } else if (snapshot.hasError) {
+            //       const Text('Data fetch failure');
+            //       // print(snapshot.);
+            //     }
+            //     return const CircularProgressIndicator();
+            //   },
+            // )),
           ],
         ),
       ),

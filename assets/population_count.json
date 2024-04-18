@@ -1,0 +1,52 @@
+[
+    {
+        "survey_ward_no": "1",
+        "male_count": "3",
+        "female_count": "2",
+        "other_count": null,
+        "total_ward_population": "5",
+        "male_hh_count": 2,
+        "female_hh_count": 0,
+        "total_ward_hh_population": 2
+    },
+    {
+        "survey_ward_no": "2",
+        "male_count": "1",
+        "female_count": "1",
+        "other_count": null,
+        "total_ward_population": "2",
+        "male_hh_count": 1,
+        "female_hh_count": 0,
+        "total_ward_hh_population": 1
+    },
+    {
+        "survey_ward_no": "3",
+        "male_count": null,
+        "female_count": "2",
+        "other_count": null,
+        "total_ward_population": "2",
+        "male_hh_count": 2,
+        "female_hh_count": 0,
+        "total_ward_hh_population": 2
+    },
+    {
+        "survey_ward_no": "4",
+        "male_count": "1",
+        "female_count": null,
+        "other_count": null,
+        "total_ward_population": "1",
+        "male_hh_count": 1,
+        "female_hh_count": 0,
+        "total_ward_hh_population": 1
+    },
+    {
+        "survey_ward_no": "5",
+        "male_count": "181",
+        "female_count": "160",
+        "other_count": null,
+        "total_ward_population": "341",
+        "male_hh_count": 85,
+        "female_hh_count": 5,
+        "total_ward_hh_population": 85
+    }
+]

@@ -20,7 +20,7 @@ class IndividualFamilyData with _$IndividualFamilyData {
     @JsonKey(name: "group_family/any_specialist") String? specialist,
     @JsonKey(name: "group_family/Occupation") String? occupation,
     @JsonKey(name: "group_family/_Name_") required String name,
-    @JsonKey(name: "group_family/Living_status") required String livinhStatus,
+    @JsonKey(name: "group_family/Living_status") required String livingStatus,
     @JsonKey(name: "group_family/Disability") required String disability,
     @JsonKey(name: "group_family/hlth_condi") required String healthCondition,
   }) = _IndividualFamilyData;
