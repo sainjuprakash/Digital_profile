@@ -1,8 +1,9 @@
-import 'package:digital_profile/pages/individual_page.dart';
+
 import 'package:flutter/material.dart';
 
 import '../resources/family_details.dart';
 import '../resources/repository.dart';
+import 'individual_page.dart';
 
 class AllHouseholdData extends StatefulWidget {
   const AllHouseholdData({super.key});

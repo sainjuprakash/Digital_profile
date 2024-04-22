@@ -2,11 +2,12 @@
 
 import 'dart:convert';
 
-import 'package:digital_profile/resources/male_female_count.dart';
+
 import 'package:flutter/services.dart';
 
 import 'family_details.dart';
 import 'individual_family_data.dart';
+import 'male_female_count.dart';
 
 Future<List<FamilyDetailsModel>> LoadFamilyData() async {
   String jsonData = await rootBundle.loadString('assets/familyData.json');

@@ -1,6 +1,3 @@
-import 'package:digital_profile/pages/report_page.dart';
-import 'package:digital_profile/resources/family_details.dart';
-import 'package:digital_profile/resources/repository.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
