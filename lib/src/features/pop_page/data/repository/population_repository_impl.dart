@@ -1,6 +1,7 @@
-import 'dart:convert';
 import 'dart:io';
+
 import 'package:digital_profile/src/features/pop_page/data/models/population_model.dart';
+import 'package:digital_profile/src/features/pop_page/data/models/population_response_model.dart';
 import 'package:digital_profile/src/features/pop_page/domain/repository/population_repository.dart';
 import 'package:dio/dio.dart';
 import 'package:dio/io.dart';
@@ -22,12 +23,11 @@ class GetPopulationRepository extends PopulationRepository {
     );
 
     //String endPoint = 'http://rubytest.git.com.np/api/pop';
-    dynamic response = await dio.get('http://rubytest.git.com.np/api/pop') ;
+    dynamic response = await dio.get('http://rubytest.git.com.np/api/pop');
     //print(response);
     if (response.statusCode == 200) {
-      final List result = jsonDecode(response);
-       //print(result);
-      return result.map(((e) => PopulationModel.fromJson(e))).toList();
+      final responseModel = PopulationResponseModel.fromJson(response.data);
+      return responseModel.result;
     } else {
       //print(response.reasonPhrase);
       throw Exception(response.reasonPhrase);
