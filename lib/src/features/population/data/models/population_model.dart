@@ -3,12 +3,12 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'population_model.freezed.dart';
 part 'population_model.g.dart';
 
-
 @freezed
 class PopulationModel with _$PopulationModel {
   const PopulationModel._();
 
   factory PopulationModel({
+    @JsonKey(name: "title") required String? title,
     @JsonKey(name: "survey_ward_no") required String surveyWardNumber,
     @JsonKey(name: "male_count") required int? maleCount,
     @JsonKey(name: "female_count") required int? femaleCount,

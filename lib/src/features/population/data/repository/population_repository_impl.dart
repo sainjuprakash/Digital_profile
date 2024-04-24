@@ -1,9 +1,11 @@
 import 'dart:convert';
 import 'dart:io';
-import 'package:digital_profile/src/features/pop_page/data/models/population_model.dart';
-import 'package:digital_profile/src/features/pop_page/domain/repository/population_repository.dart';
+
 import 'package:dio/dio.dart';
 import 'package:dio/io.dart';
+
+import '../../domain/repository/population_repository.dart';
+import '../models/population_model.dart';
 
 class GetPopulationRepository extends PopulationRepository {
   final dio = Dio();
@@ -20,17 +22,19 @@ class GetPopulationRepository extends PopulationRepository {
         return client;
       },
     );
-
-    //String endPoint = 'http://rubytest.git.com.np/api/pop';
-    dynamic response = await dio.get('http://rubytest.git.com.np/api/pop') ;
-    //print(response);
-    if (response.statusCode == 200) {
-      final List result = jsonDecode(response);
-       //print(result);
-      return result.map(((e) => PopulationModel.fromJson(e))).toList();
-    } else {
-      //print(response.reasonPhrase);
-      throw Exception(response.reasonPhrase);
+    try {
+      Response<dynamic> response =
+          await dio.get('http://rubytest.git.com.np/api/pop');
+      if (response.statusCode == 200) {
+//        return result.map(((e) => PopulationModel.fromJson(e))).toList();
+        final List<dynamic> results = response.data['result'];
+        //print(results);
+        return results.map((e) => PopulationModel.fromJson(e)).toList();
+      } else {
+        throw Exception(response.statusCode);
+      }
+    } catch (error) {
+      throw Exception('Failed to load population data : $error');
     }
   }
 }

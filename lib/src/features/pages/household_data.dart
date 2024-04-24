@@ -29,40 +29,38 @@ class _DropDownState extends State<DropDown> {
   String selectedItem = 'Table 1 - 1.1 पारिवारिक तथा जनसंख्या विवरण';
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        appBar: AppBar(
-          title: const Text('घरदुरी ताथ्याङ्का'),
-          // foregroundColor: Colors.blue,
-          backgroundColor: Colors.blueAccent,
-        ),
-        body: Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: DropdownButton<String>(
-                underline: Container(
-                  height: 1.2,
-                  color: Colors.black,
-                ),
-                value: selectedItem,
-                onChanged: (String? newValue) {
-                  setState(() {
-                    selectedItem = newValue!;
-                  });
-                },
-                items: dropDownOptions
-                    .map<DropdownMenuItem<String>>((String value) {
-                  return DropdownMenuItem<String>(
-                    value: value,
-                    child: Text(value),
-                    onTap: () {},
-                  );
-                }).toList(),
-              ),
-            ),
-          ],
-        ),
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('घरदुरी ताथ्याङ्का'),
+        // foregroundColor: Colors.blue,
+        backgroundColor: Colors.blueAccent,
+      ),
+      body: const Column(
+        children: [
+          Padding(
+            padding: EdgeInsets.all(8.0),
+            // child: DropdownButton<String>(
+            //   underline: Container(
+            //     height: 1.2,
+            //     color: Colors.black,
+            //   ),
+            //   value: selectedItem,
+            //   onChanged: (String? newValue) {
+            //     setState(() {
+            //       selectedItem = newValue!;
+            //     });
+            //   },
+            //   items:
+            //       dropDownOptions.map<DropdownMenuItem<String>>((String value) {
+            //     return DropdownMenuItem<String>(
+            //       value: value,
+            //       child: Text(value),
+            //       onTap: () {},
+            //     );
+            //   }).toList(),
+            // ),
+          ),
+        ],
       ),
     );
   }
