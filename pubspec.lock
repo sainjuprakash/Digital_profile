@@ -283,6 +283,14 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  flutter_table:
+    dependency: "direct main"
+    description:
+      name: flutter_table
+      sha256: bb67c44c13ec1501cdc489b3f00fd1d675716c9a8ba0d6f72a1395aabc7f40a1
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.1.0"
   flutter_test:
     dependency: "direct dev"
     description: flutter

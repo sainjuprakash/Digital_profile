@@ -80,7 +80,7 @@ class _PopulationDetailsState extends State<PopulationDetails> {
           ),
         );
       } else if (state is PopulationLoadingState) {
-        return const CircularProgressIndicator();
+        return const Center(child: CircularProgressIndicator());
       } else if (state is PopulationFailureState) {
         return const Center(
           child: Text("Something went wrong"),

@@ -4,13 +4,12 @@ import 'package:digital_profile/src/features/language/presentation/pages/languag
 import 'package:digital_profile/src/features/pages/all_household_data.dart';
 import 'package:digital_profile/src/features/pages/household_data.dart';
 import 'package:digital_profile/src/features/pages/report_page.dart';
+import 'package:digital_profile/src/features/population/data/models/population_model.dart';
 import 'package:digital_profile/src/features/population/data/repository/population_repository_impl.dart';
 import 'package:digital_profile/src/features/population/presentation/bloc/population_bloc.dart';
 import 'package:digital_profile/src/features/population/presentation/pages/household_details.dart';
 import 'package:digital_profile/src/features/population/presentation/pages/population_details.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class MyHomePage extends StatefulWidget {
@@ -32,9 +31,6 @@ class _MyHomePageState extends State<MyHomePage> {
     'Table 9 - 1.9 अपाङ्गताको स्थिति',
     'Table 10 - 1.10 वैवाहिक स्थिति'
   ];
-  // final FlutterLocalization localization = FlutterLocalization.instance;
-  //List<double> barGraphData = [42, 50, 30, 90, 60, 55, 80];
-  //final Future<List<PopulationCount>> popData = loadPopulationData();
   final List<Color> _colorsMaleFemale = [
     const Color(0xFF1976D2),
     const Color(0xFF64B5F6),
@@ -84,17 +80,6 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
       );
     });
-    /*  BarData barData = BarData(
-      rai: barGraphData[0],
-      pahadiAdibasi: barGraphData[1],
-      brahman: barGraphData[2],
-      newar: barGraphData[3],
-      tamang: barGraphData[4],
-      bahun: barGraphData[5],
-      others: barGraphData[6],
-    );
-    barData.initializeBarData();
-    double radius = 100;*/
     return MultiBlocProvider(
       providers: [
         BlocProvider(
@@ -191,17 +176,19 @@ class _MyHomePageState extends State<MyHomePage> {
                           setState(() {
                             selectedItem = newValue!;
                           });
-                          // if (newValue == "Table 1 - 1.1 पारिवारिक तथा जनसंख्या विवरण") {
-                          //   Navigator.push(context,
-                          //       MaterialPageRoute(builder: (context) => DropDown()));
-                          // }
                           if (newValue ==
-                              "Table 2 - 1.2 उमेर अनुसार जनसंख्या") {
+                              "Table 5 - 1.5 मातृभाषाको आधारमा जनसंख्या") {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => DropDown()));
+                                    builder: (context) => LanguageDetails()));
                           }
+                          // if (newValue ==
+                          //     "Table 2 - 1.2 उमेर अनुसार जनसंख्या") {
+                          //  Container(
+                          //    child: const LanguageDetails(),
+                          //  );
+                          // }
                         },
                         items: dropDownOptions
                             .map<DropdownMenuItem<String>>((String value) {
@@ -269,15 +256,56 @@ class _MyHomePageState extends State<MyHomePage> {
                   ],
                 ),
               ),
-              SizedBox(
-                child: BlocBuilder<LanguageBloc, LanguageState>(
+              Card(
+                child: SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: BlocBuilder<PopulationBloc, PopulationState>(
                     builder: (context, state) {
-                  if (state is LanguageLoadedState) {
-                    return Text("Data fetched");
-                  }
-                  return Text('failure');
-                }),
-              )
+                      if (state is PopulationSuccessState) {
+                        List<PopulationModel>? populationData =
+                            state.populationModel;
+                        return DataTable(
+                            columns: const [
+                              DataColumn(label: Text('Survey Ward No')),
+                              DataColumn(label: Text('Male Count')),
+                              DataColumn(label: Text('Female Count')),
+                              DataColumn(label: Text('Other Count')),
+                              DataColumn(label: Text('Total Ward Population')),
+                              DataColumn(label: Text('Male HH Count')),
+                              DataColumn(label: Text('Female HH Count')),
+                              DataColumn(
+                                  label: Text('Total Ward HH Population')),
+                            ],
+                            rows: populationData
+                                .map((population) => DataRow(cells: [
+                                      DataCell(
+                                          Text(population.surveyWardNumber)),
+                                      DataCell(Text(
+                                          population.maleCount?.toString() ??
+                                              '-')),
+                                      DataCell(Text(
+                                          population.femaleCount?.toString() ??
+                                              '-')),
+                                      DataCell(Text(
+                                          population.othersCount?.toString() ??
+                                              '-')),
+                                      DataCell(Text(population.totalWardHhCount
+                                          .toString())),
+                                      DataCell(Text(
+                                          population.maleHhCount.toString())),
+                                      DataCell(Text(
+                                          population.femaleHhCount.toString())),
+                                      DataCell(Text(population.totalWardHhCount
+                                          .toString())),
+                                    ]))
+                                .toList());
+                      }
+                      return const Center(child: CircularProgressIndicator());
+                    },
+                  ),
+                ),
+              ),
+              // const LanguageDetails(),
               /*  Card(
                 elevation: 2,
                 child: Column(
