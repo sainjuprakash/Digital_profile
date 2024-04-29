@@ -7,7 +7,6 @@ import 'package:flutter/services.dart';
 
 import 'family_details.dart';
 import 'individual_family_data.dart';
-import 'male_female_count.dart';
 
 Future<List<FamilyDetailsModel>> LoadFamilyData() async {
   String jsonData = await rootBundle.loadString('assets/familyData.json');
@@ -31,13 +30,3 @@ Future<List<IndividualFamilyData>> loadIndividualData() async {
   }).toList();
 }
 
-Future<List<PopulationCount>> loadPopulationData() async {
-  String jsonData = await rootBundle.loadString('assets/population_count.json');
-  // print('-----');
-  // print(jsonData.runtimeType);
-  //print(jsonData);
-  List<dynamic> jsonList = json.decode(jsonData);
-  // print('-----');
-  //print(jsonList);
-  return jsonList.map((e) => PopulationCount.fromJson(e)).toList();
-}

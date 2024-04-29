@@ -80,13 +80,23 @@ class _PopulationDetailsState extends State<PopulationDetails> {
           ),
         );
       } else if (state is PopulationLoadingState) {
-        return const Center(child: CircularProgressIndicator());
+        return const Center(
+            child: Padding(
+          padding: EdgeInsets.all(20.0),
+          child: CircularProgressIndicator(),
+        ));
       } else if (state is PopulationFailureState) {
         return const Center(
-          child: Text("Something went wrong"),
+          child: Padding(
+            padding: EdgeInsets.all(20.0),
+            child: Text("Unable to load data"),
+          ),
         );
       }
-      return const Text("Something went wrong");
+      return const Padding(
+        padding: EdgeInsets.all(20.0),
+        child: Text("Something went wrong"),
+      );
     });
   }
 }

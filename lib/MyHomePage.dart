@@ -1,3 +1,4 @@
+import 'package:digital_profile/app_localization/l10n.dart';
 import 'package:digital_profile/src/features/language/data/repository/language_repository_impl.dart';
 import 'package:digital_profile/src/features/language/presentation/bloc/language_bloc.dart';
 import 'package:digital_profile/src/features/language/presentation/pages/language_details.dart';
@@ -7,7 +8,7 @@ import 'package:digital_profile/src/features/pages/report_page.dart';
 import 'package:digital_profile/src/features/population/data/models/population_model.dart';
 import 'package:digital_profile/src/features/population/data/repository/population_repository_impl.dart';
 import 'package:digital_profile/src/features/population/presentation/bloc/population_bloc.dart';
-import 'package:digital_profile/src/features/population/presentation/pages/household_details.dart';
+import 'package:digital_profile/src/features/population/presentation/pages/househead_details.dart';
 import 'package:digital_profile/src/features/population/presentation/pages/population_details.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -153,6 +154,9 @@ class _MyHomePageState extends State<MyHomePage> {
           scrollDirection: Axis.vertical,
           child: Column(
             children: [
+              const SizedBox(
+                height: 10,
+              ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Container(
@@ -203,6 +207,9 @@ class _MyHomePageState extends State<MyHomePage> {
                   ),
                 ),
               ),
+              const SizedBox(
+                height: 10,
+              ),
               Card(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -231,6 +238,9 @@ class _MyHomePageState extends State<MyHomePage> {
                   ],
                 ),
               ),
+              const SizedBox(
+                height: 10,
+              ),
               Card(
                 child: Column(
                   children: [
@@ -242,7 +252,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       style:
                           TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
                     ),
-                    const HouseHoldDetails(),
+                    const HouseHeadDetails(),
                     Padding(
                       padding: const EdgeInsets.only(left: 38.0),
                       child: Row(
@@ -256,6 +266,9 @@ class _MyHomePageState extends State<MyHomePage> {
                   ],
                 ),
               ),
+              const SizedBox(
+                height: 10,
+              ),
               Card(
                 child: SingleChildScrollView(
                   scrollDirection: Axis.horizontal,
@@ -265,45 +278,46 @@ class _MyHomePageState extends State<MyHomePage> {
                         List<PopulationModel>? populationData =
                             state.populationModel;
                         return DataTable(
-                            columns: const [
-                              DataColumn(label: Text('Survey Ward No')),
-                              DataColumn(label: Text('Male Count')),
-                              DataColumn(label: Text('Female Count')),
-                              DataColumn(label: Text('Other Count')),
-                              DataColumn(label: Text('Total Ward Population')),
-                              DataColumn(label: Text('Male HH Count')),
-                              DataColumn(label: Text('Female HH Count')),
-                              DataColumn(
-                                  label: Text('Total Ward HH Population')),
+                            columns: [
+                              DataColumn(label: Text(l10n.wardnumber)),
+                              DataColumn(label: Text(l10n.male)),
+                              DataColumn(label: Text(l10n.female)),
+                              DataColumn(label: Text(l10n.others)),
+                              DataColumn(label: Text(l10n.totalwardpop)),
+                              DataColumn(label: Text(l10n.malehhcount)),
+                              DataColumn(label: Text(l10n.femalehhcount)),
+                              DataColumn(label: Text(l10n.totalhhcount)),
                             ],
-                            rows: populationData
-                                .map((population) => DataRow(cells: [
-                                      DataCell(
-                                          Text(population.surveyWardNumber)),
-                                      DataCell(Text(
-                                          population.maleCount?.toString() ??
-                                              '-')),
-                                      DataCell(Text(
-                                          population.femaleCount?.toString() ??
-                                              '-')),
-                                      DataCell(Text(
-                                          population.othersCount?.toString() ??
-                                              '-')),
-                                      DataCell(Text(population.totalWardHhCount
-                                          .toString())),
-                                      DataCell(Text(
-                                          population.maleHhCount.toString())),
-                                      DataCell(Text(
-                                          population.femaleHhCount.toString())),
-                                      DataCell(Text(population.totalWardHhCount
-                                          .toString())),
-                                    ]))
-                                .toList());
+                            rows: populationData.asMap().entries.map((population) {
+                              int totalWardHhCount =
+                                  ((population.value.maleHhCount ?? 0) +
+                                      (population.value.femaleHhCount ?? 0));
+                              return DataRow(
+                                  cells: [
+                                DataCell(Text(population.value.surveyWardNumber)),
+                                DataCell(Text(
+                                    population.value.maleCount?.toString() ?? '-')),
+                                DataCell(Text(
+                                    population.value.femaleCount?.toString() ?? '-')),
+                                DataCell(Text(
+                                    population.value.othersCount?.toString() ?? '-')),
+                                DataCell(
+                                    Text(population.value.totalWardpop.toString())),
+                                DataCell(
+                                    Text(population.value.maleHhCount.toString())),
+                                DataCell(
+                                    Text(population.value.femaleHhCount.toString())),
+                                DataCell(Text(totalWardHhCount.toString())),
+                              ]);
+                            }).toList());
                       }
                       return const Center(child: CircularProgressIndicator());
                     },
                   ),
                 ),
+              ),
+              const SizedBox(
+                height: 10,
               ),
               // const LanguageDetails(),
               /*  Card(

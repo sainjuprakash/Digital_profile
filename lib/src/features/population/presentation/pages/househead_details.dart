@@ -5,21 +5,25 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../data/models/population_model.dart';
 import '../bloc/population_bloc.dart';
 
-class HouseHoldDetails extends StatefulWidget {
-  const HouseHoldDetails({super.key});
+class HouseHeadDetails extends StatefulWidget {
+  const HouseHeadDetails({super.key});
 
   @override
-  State<HouseHoldDetails> createState() => _HouseHoldDetailsState();
+  State<HouseHeadDetails> createState() => _HouseHeadDetailsState();
 }
 
-class _HouseHoldDetailsState extends State<HouseHoldDetails> {
+class _HouseHeadDetailsState extends State<HouseHeadDetails> {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<PopulationBloc, PopulationState>(
         builder: (context, state) {
       if (state is PopulationLoadingState) {
-        return const CircularProgressIndicator();
-      } else if (state is PopulationSuccessState) {
+        return const Padding(
+          padding: EdgeInsets.all(20.0),
+          child: CircularProgressIndicator(),
+        );
+      }
+      if (state is PopulationSuccessState) {
         List<PopulationModel>? populationData = state.populationModel;
         return SingleChildScrollView(
           scrollDirection: Axis.horizontal,
@@ -66,8 +70,17 @@ class _HouseHoldDetailsState extends State<HouseHoldDetails> {
           ),
         );
       }
+      if (state is PopulationFailureState) {
+        return const Padding(
+          padding: EdgeInsets.all(20.0),
+          child: Center(child: Text('Unable to load data')),
+        );
+      }
       return const Center(
-        child: Text("Something went wrong"),
+        child: Padding(
+          padding: EdgeInsets.all(20.0),
+          child: Text("Something went wrong"),
+        ),
       );
     });
   }

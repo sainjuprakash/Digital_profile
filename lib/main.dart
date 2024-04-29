@@ -1,3 +1,4 @@
+import 'package:digital_profile/app_localization/generated/l10n.dart';
 import 'package:digital_profile/src/features/language/data/repository/language_repository_impl.dart';
 import 'package:digital_profile/src/features/population/data/repository/population_repository_impl.dart';
 import 'package:flutter/material.dart';
@@ -25,6 +26,10 @@ class MyApp extends StatelessWidget {
         ),
       ],
       child: MaterialApp(
+        localizationsDelegates: const [
+          AppLocalizations.delegate,
+        ],
+        supportedLocales: AppLocalizations.delegate.supportedLocales,
         debugShowCheckedModeBanner: false,
         title: 'Flutter Demo',
         theme: ThemeData(

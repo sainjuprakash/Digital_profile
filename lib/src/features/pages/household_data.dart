@@ -1,8 +1,6 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import '../resources/individual_family_data.dart';
-import '../resources/male_female_count.dart';
 
 class DropDown extends StatefulWidget {
   const DropDown({super.key});

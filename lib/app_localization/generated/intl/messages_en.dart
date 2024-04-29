@@ -21,5 +21,36 @@ class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'en';
 
   final messages = _notInlinedMessages(_notInlinedMessages);
-  static Map<String, Function> _notInlinedMessages(_) => <String, Function>{};
+  static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "digitalprofile":
+            MessageLookupByLibrary.simpleMessage("डिजिटल प्रोफाइल"),
+        "female": MessageLookupByLibrary.simpleMessage("महिला"),
+        "femalecount": MessageLookupByLibrary.simpleMessage("महिला गणना"),
+        "femalehhcount": MessageLookupByLibrary.simpleMessage("महिला घरमुली"),
+        "ghale": MessageLookupByLibrary.simpleMessage("घले"),
+        "gurung": MessageLookupByLibrary.simpleMessage("गुरुङ"),
+        "householddata": MessageLookupByLibrary.simpleMessage("घरपरिवार डाटा"),
+        "instutionaldata":
+            MessageLookupByLibrary.simpleMessage("संस्थागत डाटा"),
+        "limbu": MessageLookupByLibrary.simpleMessage("लिम्बु"),
+        "male": MessageLookupByLibrary.simpleMessage("पुरुष"),
+        "malecount": MessageLookupByLibrary.simpleMessage("पुरुष गणना"),
+        "malehhcount": MessageLookupByLibrary.simpleMessage("पुरुष घरमुली"),
+        "nepali": MessageLookupByLibrary.simpleMessage("नेपाली"),
+        "notavailable": MessageLookupByLibrary.simpleMessage("उपलब्ध नभएको"),
+        "others": MessageLookupByLibrary.simpleMessage("अन्य"),
+        "otherscount": MessageLookupByLibrary.simpleMessage("अन्य गणना"),
+        "othrslanguage": MessageLookupByLibrary.simpleMessage("अन्य भाषा"),
+        "rai": MessageLookupByLibrary.simpleMessage("राई"),
+        "report": MessageLookupByLibrary.simpleMessage("रिपोर्ट"),
+        "sherpa": MessageLookupByLibrary.simpleMessage("शेर्पा"),
+        "tamang": MessageLookupByLibrary.simpleMessage("तामाङ"),
+        "total": MessageLookupByLibrary.simpleMessage("जम्मा"),
+        "totalhhcount": MessageLookupByLibrary.simpleMessage("कुल घरमुली गणना"),
+        "totalwardpop":
+            MessageLookupByLibrary.simpleMessage("कुल वडा जनसंख्या"),
+        "totalwardpopulation":
+            MessageLookupByLibrary.simpleMessage("कुल वडा जनसंख्या"),
+        "wardnumber": MessageLookupByLibrary.simpleMessage("वडा नम्बर")
+      };
 }
