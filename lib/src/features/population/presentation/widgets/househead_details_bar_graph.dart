@@ -5,14 +5,14 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../data/models/population_model.dart';
 import '../bloc/population_bloc.dart';
 
-class HouseHeadDetails extends StatefulWidget {
-  const HouseHeadDetails({super.key});
+class HouseHeadBarGraph extends StatefulWidget {
+  const HouseHeadBarGraph({super.key});
 
   @override
-  State<HouseHeadDetails> createState() => _HouseHeadDetailsState();
+  State<HouseHeadBarGraph> createState() => _HouseHeadBarGraphState();
 }
 
-class _HouseHeadDetailsState extends State<HouseHeadDetails> {
+class _HouseHeadBarGraphState extends State<HouseHeadBarGraph> {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<PopulationBloc, PopulationState>(
