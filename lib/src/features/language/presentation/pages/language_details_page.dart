@@ -63,7 +63,9 @@ class _LanguageDetailsState extends State<LanguageDetails> {
               scrollDirection: Axis.vertical,
               child: (Column(
                 children: [
-                  const SizedBox(height: 10,),
+                  const SizedBox(
+                    height: 10,
+                  ),
                   LanguagePieChart(
                       totalNepali: totalNepali,
                       totalTamang: totalTamang,

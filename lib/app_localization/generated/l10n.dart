@@ -309,6 +309,66 @@ class AppLocalizations {
       args: [],
     );
   }
+
+  /// `मुस्लिम`
+  String get muslim {
+    return Intl.message(
+      'मुस्लिम',
+      name: 'muslim',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `पहाडी ब्राह्मण`
+  String get hillbrahmen {
+    return Intl.message(
+      'पहाडी ब्राह्मण',
+      name: 'hillbrahmen',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `तराई ब्राह्मण`
+  String get teraiBrahman {
+    return Intl.message(
+      'तराई ब्राह्मण',
+      name: 'teraiBrahman',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `पहाडी जनजाति`
+  String get hillJanajati {
+    return Intl.message(
+      'पहाडी जनजाति',
+      name: 'hillJanajati',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `तराई जनजाति`
+  String get teraiJanajati {
+    return Intl.message(
+      'तराई जनजाति',
+      name: 'teraiJanajati',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `पहाडी दलित`
+  String get hillDalit {
+    return Intl.message(
+      'पहाडी दलित',
+      name: 'hillDalit',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<AppLocalizations> {

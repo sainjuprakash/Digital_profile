@@ -29,6 +29,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "femalehhcount": MessageLookupByLibrary.simpleMessage("महिला घरमुली"),
         "ghale": MessageLookupByLibrary.simpleMessage("घले"),
         "gurung": MessageLookupByLibrary.simpleMessage("गुरुङ"),
+        "hillDalit": MessageLookupByLibrary.simpleMessage("पहाडी दलित"),
+        "hillJanajati": MessageLookupByLibrary.simpleMessage("पहाडी जनजाति"),
+        "hillbrahmen": MessageLookupByLibrary.simpleMessage("पहाडी ब्राह्मण"),
         "householddata": MessageLookupByLibrary.simpleMessage("घरपरिवार डाटा"),
         "instutionaldata":
             MessageLookupByLibrary.simpleMessage("संस्थागत डाटा"),
@@ -36,6 +39,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "male": MessageLookupByLibrary.simpleMessage("पुरुष"),
         "malecount": MessageLookupByLibrary.simpleMessage("पुरुष गणना"),
         "malehhcount": MessageLookupByLibrary.simpleMessage("पुरुष घरमुली"),
+        "muslim": MessageLookupByLibrary.simpleMessage("मुस्लिम"),
         "nepali": MessageLookupByLibrary.simpleMessage("नेपाली"),
         "notavailable": MessageLookupByLibrary.simpleMessage("उपलब्ध नभएको"),
         "others": MessageLookupByLibrary.simpleMessage("अन्य"),
@@ -45,6 +49,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "report": MessageLookupByLibrary.simpleMessage("रिपोर्ट"),
         "sherpa": MessageLookupByLibrary.simpleMessage("शेर्पा"),
         "tamang": MessageLookupByLibrary.simpleMessage("तामाङ"),
+        "teraiBrahman": MessageLookupByLibrary.simpleMessage("तराई ब्राह्मण"),
+        "teraiJanajati": MessageLookupByLibrary.simpleMessage("तराई जनजाति"),
         "total": MessageLookupByLibrary.simpleMessage("जम्मा"),
         "totalhhcount": MessageLookupByLibrary.simpleMessage("कुल घरमुली गणना"),
         "totalwardpop":

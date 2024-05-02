@@ -1,4 +1,5 @@
 import 'package:digital_profile/app_localization/generated/l10n.dart';
+import 'package:digital_profile/src/features/ethenicity/data/repository/ethnicity_repository_impl.dart';
 import 'package:digital_profile/src/features/language/data/repository/language_repository_impl.dart';
 import 'package:digital_profile/src/features/population/data/repository/population_repository_impl.dart';
 import 'package:flutter/material.dart';
@@ -23,6 +24,9 @@ class MyApp extends StatelessWidget {
         ),
         RepositoryProvider(
           create: (context) => GetLanguageRepository(),
+        ),
+        RepositoryProvider(
+          create: (context) => GetEthenicityRepository(),
         ),
       ],
       child: MaterialApp(

@@ -18,7 +18,7 @@ class PopulationBloc extends Bloc<PopulationEvent, PopulationState> {
             await _populationRepository.getPopData();
 
         emit(PopulationSuccessState(populationModel: populationData));
-        print("Success State");
+        // print("Success State");
       } catch (e) {
         emit(PopulationFailureState(errmsg: e.toString()));
         print(e.toString());

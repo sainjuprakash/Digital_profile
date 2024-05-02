@@ -73,7 +73,6 @@ class _PopulationDetailsPageState extends State<PopulationDetailsPage> {
         scrollDirection: Axis.vertical,
         child: Column(
           children: [
-
             Card(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -84,7 +83,8 @@ class _PopulationDetailsPageState extends State<PopulationDetailsPage> {
                   const Center(
                     child: Text(
                       "लिङ्ग अनुसार जनसंख्य बिवरण",
-                      style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
                     ),
                   ),
                   const PopulationBarGraph(),

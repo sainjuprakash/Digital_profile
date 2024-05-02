@@ -25,5 +25,11 @@
 "malehhcount" : "पुरुष घरमुली",
 "femalehhcount" : "महिला घरमुली",
 "totalhhcount" : "कुल घरमुली गणना",
-"others" : "अन्य"
+"others" : "अन्य",
+"muslim" : "मुस्लिम",
+"hillbrahmen" : "पहाडी ब्राह्मण",
+"teraiBrahman" : "तराई ब्राह्मण",
+"hillJanajati" : "पहाडी जनजाति",
+"teraiJanajati" : "तराई जनजाति",
+"hillDalit" : "पहाडी दलित"
 }

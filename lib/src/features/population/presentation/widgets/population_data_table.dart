@@ -7,19 +7,36 @@ import '../../data/models/population_model.dart';
 import '../bloc/population_bloc.dart';
 
 class PopulationDatatable extends StatelessWidget {
-  const PopulationDatatable({super.key});
-
+  PopulationDatatable({super.key});
+  int totalMale = 0;
+  int totalFemale = 0;
+  int totalOthers = 0;
+  int totalMaleFemale = 0;
+  int totalHhMale = 0;
+  int totalHhFemale = 0;
+  int totalWardHh = 0;
   @override
   Widget build(BuildContext context) {
-    return Card(
-      child: SingleChildScrollView(
-        scrollDirection: Axis.horizontal,
-        child: BlocBuilder<PopulationBloc, PopulationState>(
-          builder: (context, state) {
-            if (state is PopulationSuccessState) {
-              List<PopulationModel>? populationData = state.populationModel;
+    return BlocBuilder<PopulationBloc, PopulationState>(
+      builder: (context, state) {
+        if (state is PopulationLoadingState) {
+          return const Center(child: CircularProgressIndicator());
+        }
+        if (state is PopulationSuccessState) {
+          List<PopulationModel>? populationData = state.populationModel;
+          populationData.asMap().forEach((key, value) {
+            totalMale += populationData[key].maleCount ?? 0;
+            totalFemale += populationData[key].femaleCount ?? 0;
+            totalOthers += populationData[key].othersCount ?? 0;
+            totalMaleFemale += populationData[key].totalWardpop ?? 0;
+            totalHhMale += populationData[key].maleHhCount ?? 0;
+            totalHhFemale += populationData[key].femaleHhCount ?? 0;
+          });
 
-              return DataTable(
+          return Card(
+            child: SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: DataTable(
                   columns: [
                     DataColumn(label: Text(l10n.wardnumber)),
                     DataColumn(label: Text(l10n.male)),
@@ -31,9 +48,9 @@ class PopulationDatatable extends StatelessWidget {
                     DataColumn(label: Text(l10n.totalhhcount)),
                   ],
                   rows: populationData.asMap().entries.map((population) {
-                    int totalWardHhCount =
-                        ((population.value.maleHhCount ?? 0) +
-                            (population.value.femaleHhCount ?? 0));
+                    int totalWardHhCount = (population.value.maleHhCount ?? 0) +
+                        (population.value.femaleHhCount ?? 0);
+                    totalWardHh += totalWardHhCount;
                     return DataRow(
                         color: MaterialStateProperty.resolveWith(
                             (Set<MaterialState> states) {
@@ -58,12 +75,23 @@ class PopulationDatatable extends StatelessWidget {
                               Text(population.value.femaleHhCount.toString())),
                           DataCell(Text(totalWardHhCount.toString())),
                         ]);
-                  }).toList());
-            }
-            return const Center(child: CircularProgressIndicator());
-          },
-        ),
-      ),
+                  }).toList()
+                    ..add(DataRow(cells: [
+                      DataCell(Text(l10n.total.toString())),
+                      DataCell(Text(totalMale.toString())),
+                      DataCell(Text(totalFemale.toString())),
+                      DataCell(Text(totalOthers.toString())),
+                      DataCell(Text(totalMaleFemale.toString())),
+                      DataCell(Text(totalHhMale.toString())),
+                      DataCell(Text(totalHhFemale.toString())),
+                      DataCell(Text(totalWardHh.toString())),
+                    ]))),
+            ),
+          );
+        }
+
+        return const Center(child: CircularProgressIndicator());
+      },
     );
   }
 }

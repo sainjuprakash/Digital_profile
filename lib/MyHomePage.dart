@@ -1,4 +1,7 @@
 import 'package:digital_profile/app_localization/l10n.dart';
+import 'package:digital_profile/src/features/ethenicity/data/repository/ethnicity_repository_impl.dart';
+import 'package:digital_profile/src/features/ethenicity/presentation/bloc/ethnicity_bloc.dart';
+import 'package:digital_profile/src/features/ethenicity/presentation/pages/ethnicity_details_page.dart';
 import 'package:digital_profile/src/features/language/data/repository/language_repository_impl.dart';
 import 'package:digital_profile/src/features/language/presentation/bloc/language_bloc.dart';
 import 'package:digital_profile/src/features/language/presentation/pages/language_details_page.dart';
@@ -89,10 +92,15 @@ class _MyHomePageState extends State<MyHomePage> {
             RepositoryProvider.of<GetPopulationRepository>(context),
           )..add(LoadPopulationEvent()),
         ),
+        // BlocProvider(
+        //   create: (context) => LanguageBloc(
+        //       RepositoryProvider.of<GetLanguageRepository>(context))
+        //     ..add(LoadLanguageEvent()),
+        // ),
         BlocProvider(
-          create: (context) => LanguageBloc(
-              RepositoryProvider.of<GetLanguageRepository>(context))
-            ..add(LoadLanguageEvent()),
+          create: (context) => EthnicityBloc(
+            RepositoryProvider.of<GetEthenicityRepository>(context),
+          )..add(LoadEthnicityEvent()),
         ),
       ],
       child: Scaffold(
@@ -184,7 +192,14 @@ class _MyHomePageState extends State<MyHomePage> {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => LanguageDetails()));
+                                    builder: (context) => const LanguageDetails()));
+                          }
+                          if (newValue ==
+                              "Table 3 - 1.3 जातजाती अनुसार घरपरिवार संख्या") {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => EthnicityPage()));
                           }
                           // if (newValue ==
                           //     "Table 1 - 1.1 पारिवारिक तथा जनसंख्या विवरण") {
@@ -204,7 +219,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   ),
                 ),
               ),
-              PopulationDetailsPage()
+              const PopulationDetailsPage()
             ],
           ),
         ),

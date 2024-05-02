@@ -14,12 +14,12 @@ class LanguageBloc extends Bloc<LanguageEvent, LanguageState> {
   final LanguageRepository _languageRepository;
   LanguageBloc(this._languageRepository) : super(LanguageLoadingState()) {
     on<LoadLanguageEvent>((event, emit) async {
-      print("before try statement");
+     // print("before try statement");
       try {
-        print("entered try statement");
+        //print("entered try statement");
         List<LanguageModel> fetchedLanguageData =
             await _languageRepository.getLanguageData();
-        print('data fetched ');
+       // print('data fetched ');
         emit(LanguageLoadedState(fetchedLanguageModel: fetchedLanguageData));
       } catch (errMsg) {
         emit(LanguageFailureState(errmsg: errMsg.toString()));

@@ -20,34 +20,34 @@ class LanguageTable extends StatelessWidget {
 
   LanguageTable(
       {super.key,
-        required this.totalNepali,
-        required this.totalTamang,
-        required this.totalSherpa,
-        required this.totalLimbu,
-        required this.totalRai,
-        required this.totalGurung,
-        required this.totalGhale,
-        required this.totalOthers,
-        required this.totalNotAvailable,
-        required this.totalTotal});
+      required this.totalNepali,
+      required this.totalTamang,
+      required this.totalSherpa,
+      required this.totalLimbu,
+      required this.totalRai,
+      required this.totalGurung,
+      required this.totalGhale,
+      required this.totalOthers,
+      required this.totalNotAvailable,
+      required this.totalTotal});
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      child: SingleChildScrollView(
-        scrollDirection: Axis.horizontal,
-        child: BlocBuilder<LanguageBloc, LanguageState>(
-          builder: (context, state) {
-            if (state is LanguageLoadingState) {
-              return const Padding(
-                padding: EdgeInsets.all(8.0),
-                child: Center(child: CircularProgressIndicator()),
-              );
-            }
-            if (state is LanguageLoadedState) {
-              List<LanguageModel> fetchedLanguageData =
-                  state.fetchedLanguageModel;
-              return DataTable(
+    return SingleChildScrollView(
+      scrollDirection: Axis.horizontal,
+      child: BlocBuilder<LanguageBloc, LanguageState>(
+        builder: (context, state) {
+          if (state is LanguageLoadingState) {
+            return const Padding(
+              padding: EdgeInsets.all(8.0),
+              child: Center(child: CircularProgressIndicator()),
+            );
+          }
+          if (state is LanguageLoadedState) {
+            List<LanguageModel> fetchedLanguageData =
+                state.fetchedLanguageModel;
+            return Card(
+              child: DataTable(
                   columns: [
                     DataColumn(label: Text(l10n.wardnumber)),
                     DataColumn(label: Text(l10n.nepali)),
@@ -97,33 +97,35 @@ class LanguageTable extends StatelessWidget {
                                   ?.toString() ??
                               '-')),
                         ]);
-                  }).toList()..add(DataRow(cells: [
-                    DataCell(Text(l10n.total)),
-                    DataCell(Text(totalNepali.toString())),
-                    DataCell(Text(totalTamang.toString())),
-                    DataCell(Text(totalSherpa.toString())),
-                    DataCell(Text(totalLimbu.toString())),
-                    DataCell(Text(totalRai.toString())),
-                    DataCell(Text(totalGurung.toString())),
-                    DataCell(Text(totalGhale.toString())),
-                    DataCell(Text(totalOthers.toString())),
-                    DataCell(Text(totalNotAvailable.toString())),
-                    DataCell(Text(totalTotal.toString())),
-                  ])));
-            }
-            if (state is LanguageFailureState) {
-              return const Padding(
-                padding: EdgeInsets.all(20.0),
-                child: Center(child: Text('Unable to load data')),
-              );
-            } else {
-              return const Padding(
-                padding: EdgeInsets.all(20.0),
-                child: Center(child: Text('Something went wrong')),
-              );
-            }
-          },
-        ),
+                  }).toList()
+                    ..add(DataRow(cells: [
+                      DataCell(Text(l10n.total)),
+                      DataCell(Text(totalNepali.toString())),
+                      DataCell(Text(totalTamang.toString())),
+                      DataCell(Text(totalSherpa.toString())),
+                      DataCell(Text(totalLimbu.toString())),
+                      DataCell(Text(totalRai.toString())),
+                      DataCell(Text(totalGurung.toString())),
+                      DataCell(Text(totalGhale.toString())),
+                      DataCell(Text(totalOthers.toString())),
+                      DataCell(Text(totalNotAvailable.toString())),
+                      DataCell(Text(totalTotal.toString())),
+                    ]))),
+            );
+          }
+          // if (state is LanguageFailureState) {
+          //   return const Padding(
+          //     padding: EdgeInsets.all(20.0),
+          //     child: Center(child: Text('Unable to load data')),
+          //   );
+          // } else {
+          //   return const Padding(
+          //     padding: EdgeInsets.all(20.0),
+          //     child: Center(child: Text('Something went wrong')),
+          //   );
+          // }
+          return Center(child: const CircularProgressIndicator());
+        },
       ),
     );
   }
