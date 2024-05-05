@@ -39,12 +39,12 @@ class EthnicityDataTable extends StatelessWidget {
               return DataTable(
                   columns: [
                     DataColumn(label: Text(l10n.wardnumber)),
-                    DataColumn(label: Text(l10n.muslim)),
                     DataColumn(label: Text(l10n.hillbrahmen)),
                     DataColumn(label: Text(l10n.teraiBrahman)),
                     DataColumn(label: Text(l10n.hillJanajati)),
                     DataColumn(label: Text(l10n.teraiJanajati)),
                     DataColumn(label: Text(l10n.hillDalit)),
+                    DataColumn(label: Text(l10n.muslim)),
                     DataColumn(label: Text(l10n.notavailable)),
                     DataColumn(label: Text(l10n.total)),
                   ],
@@ -60,7 +60,6 @@ class EthnicityDataTable extends StatelessWidget {
                         }),
                         cells: [
                           DataCell(Text(e.value.wardNumber.toString())),
-                          DataCell(Text(e.value.muslim?.toString() ?? '-')),
                           DataCell(
                               Text(e.value.hillBrahman?.toString() ?? '-')),
                           DataCell(
@@ -70,6 +69,7 @@ class EthnicityDataTable extends StatelessWidget {
                           DataCell(
                               Text(e.value.teraiJanajati?.toString() ?? '-')),
                           DataCell(Text(e.value.hillDalit?.toString() ?? '-')),
+                          DataCell(Text(e.value.muslim?.toString() ?? '-')),
                           DataCell(
                               Text(e.value.notAvailable?.toString() ?? '-')),
                           DataCell(
@@ -78,12 +78,12 @@ class EthnicityDataTable extends StatelessWidget {
                   }).toList()
                     ..add(DataRow(cells: [
                       DataCell(Text(l10n.total)),
-                      DataCell(Text(totalMuslim.toString())),
                       DataCell(Text(totalHillBrahman.toString())),
                       DataCell(Text(totalTeraiBrahman.toString())),
                       DataCell(Text(totalHillJanajati.toString())),
                       DataCell(Text(totalTeraiJanajati.toString())),
                       DataCell(Text(totalHillDalit.toString())),
+                      DataCell(Text(totalMuslim.toString())),
                       DataCell(Text(totalNotAvailable.toString())),
                       DataCell(Text(totalTotalEthnicity.toString())),
                     ])));

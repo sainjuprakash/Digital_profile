@@ -1,7 +1,6 @@
 import 'package:digital_profile/src/features/ethenicity/data/repository/ethnicity_repository_impl.dart';
 import 'package:digital_profile/src/features/ethenicity/presentation/widgets/ethnicity_data_table.dart';
-import 'package:digital_profile/src/features/ethenicity/presentation/widgets/ethnicity_pie_chart.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:digital_profile/src/features/ethenicity/presentation/widgets/ethnicity_bar_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

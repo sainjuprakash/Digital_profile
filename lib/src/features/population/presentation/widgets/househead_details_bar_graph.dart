@@ -45,6 +45,7 @@ class _HouseHeadBarGraphState extends State<HouseHeadBarGraph> {
                               BarChartRodData(
                                 toY: e.maleHhCount?.toDouble() ?? 0,
                                 // toY: loadedPopulationData[index]
+
                                 //     .maleCount,
                                 width: 20,
 

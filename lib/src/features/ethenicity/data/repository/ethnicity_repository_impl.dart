@@ -26,7 +26,7 @@ class GetEthenicityRepository extends EthnicityRepository {
           await dio.get('http://rubytest.git.com.np/api/ethnicity');
       if (responseFromServer.statusCode == 200) {
         List<dynamic> results = responseFromServer.data['result'];
-        print(results);
+       // print(results);
         return results.map((e) => EthnicityModel.fromJson(e)).toList();
       } else {
         throw Exception(responseFromServer.statusCode);

@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../data/models/population_model.dart';
 import '../bloc/population_bloc.dart';
+import 'dart:math' as math;
 
 class PopulationBarGraph extends StatefulWidget {
   const PopulationBarGraph({super.key});
@@ -13,6 +14,8 @@ class PopulationBarGraph extends StatefulWidget {
 }
 
 class _PopulationBarGraphState extends State<PopulationBarGraph> {
+
+  int touchedGroupIndex = -1;
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<PopulationBloc, PopulationState>(
@@ -23,19 +26,30 @@ class _PopulationBarGraphState extends State<PopulationBarGraph> {
           scrollDirection: Axis.horizontal,
           child: SizedBox(
             height: 510,
-            width: 500,
+            width: 600,
             child: Padding(
               padding: const EdgeInsets.only(
                 top: 10.0,
               ),
               child: BarChart(BarChartData(
-                /*titlesData: FlTitlesData(
-                     show: true,
-                     bottomTitles:SideTitles(
-                       showTitles: true,
-                       getTextStyles: (context, value) => TextStyle(color: Colors.black),
-                       getTitles : (){}
-                     ) ),*/
+                alignment: BarChartAlignment.spaceAround,
+                /*gridData: FlGridData(
+                  show: true,
+                  drawVerticalLine: false,
+                  drawHorizontalLine: false,
+                  getDrawingHorizontalLine: (value) => FlLine(
+                  color: Colors.pink.withOpacity(0.2),
+                    strokeWidth: 1,
+                  ),
+                ),*/
+                /*borderData: FlBorderData(
+                  show: true,
+                  border: Border.symmetric(
+                    horizontal: BorderSide(
+                      color: Colors.pinkAccent.withOpacity(0.2),
+                    ),
+                  ),
+                ),*/
                 minY: 0,
                 maxY: 1000,
                 barGroups: populationData
@@ -98,5 +112,6 @@ class _PopulationBarGraphState extends State<PopulationBarGraph> {
         child: Text("Something went wrong"),
       );
     });
+
   }
 }
