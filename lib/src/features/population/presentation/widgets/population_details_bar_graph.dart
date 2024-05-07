@@ -25,7 +25,7 @@ class _PopulationBarGraphState extends State<PopulationBarGraph> {
         return SingleChildScrollView(
           scrollDirection: Axis.horizontal,
           child: SizedBox(
-            height: 510,
+            height: 550,
             width: 600,
             child: Padding(
               padding: const EdgeInsets.only(
@@ -51,10 +51,10 @@ class _PopulationBarGraphState extends State<PopulationBarGraph> {
                   ),
                 ),*/
                 minY: 0,
-                maxY: 1000,
+                maxY: 1500,
                 barGroups: populationData
                     .map((e) => BarChartGroupData(
-                            x: int.tryParse(e.surveyWardNumber) ?? 0,
+                            x: (e.surveyWardNumber) ?? 0,
                             barRods: [
                               BarChartRodData(
                                 toY: e.maleCount?.toDouble() ?? 0,

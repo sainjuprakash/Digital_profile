@@ -31,5 +31,13 @@
 "teraiBrahman" : "तराई ब्राह्मण",
 "hillJanajati" : "पहाडी जनजाति",
 "teraiJanajati" : "तराई जनजाति",
-"hillDalit" : "पहाडी दलित"
+"hillDalit" : "पहाडी दलित",
+"login" : "लग-इन",
+"email" : "इमेल",
+"password" : "पासवर्ड",
+"enteremail" : "कृपया इमेल प्रविष्ट गर्नुहोस्",
+"entervalidemail" : "कृपया मान्य इमेल प्रविष्ट गर्नुहोस्",
+"entervalidpassword" : "कृपया मान्य पासवर्ड प्रविष्ट गर्नुहोस्",
+"enterpassword" : "कृपया पासवर्ड प्रविष्ट गर्नुहोस्",
+"rubyvalley" : "रुबी भ्याली"
 }

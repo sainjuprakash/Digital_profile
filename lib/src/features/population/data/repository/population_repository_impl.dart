@@ -24,7 +24,7 @@ class GetPopulationRepository extends PopulationRepository {
     );
     try {
       Response<dynamic> response =
-          await dio.get('http://rubytest.git.com.np/api/pop');
+          await dio.get('https://rubytest.git.com.np/api/household/reports?table_no=table1');
       if (response.statusCode == 200) {
 //        return result.map(((e) => PopulationModel.fromJson(e))).toList();
         final List<dynamic> results = response.data['result'];

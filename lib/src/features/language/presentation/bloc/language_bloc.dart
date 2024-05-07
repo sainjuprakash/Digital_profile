@@ -19,7 +19,7 @@ class LanguageBloc extends Bloc<LanguageEvent, LanguageState> {
         //print("entered try statement");
         List<LanguageModel> fetchedLanguageData =
             await _languageRepository.getLanguageData();
-       // print('data fetched ');
+     // print('data fetched ');
         emit(LanguageLoadedState(fetchedLanguageModel: fetchedLanguageData));
       } catch (errMsg) {
         emit(LanguageFailureState(errmsg: errMsg.toString()));

@@ -1,4 +1,3 @@
-
 import 'package:digital_profile/src/features/ethenicity/presentation/bloc/ethnicity_bloc.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/cupertino.dart';
@@ -30,32 +29,29 @@ class EthnicityPieChart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(child:
+    return Card(
+        child: Column(
+      children: [
+        const SizedBox(
+          height: 10,
+        ),
+        const Text(
+          'मातृभाषाको आधारमा जनसंख्या',
+          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+        ),
         BlocBuilder<EthnicityBloc, EthnicityState>(builder: (context, state) {
-      if (state is EthnicityLoadingState) {
-        return const Center(
-            child: Padding(
-                padding: EdgeInsets.all(8.0),
-                child: CircularProgressIndicator()));
-      }
-      if (state is EthnicitySuccessState) {
-        //  List<EthnicityModel> fetchedEthnicityData = state.fetchedEthnicityModel;
-        return Column(
-          children: [
-            const SizedBox(
-              height: 10,
-            ),
-            const Text(
-              'मातृभाषाको आधारमा जनसंख्या',
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
-            ),
-            const SizedBox(
-              height: 10,
-            ),
-            SingleChildScrollView(
+          if (state is EthnicityLoadingState) {
+            return const Center(
+                child: Padding(
+                    padding: EdgeInsets.all(8.0),
+                    child: CircularProgressIndicator()));
+          }
+          if (state is EthnicitySuccessState) {
+            //  List<EthnicityModel> fetchedEthnicityData = state.fetchedEthnicityModel;
+            return SingleChildScrollView(
               scrollDirection: Axis.horizontal,
               child: SizedBox(
-                height: 400,
+                height: 500,
                 width: 700,
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
@@ -94,7 +90,7 @@ class EthnicityPieChart extends StatelessWidget {
                         // topTitles: const AxisTitles(),
                       ),
                       minY: 0,
-                      maxY: 800,
+                      maxY: 1700,
                       barGroups: [
                         BarChartGroupData(
                           x: 0,
@@ -169,20 +165,20 @@ class EthnicityPieChart extends StatelessWidget {
                       ])),
                 ),
               ),
-            ),
-          ],
-        );
-      }
-      if (state is EthnicityFailureState) {
-        return const Padding(
-          padding: EdgeInsets.all(8.0),
-          child: Center(child: Text('Unable to load ethnicity data')),
-        );
-      }
-      return const Padding(
-        padding: EdgeInsets.all(8.0),
-        child: Center(child: Text('Something went wrong')),
-      );
-    }));
+            );
+          }
+          if (state is EthnicityFailureState) {
+            return const Padding(
+              padding: EdgeInsets.all(8.0),
+              child: Center(child: Text('Unable to load ethnicity data')),
+            );
+          }
+          return const Padding(
+            padding: EdgeInsets.all(8.0),
+            child: Center(child: Text('Something went wrong')),
+          );
+        }),
+      ],
+    ));
   }
 }

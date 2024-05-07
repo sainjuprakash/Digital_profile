@@ -24,6 +24,15 @@ class MessageLookup extends MessageLookupByLibrary {
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "digitalprofile":
             MessageLookupByLibrary.simpleMessage("डिजिटल प्रोफाइल"),
+        "email": MessageLookupByLibrary.simpleMessage("इमेल"),
+        "enteremail": MessageLookupByLibrary.simpleMessage(
+            "कृपया इमेल प्रविष्ट गर्नुहोस्"),
+        "enterpassword": MessageLookupByLibrary.simpleMessage(
+            "कृपया पासवर्ड प्रविष्ट गर्नुहोस्"),
+        "entervalidemail": MessageLookupByLibrary.simpleMessage(
+            "कृपया मान्य इमेल प्रविष्ट गर्नुहोस्"),
+        "entervalidpassword": MessageLookupByLibrary.simpleMessage(
+            "कृपया मान्य पासवर्ड प्रविष्ट गर्नुहोस्"),
         "female": MessageLookupByLibrary.simpleMessage("महिला"),
         "femalecount": MessageLookupByLibrary.simpleMessage("महिला गणना"),
         "femalehhcount": MessageLookupByLibrary.simpleMessage("महिला घरमुली"),
@@ -36,6 +45,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "instutionaldata":
             MessageLookupByLibrary.simpleMessage("संस्थागत डाटा"),
         "limbu": MessageLookupByLibrary.simpleMessage("लिम्बु"),
+        "login": MessageLookupByLibrary.simpleMessage("लग-इन"),
         "male": MessageLookupByLibrary.simpleMessage("पुरुष"),
         "malecount": MessageLookupByLibrary.simpleMessage("पुरुष गणना"),
         "malehhcount": MessageLookupByLibrary.simpleMessage("पुरुष घरमुली"),
@@ -45,8 +55,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "others": MessageLookupByLibrary.simpleMessage("अन्य"),
         "otherscount": MessageLookupByLibrary.simpleMessage("अन्य गणना"),
         "othrslanguage": MessageLookupByLibrary.simpleMessage("अन्य भाषा"),
+        "password": MessageLookupByLibrary.simpleMessage("पासवर्ड"),
         "rai": MessageLookupByLibrary.simpleMessage("राई"),
         "report": MessageLookupByLibrary.simpleMessage("रिपोर्ट"),
+        "rubyvalley": MessageLookupByLibrary.simpleMessage("रुबी भ्याली"),
         "sherpa": MessageLookupByLibrary.simpleMessage("शेर्पा"),
         "tamang": MessageLookupByLibrary.simpleMessage("तामाङ"),
         "teraiBrahman": MessageLookupByLibrary.simpleMessage("तराई ब्राह्मण"),

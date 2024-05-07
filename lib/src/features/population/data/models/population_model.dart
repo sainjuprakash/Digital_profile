@@ -9,7 +9,7 @@ class PopulationModel with _$PopulationModel {
 
   factory PopulationModel({
     @JsonKey(name: "title") required String? title,
-    @JsonKey(name: "survey_ward_no") required String surveyWardNumber,
+    @JsonKey(name: "survey_ward_no") required int? surveyWardNumber,
     @JsonKey(name: "male_count") required int? maleCount,
     @JsonKey(name: "female_count") required int? femaleCount,
     @JsonKey(name: "other_count") required int? othersCount,

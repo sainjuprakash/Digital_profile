@@ -8,7 +8,7 @@ class EthnicityModel with _$EthnicityModel {
   const EthnicityModel._();
 
   factory EthnicityModel({
-    @JsonKey(name: "survey_ward_no") required String wardNumber,
+    @JsonKey(name: "survey_ward_no") required int wardNumber,
     @JsonKey(name: "muslim_count") required int? muslim,
     @JsonKey(name: "hill_brahman_count") required int? hillBrahman,
     @JsonKey(name: "terai_brahman_count") required int? teraiBrahman,

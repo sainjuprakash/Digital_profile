@@ -21,9 +21,10 @@ class GetLanguageRepository extends LanguageRepository {
     );
     try {
       Response<dynamic> responseFromServer =
-          await dio.get('http://rubytest.git.com.np/api/language');
+          await dio.get('http://rubytest.git.com.np/api/household/reports?table_no=table5');
       if (responseFromServer.statusCode == 200) {
         final List<dynamic> results = responseFromServer.data['result'];
+        //print(results);
         return results.map((e) => LanguageModel.fromJson(e)).toList();
       } else {
         throw Exception(responseFromServer.statusCode);

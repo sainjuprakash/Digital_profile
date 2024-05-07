@@ -60,7 +60,7 @@ class PopulationDatatable extends StatelessWidget {
                           return null;
                         }),
                         cells: [
-                          DataCell(Text(population.value.surveyWardNumber)),
+                          DataCell(Text(population.value.surveyWardNumber.toString())),
                           DataCell(Text(
                               population.value.maleCount?.toString() ?? '-')),
                           DataCell(Text(
@@ -76,7 +76,13 @@ class PopulationDatatable extends StatelessWidget {
                           DataCell(Text(totalWardHhCount.toString())),
                         ]);
                   }).toList()
-                    ..add(DataRow(cells: [
+                    ..add(DataRow(
+                        color:MaterialStateProperty.resolveWith<Color>(
+                                (Set<MaterialState> states) {
+
+                              return Colors.grey.withOpacity(0.6);
+                            }),
+                        cells: [
                       DataCell(Text(l10n.total.toString())),
                       DataCell(Text(totalMale.toString())),
                       DataCell(Text(totalFemale.toString())),

@@ -369,6 +369,86 @@ class AppLocalizations {
       args: [],
     );
   }
+
+  /// `लग-इन`
+  String get login {
+    return Intl.message(
+      'लग-इन',
+      name: 'login',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `इमेल`
+  String get email {
+    return Intl.message(
+      'इमेल',
+      name: 'email',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `पासवर्ड`
+  String get password {
+    return Intl.message(
+      'पासवर्ड',
+      name: 'password',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `कृपया इमेल प्रविष्ट गर्नुहोस्`
+  String get enteremail {
+    return Intl.message(
+      'कृपया इमेल प्रविष्ट गर्नुहोस्',
+      name: 'enteremail',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `कृपया मान्य इमेल प्रविष्ट गर्नुहोस्`
+  String get entervalidemail {
+    return Intl.message(
+      'कृपया मान्य इमेल प्रविष्ट गर्नुहोस्',
+      name: 'entervalidemail',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `कृपया मान्य पासवर्ड प्रविष्ट गर्नुहोस्`
+  String get entervalidpassword {
+    return Intl.message(
+      'कृपया मान्य पासवर्ड प्रविष्ट गर्नुहोस्',
+      name: 'entervalidpassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `कृपया पासवर्ड प्रविष्ट गर्नुहोस्`
+  String get enterpassword {
+    return Intl.message(
+      'कृपया पासवर्ड प्रविष्ट गर्नुहोस्',
+      name: 'enterpassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `रुबी भ्याली`
+  String get rubyvalley {
+    return Intl.message(
+      'रुबी भ्याली',
+      name: 'rubyvalley',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<AppLocalizations> {

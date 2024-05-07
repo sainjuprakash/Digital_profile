@@ -98,19 +98,24 @@ class LanguageTable extends StatelessWidget {
                               '-')),
                         ]);
                   }).toList()
-                    ..add(DataRow(cells: [
-                      DataCell(Text(l10n.total)),
-                      DataCell(Text(totalNepali.toString())),
-                      DataCell(Text(totalTamang.toString())),
-                      DataCell(Text(totalSherpa.toString())),
-                      DataCell(Text(totalLimbu.toString())),
-                      DataCell(Text(totalRai.toString())),
-                      DataCell(Text(totalGurung.toString())),
-                      DataCell(Text(totalGhale.toString())),
-                      DataCell(Text(totalOthers.toString())),
-                      DataCell(Text(totalNotAvailable.toString())),
-                      DataCell(Text(totalTotal.toString())),
-                    ]))),
+                    ..add(DataRow(
+                        color: MaterialStateProperty.resolveWith<Color>(
+                            (Set<MaterialState> states) {
+                          return Colors.grey.withOpacity(0.6);
+                        }),
+                        cells: [
+                          DataCell(Text(l10n.total)),
+                          DataCell(Text(totalNepali.toString())),
+                          DataCell(Text(totalTamang.toString())),
+                          DataCell(Text(totalSherpa.toString())),
+                          DataCell(Text(totalLimbu.toString())),
+                          DataCell(Text(totalRai.toString())),
+                          DataCell(Text(totalGurung.toString())),
+                          DataCell(Text(totalGhale.toString())),
+                          DataCell(Text(totalOthers.toString())),
+                          DataCell(Text(totalNotAvailable.toString())),
+                          DataCell(Text(totalTotal.toString())),
+                        ]))),
             );
           }
           // if (state is LanguageFailureState) {

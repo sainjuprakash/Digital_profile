@@ -40,7 +40,7 @@ class _HouseHeadBarGraphState extends State<HouseHeadBarGraph> {
                 maxY: 500,
                 barGroups: populationData
                     .map((e) => BarChartGroupData(
-                            x: int.tryParse(e.surveyWardNumber) ?? 0,
+                            x: (e.surveyWardNumber) ?? 0,
                             barRods: [
                               BarChartRodData(
                                 toY: e.maleHhCount?.toDouble() ?? 0,

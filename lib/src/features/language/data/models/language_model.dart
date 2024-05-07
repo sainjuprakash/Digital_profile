@@ -8,7 +8,7 @@ class LanguageModel with _$LanguageModel {
   const LanguageModel._();
 
   factory LanguageModel({
-    @JsonKey(name: "survey_ward_no") required String? wardNo,
+    @JsonKey(name: "survey_ward_no") required int? wardNo,
     @JsonKey(name: "ward_lang_nep_count") required int? nepali,
     @JsonKey(name: "ward_lang_tamang_count") required int? tamang,
     @JsonKey(name: "ward_lang_sherpa_count") required int? sherpa,

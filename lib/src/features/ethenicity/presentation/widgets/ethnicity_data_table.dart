@@ -28,15 +28,15 @@ class EthnicityDataTable extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      child: SingleChildScrollView(
-        scrollDirection: Axis.horizontal,
-        child: BlocBuilder<EthnicityBloc, EthnicityState>(
-          builder: (context, state) {
-            if (state is EthnicitySuccessState) {
-              List<EthnicityModel> fetchedEthnicityData =
-                  state.fetchedEthnicityModel;
-              return DataTable(
+    return SingleChildScrollView(
+      scrollDirection: Axis.horizontal,
+      child: BlocBuilder<EthnicityBloc, EthnicityState>(
+        builder: (context, state) {
+          if (state is EthnicitySuccessState) {
+            List<EthnicityModel> fetchedEthnicityData =
+                state.fetchedEthnicityModel;
+            return Card(
+              child: DataTable(
                   columns: [
                     DataColumn(label: Text(l10n.wardnumber)),
                     DataColumn(label: Text(l10n.hillbrahmen)),
@@ -76,21 +76,37 @@ class EthnicityDataTable extends StatelessWidget {
                               Text(e.value.totalEthnicity?.toString() ?? '-')),
                         ]);
                   }).toList()
-                    ..add(DataRow(cells: [
-                      DataCell(Text(l10n.total)),
-                      DataCell(Text(totalHillBrahman.toString())),
-                      DataCell(Text(totalTeraiBrahman.toString())),
-                      DataCell(Text(totalHillJanajati.toString())),
-                      DataCell(Text(totalTeraiJanajati.toString())),
-                      DataCell(Text(totalHillDalit.toString())),
-                      DataCell(Text(totalMuslim.toString())),
-                      DataCell(Text(totalNotAvailable.toString())),
-                      DataCell(Text(totalTotalEthnicity.toString())),
-                    ])));
-            }
-            return const Center(child: CircularProgressIndicator());
-          },
-        ),
+                    ..add(DataRow(
+                        color: MaterialStateProperty.resolveWith<Color>(
+                            (Set<MaterialState> states) {
+                          return Colors.grey.withOpacity(0.6);
+                        }),
+                        cells: [
+                          DataCell(Text(l10n.total)),
+                          DataCell(Text(totalHillBrahman.toString())),
+                          DataCell(Text(totalTeraiBrahman.toString())),
+                          DataCell(Text(totalHillJanajati.toString())),
+                          DataCell(Text(totalTeraiJanajati.toString())),
+                          DataCell(Text(totalHillDalit.toString())),
+                          DataCell(Text(totalMuslim.toString())),
+                          DataCell(Text(totalNotAvailable.toString())),
+                          DataCell(Text(totalTotalEthnicity.toString())),
+                        ]))),
+            );
+          }
+          if (state is EthnicityLoadingState) {
+            return const Center(
+                child: Padding(
+              padding: EdgeInsets.all(8.0),
+              child: CircularProgressIndicator(),
+            ));
+          }
+          return const Center(
+              child: Padding(
+            padding: EdgeInsets.all(8.0),
+            child: CircularProgressIndicator(),
+          ));
+        },
       ),
     );
   }

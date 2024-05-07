@@ -5,6 +5,7 @@ import 'package:digital_profile/src/features/ethenicity/presentation/pages/ethni
 import 'package:digital_profile/src/features/language/data/repository/language_repository_impl.dart';
 import 'package:digital_profile/src/features/language/presentation/bloc/language_bloc.dart';
 import 'package:digital_profile/src/features/language/presentation/pages/language_details_page.dart';
+import 'package:digital_profile/src/features/login/presentation/page/login_signup_page.dart';
 import 'package:digital_profile/src/features/pages/all_household_data.dart';
 import 'package:digital_profile/src/features/pages/household_data.dart';
 import 'package:digital_profile/src/features/pages/report_page.dart';
@@ -105,12 +106,17 @@ class _MyHomePageState extends State<MyHomePage> {
       ],
       child: Scaffold(
         appBar: AppBar(
-          title: const Text('डिजिटल प्रोफाइल'),
+          elevation: 50,
+          title:  Text(l10n.rubyvalley),
           actions: [
             Padding(
               padding: const EdgeInsets.only(right: 12.0),
               child: IconButton(
-                  onPressed: () {}, icon: const Icon(Icons.person_3_rounded)),
+                  onPressed: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => LoginPage()));
+                  },
+                  icon: const Icon(Icons.person_3_rounded)),
             ),
           ],
           // foregroundColor: Colors.blue,
@@ -155,6 +161,11 @@ class _MyHomePageState extends State<MyHomePage> {
                             builder: (context) => const ReportPage()));
                   },
                 ),
+                ListTile(
+                  leading: Icon(Icons.login),
+                  title: Text('Log Out'),
+                  onTap: () {},
+                ),
               ],
             ),
           ),
@@ -163,7 +174,6 @@ class _MyHomePageState extends State<MyHomePage> {
           scrollDirection: Axis.vertical,
           child: Column(
             children: [
-
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Container(
@@ -192,7 +202,8 @@ class _MyHomePageState extends State<MyHomePage> {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => const LanguageDetails()));
+                                    builder: (context) =>
+                                        const LanguageDetails()));
                           }
                           if (newValue ==
                               "Table 3 - 1.3 जातजाती अनुसार घरपरिवार संख्या") {

@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 
 import '../resources/family_details.dart';
@@ -16,18 +15,30 @@ class _AllHouseholdDataState extends State<AllHouseholdData> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.blueAccent,
+        elevation: 50,
+        title: const Text(
+          'All HouseHold Data',
+          style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
+        ),
+        actions: [
+          Padding(
+            padding: const EdgeInsets.only(right: 12.0),
+            child: IconButton(
+                onPressed: () {},
+                icon: const Icon(
+                  Icons.search,
+                  size: 30,
+                )),
+          ),
+        ],
+      ),
       body: SafeArea(
         child: Column(
           children: [
-            const Text(
-              'All HouseHold Data',
-              style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 25,
-                  color: Colors.blueAccent),
-            ),
             const SizedBox(
-              height: 20,
+              height: 10,
             ),
             Expanded(
               child: FutureBuilder<List<FamilyDetailsModel>>(
