@@ -1,6 +1,5 @@
 import 'package:digital_profile/src/features/ethnicity_population/data/repository/ethnicity_population_repository_impl.dart';
 import 'package:digital_profile/src/features/ethnicity_population/presentation/bloc/ethnicity_population_bloc.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -42,19 +41,19 @@ class _EthnicityPopulationBarChartState
                 List<EthnicityPopulationModel> fetchedEthPopData =
                     state.ethnicityPopulationModel;
                 //print(fetchedEthPopData);
-                Text(fetchedEthPopData.length.toString());
-              }
-              if (state is EthnicityPopulationFailureState) {
+                return Text(fetchedEthPopData.length.toString());
+              } else if (state is EthnicityPopulationFailureState) {
                 return const Padding(
                   padding: EdgeInsets.all(8.0),
                   child: Center(
                       child: Text('Unable to load ethnicity population data')),
                 );
+              } else {
+                return const Padding(
+                  padding: EdgeInsets.all(8.0),
+                  child: Center(child: Text('Something went wrong')),
+                );
               }
-              return const Padding(
-                padding: EdgeInsets.all(8.0),
-                child: Center(child: Text('Something went wrong')),
-              );
             }),
           ],
         ),
