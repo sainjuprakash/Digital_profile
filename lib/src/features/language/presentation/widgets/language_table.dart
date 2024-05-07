@@ -1,9 +1,9 @@
-import 'package:digital_profile/src/features/language/data/models/language_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../../app_localization/l10n.dart';
+import '../../data/models/language_model.dart';
 import '../bloc/language_bloc.dart';
 
 class LanguageTable extends StatelessWidget {

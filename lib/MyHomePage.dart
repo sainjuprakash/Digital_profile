@@ -1,20 +1,16 @@
 import 'package:digital_profile/app_localization/l10n.dart';
-import 'package:digital_profile/src/features/ethenicity/data/repository/ethnicity_repository_impl.dart';
-import 'package:digital_profile/src/features/ethenicity/presentation/bloc/ethnicity_bloc.dart';
-import 'package:digital_profile/src/features/ethenicity/presentation/pages/ethnicity_details_page.dart';
-import 'package:digital_profile/src/features/language/data/repository/language_repository_impl.dart';
-import 'package:digital_profile/src/features/language/presentation/bloc/language_bloc.dart';
+import 'package:digital_profile/src/features/ethenicity_household/presentation/pages/ethnicity_details_page.dart';
+import 'package:digital_profile/src/features/ethnicity_population/presentation/widget/ethnicity_population_bar_graph.dart';
 import 'package:digital_profile/src/features/language/presentation/pages/language_details_page.dart';
+import 'package:digital_profile/src/features/login/data/repository/login_repository_impl.dart';
+import 'package:digital_profile/src/features/login/presentation/bloc/login_bloc.dart';
 import 'package:digital_profile/src/features/login/presentation/page/login_signup_page.dart';
 import 'package:digital_profile/src/features/pages/all_household_data.dart';
 import 'package:digital_profile/src/features/pages/household_data.dart';
 import 'package:digital_profile/src/features/pages/report_page.dart';
-import 'package:digital_profile/src/features/population/data/models/population_model.dart';
 import 'package:digital_profile/src/features/population/data/repository/population_repository_impl.dart';
 import 'package:digital_profile/src/features/population/presentation/bloc/population_bloc.dart';
 import 'package:digital_profile/src/features/population/presentation/pages/population_details_page.dart';
-import 'package:digital_profile/src/features/population/presentation/widgets/househead_details_bar_graph.dart';
-import 'package:digital_profile/src/features/population/presentation/widgets/population_details_bar_graph.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -98,23 +94,34 @@ class _MyHomePageState extends State<MyHomePage> {
         //       RepositoryProvider.of<GetLanguageRepository>(context))
         //     ..add(LoadLanguageEvent()),
         // ),
-        BlocProvider(
-          create: (context) => EthnicityBloc(
-            RepositoryProvider.of<GetEthenicityRepository>(context),
-          )..add(LoadEthnicityEvent()),
-        ),
+        // BlocProvider(
+        //   create: (context) => EthnicityBloc(
+        //     RepositoryProvider.of<GetEthenicityRepository>(context),
+        //   )..add(LoadEthnicityEvent()),
+        // ),
+        // BlocProvider(
+        //     create: (context) => LoginBloc(
+        //         loginRepository:
+        //             RepositoryProvider.of<ImplLoginRepository>(context)))
       ],
       child: Scaffold(
         appBar: AppBar(
           elevation: 50,
-          title:  Text(l10n.rubyvalley),
+          title: Text(l10n.rubyvalley),
           actions: [
             Padding(
               padding: const EdgeInsets.only(right: 12.0),
               child: IconButton(
                   onPressed: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => LoginPage()));
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => BlocProvider(
+                                  create: (context) => LoginBloc(
+                                      loginRepository: RepositoryProvider.of<
+                                          ImplLoginRepository>(context)),
+                                  child: const LoginPage(),
+                                )));
                   },
                   icon: const Icon(Icons.person_3_rounded)),
             ),
@@ -125,6 +132,7 @@ class _MyHomePageState extends State<MyHomePage> {
         drawer: Drawer(
           backgroundColor: Colors.blueAccent,
           width: MediaQuery.of(context).size.width / 1.4,
+
           child: SafeArea(
             child: ListView(
               children: [
@@ -145,6 +153,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   leading: const Icon(Icons.warehouse),
                   title: const Text('All Household Data'),
                   onTap: () {
+                    Navigator.pop(context);
                     Navigator.push(
                         context,
                         MaterialPageRoute(
@@ -197,6 +206,21 @@ class _MyHomePageState extends State<MyHomePage> {
                           setState(() {
                             selectedItem = newValue!;
                           });
+
+                          if (newValue ==
+                              "Table 3 - 1.3 जातजाती अनुसार घरपरिवार संख्या") {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => EthnicityPage()));
+                          }
+                          if (newValue ==
+                              "Table 4 - 1.4 जातजाती अनुसार जनसंख्या") {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => EthnicityPopulationBarChart()));
+                          }
                           if (newValue ==
                               "Table 5 - 1.5 मातृभाषाको आधारमा जनसंख्या") {
                             Navigator.push(
@@ -204,13 +228,6 @@ class _MyHomePageState extends State<MyHomePage> {
                                 MaterialPageRoute(
                                     builder: (context) =>
                                         const LanguageDetails()));
-                          }
-                          if (newValue ==
-                              "Table 3 - 1.3 जातजाती अनुसार घरपरिवार संख्या") {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => EthnicityPage()));
                           }
                           // if (newValue ==
                           //     "Table 1 - 1.1 पारिवारिक तथा जनसंख्या विवरण") {

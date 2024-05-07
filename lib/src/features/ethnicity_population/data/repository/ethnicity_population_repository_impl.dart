@@ -1,14 +1,14 @@
 import 'dart:io';
 
-import 'package:digital_profile/src/features/ethenicity/data/models/ethnicity_model.dart';
+import 'package:digital_profile/src/features/ethnicity_population/data/model/ethnicity_population.dart';
 import 'package:dio/dio.dart';
 import 'package:dio/io.dart';
 
-import '../../domain/repository/ethnicity_repository.dart';
+import '../../domain/repository/ethnicity_population_repository.dart';
 
-class GetEthenicityRepository extends EthnicityRepository {
+class ImplEthnicityPopulationRepository extends EthnicityPopulationRepository {
   @override
-  Future<List<EthnicityModel>> getEthnicityData() async {
+  Future<List<EthnicityPopulationModel>> getEthnicityPopulation() async {
     final dio = Dio();
     dio.httpClientAdapter = IOHttpClientAdapter(
       createHttpClient: () {
@@ -22,18 +22,20 @@ class GetEthenicityRepository extends EthnicityRepository {
       },
     );
     try {
-      Response<dynamic> responseFromServer =
-          await dio.get('http://rubytest.git.com.np/api/household/reports?table_no=table3');
+      Response<dynamic> responseFromServer = await dio.get(
+          'http://rubytest.git.com.np/api/household/reports?table_no=table4');
       if (responseFromServer.statusCode == 200) {
         List<dynamic> results = responseFromServer.data['result'];
-        print(results);
-       // print(results);
-        return results.map((e) => EthnicityModel.fromJson(e)).toList();
+        //print(results);
+        return results
+            .map((e) => EthnicityPopulationModel.fromJson(e))
+            .toList();
       } else {
         throw Exception(responseFromServer.statusCode);
       }
-    } catch (error) {
-      throw Exception('Failed to load Ethnicity data : $error');
+    } catch (errMsg) {
+      print(errMsg);
+      throw Exception("failed to load ethnicity population data $errMsg");
     }
   }
 }

@@ -3,8 +3,10 @@ import 'dart:ui';
 import 'package:digital_profile/app_localization/l10n.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../../constant/custom_text_from_field.dart';
+import '../bloc/login_bloc.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -31,7 +33,7 @@ class _LoginPageState extends State<LoginPage> {
           child: Stack(
             children: [
               Align(
-                alignment: Alignment(0, -1.2),
+                alignment: const Alignment(0, -1.2),
                 child: Container(
                   height: MediaQuery.of(context).size.width,
                   width: MediaQuery.of(context).size.width,
@@ -67,7 +69,7 @@ class _LoginPageState extends State<LoginPage> {
                 filter: ImageFilter.blur(sigmaX: 100, sigmaY: 100),
                 child: Container(),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 200,
               ),
               Align(
@@ -136,16 +138,16 @@ class _LoginPageState extends State<LoginPage> {
                                     },
                                     icon: Icon(iconPassword),
                                   ),
-                                  validator: (val) {
-                                    if (val!.isEmpty) {
-                                      return l10n.enterpassword;
-                                    } else if (!RegExp(
-                                            r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~`)\%\-(_+=;:,.<>/?"[{\]}\|^]).{8,}$')
-                                        .hasMatch(val)) {
-                                      return l10n.entervalidpassword;
-                                    }
-                                    return null;
-                                  },
+                                  // validator: (val) {
+                                  //   if (val!.isEmpty) {
+                                  //     return l10n.enterpassword;
+                                  //   } else if (!RegExp(
+                                  //           r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~`)\%\-(_+=;:,.<>/?"[{\]}\|^]).{8,}$')
+                                  //       .hasMatch(val)) {
+                                  //     return l10n.entervalidpassword;
+                                  //   }
+                                  //   return null;
+                                  // },
                                 ),
                                 const SizedBox(
                                   height: 15,
@@ -157,8 +159,17 @@ class _LoginPageState extends State<LoginPage> {
                                                 0.5,
                                         child: TextButton(
                                             onPressed: () {
+                                              print('login button tapped');
                                               if (_formKey.currentState!
-                                                  .validate()) {}
+                                                  .validate()) {
+                                                context.read<LoginBloc>().add(
+                                                    GetLoginEvent(
+                                                        email: emailController
+                                                            .text,
+                                                        password:
+                                                            passwordController
+                                                                .text));
+                                              }
                                             },
                                             style: TextButton.styleFrom(
                                                 elevation: 3.0,

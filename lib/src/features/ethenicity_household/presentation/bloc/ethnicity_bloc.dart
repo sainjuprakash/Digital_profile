@@ -14,12 +14,12 @@ class EthnicityBloc extends Bloc<EthnicityEvent, EthnicityState> {
   final EthnicityRepository _ethnicityRepository;
   EthnicityBloc(this._ethnicityRepository) : super(EthnicityLoadingState()) {
     on<LoadEthnicityEvent>((event, emit) async {
-      print("before try statement");
+      //print("before try statement");
       try {
         List<EthnicityModel> ethnicityModel =
             await _ethnicityRepository.getEthnicityData();
         emit(EthnicitySuccessState(fetchedEthnicityModel: ethnicityModel));
-        print('success state emitted');
+       // print('success state emitted');
       } catch (errormsg) {
         print(errormsg.toString());
         emit(EthnicityFailureState(errmsg: errormsg.toString()));

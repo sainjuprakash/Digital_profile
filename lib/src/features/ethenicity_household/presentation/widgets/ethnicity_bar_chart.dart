@@ -1,4 +1,3 @@
-import 'package:digital_profile/src/features/ethenicity/presentation/bloc/ethnicity_bloc.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -6,6 +5,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../../app_localization/l10n.dart';
+import '../bloc/ethnicity_bloc.dart';
 
 class EthnicityPieChart extends StatelessWidget {
   int? totalMuslim;
@@ -36,7 +36,7 @@ class EthnicityPieChart extends StatelessWidget {
           height: 10,
         ),
         const Text(
-          'मातृभाषाको आधारमा जनसंख्या',
+          'जातजाती अनुसार घरपरिवार संख्याा',
           style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
         ),
         BlocBuilder<EthnicityBloc, EthnicityState>(builder: (context, state) {

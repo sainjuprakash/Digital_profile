@@ -1,11 +1,11 @@
-import 'package:digital_profile/src/features/ethenicity/data/repository/ethnicity_repository_impl.dart';
-import 'package:digital_profile/src/features/ethenicity/presentation/widgets/ethnicity_data_table.dart';
-import 'package:digital_profile/src/features/ethenicity/presentation/widgets/ethnicity_bar_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../data/models/ethnicity_model.dart';
+import '../../data/repository/ethnicity_repository_impl.dart';
 import '../bloc/ethnicity_bloc.dart';
+import '../widgets/ethnicity_bar_chart.dart';
+import '../widgets/ethnicity_data_table.dart';
 
 class EthnicityPage extends StatefulWidget {
   const EthnicityPage({super.key});
@@ -27,7 +27,7 @@ class _EthnicityPageState extends State<EthnicityPage> {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) =>
-          EthnicityBloc(RepositoryProvider.of<GetEthenicityRepository>(context))
+          EthnicityBloc(RepositoryProvider.of<GetEthnicityRepository>(context))
             ..add(LoadEthnicityEvent()),
       child: Scaffold(
           appBar: AppBar(),

@@ -1,11 +1,11 @@
-import 'package:digital_profile/src/features/language/data/models/language_model.dart';
-import 'package:digital_profile/src/features/language/data/repository/language_repository_impl.dart';
-import 'package:digital_profile/src/features/language/presentation/widgets/Language_pie_chart.dart';
-import 'package:digital_profile/src/features/language/presentation/widgets/language_table.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../data/models/language_model.dart';
+import '../../data/repository/language_repository_impl.dart';
 import '../bloc/language_bloc.dart';
+import '../widgets/Language_pie_chart.dart';
+import '../widgets/language_table.dart';
 
 class LanguageDetails extends StatefulWidget {
   const LanguageDetails({super.key});
