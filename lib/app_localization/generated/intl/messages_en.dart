@@ -65,6 +65,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "teraiJanajati": MessageLookupByLibrary.simpleMessage("तराई जनजाति"),
         "total": MessageLookupByLibrary.simpleMessage("जम्मा"),
         "totalhhcount": MessageLookupByLibrary.simpleMessage("कुल घरमुली गणना"),
+        "totalwardethnicity":
+            MessageLookupByLibrary.simpleMessage("कुल वडा जाति"),
         "totalwardpop":
             MessageLookupByLibrary.simpleMessage("कुल वडा जनसंख्या"),
         "totalwardpopulation":

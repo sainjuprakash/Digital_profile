@@ -30,7 +30,10 @@ class _EthnicityPageState extends State<EthnicityPage> {
           EthnicityBloc(RepositoryProvider.of<GetEthnicityRepository>(context))
             ..add(LoadEthnicityEvent()),
       child: Scaffold(
-          appBar: AppBar(),
+          appBar: AppBar(
+            backgroundColor: Colors.blueAccent,
+            elevation: 50,
+          ),
           body: SingleChildScrollView(
             scrollDirection: Axis.vertical,
             child: BlocBuilder<EthnicityBloc, EthnicityState>(

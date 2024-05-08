@@ -449,6 +449,16 @@ class AppLocalizations {
       args: [],
     );
   }
+
+  /// `कुल वडा जाति`
+  String get totalwardethnicity {
+    return Intl.message(
+      'कुल वडा जाति',
+      name: 'totalwardethnicity',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<AppLocalizations> {

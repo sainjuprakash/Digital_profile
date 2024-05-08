@@ -1,5 +1,6 @@
 import 'package:digital_profile/app_localization/l10n.dart';
 import 'package:digital_profile/src/features/ethenicity_household/presentation/pages/ethnicity_details_page.dart';
+import 'package:digital_profile/src/features/ethnicity_population/presentation/page/ethnicity_population_page.dart';
 import 'package:digital_profile/src/features/ethnicity_population/presentation/widget/ethnicity_population_bar_graph.dart';
 import 'package:digital_profile/src/features/language/presentation/pages/language_details_page.dart';
 import 'package:digital_profile/src/features/login/data/repository/login_repository_impl.dart';
@@ -132,7 +133,6 @@ class _MyHomePageState extends State<MyHomePage> {
         drawer: Drawer(
           backgroundColor: Colors.blueAccent,
           width: MediaQuery.of(context).size.width / 1.4,
-
           child: SafeArea(
             child: ListView(
               children: [
@@ -219,7 +219,8 @@ class _MyHomePageState extends State<MyHomePage> {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => EthnicityPopulationBarChart()));
+                                    builder: (context) =>
+                                        EthnicityPopulationPage()));
                           }
                           if (newValue ==
                               "Table 5 - 1.5 मातृभाषाको आधारमा जनसंख्या") {
