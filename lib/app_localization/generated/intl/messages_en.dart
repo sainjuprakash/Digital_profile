@@ -22,6 +22,11 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "above90": MessageLookupByLibrary.simpleMessage("९० माथि"),
+        "bon": MessageLookupByLibrary.simpleMessage("बोन"),
+        "boudha": MessageLookupByLibrary.simpleMessage("बौद्ध"),
+        "christian":
+            MessageLookupByLibrary.simpleMessage(" इसार्इ(क्रिश्चियन)"),
         "digitalprofile":
             MessageLookupByLibrary.simpleMessage("डिजिटल प्रोफाइल"),
         "email": MessageLookupByLibrary.simpleMessage("इमेल"),
@@ -34,37 +39,71 @@ class MessageLookup extends MessageLookupByLibrary {
         "entervalidpassword": MessageLookupByLibrary.simpleMessage(
             "कृपया मान्य पासवर्ड प्रविष्ट गर्नुहोस्"),
         "female": MessageLookupByLibrary.simpleMessage("महिला"),
+        "female16to49": MessageLookupByLibrary.simpleMessage("महिला(१६-४९)"),
+        "female50to69": MessageLookupByLibrary.simpleMessage("महिला(५०-६९)"),
+        "female6to15": MessageLookupByLibrary.simpleMessage("महिला(६-१५)"),
+        "female70to90": MessageLookupByLibrary.simpleMessage("महिला(७०-९०)"),
+        "femaleabove90": MessageLookupByLibrary.simpleMessage("महिला(९० माथि)"),
         "femalecount": MessageLookupByLibrary.simpleMessage("महिला गणना"),
         "femalehhcount": MessageLookupByLibrary.simpleMessage("महिला घरमुली"),
+        "femalelessthan6":
+            MessageLookupByLibrary.simpleMessage("महिला(६ भन्दा कम)"),
+        "fiftytosixtynine": MessageLookupByLibrary.simpleMessage("५०-६९"),
         "ghale": MessageLookupByLibrary.simpleMessage("घले"),
         "gurung": MessageLookupByLibrary.simpleMessage("गुरुङ"),
         "hillDalit": MessageLookupByLibrary.simpleMessage("पहाडी दलित"),
         "hillJanajati": MessageLookupByLibrary.simpleMessage("पहाडी जनजाति"),
         "hillbrahmen": MessageLookupByLibrary.simpleMessage("पहाडी ब्राह्मण"),
+        "hindu": MessageLookupByLibrary.simpleMessage("हिन्दु"),
         "householddata": MessageLookupByLibrary.simpleMessage("घरपरिवार डाटा"),
         "instutionaldata":
             MessageLookupByLibrary.simpleMessage("संस्थागत डाटा"),
+        "jains": MessageLookupByLibrary.simpleMessage("जैन"),
+        "kirat": MessageLookupByLibrary.simpleMessage("किरात"),
+        "lessthan6": MessageLookupByLibrary.simpleMessage("६ भन्दा कम"),
         "limbu": MessageLookupByLibrary.simpleMessage("लिम्बु"),
         "login": MessageLookupByLibrary.simpleMessage("लग-इन"),
         "male": MessageLookupByLibrary.simpleMessage("पुरुष"),
+        "male16to49": MessageLookupByLibrary.simpleMessage("पुरुष(१६-४९)"),
+        "male50to69": MessageLookupByLibrary.simpleMessage("पुरुष(५०-६९)"),
+        "male6to15": MessageLookupByLibrary.simpleMessage("पुरुष(६-१५)"),
+        "male70to90": MessageLookupByLibrary.simpleMessage("पुरुष(७०-९०)"),
+        "maleabove90": MessageLookupByLibrary.simpleMessage("पुरुष(९० माथि)"),
         "malecount": MessageLookupByLibrary.simpleMessage("पुरुष गणना"),
         "malehhcount": MessageLookupByLibrary.simpleMessage("पुरुष घरमुली"),
+        "malelessthan6":
+            MessageLookupByLibrary.simpleMessage("पुरुष(६ भन्दा कम)"),
         "muslim": MessageLookupByLibrary.simpleMessage("मुस्लिम"),
         "nepali": MessageLookupByLibrary.simpleMessage("नेपाली"),
         "notavailable": MessageLookupByLibrary.simpleMessage("उपलब्ध नभएको"),
         "others": MessageLookupByLibrary.simpleMessage("अन्य"),
+        "others16to49": MessageLookupByLibrary.simpleMessage("अन्य(१६-४९)"),
+        "others50to69": MessageLookupByLibrary.simpleMessage("अन्य(५०-६९)"),
+        "others6to15": MessageLookupByLibrary.simpleMessage("अन्य(६-१५)"),
+        "others70to90": MessageLookupByLibrary.simpleMessage("अन्य(७०-९०)"),
+        "othersabove90": MessageLookupByLibrary.simpleMessage("अन्य(९० माथि)"),
         "otherscount": MessageLookupByLibrary.simpleMessage("अन्य गणना"),
+        "otherslessthan6":
+            MessageLookupByLibrary.simpleMessage("अन्य(६ भन्दा कम)"),
         "othrslanguage": MessageLookupByLibrary.simpleMessage("अन्य भाषा"),
         "password": MessageLookupByLibrary.simpleMessage("पासवर्ड"),
+        "populationClassificationtitle": MessageLookupByLibrary.simpleMessage(
+            "उमेर वर्गीकरण अनुसार जनसंख्या"),
         "rai": MessageLookupByLibrary.simpleMessage("राई"),
+        "religiontitle":
+            MessageLookupByLibrary.simpleMessage("धर्मको आधारमा जनसंख्या"),
         "report": MessageLookupByLibrary.simpleMessage("रिपोर्ट"),
         "rubyvalley": MessageLookupByLibrary.simpleMessage("रुबी भ्याली"),
+        "seventytoninety": MessageLookupByLibrary.simpleMessage("७०-९०"),
         "sherpa": MessageLookupByLibrary.simpleMessage("शेर्पा"),
+        "sixteentofourtynine": MessageLookupByLibrary.simpleMessage("१६-४९"),
+        "sixttofifteen": MessageLookupByLibrary.simpleMessage("६-१५"),
         "tamang": MessageLookupByLibrary.simpleMessage("तामाङ"),
         "teraiBrahman": MessageLookupByLibrary.simpleMessage("तराई ब्राह्मण"),
         "teraiJanajati": MessageLookupByLibrary.simpleMessage("तराई जनजाति"),
         "total": MessageLookupByLibrary.simpleMessage("जम्मा"),
         "totalhhcount": MessageLookupByLibrary.simpleMessage("कुल घरमुली गणना"),
+        "totalreligion": MessageLookupByLibrary.simpleMessage("कुल धर्म"),
         "totalwardethnicity":
             MessageLookupByLibrary.simpleMessage("कुल वडा जाति"),
         "totalwardpop":

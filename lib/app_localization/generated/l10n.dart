@@ -459,6 +459,336 @@ class AppLocalizations {
       args: [],
     );
   }
+
+  /// `धर्मको आधारमा जनसंख्या`
+  String get religiontitle {
+    return Intl.message(
+      'धर्मको आधारमा जनसंख्या',
+      name: 'religiontitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `हिन्दु`
+  String get hindu {
+    return Intl.message(
+      'हिन्दु',
+      name: 'hindu',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `बौद्ध`
+  String get boudha {
+    return Intl.message(
+      'बौद्ध',
+      name: 'boudha',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// ` इसार्इ(क्रिश्चियन)`
+  String get christian {
+    return Intl.message(
+      ' इसार्इ(क्रिश्चियन)',
+      name: 'christian',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `किरात`
+  String get kirat {
+    return Intl.message(
+      'किरात',
+      name: 'kirat',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `जैन`
+  String get jains {
+    return Intl.message(
+      'जैन',
+      name: 'jains',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `बोन`
+  String get bon {
+    return Intl.message(
+      'बोन',
+      name: 'bon',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `कुल धर्म`
+  String get totalreligion {
+    return Intl.message(
+      'कुल धर्म',
+      name: 'totalreligion',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `६ भन्दा कम`
+  String get lessthan6 {
+    return Intl.message(
+      '६ भन्दा कम',
+      name: 'lessthan6',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `६-१५`
+  String get sixttofifteen {
+    return Intl.message(
+      '६-१५',
+      name: 'sixttofifteen',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `५०-६९`
+  String get fiftytosixtynine {
+    return Intl.message(
+      '५०-६९',
+      name: 'fiftytosixtynine',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `७०-९०`
+  String get seventytoninety {
+    return Intl.message(
+      '७०-९०',
+      name: 'seventytoninety',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `९० माथि`
+  String get above90 {
+    return Intl.message(
+      '९० माथि',
+      name: 'above90',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `१६-४९`
+  String get sixteentofourtynine {
+    return Intl.message(
+      '१६-४९',
+      name: 'sixteentofourtynine',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `पुरुष(६ भन्दा कम)`
+  String get malelessthan6 {
+    return Intl.message(
+      'पुरुष(६ भन्दा कम)',
+      name: 'malelessthan6',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `पुरुष(६-१५)`
+  String get male6to15 {
+    return Intl.message(
+      'पुरुष(६-१५)',
+      name: 'male6to15',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `पुरुष(१६-४९)`
+  String get male16to49 {
+    return Intl.message(
+      'पुरुष(१६-४९)',
+      name: 'male16to49',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `पुरुष(५०-६९)`
+  String get male50to69 {
+    return Intl.message(
+      'पुरुष(५०-६९)',
+      name: 'male50to69',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `पुरुष(७०-९०)`
+  String get male70to90 {
+    return Intl.message(
+      'पुरुष(७०-९०)',
+      name: 'male70to90',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `पुरुष(९० माथि)`
+  String get maleabove90 {
+    return Intl.message(
+      'पुरुष(९० माथि)',
+      name: 'maleabove90',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `महिला(६ भन्दा कम)`
+  String get femalelessthan6 {
+    return Intl.message(
+      'महिला(६ भन्दा कम)',
+      name: 'femalelessthan6',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `महिला(६-१५)`
+  String get female6to15 {
+    return Intl.message(
+      'महिला(६-१५)',
+      name: 'female6to15',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `महिला(१६-४९)`
+  String get female16to49 {
+    return Intl.message(
+      'महिला(१६-४९)',
+      name: 'female16to49',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `महिला(५०-६९)`
+  String get female50to69 {
+    return Intl.message(
+      'महिला(५०-६९)',
+      name: 'female50to69',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `महिला(७०-९०)`
+  String get female70to90 {
+    return Intl.message(
+      'महिला(७०-९०)',
+      name: 'female70to90',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `महिला(९० माथि)`
+  String get femaleabove90 {
+    return Intl.message(
+      'महिला(९० माथि)',
+      name: 'femaleabove90',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `अन्य(६ भन्दा कम)`
+  String get otherslessthan6 {
+    return Intl.message(
+      'अन्य(६ भन्दा कम)',
+      name: 'otherslessthan6',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `अन्य(६-१५)`
+  String get others6to15 {
+    return Intl.message(
+      'अन्य(६-१५)',
+      name: 'others6to15',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `अन्य(१६-४९)`
+  String get others16to49 {
+    return Intl.message(
+      'अन्य(१६-४९)',
+      name: 'others16to49',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `अन्य(५०-६९)`
+  String get others50to69 {
+    return Intl.message(
+      'अन्य(५०-६९)',
+      name: 'others50to69',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `अन्य(७०-९०)`
+  String get others70to90 {
+    return Intl.message(
+      'अन्य(७०-९०)',
+      name: 'others70to90',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `अन्य(९० माथि)`
+  String get othersabove90 {
+    return Intl.message(
+      'अन्य(९० माथि)',
+      name: 'othersabove90',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `उमेर वर्गीकरण अनुसार जनसंख्या`
+  String get populationClassificationtitle {
+    return Intl.message(
+      'उमेर वर्गीकरण अनुसार जनसंख्या',
+      name: 'populationClassificationtitle',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<AppLocalizations> {

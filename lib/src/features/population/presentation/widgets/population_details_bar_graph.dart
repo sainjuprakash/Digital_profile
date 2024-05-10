@@ -26,7 +26,7 @@ class _PopulationBarGraphState extends State<PopulationBarGraph> {
           scrollDirection: Axis.horizontal,
           child: SizedBox(
             height: 550,
-            width: 600,
+            width: 650,
             child: Padding(
               padding: const EdgeInsets.only(
                 top: 10.0,

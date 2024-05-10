@@ -1,4 +1,5 @@
 import 'package:digital_profile/app_localization/l10n.dart';
+import 'package:digital_profile/src/features/age_table2_2/presentation/page/age_population_page.dart';
 import 'package:digital_profile/src/features/ethenicity_household/presentation/pages/ethnicity_details_page.dart';
 import 'package:digital_profile/src/features/ethnicity_population/presentation/page/ethnicity_population_page.dart';
 import 'package:digital_profile/src/features/ethnicity_population/presentation/widget/ethnicity_population_bar_graph.dart';
@@ -12,6 +13,7 @@ import 'package:digital_profile/src/features/pages/report_page.dart';
 import 'package:digital_profile/src/features/population/data/repository/population_repository_impl.dart';
 import 'package:digital_profile/src/features/population/presentation/bloc/population_bloc.dart';
 import 'package:digital_profile/src/features/population/presentation/pages/population_details_page.dart';
+import 'package:digital_profile/src/features/religion/presentation/page/religion_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -208,11 +210,19 @@ class _MyHomePageState extends State<MyHomePage> {
                           });
 
                           if (newValue ==
+                              "Table 2 - 1.2 उमेर अनुसार जनसंख्या") {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        const AgePopulationPage()));
+                          }
+                          if (newValue ==
                               "Table 3 - 1.3 जातजाती अनुसार घरपरिवार संख्या") {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => EthnicityPage()));
+                                    builder: (context) => const EthnicityPage()));
                           }
                           if (newValue ==
                               "Table 4 - 1.4 जातजाती अनुसार जनसंख्या") {
@@ -220,7 +230,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                 context,
                                 MaterialPageRoute(
                                     builder: (context) =>
-                                        EthnicityPopulationPage()));
+                                        const EthnicityPopulationPage()));
                           }
                           if (newValue ==
                               "Table 5 - 1.5 मातृभाषाको आधारमा जनसंख्या") {
@@ -230,10 +240,14 @@ class _MyHomePageState extends State<MyHomePage> {
                                     builder: (context) =>
                                         const LanguageDetails()));
                           }
-                          // if (newValue ==
-                          //     "Table 1 - 1.1 पारिवारिक तथा जनसंख्या विवरण") {
-                          //   PopulationDetailsPage();
-                          // }
+                          if (newValue ==
+                              "Table 6 - 1.6 धर्मको आधारमा जनसंख्या") {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        const ReligionPage()));
+                          }
                         },
                         items: dropDownOptions
                             .map<DropdownMenuItem<String>>((String value) {

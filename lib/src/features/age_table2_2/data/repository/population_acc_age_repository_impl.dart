@@ -1,14 +1,14 @@
 import 'dart:io';
+
+import 'package:digital_profile/src/features/age_table2_2/data/model/population_acc_age.dart';
+import 'package:digital_profile/src/features/age_table2_2/domain/repository/population_acc_age_repository.dart';
 import 'package:dio/dio.dart';
 import 'package:dio/io.dart';
 
-import '../../domain/repository/language_repository.dart';
-import '../models/language_model.dart';
-
-class GetLanguageRepository extends LanguageRepository {
+class ImplAgeRepository extends AgeRepository {
   final dio = Dio();
   @override
-  Future<List<LanguageModel>> getLanguageData() async {
+  Future<List<AgePopulationModel>> getAgeData() async {
     dio.httpClientAdapter = IOHttpClientAdapter(
       createHttpClient: () {
         // Don't trust any certificate just because their root cert is trusted.
@@ -22,16 +22,15 @@ class GetLanguageRepository extends LanguageRepository {
     );
     try {
       Response<dynamic> responseFromServer = await dio.get(
-          'http://rubytest.git.com.np/api/household/reports?table_no=table5');
+          'http://rubytest.git.com.np/api/household/reports?table_no=table2_2');
       if (responseFromServer.statusCode == 200) {
-        final List<dynamic> results = responseFromServer.data['result'];
-        //print(results);
-        return results.map((e) => LanguageModel.fromJson(e)).toList();
+        List<dynamic> data = responseFromServer.data['result'];
+        return data.map((e) => AgePopulationModel.fromJson(e)).toList();
       } else {
         throw Exception(responseFromServer.statusCode);
       }
-    } catch (error) {
-      throw Exception('Failed to load Language data : $error');
+    } catch (errMsg) {
+      throw Exception("Unable to load data accoriding to age $errMsg");
     }
   }
 }

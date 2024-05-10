@@ -1,6 +1,22 @@
 part of 'religion_bloc.dart';
 
 @immutable
-abstract class ReligionState {}
+abstract class ReligionState extends Equatable {
+  @override
+  List<Object?> get props => [];
+}
 
-class ReligionInitial extends ReligionState {}
+class ReligionLoadingState extends ReligionState {}
+
+class ReligionSuccessState extends ReligionState {
+  List<ReligionModel> religionModel;
+  ReligionSuccessState({required this.religionModel});
+
+  @override
+  List<Object?> get props => [religionModel];
+}
+
+class ReligionFailureState extends ReligionState {
+  String errMsg;
+  ReligionFailureState({required this.errMsg});
+}
