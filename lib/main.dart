@@ -4,6 +4,7 @@ import 'package:digital_profile/src/features/disability/data/repository/disabili
 import 'package:digital_profile/src/features/ethenicity_household/data/repository/ethnicity_repository_impl.dart';
 import 'package:digital_profile/src/features/ethnicity_population/data/repository/ethnicity_population_repository_impl.dart';
 import 'package:digital_profile/src/features/language/data/repository/language_repository_impl.dart';
+import 'package:digital_profile/src/features/literacy_status/data/repository/literacy_repository_impl.dart';
 import 'package:digital_profile/src/features/login/data/repository/login_repository_impl.dart';
 import 'package:digital_profile/src/features/population/data/repository/population_repository_impl.dart';
 import 'package:digital_profile/src/features/religion/data/repository/religion_repository_impl.dart';
@@ -38,6 +39,7 @@ class MyApp extends StatelessWidget {
             create: (context) => ImplEthnicityPopulationRepository()),
         RepositoryProvider(create: (context) => ImplReligionRepository()),
         RepositoryProvider(create: (context) => ImplDisabilityRepository()),
+        RepositoryProvider(create: (context) => ImplLiteracyRepository())
       ],
       child: MaterialApp(
         localizationsDelegates: const [
@@ -45,7 +47,7 @@ class MyApp extends StatelessWidget {
         ],
         supportedLocales: AppLocalizations.delegate.supportedLocales,
         debugShowCheckedModeBanner: false,
-        title: 'Flutter Demo',
+        title: 'Digital Palika ',
         theme: ThemeData(
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
           useMaterial3: true,

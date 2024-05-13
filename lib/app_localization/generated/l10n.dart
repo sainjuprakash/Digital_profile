@@ -899,6 +899,116 @@ class AppLocalizations {
       args: [],
     );
   }
+
+  /// `साक्षरताको स्थिति`
+  String get literacytitle {
+    return Intl.message(
+      'साक्षरताको स्थिति',
+      name: 'literacytitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `साक्षर`
+  String get literate {
+    return Intl.message(
+      'साक्षर',
+      name: 'literate',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `पूर्वप्राथमिक`
+  String get preprimary {
+    return Intl.message(
+      'पूर्वप्राथमिक',
+      name: 'preprimary',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `प्राथमिक`
+  String get primary {
+    return Intl.message(
+      'प्राथमिक',
+      name: 'primary',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `माध्यमिक`
+  String get secondary {
+    return Intl.message(
+      'माध्यमिक',
+      name: 'secondary',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `प्राविधिक`
+  String get technical {
+    return Intl.message(
+      'प्राविधिक',
+      name: 'technical',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `स्नातक तह`
+  String get bachelor {
+    return Intl.message(
+      'स्नातक तह',
+      name: 'bachelor',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `स्नातकोत्तर तह`
+  String get master {
+    return Intl.message(
+      'स्नातकोत्तर तह',
+      name: 'master',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `एमफिल`
+  String get mphil {
+    return Intl.message(
+      'एमफिल',
+      name: 'mphil',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `उमेर कम`
+  String get underage {
+    return Intl.message(
+      'उमेर कम',
+      name: 'underage',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `निरक्षर`
+  String get illiterate {
+    return Intl.message(
+      'निरक्षर',
+      name: 'illiterate',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<AppLocalizations> {

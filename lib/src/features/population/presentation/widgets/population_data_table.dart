@@ -60,7 +60,8 @@ class PopulationDatatable extends StatelessWidget {
                           return null;
                         }),
                         cells: [
-                          DataCell(Text(population.value.surveyWardNumber.toString())),
+                          DataCell(Text(
+                              population.value.surveyWardNumber.toString())),
                           DataCell(Text(
                               population.value.maleCount?.toString() ?? '-')),
                           DataCell(Text(
@@ -77,21 +78,20 @@ class PopulationDatatable extends StatelessWidget {
                         ]);
                   }).toList()
                     ..add(DataRow(
-                        color:MaterialStateProperty.resolveWith<Color>(
-                                (Set<MaterialState> states) {
-
-                              return Colors.grey.withOpacity(0.6);
-                            }),
+                        color: MaterialStateProperty.resolveWith<Color>(
+                            (Set<MaterialState> states) {
+                          return Colors.grey.withOpacity(0.6);
+                        }),
                         cells: [
-                      DataCell(Text(l10n.total.toString())),
-                      DataCell(Text(totalMale.toString())),
-                      DataCell(Text(totalFemale.toString())),
-                      DataCell(Text(totalOthers.toString())),
-                      DataCell(Text(totalMaleFemale.toString())),
-                      DataCell(Text(totalHhMale.toString())),
-                      DataCell(Text(totalHhFemale.toString())),
-                      DataCell(Text(totalWardHh.toString())),
-                    ]))),
+                          DataCell(Text(l10n.total.toString())),
+                          DataCell(Text(totalMale.toString())),
+                          DataCell(Text(totalFemale.toString())),
+                          DataCell(Text(totalOthers.toString())),
+                          DataCell(Text(totalMaleFemale.toString())),
+                          DataCell(Text(totalHhMale.toString())),
+                          DataCell(Text(totalHhFemale.toString())),
+                          DataCell(Text(totalWardHh.toString())),
+                        ]))),
             ),
           );
         }

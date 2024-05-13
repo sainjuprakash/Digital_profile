@@ -24,6 +24,7 @@ class MessageLookup extends MessageLookupByLibrary {
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "able": MessageLookupByLibrary.simpleMessage("अपाङ्गता नभएको"),
         "above90": MessageLookupByLibrary.simpleMessage("९० माथि"),
+        "bachelor": MessageLookupByLibrary.simpleMessage("स्नातक तह"),
         "blind":
             MessageLookupByLibrary.simpleMessage("दृश्टिबिहिन(अाखा नदेख्ने)"),
         "bon": MessageLookupByLibrary.simpleMessage("बोन"),
@@ -67,12 +68,16 @@ class MessageLookup extends MessageLookupByLibrary {
         "hillbrahmen": MessageLookupByLibrary.simpleMessage("पहाडी ब्राह्मण"),
         "hindu": MessageLookupByLibrary.simpleMessage("हिन्दु"),
         "householddata": MessageLookupByLibrary.simpleMessage("घरपरिवार डाटा"),
+        "illiterate": MessageLookupByLibrary.simpleMessage("निरक्षर"),
         "instutionaldata":
             MessageLookupByLibrary.simpleMessage("संस्थागत डाटा"),
         "jains": MessageLookupByLibrary.simpleMessage("जैन"),
         "kirat": MessageLookupByLibrary.simpleMessage("किरात"),
         "lessthan6": MessageLookupByLibrary.simpleMessage("६ भन्दा कम"),
         "limbu": MessageLookupByLibrary.simpleMessage("लिम्बु"),
+        "literacytitle":
+            MessageLookupByLibrary.simpleMessage("साक्षरताको स्थिति"),
+        "literate": MessageLookupByLibrary.simpleMessage("साक्षर"),
         "login": MessageLookupByLibrary.simpleMessage("लग-इन"),
         "male": MessageLookupByLibrary.simpleMessage("पुरुष"),
         "male16to49": MessageLookupByLibrary.simpleMessage("पुरुष(१६-४९)"),
@@ -84,7 +89,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "malehhcount": MessageLookupByLibrary.simpleMessage("पुरुष घरमुली"),
         "malelessthan6":
             MessageLookupByLibrary.simpleMessage("पुरुष(६ भन्दा कम)"),
+        "master": MessageLookupByLibrary.simpleMessage("स्नातकोत्तर तह"),
         "mental": MessageLookupByLibrary.simpleMessage("बौद्विक अपाङगता भएको"),
+        "mphil": MessageLookupByLibrary.simpleMessage("एमफिल"),
         "multidisable": MessageLookupByLibrary.simpleMessage("बहु अपाँगता"),
         "muslim": MessageLookupByLibrary.simpleMessage("मुस्लिम"),
         "nepali": MessageLookupByLibrary.simpleMessage("नेपाली"),
@@ -102,6 +109,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "password": MessageLookupByLibrary.simpleMessage("पासवर्ड"),
         "populationClassificationtitle": MessageLookupByLibrary.simpleMessage(
             "उमेर वर्गीकरण अनुसार जनसंख्या"),
+        "preprimary": MessageLookupByLibrary.simpleMessage("पूर्वप्राथमिक"),
+        "primary": MessageLookupByLibrary.simpleMessage("प्राथमिक"),
         "rai": MessageLookupByLibrary.simpleMessage("राई"),
         "religiontitle":
             MessageLookupByLibrary.simpleMessage("धर्मको आधारमा जनसंख्या"),
@@ -109,12 +118,14 @@ class MessageLookup extends MessageLookupByLibrary {
         "retarded":
             MessageLookupByLibrary.simpleMessage("मनोसामाजिक अपाङगता भएको"),
         "rubyvalley": MessageLookupByLibrary.simpleMessage("रुबी भ्याली"),
+        "secondary": MessageLookupByLibrary.simpleMessage("माध्यमिक"),
         "seventytoninety": MessageLookupByLibrary.simpleMessage("७०-९०"),
         "sherpa": MessageLookupByLibrary.simpleMessage("शेर्पा"),
         "sixteentofourtynine": MessageLookupByLibrary.simpleMessage("१६-४९"),
         "sixttofifteen": MessageLookupByLibrary.simpleMessage("६-१५"),
         "slammer": MessageLookupByLibrary.simpleMessage("भकभके"),
         "tamang": MessageLookupByLibrary.simpleMessage("तामाङ"),
+        "technical": MessageLookupByLibrary.simpleMessage("प्राविधिक"),
         "teraiBrahman": MessageLookupByLibrary.simpleMessage("तराई ब्राह्मण"),
         "teraiJanajati": MessageLookupByLibrary.simpleMessage("तराई जनजाति"),
         "total": MessageLookupByLibrary.simpleMessage("जम्मा"),
@@ -126,6 +137,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("कुल वडा जनसंख्या"),
         "totalwardpopulation":
             MessageLookupByLibrary.simpleMessage("कुल वडा जनसंख्या"),
+        "underage": MessageLookupByLibrary.simpleMessage("उमेर कम"),
         "wardnumber": MessageLookupByLibrary.simpleMessage("वडा नम्बर")
       };
 }

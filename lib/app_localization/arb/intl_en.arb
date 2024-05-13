@@ -84,5 +84,16 @@
 "celeberal" : "सुस्त मनस्थिती",
 "retarded" : "मनोसामाजिक अपाङगता भएको",
 "multidisable" : "बहु अपाँगता",
-"mental" : "बौद्विक अपाङगता भएको"
+"mental" : "बौद्विक अपाङगता भएको",
+"literacytitle" : "साक्षरताको स्थिति",
+"literate" : "साक्षर",
+"preprimary" : "पूर्वप्राथमिक",
+"primary" : "प्राथमिक",
+"secondary" : "माध्यमिक",
+"technical" : "प्राविधिक",
+"bachelor" : "स्नातक तह",
+"master" : "स्नातकोत्तर तह",
+"mphil" : "एमफिल",
+"underage" : "उमेर कम",
+"illiterate" : "निरक्षर"
 }

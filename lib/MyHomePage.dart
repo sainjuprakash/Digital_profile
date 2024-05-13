@@ -5,6 +5,7 @@ import 'package:digital_profile/src/features/ethenicity_household/presentation/p
 import 'package:digital_profile/src/features/ethnicity_population/presentation/page/ethnicity_population_page.dart';
 import 'package:digital_profile/src/features/ethnicity_population/presentation/widget/ethnicity_population_bar_graph.dart';
 import 'package:digital_profile/src/features/language/presentation/pages/language_details_page.dart';
+import 'package:digital_profile/src/features/literacy_status/presentation/pages/literacy_page.dart';
 import 'package:digital_profile/src/features/login/data/repository/login_repository_impl.dart';
 import 'package:digital_profile/src/features/login/presentation/bloc/login_bloc.dart';
 import 'package:digital_profile/src/features/login/presentation/page/login_signup_page.dart';
@@ -249,6 +250,12 @@ class _MyHomePageState extends State<MyHomePage> {
                                 MaterialPageRoute(
                                     builder: (context) =>
                                         const ReligionPage()));
+                          }
+                          if (newValue == "Table 7 - 1.7 साक्षरताको स्थिति") {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => LiteracyPage()));
                           }
                           if (newValue == "Table 9 - 1.9 अपाङ्गताको स्थिति") {
                             Navigator.push(
