@@ -540,6 +540,16 @@ class AppLocalizations {
     );
   }
 
+  /// `उमेर वर्गीकरण अनुसार जनसंख्या`
+  String get populationClassificationtitle {
+    return Intl.message(
+      'उमेर वर्गीकरण अनुसार जनसंख्या',
+      name: 'populationClassificationtitle',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `६ भन्दा कम`
   String get lessthan6 {
     return Intl.message(
@@ -780,11 +790,111 @@ class AppLocalizations {
     );
   }
 
-  /// `उमेर वर्गीकरण अनुसार जनसंख्या`
-  String get populationClassificationtitle {
+  /// `अपाङ्गताको स्थिति`
+  String get disabilitytitle {
     return Intl.message(
-      'उमेर वर्गीकरण अनुसार जनसंख्या',
-      name: 'populationClassificationtitle',
+      'अपाङ्गताको स्थिति',
+      name: 'disabilitytitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `अपाङ्गता नभएको`
+  String get able {
+    return Intl.message(
+      'अपाङ्गता नभएको',
+      name: 'able',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `शारिरीक अपाङगता`
+  String get disable {
+    return Intl.message(
+      'शारिरीक अपाङगता',
+      name: 'disable',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `बहिरा(सुन्न र बोल्न नसक्ने)`
+  String get deaf {
+    return Intl.message(
+      'बहिरा(सुन्न र बोल्न नसक्ने)',
+      name: 'deaf',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `दृश्टिबिहिन(अाखा नदेख्ने)`
+  String get blind {
+    return Intl.message(
+      'दृश्टिबिहिन(अाखा नदेख्ने)',
+      name: 'blind',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `सुस्त श्रवण भएकाे`
+  String get hearingloss {
+    return Intl.message(
+      'सुस्त श्रवण भएकाे',
+      name: 'hearingloss',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `भकभके`
+  String get slammer {
+    return Intl.message(
+      'भकभके',
+      name: 'slammer',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `सुस्त मनस्थिती`
+  String get celeberal {
+    return Intl.message(
+      'सुस्त मनस्थिती',
+      name: 'celeberal',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `मनोसामाजिक अपाङगता भएको`
+  String get retarded {
+    return Intl.message(
+      'मनोसामाजिक अपाङगता भएको',
+      name: 'retarded',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `बहु अपाँगता`
+  String get multidisable {
+    return Intl.message(
+      'बहु अपाँगता',
+      name: 'multidisable',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `बौद्विक अपाङगता भएको`
+  String get mental {
+    return Intl.message(
+      'बौद्विक अपाङगता भएको',
+      name: 'mental',
       desc: '',
       args: [],
     );

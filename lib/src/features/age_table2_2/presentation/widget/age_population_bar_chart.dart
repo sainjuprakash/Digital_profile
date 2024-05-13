@@ -59,7 +59,7 @@ class AgePopulationBarChart extends StatelessWidget {
           SingleChildScrollView(
             scrollDirection: Axis.horizontal,
             child: SizedBox(
-                height: 500,
+                height: 600,
                 width: 800,
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
@@ -68,7 +68,7 @@ class AgePopulationBarChart extends StatelessWidget {
                       maxY: 3000,
                       titlesData: FlTitlesData(
                           show: true,
-                          topTitles: AxisTitles(
+                          topTitles: const AxisTitles(
                               sideTitles: SideTitles(
                             showTitles: false,
                           )),

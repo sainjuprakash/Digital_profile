@@ -49,6 +49,7 @@
 "jains" : "जैन",
 "bon" : "बोन",
 "totalreligion" : "कुल धर्म",
+"populationClassificationtitle" : "उमेर वर्गीकरण अनुसार जनसंख्या",
 "lessthan6" : "६ भन्दा कम",
 "sixttofifteen" : "६-१५",
 "fiftytosixtynine" : "५०-६९",
@@ -73,6 +74,15 @@
 "others50to69" : "अन्य(५०-६९)",
 "others70to90" : "अन्य(७०-९०)",
 "othersabove90" : "अन्य(९० माथि)",
-"populationClassificationtitle" : "उमेर वर्गीकरण अनुसार जनसंख्या"
-
+"disabilitytitle": "अपाङ्गताको स्थिति",
+"able" : "अपाङ्गता नभएको",
+"disable" : "शारिरीक अपाङगता",
+"deaf" : "बहिरा(सुन्न र बोल्न नसक्ने)",
+"blind" : "दृश्टिबिहिन(अाखा नदेख्ने)",
+"hearingloss" : "सुस्त श्रवण भएकाे",
+"slammer" : "भकभके",
+"celeberal" : "सुस्त मनस्थिती",
+"retarded" : "मनोसामाजिक अपाङगता भएको",
+"multidisable" : "बहु अपाँगता",
+"mental" : "बौद्विक अपाङगता भएको"
 }

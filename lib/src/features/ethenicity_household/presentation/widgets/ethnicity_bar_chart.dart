@@ -7,7 +7,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../../app_localization/l10n.dart';
 import '../bloc/ethnicity_bloc.dart';
 
-class EthnicityPieChart extends StatelessWidget {
+class EthnicityBarGraph extends StatelessWidget {
   int? totalMuslim;
   int? totalHillBrahman;
   int? totalTeraiBrahman;
@@ -16,7 +16,7 @@ class EthnicityPieChart extends StatelessWidget {
   int? totalHillDalit;
   int? totalNotAvailable;
   int? totalTotalEthnicity;
-  EthnicityPieChart(
+  EthnicityBarGraph(
       {super.key,
       required this.totalMuslim,
       required this.totalHillBrahman,

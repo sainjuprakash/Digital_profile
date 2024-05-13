@@ -8,7 +8,7 @@ class AppTitleText extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       text,
-      style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
+      style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
     );
   }
 }

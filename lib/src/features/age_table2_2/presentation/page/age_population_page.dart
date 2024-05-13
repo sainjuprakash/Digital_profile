@@ -39,7 +39,10 @@ class _AgePopulationPageState extends State<AgePopulationPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        backgroundColor: Colors.blueAccent,
+        elevation: 50,
+      ),
       body: BlocProvider(
         create: (context) =>
             AgePopulationBloc(RepositoryProvider.of<ImplAgeRepository>(context))

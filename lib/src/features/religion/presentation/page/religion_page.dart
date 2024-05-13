@@ -34,7 +34,10 @@ class _ReligionPageState extends State<ReligionPage> {
           ReligionBloc(RepositoryProvider.of<ImplReligionRepository>(context))
             ..add(GetReligionEvent()),
       child: Scaffold(
-        appBar: AppBar(),
+        appBar: AppBar(
+          backgroundColor: Colors.blueAccent,
+          elevation: 50,
+        ),
         body:
             BlocBuilder<ReligionBloc, ReligionState>(builder: (context, state) {
           if (state is ReligionSuccessState) {

@@ -1,5 +1,6 @@
 import 'package:digital_profile/app_localization/l10n.dart';
 import 'package:digital_profile/src/features/age_table2_2/presentation/page/age_population_page.dart';
+import 'package:digital_profile/src/features/disability/presentation/pages/disability_page.dart';
 import 'package:digital_profile/src/features/ethenicity_household/presentation/pages/ethnicity_details_page.dart';
 import 'package:digital_profile/src/features/ethnicity_population/presentation/page/ethnicity_population_page.dart';
 import 'package:digital_profile/src/features/ethnicity_population/presentation/widget/ethnicity_population_bar_graph.dart';
@@ -27,7 +28,7 @@ class _MyHomePageState extends State<MyHomePage> {
   String selectedItem = 'Table 1 - 1.1 पारिवारिक तथा जनसंख्या विवरण';
   List<String> dropDownOptions = [
     'Table 1 - 1.1 पारिवारिक तथा जनसंख्या विवरण',
-    'Table 2 - 1.2 उमेर अनुसार जनसंख्या',
+    'Table 2 - 1.2 उमेर वर्गीकरण अनुसार जनसंख्या',
     'Table 3 - 1.3 जातजाती अनुसार घरपरिवार संख्या',
     'Table 4 - 1.4 जातजाती अनुसार जनसंख्या',
     'Table 5 - 1.5 मातृभाषाको आधारमा जनसंख्या',
@@ -210,7 +211,7 @@ class _MyHomePageState extends State<MyHomePage> {
                           });
 
                           if (newValue ==
-                              "Table 2 - 1.2 उमेर अनुसार जनसंख्या") {
+                              "Table 2 - 1.2 उमेर वर्गीकरण अनुसार जनसंख्या") {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
@@ -222,7 +223,8 @@ class _MyHomePageState extends State<MyHomePage> {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => const EthnicityPage()));
+                                    builder: (context) =>
+                                        const EthnicityPage()));
                           }
                           if (newValue ==
                               "Table 4 - 1.4 जातजाती अनुसार जनसंख्या") {
@@ -247,6 +249,12 @@ class _MyHomePageState extends State<MyHomePage> {
                                 MaterialPageRoute(
                                     builder: (context) =>
                                         const ReligionPage()));
+                          }
+                          if (newValue == "Table 9 - 1.9 अपाङ्गताको स्थिति") {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => DisabilityPage()));
                           }
                         },
                         items: dropDownOptions

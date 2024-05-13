@@ -1,5 +1,6 @@
 import 'package:digital_profile/app_localization/generated/l10n.dart';
 import 'package:digital_profile/src/features/age_table2_2/data/repository/population_acc_age_repository_impl.dart';
+import 'package:digital_profile/src/features/disability/data/repository/disability_repository_impl.dart';
 import 'package:digital_profile/src/features/ethenicity_household/data/repository/ethnicity_repository_impl.dart';
 import 'package:digital_profile/src/features/ethnicity_population/data/repository/ethnicity_population_repository_impl.dart';
 import 'package:digital_profile/src/features/language/data/repository/language_repository_impl.dart';
@@ -36,6 +37,7 @@ class MyApp extends StatelessWidget {
         RepositoryProvider(
             create: (context) => ImplEthnicityPopulationRepository()),
         RepositoryProvider(create: (context) => ImplReligionRepository()),
+        RepositoryProvider(create: (context) => ImplDisabilityRepository()),
       ],
       child: MaterialApp(
         localizationsDelegates: const [

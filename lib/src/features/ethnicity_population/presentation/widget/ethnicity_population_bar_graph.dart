@@ -55,7 +55,7 @@ class EthnicityPopulationBarChart extends StatelessWidget {
               return SingleChildScrollView(
                 scrollDirection: Axis.horizontal,
                 child: SizedBox(
-                    height: 500,
+                    height: 550,
                     width: 850,
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
@@ -96,7 +96,7 @@ class EthnicityPopulationBarChart extends StatelessWidget {
                           // topTitles: const AxisTitles(),
                         ),
                         minY: 0,
-                        maxY: 8000,
+                        maxY: 9000,
                         barGroups: [
                           BarChartGroupData(
                             x: 0,
@@ -178,7 +178,7 @@ class EthnicityPopulationBarChart extends StatelessWidget {
                                   width: 20),
                             ],
                           ),
-                          BarChartGroupData(
+                          /* BarChartGroupData(
                             x: 8,
                             barRods: [
                               BarChartRodData(
@@ -187,7 +187,7 @@ class EthnicityPopulationBarChart extends StatelessWidget {
                                   toY: totalWardEthnicity?.toDouble() ?? 0,
                                   width: 20),
                             ],
-                          ),
+                          ),*/
                         ],
                       )),
                     )),

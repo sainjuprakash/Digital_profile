@@ -55,12 +55,12 @@ class ReligionBarChart extends StatelessWidget {
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: SizedBox(
-                    height: 500,
+                    height: 550,
                     width: 800,
                     child: BarChart(BarChartData(
                         alignment: BarChartAlignment.spaceAround,
                         minY: 0,
-                        maxY: 4000,
+                        maxY: 5000,
                         titlesData: FlTitlesData(
                             show: true,
                             topTitles: const AxisTitles(

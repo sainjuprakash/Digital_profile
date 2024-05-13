@@ -22,13 +22,22 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "able": MessageLookupByLibrary.simpleMessage("अपाङ्गता नभएको"),
         "above90": MessageLookupByLibrary.simpleMessage("९० माथि"),
+        "blind":
+            MessageLookupByLibrary.simpleMessage("दृश्टिबिहिन(अाखा नदेख्ने)"),
         "bon": MessageLookupByLibrary.simpleMessage("बोन"),
         "boudha": MessageLookupByLibrary.simpleMessage("बौद्ध"),
+        "celeberal": MessageLookupByLibrary.simpleMessage("सुस्त मनस्थिती"),
         "christian":
             MessageLookupByLibrary.simpleMessage(" इसार्इ(क्रिश्चियन)"),
+        "deaf":
+            MessageLookupByLibrary.simpleMessage("बहिरा(सुन्न र बोल्न नसक्ने)"),
         "digitalprofile":
             MessageLookupByLibrary.simpleMessage("डिजिटल प्रोफाइल"),
+        "disabilitytitle":
+            MessageLookupByLibrary.simpleMessage("अपाङ्गताको स्थिति"),
+        "disable": MessageLookupByLibrary.simpleMessage("शारिरीक अपाङगता"),
         "email": MessageLookupByLibrary.simpleMessage("इमेल"),
         "enteremail": MessageLookupByLibrary.simpleMessage(
             "कृपया इमेल प्रविष्ट गर्नुहोस्"),
@@ -51,6 +60,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "fiftytosixtynine": MessageLookupByLibrary.simpleMessage("५०-६९"),
         "ghale": MessageLookupByLibrary.simpleMessage("घले"),
         "gurung": MessageLookupByLibrary.simpleMessage("गुरुङ"),
+        "hearingloss":
+            MessageLookupByLibrary.simpleMessage("सुस्त श्रवण भएकाे"),
         "hillDalit": MessageLookupByLibrary.simpleMessage("पहाडी दलित"),
         "hillJanajati": MessageLookupByLibrary.simpleMessage("पहाडी जनजाति"),
         "hillbrahmen": MessageLookupByLibrary.simpleMessage("पहाडी ब्राह्मण"),
@@ -73,6 +84,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "malehhcount": MessageLookupByLibrary.simpleMessage("पुरुष घरमुली"),
         "malelessthan6":
             MessageLookupByLibrary.simpleMessage("पुरुष(६ भन्दा कम)"),
+        "mental": MessageLookupByLibrary.simpleMessage("बौद्विक अपाङगता भएको"),
+        "multidisable": MessageLookupByLibrary.simpleMessage("बहु अपाँगता"),
         "muslim": MessageLookupByLibrary.simpleMessage("मुस्लिम"),
         "nepali": MessageLookupByLibrary.simpleMessage("नेपाली"),
         "notavailable": MessageLookupByLibrary.simpleMessage("उपलब्ध नभएको"),
@@ -93,11 +106,14 @@ class MessageLookup extends MessageLookupByLibrary {
         "religiontitle":
             MessageLookupByLibrary.simpleMessage("धर्मको आधारमा जनसंख्या"),
         "report": MessageLookupByLibrary.simpleMessage("रिपोर्ट"),
+        "retarded":
+            MessageLookupByLibrary.simpleMessage("मनोसामाजिक अपाङगता भएको"),
         "rubyvalley": MessageLookupByLibrary.simpleMessage("रुबी भ्याली"),
         "seventytoninety": MessageLookupByLibrary.simpleMessage("७०-९०"),
         "sherpa": MessageLookupByLibrary.simpleMessage("शेर्पा"),
         "sixteentofourtynine": MessageLookupByLibrary.simpleMessage("१६-४९"),
         "sixttofifteen": MessageLookupByLibrary.simpleMessage("६-१५"),
+        "slammer": MessageLookupByLibrary.simpleMessage("भकभके"),
         "tamang": MessageLookupByLibrary.simpleMessage("तामाङ"),
         "teraiBrahman": MessageLookupByLibrary.simpleMessage("तराई ब्राह्मण"),
         "teraiJanajati": MessageLookupByLibrary.simpleMessage("तराई जनजाति"),

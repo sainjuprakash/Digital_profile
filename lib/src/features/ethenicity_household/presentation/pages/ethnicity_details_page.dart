@@ -60,7 +60,7 @@ class _EthnicityPageState extends State<EthnicityPage> {
                 });
               }
               return Column(children: [
-                EthnicityPieChart(
+                EthnicityBarGraph(
                     totalMuslim: totalMuslim,
                     totalHillBrahman: totalHillBrahman,
                     totalTeraiBrahman: totalTeraiBrahman,
