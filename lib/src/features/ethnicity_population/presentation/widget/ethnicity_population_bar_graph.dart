@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../../app_localization/l10n.dart';
-import '../../data/model/ethnicity_population.dart';
+import '../../data/model/ethnicity_population_model.dart';
 
 class EthnicityPopulationBarChart extends StatelessWidget {
   int? totalMuslim;

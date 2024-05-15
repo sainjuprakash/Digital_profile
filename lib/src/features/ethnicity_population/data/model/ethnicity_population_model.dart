@@ -1,7 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-part 'ethnicity_population.freezed.dart';
-part 'ethnicity_population.g.dart';
+part 'ethnicity_population_model.freezed.dart';
+part 'ethnicity_population_model.g.dart';
 
 @freezed
 class EthnicityPopulationModel with _$EthnicityPopulationModel {

@@ -99,5 +99,19 @@
 "residencetitle" : "बसोबासको अवस्था",
 "defaultresidence" : "गणना गरेकै ठाउँमा बसेको",
 "foreign" : "स्बिदेशमा बसेको",
-"countryside" : "स्वदेशमा अन्यत्र बसेको"
+"countryside" : "स्वदेशमा अन्यत्र बसेको",
+"marriagetitle" : "वैवाहिक स्थिति",
+"single" : "अविवाहित",
+"married" : "विवाहित",
+"singleman" : "एकल पुरूष",
+"singlewomen" : "एकल महिला",
+"polygami" : "वहुविवाह",
+"divorced" : "सम्बन्ध विच्छेद",
+"remarried" : "पुनःविवाह",
+"seperated" : "विवाहित तर अलग बसेको",
+"healthconditiontitle" : "परिवारका सदस्यहरुको स्वास्थ्य अवस्था",
+"healthy" : "स्वस्थ",
+"generalDisease" : "सामान्य राेग लागेकाे",
+"longTermDisease" : "दीर्घ राेग लागेकाे",
+"covid" : "covid-19"
 }

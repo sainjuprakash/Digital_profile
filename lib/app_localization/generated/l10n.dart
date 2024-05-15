@@ -1049,6 +1049,146 @@ class AppLocalizations {
       args: [],
     );
   }
+
+  /// `वैवाहिक स्थिति`
+  String get marriagetitle {
+    return Intl.message(
+      'वैवाहिक स्थिति',
+      name: 'marriagetitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `अविवाहित`
+  String get single {
+    return Intl.message(
+      'अविवाहित',
+      name: 'single',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `विवाहित`
+  String get married {
+    return Intl.message(
+      'विवाहित',
+      name: 'married',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `एकल पुरूष`
+  String get singleman {
+    return Intl.message(
+      'एकल पुरूष',
+      name: 'singleman',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `एकल महिला`
+  String get singlewomen {
+    return Intl.message(
+      'एकल महिला',
+      name: 'singlewomen',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `वहुविवाह`
+  String get polygami {
+    return Intl.message(
+      'वहुविवाह',
+      name: 'polygami',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `सम्बन्ध विच्छेद`
+  String get divorced {
+    return Intl.message(
+      'सम्बन्ध विच्छेद',
+      name: 'divorced',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `पुनःविवाह`
+  String get remarried {
+    return Intl.message(
+      'पुनःविवाह',
+      name: 'remarried',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `विवाहित तर अलग बसेको`
+  String get seperated {
+    return Intl.message(
+      'विवाहित तर अलग बसेको',
+      name: 'seperated',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `परिवारका सदस्यहरुको स्वास्थ्य अवस्था`
+  String get healthconditiontitle {
+    return Intl.message(
+      'परिवारका सदस्यहरुको स्वास्थ्य अवस्था',
+      name: 'healthconditiontitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `स्वस्थ`
+  String get healthy {
+    return Intl.message(
+      'स्वस्थ',
+      name: 'healthy',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `सामान्य राेग लागेकाे`
+  String get generalDisease {
+    return Intl.message(
+      'सामान्य राेग लागेकाे',
+      name: 'generalDisease',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `दीर्घ राेग लागेकाे`
+  String get longTermDisease {
+    return Intl.message(
+      'दीर्घ राेग लागेकाे',
+      name: 'longTermDisease',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `covid-19`
+  String get covid {
+    return Intl.message(
+      'covid-19',
+      name: 'covid',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<AppLocalizations> {

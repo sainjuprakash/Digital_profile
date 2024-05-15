@@ -34,6 +34,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage(" इसार्इ(क्रिश्चियन)"),
         "countryside":
             MessageLookupByLibrary.simpleMessage("स्वदेशमा अन्यत्र बसेको"),
+        "covid": MessageLookupByLibrary.simpleMessage("covid-19"),
         "deaf":
             MessageLookupByLibrary.simpleMessage("बहिरा(सुन्न र बोल्न नसक्ने)"),
         "defaultresidence":
@@ -43,6 +44,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "disabilitytitle":
             MessageLookupByLibrary.simpleMessage("अपाङ्गताको स्थिति"),
         "disable": MessageLookupByLibrary.simpleMessage("शारिरीक अपाङगता"),
+        "divorced": MessageLookupByLibrary.simpleMessage("सम्बन्ध विच्छेद"),
         "email": MessageLookupByLibrary.simpleMessage("इमेल"),
         "enteremail": MessageLookupByLibrary.simpleMessage(
             "कृपया इमेल प्रविष्ट गर्नुहोस्"),
@@ -64,8 +66,13 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("महिला(६ भन्दा कम)"),
         "fiftytosixtynine": MessageLookupByLibrary.simpleMessage("५०-६९"),
         "foreign": MessageLookupByLibrary.simpleMessage("स्बिदेशमा बसेको"),
+        "generalDisease":
+            MessageLookupByLibrary.simpleMessage("सामान्य राेग लागेकाे"),
         "ghale": MessageLookupByLibrary.simpleMessage("घले"),
         "gurung": MessageLookupByLibrary.simpleMessage("गुरुङ"),
+        "healthconditiontitle": MessageLookupByLibrary.simpleMessage(
+            "परिवारका सदस्यहरुको स्वास्थ्य अवस्था"),
+        "healthy": MessageLookupByLibrary.simpleMessage("स्वस्थ"),
         "hearingloss":
             MessageLookupByLibrary.simpleMessage("सुस्त श्रवण भएकाे"),
         "hillDalit": MessageLookupByLibrary.simpleMessage("पहाडी दलित"),
@@ -84,6 +91,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("साक्षरताको स्थिति"),
         "literate": MessageLookupByLibrary.simpleMessage("साक्षर"),
         "login": MessageLookupByLibrary.simpleMessage("लग-इन"),
+        "longTermDisease":
+            MessageLookupByLibrary.simpleMessage("दीर्घ राेग लागेकाे"),
         "male": MessageLookupByLibrary.simpleMessage("पुरुष"),
         "male16to49": MessageLookupByLibrary.simpleMessage("पुरुष(१६-४९)"),
         "male50to69": MessageLookupByLibrary.simpleMessage("पुरुष(५०-६९)"),
@@ -94,6 +103,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "malehhcount": MessageLookupByLibrary.simpleMessage("पुरुष घरमुली"),
         "malelessthan6":
             MessageLookupByLibrary.simpleMessage("पुरुष(६ भन्दा कम)"),
+        "marriagetitle": MessageLookupByLibrary.simpleMessage("वैवाहिक स्थिति"),
+        "married": MessageLookupByLibrary.simpleMessage("विवाहित"),
         "master": MessageLookupByLibrary.simpleMessage("स्नातकोत्तर तह"),
         "mental": MessageLookupByLibrary.simpleMessage("बौद्विक अपाङगता भएको"),
         "mphil": MessageLookupByLibrary.simpleMessage("एमफिल"),
@@ -112,6 +123,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("अन्य(६ भन्दा कम)"),
         "othrslanguage": MessageLookupByLibrary.simpleMessage("अन्य भाषा"),
         "password": MessageLookupByLibrary.simpleMessage("पासवर्ड"),
+        "polygami": MessageLookupByLibrary.simpleMessage("वहुविवाह"),
         "populationClassificationtitle": MessageLookupByLibrary.simpleMessage(
             "उमेर वर्गीकरण अनुसार जनसंख्या"),
         "preprimary": MessageLookupByLibrary.simpleMessage("पूर्वप्राथमिक"),
@@ -119,6 +131,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "rai": MessageLookupByLibrary.simpleMessage("राई"),
         "religiontitle":
             MessageLookupByLibrary.simpleMessage("धर्मको आधारमा जनसंख्या"),
+        "remarried": MessageLookupByLibrary.simpleMessage("पुनःविवाह"),
         "report": MessageLookupByLibrary.simpleMessage("रिपोर्ट"),
         "residencetitle":
             MessageLookupByLibrary.simpleMessage("बसोबासको अवस्था"),
@@ -126,8 +139,13 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("मनोसामाजिक अपाङगता भएको"),
         "rubyvalley": MessageLookupByLibrary.simpleMessage("रुबी भ्याली"),
         "secondary": MessageLookupByLibrary.simpleMessage("माध्यमिक"),
+        "seperated":
+            MessageLookupByLibrary.simpleMessage("विवाहित तर अलग बसेको"),
         "seventytoninety": MessageLookupByLibrary.simpleMessage("७०-९०"),
         "sherpa": MessageLookupByLibrary.simpleMessage("शेर्पा"),
+        "single": MessageLookupByLibrary.simpleMessage("अविवाहित"),
+        "singleman": MessageLookupByLibrary.simpleMessage("एकल पुरूष"),
+        "singlewomen": MessageLookupByLibrary.simpleMessage("एकल महिला"),
         "sixteentofourtynine": MessageLookupByLibrary.simpleMessage("१६-४९"),
         "sixttofifteen": MessageLookupByLibrary.simpleMessage("६-१५"),
         "slammer": MessageLookupByLibrary.simpleMessage("भकभके"),

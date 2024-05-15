@@ -1,6 +1,6 @@
 import 'dart:io';
 
-import 'package:digital_profile/src/features/ethnicity_population/data/model/ethnicity_population.dart';
+import 'package:digital_profile/src/features/ethnicity_population/data/model/ethnicity_population_model.dart';
 import 'package:dio/dio.dart';
 import 'package:dio/io.dart';
 

@@ -1,4 +1,4 @@
-import 'package:digital_profile/src/features/ethnicity_population/data/model/ethnicity_population.dart';
+import 'package:digital_profile/src/features/ethnicity_population/data/model/ethnicity_population_model.dart';
 import 'package:digital_profile/src/features/ethnicity_population/data/repository/ethnicity_population_repository_impl.dart';
 import 'package:digital_profile/src/features/ethnicity_population/presentation/widget/ethnicity_population_bar_graph.dart';
 import 'package:digital_profile/src/features/ethnicity_population/presentation/widget/ethnicity_population_data_table.dart';
