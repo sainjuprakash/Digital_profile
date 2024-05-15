@@ -16,6 +16,7 @@ import 'package:digital_profile/src/features/population/data/repository/populati
 import 'package:digital_profile/src/features/population/presentation/bloc/population_bloc.dart';
 import 'package:digital_profile/src/features/population/presentation/pages/population_details_page.dart';
 import 'package:digital_profile/src/features/religion/presentation/page/religion_page.dart';
+import 'package:digital_profile/src/features/residence/presentation/pages/residence_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -35,6 +36,7 @@ class _MyHomePageState extends State<MyHomePage> {
     'Table 5 - 1.5 मातृभाषाको आधारमा जनसंख्या',
     'Table 6 - 1.6 धर्मको आधारमा जनसंख्या',
     'Table 7 - 1.7 साक्षरताको स्थिति',
+    'Table 8 - 1.8 बसोबासको अवस्था',
     'Table 9 - 1.9 अपाङ्गताको स्थिति',
     'Table 10 - 1.10 वैवाहिक स्थिति'
   ];
@@ -256,6 +258,9 @@ class _MyHomePageState extends State<MyHomePage> {
                                 context,
                                 MaterialPageRoute(
                                     builder: (context) => LiteracyPage()));
+                          }
+                          if(newValue== "Table 8 - 1.8 बसोबासको अवस्था"){
+                            Navigator.push(context, MaterialPageRoute(builder: (context)=> ResidencePage()));
                           }
                           if (newValue == "Table 9 - 1.9 अपाङ्गताको स्थिति") {
                             Navigator.push(

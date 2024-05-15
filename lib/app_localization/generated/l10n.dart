@@ -1009,6 +1009,46 @@ class AppLocalizations {
       args: [],
     );
   }
+
+  /// `बसोबासको अवस्था`
+  String get residencetitle {
+    return Intl.message(
+      'बसोबासको अवस्था',
+      name: 'residencetitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `गणना गरेकै ठाउँमा बसेको`
+  String get defaultresidence {
+    return Intl.message(
+      'गणना गरेकै ठाउँमा बसेको',
+      name: 'defaultresidence',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `स्बिदेशमा बसेको`
+  String get foreign {
+    return Intl.message(
+      'स्बिदेशमा बसेको',
+      name: 'foreign',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `स्वदेशमा अन्यत्र बसेको`
+  String get countryside {
+    return Intl.message(
+      'स्वदेशमा अन्यत्र बसेको',
+      name: 'countryside',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<AppLocalizations> {

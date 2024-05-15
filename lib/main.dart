@@ -8,6 +8,7 @@ import 'package:digital_profile/src/features/literacy_status/data/repository/lit
 import 'package:digital_profile/src/features/login/data/repository/login_repository_impl.dart';
 import 'package:digital_profile/src/features/population/data/repository/population_repository_impl.dart';
 import 'package:digital_profile/src/features/religion/data/repository/religion_repository_impl.dart';
+import 'package:digital_profile/src/features/residence/data/repository/residence_repository_impl.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'MyHomePage.dart';
@@ -39,7 +40,8 @@ class MyApp extends StatelessWidget {
             create: (context) => ImplEthnicityPopulationRepository()),
         RepositoryProvider(create: (context) => ImplReligionRepository()),
         RepositoryProvider(create: (context) => ImplDisabilityRepository()),
-        RepositoryProvider(create: (context) => ImplLiteracyRepository())
+        RepositoryProvider(create: (context) => ImplLiteracyRepository()),
+        RepositoryProvider(create: (context) => ImplResidenceRepository())
       ],
       child: MaterialApp(
         localizationsDelegates: const [

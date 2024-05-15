@@ -32,8 +32,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "celeberal": MessageLookupByLibrary.simpleMessage("सुस्त मनस्थिती"),
         "christian":
             MessageLookupByLibrary.simpleMessage(" इसार्इ(क्रिश्चियन)"),
+        "countryside":
+            MessageLookupByLibrary.simpleMessage("स्वदेशमा अन्यत्र बसेको"),
         "deaf":
             MessageLookupByLibrary.simpleMessage("बहिरा(सुन्न र बोल्न नसक्ने)"),
+        "defaultresidence":
+            MessageLookupByLibrary.simpleMessage("गणना गरेकै ठाउँमा बसेको"),
         "digitalprofile":
             MessageLookupByLibrary.simpleMessage("डिजिटल प्रोफाइल"),
         "disabilitytitle":
@@ -59,6 +63,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "femalelessthan6":
             MessageLookupByLibrary.simpleMessage("महिला(६ भन्दा कम)"),
         "fiftytosixtynine": MessageLookupByLibrary.simpleMessage("५०-६९"),
+        "foreign": MessageLookupByLibrary.simpleMessage("स्बिदेशमा बसेको"),
         "ghale": MessageLookupByLibrary.simpleMessage("घले"),
         "gurung": MessageLookupByLibrary.simpleMessage("गुरुङ"),
         "hearingloss":
@@ -115,6 +120,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "religiontitle":
             MessageLookupByLibrary.simpleMessage("धर्मको आधारमा जनसंख्या"),
         "report": MessageLookupByLibrary.simpleMessage("रिपोर्ट"),
+        "residencetitle":
+            MessageLookupByLibrary.simpleMessage("बसोबासको अवस्था"),
         "retarded":
             MessageLookupByLibrary.simpleMessage("मनोसामाजिक अपाङगता भएको"),
         "rubyvalley": MessageLookupByLibrary.simpleMessage("रुबी भ्याली"),

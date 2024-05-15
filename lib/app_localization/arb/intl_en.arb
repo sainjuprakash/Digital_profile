@@ -95,5 +95,9 @@
 "master" : "स्नातकोत्तर तह",
 "mphil" : "एमफिल",
 "underage" : "उमेर कम",
-"illiterate" : "निरक्षर"
+"illiterate" : "निरक्षर",
+"residencetitle" : "बसोबासको अवस्था",
+"defaultresidence" : "गणना गरेकै ठाउँमा बसेको",
+"foreign" : "स्बिदेशमा बसेको",
+"countryside" : "स्वदेशमा अन्यत्र बसेको"
 }
