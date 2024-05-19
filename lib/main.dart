@@ -13,6 +13,7 @@ import 'package:digital_profile/src/features/marriage/data/repository/marriage_s
 import 'package:digital_profile/src/features/population/data/repository/population_repository_impl.dart';
 import 'package:digital_profile/src/features/religion/data/repository/religion_repository_impl.dart';
 import 'package:digital_profile/src/features/residence/data/repository/residence_repository_impl.dart';
+import 'package:digital_profile/src/features/toilet/data/repository/toilet_repository_impl.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'MyHomePage.dart';
@@ -50,7 +51,8 @@ class MyApp extends StatelessWidget {
         RepositoryProvider(
             create: (context) => ImplHealthConditionRepository()),
         RepositoryProvider(create: (context) => ImplInsuranceRepository()),
-        RepositoryProvider(create: (context) => ImplElectricityRepository())
+        RepositoryProvider(create: (context) => ImplElectricityRepository()),
+        RepositoryProvider(create: (context) => ImplToiletRepository())
       ],
       child: MaterialApp(
         localizationsDelegates: const [

@@ -39,94 +39,114 @@ class ElectricityBarChart extends StatelessWidget {
         verticalspace(),
         BlocBuilder<ElectricityBloc, ElectricityState>(
           builder: (context, state) {
-            return SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              child: SizedBox(
-                height: 600,
-                width: 780,
+            if (state is ElectricityLoadingState) {
+              return const Center(
                 child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: BarChart(BarChartData(
-                      alignment: BarChartAlignment.spaceAround,
-                      minY: 0,
-                      maxY: 3000,
-                      titlesData: FlTitlesData(
-                        topTitles: const AxisTitles(
+                  padding: EdgeInsets.all(8.0),
+                  child: CircularProgressIndicator(),
+                ),
+              );
+            }
+            if (state is ElectricitySuccessState) {
+              return SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: SizedBox(
+                  height: 600,
+                  width: 780,
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: BarChart(BarChartData(
+                        alignment: BarChartAlignment.spaceAround,
+                        minY: 0,
+                        maxY: 3000,
+                        titlesData: FlTitlesData(
+                          topTitles: const AxisTitles(
+                              sideTitles: SideTitles(
+                            showTitles: false,
+                          )),
+                          bottomTitles: AxisTitles(
                             sideTitles: SideTitles(
-                          showTitles: false,
-                        )),
-                        bottomTitles: AxisTitles(
-                          sideTitles: SideTitles(
-                            showTitles: true,
-                            reservedSize: 36,
-                            getTitlesWidget: (value, meta) {
-                              // print(value);
-                              // print(meta);
-                              final lists = [
-                                l10n.kerosene,
-                                l10n.bioGas,
-                                l10n.solar,
-                                l10n.electricityLaghu,
-                                l10n.electricityNational,
-                                l10n.others,
-                                l10n.notavailable
-                              ];
-                              final index = value.toInt();
-                              //print(index);
-                              return Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Text(lists[index]),
-                              );
-                            },
+                              showTitles: true,
+                              reservedSize: 36,
+                              getTitlesWidget: (value, meta) {
+                                // print(value);
+                                // print(meta);
+                                final lists = [
+                                  l10n.kerosene,
+                                  l10n.bioGas,
+                                  l10n.solar,
+                                  l10n.electricityLaghu,
+                                  l10n.electricityNational,
+                                  l10n.others,
+                                  l10n.notavailable
+                                ];
+                                final index = value.toInt();
+                                //print(index);
+                                return Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Text(lists[index]),
+                                );
+                              },
+                            ),
                           ),
                         ),
-                      ),
-                      barGroups: [
-                        BarChartGroupData(x: 0, barRods: [
-                          BarChartRodData(
-                              toY: totalKerosene.toDouble(),
-                              width: 20,
-                              borderRadius: BorderRadius.circular(2))
-                        ]),
-                        BarChartGroupData(x: 1, barRods: [
-                          BarChartRodData(
-                              toY: totalBioGas.toDouble(),
-                              width: 20,
-                              borderRadius: BorderRadius.circular(2))
-                        ]),
-                        BarChartGroupData(x: 2, barRods: [
-                          BarChartRodData(
-                              toY: totalSolar.toDouble(),
-                              width: 20,
-                              borderRadius: BorderRadius.circular(2))
-                        ]),
-                        BarChartGroupData(x: 3, barRods: [
-                          BarChartRodData(
-                              toY: totalElectricityLaghu.toDouble(),
-                              width: 20,
-                              borderRadius: BorderRadius.circular(2))
-                        ]),
-                        BarChartGroupData(x: 4, barRods: [
-                          BarChartRodData(
-                              toY: totalElectricityNational.toDouble(),
-                              width: 20,
-                              borderRadius: BorderRadius.circular(2))
-                        ]),
-                        BarChartGroupData(x: 5, barRods: [
-                          BarChartRodData(
-                              toY: totalElectricityOthers.toDouble(),
-                              width: 20,
-                              borderRadius: BorderRadius.circular(2))
-                        ]),
-                        BarChartGroupData(x: 6, barRods: [
-                          BarChartRodData(
-                              toY: totalNotAvailable.toDouble(),
-                              width: 20,
-                              borderRadius: BorderRadius.circular(2))
-                        ]),
-                      ])),
+                        barGroups: [
+                          BarChartGroupData(x: 0, barRods: [
+                            BarChartRodData(
+                                toY: totalKerosene.toDouble(),
+                                width: 20,
+                                borderRadius: BorderRadius.circular(2))
+                          ]),
+                          BarChartGroupData(x: 1, barRods: [
+                            BarChartRodData(
+                                toY: totalBioGas.toDouble(),
+                                width: 20,
+                                borderRadius: BorderRadius.circular(2))
+                          ]),
+                          BarChartGroupData(x: 2, barRods: [
+                            BarChartRodData(
+                                toY: totalSolar.toDouble(),
+                                width: 20,
+                                borderRadius: BorderRadius.circular(2))
+                          ]),
+                          BarChartGroupData(x: 3, barRods: [
+                            BarChartRodData(
+                                toY: totalElectricityLaghu.toDouble(),
+                                width: 20,
+                                borderRadius: BorderRadius.circular(2))
+                          ]),
+                          BarChartGroupData(x: 4, barRods: [
+                            BarChartRodData(
+                                toY: totalElectricityNational.toDouble(),
+                                width: 20,
+                                borderRadius: BorderRadius.circular(2))
+                          ]),
+                          BarChartGroupData(x: 5, barRods: [
+                            BarChartRodData(
+                                toY: totalElectricityOthers.toDouble(),
+                                width: 20,
+                                borderRadius: BorderRadius.circular(2))
+                          ]),
+                          BarChartGroupData(x: 6, barRods: [
+                            BarChartRodData(
+                                toY: totalNotAvailable.toDouble(),
+                                width: 20,
+                                borderRadius: BorderRadius.circular(2))
+                          ]),
+                        ])),
+                  ),
                 ),
-              ),
+              );
+            }
+            if (state is ElectricityFailureState) {
+              return const Padding(
+                padding: EdgeInsets.all(8.0),
+                child: Center(child: Text("Unable to load electricity data")),
+              );
+            }
+            return const Padding(
+              padding: EdgeInsets.all(8.0),
+              child: Center(child: Text("Something went wrong")),
             );
           },
         )

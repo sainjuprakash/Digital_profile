@@ -1319,6 +1319,56 @@ class AppLocalizations {
       args: [],
     );
   }
+
+  /// `शौचालयको प्रकार अनुसार घरपरिवार संख्या`
+  String get toiletTitle {
+    return Intl.message(
+      'शौचालयको प्रकार अनुसार घरपरिवार संख्या',
+      name: 'toiletTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `शौचालय नभएको`
+  String get noToilet {
+    return Intl.message(
+      'शौचालय नभएको',
+      name: 'noToilet',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `सार्वजनिक ढल`
+  String get publicDhal {
+    return Intl.message(
+      'सार्वजनिक ढल',
+      name: 'publicDhal',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `सेफ्टी ट्यांक`
+  String get seftiTank {
+    return Intl.message(
+      'सेफ्टी ट्यांक',
+      name: 'seftiTank',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `साधारण`
+  String get ordinary {
+    return Intl.message(
+      'साधारण',
+      name: 'ordinary',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<AppLocalizations> {

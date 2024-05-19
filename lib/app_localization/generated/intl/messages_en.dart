@@ -128,7 +128,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "nepali": MessageLookupByLibrary.simpleMessage("नेपाली"),
         "noInsurance":
             MessageLookupByLibrary.simpleMessage("कुनै पनि गरेकाे छैन"),
+        "noToilet": MessageLookupByLibrary.simpleMessage("शौचालय नभएको"),
         "notavailable": MessageLookupByLibrary.simpleMessage("उपलब्ध नभएको"),
+        "ordinary": MessageLookupByLibrary.simpleMessage("साधारण"),
         "others": MessageLookupByLibrary.simpleMessage("अन्य"),
         "others16to49": MessageLookupByLibrary.simpleMessage("अन्य(१६-४९)"),
         "others50to69": MessageLookupByLibrary.simpleMessage("अन्य(५०-६९)"),
@@ -146,6 +148,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "उमेर वर्गीकरण अनुसार जनसंख्या"),
         "preprimary": MessageLookupByLibrary.simpleMessage("पूर्वप्राथमिक"),
         "primary": MessageLookupByLibrary.simpleMessage("प्राथमिक"),
+        "publicDhal": MessageLookupByLibrary.simpleMessage("सार्वजनिक ढल"),
         "rai": MessageLookupByLibrary.simpleMessage("राई"),
         "religiontitle":
             MessageLookupByLibrary.simpleMessage("धर्मको आधारमा जनसंख्या"),
@@ -157,6 +160,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("मनोसामाजिक अपाङगता भएको"),
         "rubyvalley": MessageLookupByLibrary.simpleMessage("रुबी भ्याली"),
         "secondary": MessageLookupByLibrary.simpleMessage("माध्यमिक"),
+        "seftiTank": MessageLookupByLibrary.simpleMessage("सेफ्टी ट्यांक"),
         "seperated":
             MessageLookupByLibrary.simpleMessage("विवाहित तर अलग बसेको"),
         "seventytoninety": MessageLookupByLibrary.simpleMessage("७०-९०"),
@@ -172,6 +176,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "technical": MessageLookupByLibrary.simpleMessage("प्राविधिक"),
         "teraiBrahman": MessageLookupByLibrary.simpleMessage("तराई ब्राह्मण"),
         "teraiJanajati": MessageLookupByLibrary.simpleMessage("तराई जनजाति"),
+        "toiletTitle": MessageLookupByLibrary.simpleMessage(
+            "शौचालयको प्रकार अनुसार घरपरिवार संख्या"),
         "total": MessageLookupByLibrary.simpleMessage("जम्मा"),
         "totalhhcount": MessageLookupByLibrary.simpleMessage("कुल घरमुली गणना"),
         "totalreligion": MessageLookupByLibrary.simpleMessage("कुल धर्म"),

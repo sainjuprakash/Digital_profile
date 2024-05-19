@@ -21,6 +21,7 @@ import 'package:digital_profile/src/features/population/presentation/bloc/popula
 import 'package:digital_profile/src/features/population/presentation/pages/population_details_page.dart';
 import 'package:digital_profile/src/features/religion/presentation/page/religion_page.dart';
 import 'package:digital_profile/src/features/residence/presentation/pages/residence_page.dart';
+import 'package:digital_profile/src/features/toilet/presentation/pages/toilet_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -45,7 +46,8 @@ class _MyHomePageState extends State<MyHomePage> {
     'Table 10 - 1.10 वैवाहिक स्थिति',
     'Table 11 - 1.11 परिवारका सदस्यहरुको स्वास्थ्य अवस्था',
     'Table 13 - 2.2 बिमा गरेका घरपरिवार विवरण',
-    'Table 16 - 3.6 वत्तीको प्रमुख स्रोत'
+    'Table 16 - 3.6 वत्तीको प्रमुख स्रोत',
+    'Table 17 - 3.7 शौचालयको प्रकार अनुसार घरपरिवार संख्या'
   ];
   final List<Color> _colorsMaleFemale = [
     const Color(0xFF1976D2),
@@ -309,6 +311,13 @@ class _MyHomePageState extends State<MyHomePage> {
                                 context,
                                 MaterialPageRoute(
                                     builder: (context) => ElectricityPage()));
+                          }
+                          if (newValue ==
+                              "Table 17 - 3.7 शौचालयको प्रकार अनुसार घरपरिवार संख्या") {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => ToiletPage()));
                           }
                         },
                         items: dropDownOptions

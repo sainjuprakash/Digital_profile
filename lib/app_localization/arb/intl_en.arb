@@ -126,5 +126,10 @@
 "solar" : "सोलार",
 "electricityLaghu" : "विद्युत (लघु)",
 "electricityNational" : "विद्युत (राष्ट्रिय प्रशारण)",
-"electricityOthers" : "अन्य"
+"electricityOthers" : "अन्य",
+"toiletTitle" : "शौचालयको प्रकार अनुसार घरपरिवार संख्या",
+"noToilet" : "शौचालय नभएको",
+"publicDhal" : "सार्वजनिक ढल",
+"seftiTank" : "सेफ्टी ट्यांक",
+"ordinary" : "साधारण"
 }
