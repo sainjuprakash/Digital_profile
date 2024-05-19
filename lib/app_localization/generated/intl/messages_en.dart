@@ -25,6 +25,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "able": MessageLookupByLibrary.simpleMessage("अपाङ्गता नभएको"),
         "above90": MessageLookupByLibrary.simpleMessage("९० माथि"),
         "bachelor": MessageLookupByLibrary.simpleMessage("स्नातक तह"),
+        "bioGas": MessageLookupByLibrary.simpleMessage("वायोग्यास"),
         "blind":
             MessageLookupByLibrary.simpleMessage("दृश्टिबिहिन(अाखा नदेख्ने)"),
         "bon": MessageLookupByLibrary.simpleMessage("बोन"),
@@ -45,6 +46,13 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("अपाङ्गताको स्थिति"),
         "disable": MessageLookupByLibrary.simpleMessage("शारिरीक अपाङगता"),
         "divorced": MessageLookupByLibrary.simpleMessage("सम्बन्ध विच्छेद"),
+        "electricityLaghu":
+            MessageLookupByLibrary.simpleMessage("विद्युत (लघु)"),
+        "electricityNational":
+            MessageLookupByLibrary.simpleMessage("विद्युत (राष्ट्रिय प्रशारण)"),
+        "electricityOthers": MessageLookupByLibrary.simpleMessage("अन्य"),
+        "electricityTitle":
+            MessageLookupByLibrary.simpleMessage("वत्तीको प्रमुख स्रोत"),
         "email": MessageLookupByLibrary.simpleMessage("इमेल"),
         "enteremail": MessageLookupByLibrary.simpleMessage(
             "कृपया इमेल प्रविष्ट गर्नुहोस्"),
@@ -70,6 +78,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("सामान्य राेग लागेकाे"),
         "ghale": MessageLookupByLibrary.simpleMessage("घले"),
         "gurung": MessageLookupByLibrary.simpleMessage("गुरुङ"),
+        "healthInsurance":
+            MessageLookupByLibrary.simpleMessage("स्वास्थ्य बिमा"),
         "healthconditiontitle": MessageLookupByLibrary.simpleMessage(
             "परिवारका सदस्यहरुको स्वास्थ्य अवस्था"),
         "healthy": MessageLookupByLibrary.simpleMessage("स्वस्थ"),
@@ -83,13 +93,18 @@ class MessageLookup extends MessageLookupByLibrary {
         "illiterate": MessageLookupByLibrary.simpleMessage("निरक्षर"),
         "instutionaldata":
             MessageLookupByLibrary.simpleMessage("संस्थागत डाटा"),
+        "insuranceTitle":
+            MessageLookupByLibrary.simpleMessage("बिमा गरेका घरपरिवार विवरण"),
         "jains": MessageLookupByLibrary.simpleMessage("जैन"),
+        "kerosene": MessageLookupByLibrary.simpleMessage("मट्टितेल"),
         "kirat": MessageLookupByLibrary.simpleMessage("किरात"),
         "lessthan6": MessageLookupByLibrary.simpleMessage("६ भन्दा कम"),
+        "lifeInsurance": MessageLookupByLibrary.simpleMessage("जीवन बिमा"),
         "limbu": MessageLookupByLibrary.simpleMessage("लिम्बु"),
         "literacytitle":
             MessageLookupByLibrary.simpleMessage("साक्षरताको स्थिति"),
         "literate": MessageLookupByLibrary.simpleMessage("साक्षर"),
+        "liveStockInsurance": MessageLookupByLibrary.simpleMessage("पशु विमा"),
         "login": MessageLookupByLibrary.simpleMessage("लग-इन"),
         "longTermDisease":
             MessageLookupByLibrary.simpleMessage("दीर्घ राेग लागेकाे"),
@@ -111,12 +126,15 @@ class MessageLookup extends MessageLookupByLibrary {
         "multidisable": MessageLookupByLibrary.simpleMessage("बहु अपाँगता"),
         "muslim": MessageLookupByLibrary.simpleMessage("मुस्लिम"),
         "nepali": MessageLookupByLibrary.simpleMessage("नेपाली"),
+        "noInsurance":
+            MessageLookupByLibrary.simpleMessage("कुनै पनि गरेकाे छैन"),
         "notavailable": MessageLookupByLibrary.simpleMessage("उपलब्ध नभएको"),
         "others": MessageLookupByLibrary.simpleMessage("अन्य"),
         "others16to49": MessageLookupByLibrary.simpleMessage("अन्य(१६-४९)"),
         "others50to69": MessageLookupByLibrary.simpleMessage("अन्य(५०-६९)"),
         "others6to15": MessageLookupByLibrary.simpleMessage("अन्य(६-१५)"),
         "others70to90": MessageLookupByLibrary.simpleMessage("अन्य(७०-९०)"),
+        "othersInsurance": MessageLookupByLibrary.simpleMessage("अन्य बिमा"),
         "othersabove90": MessageLookupByLibrary.simpleMessage("अन्य(९० माथि)"),
         "otherscount": MessageLookupByLibrary.simpleMessage("अन्य गणना"),
         "otherslessthan6":
@@ -149,6 +167,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "sixteentofourtynine": MessageLookupByLibrary.simpleMessage("१६-४९"),
         "sixttofifteen": MessageLookupByLibrary.simpleMessage("६-१५"),
         "slammer": MessageLookupByLibrary.simpleMessage("भकभके"),
+        "solar": MessageLookupByLibrary.simpleMessage("सोलार"),
         "tamang": MessageLookupByLibrary.simpleMessage("तामाङ"),
         "technical": MessageLookupByLibrary.simpleMessage("प्राविधिक"),
         "teraiBrahman": MessageLookupByLibrary.simpleMessage("तराई ब्राह्मण"),

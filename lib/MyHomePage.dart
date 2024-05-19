@@ -1,10 +1,12 @@
 import 'package:digital_profile/app_localization/l10n.dart';
 import 'package:digital_profile/src/features/age_table2_2/presentation/page/age_population_page.dart';
 import 'package:digital_profile/src/features/disability/presentation/pages/disability_page.dart';
+import 'package:digital_profile/src/features/electricity/presentation/pages/electricity_page.dart';
 import 'package:digital_profile/src/features/ethenicity_household/presentation/pages/ethnicity_details_page.dart';
 import 'package:digital_profile/src/features/ethnicity_population/presentation/page/ethnicity_population_page.dart';
 import 'package:digital_profile/src/features/ethnicity_population/presentation/widget/ethnicity_population_bar_graph.dart';
 import 'package:digital_profile/src/features/health_condition/presentation/pages/health_condition_page.dart';
+import 'package:digital_profile/src/features/insurance/presentation/pages/insurance_page.dart';
 import 'package:digital_profile/src/features/language/presentation/pages/language_details_page.dart';
 import 'package:digital_profile/src/features/literacy_status/presentation/pages/literacy_page.dart';
 import 'package:digital_profile/src/features/login/data/repository/login_repository_impl.dart';
@@ -41,7 +43,9 @@ class _MyHomePageState extends State<MyHomePage> {
     'Table 8 - 1.8 बसोबासको अवस्था',
     'Table 9 - 1.9 अपाङ्गताको स्थिति',
     'Table 10 - 1.10 वैवाहिक स्थिति',
-    'Table 11 - 1.11 परिवारका सदस्यहरुको स्वास्थ्य अवस्था'
+    'Table 11 - 1.11 परिवारका सदस्यहरुको स्वास्थ्य अवस्था',
+    'Table 13 - 2.2 बिमा गरेका घरपरिवार विवरण',
+    'Table 16 - 3.6 वत्तीको प्रमुख स्रोत'
   ];
   final List<Color> _colorsMaleFemale = [
     const Color(0xFF1976D2),
@@ -117,7 +121,7 @@ class _MyHomePageState extends State<MyHomePage> {
       child: Scaffold(
         appBar: AppBar(
           elevation: 50,
-          title: Text(l10n.rubyvalley),
+          title: Text(l10n.digitalprofile),
           actions: [
             Padding(
               padding: const EdgeInsets.only(right: 12.0),
@@ -260,13 +264,15 @@ class _MyHomePageState extends State<MyHomePage> {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => LiteracyPage()));
+                                    builder: (context) =>
+                                        const LiteracyPage()));
                           }
                           if (newValue == "Table 8 - 1.8 बसोबासको अवस्था") {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => ResidencePage()));
+                                    builder: (context) =>
+                                        const ResidencePage()));
                           }
                           if (newValue == "Table 9 - 1.9 अपाङ्गताको स्थिति") {
                             Navigator.push(
@@ -279,7 +285,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                 context,
                                 MaterialPageRoute(
                                     builder: (context) =>
-                                        MarriageStatusPage()));
+                                        const MarriageStatusPage()));
                           }
                           if (newValue ==
                               "Table 11 - 1.11 परिवारका सदस्यहरुको स्वास्थ्य अवस्था") {
@@ -287,7 +293,22 @@ class _MyHomePageState extends State<MyHomePage> {
                                 context,
                                 MaterialPageRoute(
                                     builder: (context) =>
-                                        HealthConditionPage()));
+                                        const HealthConditionPage()));
+                          }
+                          if (newValue ==
+                              "Table 13 - 2.2 बिमा गरेका घरपरिवार विवरण") {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        const InsurancePage()));
+                          }
+                          if (newValue ==
+                              "Table 16 - 3.6 वत्तीको प्रमुख स्रोत") {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => ElectricityPage()));
                           }
                         },
                         items: dropDownOptions

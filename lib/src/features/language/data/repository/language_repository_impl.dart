@@ -6,9 +6,10 @@ import '../../domain/repository/language_repository.dart';
 import '../models/language_model.dart';
 
 class GetLanguageRepository extends LanguageRepository {
-  final dio = Dio();
+
   @override
   Future<List<LanguageModel>> getLanguageData() async {
+    final dio = Dio();
     dio.httpClientAdapter = IOHttpClientAdapter(
       createHttpClient: () {
         // Don't trust any certificate just because their root cert is trusted.

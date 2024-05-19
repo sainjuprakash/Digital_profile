@@ -1189,6 +1189,136 @@ class AppLocalizations {
       args: [],
     );
   }
+
+  /// `बिमा गरेका घरपरिवार विवरण`
+  String get insuranceTitle {
+    return Intl.message(
+      'बिमा गरेका घरपरिवार विवरण',
+      name: 'insuranceTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `जीवन बिमा`
+  String get lifeInsurance {
+    return Intl.message(
+      'जीवन बिमा',
+      name: 'lifeInsurance',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `स्वास्थ्य बिमा`
+  String get healthInsurance {
+    return Intl.message(
+      'स्वास्थ्य बिमा',
+      name: 'healthInsurance',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `पशु विमा`
+  String get liveStockInsurance {
+    return Intl.message(
+      'पशु विमा',
+      name: 'liveStockInsurance',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `अन्य बिमा`
+  String get othersInsurance {
+    return Intl.message(
+      'अन्य बिमा',
+      name: 'othersInsurance',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `कुनै पनि गरेकाे छैन`
+  String get noInsurance {
+    return Intl.message(
+      'कुनै पनि गरेकाे छैन',
+      name: 'noInsurance',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `वत्तीको प्रमुख स्रोत`
+  String get electricityTitle {
+    return Intl.message(
+      'वत्तीको प्रमुख स्रोत',
+      name: 'electricityTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `मट्टितेल`
+  String get kerosene {
+    return Intl.message(
+      'मट्टितेल',
+      name: 'kerosene',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `वायोग्यास`
+  String get bioGas {
+    return Intl.message(
+      'वायोग्यास',
+      name: 'bioGas',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `सोलार`
+  String get solar {
+    return Intl.message(
+      'सोलार',
+      name: 'solar',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `विद्युत (लघु)`
+  String get electricityLaghu {
+    return Intl.message(
+      'विद्युत (लघु)',
+      name: 'electricityLaghu',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `विद्युत (राष्ट्रिय प्रशारण)`
+  String get electricityNational {
+    return Intl.message(
+      'विद्युत (राष्ट्रिय प्रशारण)',
+      name: 'electricityNational',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `अन्य`
+  String get electricityOthers {
+    return Intl.message(
+      'अन्य',
+      name: 'electricityOthers',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<AppLocalizations> {

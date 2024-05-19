@@ -34,9 +34,9 @@ class _DisabilityPageState extends State<DisabilityPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const CustomAppBar(
-        backGroundColor: Colors.blueAccent,
-
+      appBar: AppBar(
+        backgroundColor: Colors.blueAccent,
+        elevation: 50,
       ),
       body: BlocProvider(
         create: (context) => DisabilityBloc(

@@ -113,5 +113,18 @@
 "healthy" : "स्वस्थ",
 "generalDisease" : "सामान्य राेग लागेकाे",
 "longTermDisease" : "दीर्घ राेग लागेकाे",
-"covid" : "covid-19"
+"covid" : "covid-19",
+"insuranceTitle" : "बिमा गरेका घरपरिवार विवरण",
+"lifeInsurance" : "जीवन बिमा",
+"healthInsurance" : "स्वास्थ्य बिमा",
+"liveStockInsurance" : "पशु विमा",
+"othersInsurance" : "अन्य बिमा",
+"noInsurance" : "कुनै पनि गरेकाे छैन",
+"electricityTitle" : "वत्तीको प्रमुख स्रोत",
+"kerosene" : "मट्टितेल",
+"bioGas" : "वायोग्यास",
+"solar" : "सोलार",
+"electricityLaghu" : "विद्युत (लघु)",
+"electricityNational" : "विद्युत (राष्ट्रिय प्रशारण)",
+"electricityOthers" : "अन्य"
 }

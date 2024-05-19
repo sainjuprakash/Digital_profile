@@ -1,6 +1,8 @@
+import 'package:digital_profile/constant/spacing.dart';
 import 'package:digital_profile/src/features/health_condition/data/model/health_condition_model.dart';
 import 'package:digital_profile/src/features/health_condition/data/repository/health_condition_repository_impl.dart';
 import 'package:digital_profile/src/features/health_condition/presentation/widgets/health_condition_bar_chart.dart';
+import 'package:digital_profile/src/features/health_condition/presentation/widgets/health_condition_data_table.dart';
 import 'package:digital_profile/src/features/marriage/data/model/marriage_status_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -52,16 +54,27 @@ class _HealthConditionPageState extends State<HealthConditionPage> {
                     fetchedHealthData[key].totalWardHealthCondition ?? 0;
               });
             }
-            return Column(
-              children: [
-                HealthConditionBarChart(
-                    totalHealthy: totalHealthy,
-                    totalGeneralDisease: totalGeneralDisease,
-                    totalLongTermDisease: totalLongTermDisease,
-                    totalCovid: totalCovid,
-                    totalNotAvailable: totalNotAvailable,
-                    totalWardHealthCondition: totalWardHealthCondition),
-              ],
+            return SingleChildScrollView(
+              scrollDirection: Axis.vertical,
+              child: Column(
+                children: [
+                  HealthConditionBarChart(
+                      totalHealthy: totalHealthy,
+                      totalGeneralDisease: totalGeneralDisease,
+                      totalLongTermDisease: totalLongTermDisease,
+                      totalCovid: totalCovid,
+                      totalNotAvailable: totalNotAvailable,
+                      totalWardHealthCondition: totalWardHealthCondition),
+                  verticalspace(),
+                  HealthConditionDataTable(
+                      totalHealthy: totalHealthy,
+                      totalGeneralDisease: totalGeneralDisease,
+                      totalLongTermDisease: totalLongTermDisease,
+                      totalCovid: totalCovid,
+                      totalNotAvailable: totalNotAvailable,
+                      totalWardHealthCondition: totalWardHealthCondition),
+                ],
+              ),
             );
           },
         ),
