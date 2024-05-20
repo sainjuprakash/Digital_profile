@@ -5,6 +5,7 @@ import 'package:digital_profile/src/features/electricity/data/repository/electri
 import 'package:digital_profile/src/features/ethenicity_household/data/repository/ethnicity_repository_impl.dart';
 import 'package:digital_profile/src/features/ethnicity_population/data/repository/ethnicity_population_repository_impl.dart';
 import 'package:digital_profile/src/features/health_condition/data/repository/health_condition_repository_impl.dart';
+import 'package:digital_profile/src/features/home_facilities/data/repository/home_facilities_repository_impl.dart';
 import 'package:digital_profile/src/features/insurance/data/repository/insurance_repository_impl.dart';
 import 'package:digital_profile/src/features/language/data/repository/language_repository_impl.dart';
 import 'package:digital_profile/src/features/literacy_status/data/repository/literacy_repository_impl.dart';
@@ -52,7 +53,8 @@ class MyApp extends StatelessWidget {
             create: (context) => ImplHealthConditionRepository()),
         RepositoryProvider(create: (context) => ImplInsuranceRepository()),
         RepositoryProvider(create: (context) => ImplElectricityRepository()),
-        RepositoryProvider(create: (context) => ImplToiletRepository())
+        RepositoryProvider(create: (context) => ImplToiletRepository()),
+        RepositoryProvider(create: (context) => ImplHomeFacilitiesRepository())
       ],
       child: MaterialApp(
         localizationsDelegates: const [

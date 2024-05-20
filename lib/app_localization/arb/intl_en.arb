@@ -131,5 +131,17 @@
 "noToilet" : "शौचालय नभएको",
 "publicDhal" : "सार्वजनिक ढल",
 "seftiTank" : "सेफ्टी ट्यांक",
-"ordinary" : "साधारण"
+"ordinary" : "साधारण",
+"homeFacilitiesTitle" : "घरपरिवारमा उपलब्ध सुविधाहरु",
+"radio" : "रेडियाे",
+"television" : "टेलिभिजन",
+"telephone" : "टेलिफाेन,माेबार्इल",
+"computer" : "कम्प्यूटर",
+"internet" : "र्इन्टरनेट",
+"motorcycle" : "माेटरसार्इकल",
+"car" : "माेटर,कार",
+"refrigerator" : "रेफ्रिजरेटर",
+"bus" : "बस,ट्रक अादी",
+"none" : "कुनै पनि छैन",
+"householdCount" : "घरधुरी संख्या"
 }

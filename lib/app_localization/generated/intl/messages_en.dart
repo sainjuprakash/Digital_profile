@@ -30,9 +30,12 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("दृश्टिबिहिन(अाखा नदेख्ने)"),
         "bon": MessageLookupByLibrary.simpleMessage("बोन"),
         "boudha": MessageLookupByLibrary.simpleMessage("बौद्ध"),
+        "bus": MessageLookupByLibrary.simpleMessage("बस,ट्रक अादी"),
+        "car": MessageLookupByLibrary.simpleMessage("माेटर,कार"),
         "celeberal": MessageLookupByLibrary.simpleMessage("सुस्त मनस्थिती"),
         "christian":
             MessageLookupByLibrary.simpleMessage(" इसार्इ(क्रिश्चियन)"),
+        "computer": MessageLookupByLibrary.simpleMessage("कम्प्यूटर"),
         "countryside":
             MessageLookupByLibrary.simpleMessage("स्वदेशमा अन्यत्र बसेको"),
         "covid": MessageLookupByLibrary.simpleMessage("covid-19"),
@@ -89,12 +92,16 @@ class MessageLookup extends MessageLookupByLibrary {
         "hillJanajati": MessageLookupByLibrary.simpleMessage("पहाडी जनजाति"),
         "hillbrahmen": MessageLookupByLibrary.simpleMessage("पहाडी ब्राह्मण"),
         "hindu": MessageLookupByLibrary.simpleMessage("हिन्दु"),
+        "homeFacilitiesTitle":
+            MessageLookupByLibrary.simpleMessage("घरपरिवारमा उपलब्ध सुविधाहरु"),
+        "householdCount": MessageLookupByLibrary.simpleMessage("घरधुरी संख्या"),
         "householddata": MessageLookupByLibrary.simpleMessage("घरपरिवार डाटा"),
         "illiterate": MessageLookupByLibrary.simpleMessage("निरक्षर"),
         "instutionaldata":
             MessageLookupByLibrary.simpleMessage("संस्थागत डाटा"),
         "insuranceTitle":
             MessageLookupByLibrary.simpleMessage("बिमा गरेका घरपरिवार विवरण"),
+        "internet": MessageLookupByLibrary.simpleMessage("र्इन्टरनेट"),
         "jains": MessageLookupByLibrary.simpleMessage("जैन"),
         "kerosene": MessageLookupByLibrary.simpleMessage("मट्टितेल"),
         "kirat": MessageLookupByLibrary.simpleMessage("किरात"),
@@ -122,6 +129,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "married": MessageLookupByLibrary.simpleMessage("विवाहित"),
         "master": MessageLookupByLibrary.simpleMessage("स्नातकोत्तर तह"),
         "mental": MessageLookupByLibrary.simpleMessage("बौद्विक अपाङगता भएको"),
+        "motorcycle": MessageLookupByLibrary.simpleMessage("माेटरसार्इकल"),
         "mphil": MessageLookupByLibrary.simpleMessage("एमफिल"),
         "multidisable": MessageLookupByLibrary.simpleMessage("बहु अपाँगता"),
         "muslim": MessageLookupByLibrary.simpleMessage("मुस्लिम"),
@@ -129,6 +137,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "noInsurance":
             MessageLookupByLibrary.simpleMessage("कुनै पनि गरेकाे छैन"),
         "noToilet": MessageLookupByLibrary.simpleMessage("शौचालय नभएको"),
+        "none": MessageLookupByLibrary.simpleMessage("कुनै पनि छैन"),
         "notavailable": MessageLookupByLibrary.simpleMessage("उपलब्ध नभएको"),
         "ordinary": MessageLookupByLibrary.simpleMessage("साधारण"),
         "others": MessageLookupByLibrary.simpleMessage("अन्य"),
@@ -149,7 +158,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "preprimary": MessageLookupByLibrary.simpleMessage("पूर्वप्राथमिक"),
         "primary": MessageLookupByLibrary.simpleMessage("प्राथमिक"),
         "publicDhal": MessageLookupByLibrary.simpleMessage("सार्वजनिक ढल"),
+        "radio": MessageLookupByLibrary.simpleMessage("रेडियाे"),
         "rai": MessageLookupByLibrary.simpleMessage("राई"),
+        "refrigerator": MessageLookupByLibrary.simpleMessage("रेफ्रिजरेटर"),
         "religiontitle":
             MessageLookupByLibrary.simpleMessage("धर्मको आधारमा जनसंख्या"),
         "remarried": MessageLookupByLibrary.simpleMessage("पुनःविवाह"),
@@ -174,6 +185,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "solar": MessageLookupByLibrary.simpleMessage("सोलार"),
         "tamang": MessageLookupByLibrary.simpleMessage("तामाङ"),
         "technical": MessageLookupByLibrary.simpleMessage("प्राविधिक"),
+        "telephone": MessageLookupByLibrary.simpleMessage("टेलिफाेन,माेबार्इल"),
+        "television": MessageLookupByLibrary.simpleMessage("टेलिभिजन"),
         "teraiBrahman": MessageLookupByLibrary.simpleMessage("तराई ब्राह्मण"),
         "teraiJanajati": MessageLookupByLibrary.simpleMessage("तराई जनजाति"),
         "toiletTitle": MessageLookupByLibrary.simpleMessage(

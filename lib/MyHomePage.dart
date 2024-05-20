@@ -6,6 +6,7 @@ import 'package:digital_profile/src/features/ethenicity_household/presentation/p
 import 'package:digital_profile/src/features/ethnicity_population/presentation/page/ethnicity_population_page.dart';
 import 'package:digital_profile/src/features/ethnicity_population/presentation/widget/ethnicity_population_bar_graph.dart';
 import 'package:digital_profile/src/features/health_condition/presentation/pages/health_condition_page.dart';
+import 'package:digital_profile/src/features/home_facilities/presentation/pages/home_facilities_page.dart';
 import 'package:digital_profile/src/features/insurance/presentation/pages/insurance_page.dart';
 import 'package:digital_profile/src/features/language/presentation/pages/language_details_page.dart';
 import 'package:digital_profile/src/features/literacy_status/presentation/pages/literacy_page.dart';
@@ -47,7 +48,8 @@ class _MyHomePageState extends State<MyHomePage> {
     'Table 11 - 1.11 परिवारका सदस्यहरुको स्वास्थ्य अवस्था',
     'Table 13 - 2.2 बिमा गरेका घरपरिवार विवरण',
     'Table 16 - 3.6 वत्तीको प्रमुख स्रोत',
-    'Table 17 - 3.7 शौचालयको प्रकार अनुसार घरपरिवार संख्या'
+    'Table 17 - 3.7 शौचालयको प्रकार अनुसार घरपरिवार संख्या',
+    'Table 18 - 3.8 घरपरिवारमा उपलब्ध सुविधाहरु'
   ];
   final List<Color> _colorsMaleFemale = [
     const Color(0xFF1976D2),
@@ -318,6 +320,14 @@ class _MyHomePageState extends State<MyHomePage> {
                                 context,
                                 MaterialPageRoute(
                                     builder: (context) => ToiletPage()));
+                          }
+                          if (newValue ==
+                              "Table 18 - 3.8 घरपरिवारमा उपलब्ध सुविधाहरु") {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        HomeFacilitiesPage()));
                           }
                         },
                         items: dropDownOptions

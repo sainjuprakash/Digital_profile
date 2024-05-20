@@ -1369,6 +1369,126 @@ class AppLocalizations {
       args: [],
     );
   }
+
+  /// `घरपरिवारमा उपलब्ध सुविधाहरु`
+  String get homeFacilitiesTitle {
+    return Intl.message(
+      'घरपरिवारमा उपलब्ध सुविधाहरु',
+      name: 'homeFacilitiesTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `रेडियाे`
+  String get radio {
+    return Intl.message(
+      'रेडियाे',
+      name: 'radio',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `टेलिभिजन`
+  String get television {
+    return Intl.message(
+      'टेलिभिजन',
+      name: 'television',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `टेलिफाेन,माेबार्इल`
+  String get telephone {
+    return Intl.message(
+      'टेलिफाेन,माेबार्इल',
+      name: 'telephone',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `कम्प्यूटर`
+  String get computer {
+    return Intl.message(
+      'कम्प्यूटर',
+      name: 'computer',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `र्इन्टरनेट`
+  String get internet {
+    return Intl.message(
+      'र्इन्टरनेट',
+      name: 'internet',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `माेटरसार्इकल`
+  String get motorcycle {
+    return Intl.message(
+      'माेटरसार्इकल',
+      name: 'motorcycle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `माेटर,कार`
+  String get car {
+    return Intl.message(
+      'माेटर,कार',
+      name: 'car',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `रेफ्रिजरेटर`
+  String get refrigerator {
+    return Intl.message(
+      'रेफ्रिजरेटर',
+      name: 'refrigerator',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `बस,ट्रक अादी`
+  String get bus {
+    return Intl.message(
+      'बस,ट्रक अादी',
+      name: 'bus',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `कुनै पनि छैन`
+  String get none {
+    return Intl.message(
+      'कुनै पनि छैन',
+      name: 'none',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `घरधुरी संख्या`
+  String get householdCount {
+    return Intl.message(
+      'घरधुरी संख्या',
+      name: 'householdCount',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<AppLocalizations> {
