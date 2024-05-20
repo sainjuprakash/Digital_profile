@@ -24,8 +24,12 @@ class MessageLookup extends MessageLookupByLibrary {
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "able": MessageLookupByLibrary.simpleMessage("अपाङ्गता नभएको"),
         "above90": MessageLookupByLibrary.simpleMessage("९० माथि"),
+        "animals": MessageLookupByLibrary.simpleMessage("चौपाया पालन गर्ने"),
+        "animalsTitle": MessageLookupByLibrary.simpleMessage(
+            "चौपाया तथा पशुपन्छी पाल्ने घरपरिवार विवरण"),
         "bachelor": MessageLookupByLibrary.simpleMessage("स्नातक तह"),
         "bioGas": MessageLookupByLibrary.simpleMessage("वायोग्यास"),
+        "birds": MessageLookupByLibrary.simpleMessage("पशुपन्छी पालन गर्ने"),
         "blind":
             MessageLookupByLibrary.simpleMessage("दृश्टिबिहिन(अाखा नदेख्ने)"),
         "bon": MessageLookupByLibrary.simpleMessage("बोन"),
@@ -134,6 +138,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "multidisable": MessageLookupByLibrary.simpleMessage("बहु अपाँगता"),
         "muslim": MessageLookupByLibrary.simpleMessage("मुस्लिम"),
         "nepali": MessageLookupByLibrary.simpleMessage("नेपाली"),
+        "noAnimals":
+            MessageLookupByLibrary.simpleMessage("पालन नगर्ने घरपरिवार"),
         "noInsurance":
             MessageLookupByLibrary.simpleMessage("कुनै पनि गरेकाे छैन"),
         "noToilet": MessageLookupByLibrary.simpleMessage("शौचालय नभएको"),

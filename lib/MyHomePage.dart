@@ -1,5 +1,6 @@
 import 'package:digital_profile/app_localization/l10n.dart';
 import 'package:digital_profile/src/features/age_table2_2/presentation/page/age_population_page.dart';
+import 'package:digital_profile/src/features/animal_husbandry/presentation/pages/animals_page.dart';
 import 'package:digital_profile/src/features/disability/presentation/pages/disability_page.dart';
 import 'package:digital_profile/src/features/electricity/presentation/pages/electricity_page.dart';
 import 'package:digital_profile/src/features/ethenicity_household/presentation/pages/ethnicity_details_page.dart';
@@ -49,7 +50,8 @@ class _MyHomePageState extends State<MyHomePage> {
     'Table 13 - 2.2 बिमा गरेका घरपरिवार विवरण',
     'Table 16 - 3.6 वत्तीको प्रमुख स्रोत',
     'Table 17 - 3.7 शौचालयको प्रकार अनुसार घरपरिवार संख्या',
-    'Table 18 - 3.8 घरपरिवारमा उपलब्ध सुविधाहरु'
+    'Table 18 - 3.8 घरपरिवारमा उपलब्ध सुविधाहरु',
+    'Table 23 - 4.4 चौपाया तथा पशुपन्छी पाल्ने घरपरिवार विवरण'
   ];
   final List<Color> _colorsMaleFemale = [
     const Color(0xFF1976D2),
@@ -328,6 +330,13 @@ class _MyHomePageState extends State<MyHomePage> {
                                 MaterialPageRoute(
                                     builder: (context) =>
                                         HomeFacilitiesPage()));
+                          }
+                          if (newValue ==
+                              'Table 23 - 4.4 चौपाया तथा पशुपन्छी पाल्ने घरपरिवार विवरण') {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => AnimalsPage()));
                           }
                         },
                         items: dropDownOptions

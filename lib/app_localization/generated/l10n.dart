@@ -1489,6 +1489,46 @@ class AppLocalizations {
       args: [],
     );
   }
+
+  /// `चौपाया तथा पशुपन्छी पाल्ने घरपरिवार विवरण`
+  String get animalsTitle {
+    return Intl.message(
+      'चौपाया तथा पशुपन्छी पाल्ने घरपरिवार विवरण',
+      name: 'animalsTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `पशुपन्छी पालन गर्ने`
+  String get birds {
+    return Intl.message(
+      'पशुपन्छी पालन गर्ने',
+      name: 'birds',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `चौपाया पालन गर्ने`
+  String get animals {
+    return Intl.message(
+      'चौपाया पालन गर्ने',
+      name: 'animals',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `पालन नगर्ने घरपरिवार`
+  String get noAnimals {
+    return Intl.message(
+      'पालन नगर्ने घरपरिवार',
+      name: 'noAnimals',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<AppLocalizations> {
