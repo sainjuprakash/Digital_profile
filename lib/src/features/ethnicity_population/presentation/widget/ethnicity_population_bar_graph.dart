@@ -1,7 +1,10 @@
 import 'package:digital_profile/src/features/ethnicity_population/data/repository/ethnicity_population_repository_impl.dart';
 import 'package:digital_profile/src/features/ethnicity_population/presentation/bloc/ethnicity_population_bloc.dart';
+<<<<<<< HEAD
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/cupertino.dart';
+=======
+>>>>>>> dioClient
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -44,6 +47,7 @@ class EthnicityPopulationBarChart extends StatelessWidget {
               'जातजाती अनुसार जनसंख्या',
               style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
             ),
+<<<<<<< HEAD
           ),
           BlocBuilder<EthnicityPopulationBloc, EthnicityPopulationState>(
               builder: (context, state) {
@@ -206,6 +210,33 @@ class EthnicityPopulationBarChart extends StatelessWidget {
             );
           }),
         ],
+=======
+            BlocBuilder<EthnicityPopulationBloc, EthnicityPopulationState>(
+                builder: (context, state) {
+              if (state is EthnicityPopulationLoadingState) {
+                return const Center(child: CircularProgressIndicator());
+              }
+              if (state is EthnicityPopulationSuccessState) {
+                List<EthnicityPopulationModel> fetchedEthPopData =
+                    state.ethnicityPopulationModel;
+                //print(fetchedEthPopData);
+                return Text(fetchedEthPopData.length.toString());
+              } else if (state is EthnicityPopulationFailureState) {
+                return const Padding(
+                  padding: EdgeInsets.all(8.0),
+                  child: Center(
+                      child: Text('Unable to load ethnicity population data')),
+                );
+              } else {
+                return const Padding(
+                  padding: EdgeInsets.all(8.0),
+                  child: Center(child: Text('Something went wrong')),
+                );
+              }
+            }),
+          ],
+        ),
+>>>>>>> dioClient
       ),
     );
   }
