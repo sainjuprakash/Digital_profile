@@ -13,9 +13,9 @@ import 'endpoints.dart';
 import 'interceptors.dart';
 
 /// Provider of [DioClient]
-final dioClientProvider = Provider<DioClient>((ref) {
-  return DioClient();
-});
+// final dioClientProvider = Provider<DioClient>((ref) {
+//   return DioClient();
+// });
 
 const String _key = Endpoints.api_key; // Api key must be private
 
