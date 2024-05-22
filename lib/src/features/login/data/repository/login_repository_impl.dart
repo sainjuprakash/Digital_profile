@@ -15,29 +15,28 @@ class ImplLoginRepository extends LoginRepository {
 
   @override
   Future<String?> login(String? email, String? password) async {
-    try{
+    try {
       final response = await _dioClient.post(
         '/login',
         data: {'email': email, 'password': password},
       );
       if (response.statusCode == 200) {
-        final accessToken = response.data['access_token'];
-        final refreshToken = response.data['refresh_token'];
+        print(response.statusCode);
+        final accessToken = response.data['token'];
+        //final refreshToken = response.data['refresh_token'];
 
         final prefs = await SharedPreferences.getInstance();
         await prefs.setString('access_token', accessToken);
-        await prefs.setString('refresh_token', refreshToken);
+        //await prefs.setString('refresh_token', refreshToken);
 
         Endpoints.api_token = accessToken;
-        Endpoints.refreshToken = refreshToken;
+        // Endpoints.refreshToken = refreshToken;
       } else {
         throw Exception('Failed to login');
       }
-    }catch(errMsg){
+    } catch (errMsg) {
       print(errMsg);
       throw Exception("login fail : $errMsg");
     }
-
   }
 }
-

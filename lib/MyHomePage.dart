@@ -67,7 +67,7 @@ class _MyHomePageState extends State<MyHomePage> {
     'पुरुष घरमुली',
     'महिला घरमुली',
   ];
-
+  bool isLoggedIn = false;
   @override
   Widget build(BuildContext context) {
     final List<Padding> containeers = List.generate(3, (index) {

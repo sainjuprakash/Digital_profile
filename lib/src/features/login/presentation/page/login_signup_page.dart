@@ -32,7 +32,8 @@ class _LoginPageState extends State<LoginPage> {
         if (state is LoginSuccessState) {
           print("success state emitted");
           Navigator.push(
-              context, MaterialPageRoute(builder: (context) => ReportPage()));
+              context, MaterialPageRoute(builder: (context) => MyHomePage()));
+
         }
       },
       child: Scaffold(

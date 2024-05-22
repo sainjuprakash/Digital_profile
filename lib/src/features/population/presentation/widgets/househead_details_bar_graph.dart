@@ -37,7 +37,7 @@ class _HouseHeadBarGraphState extends State<HouseHeadBarGraph> {
               child: BarChart(BarChartData(
                 // titlesData: const FlTitlesData(),
                 minY: 0,
-                maxY: 500,
+                maxY: 1000,
                 barGroups: populationData
                     .map((e) => BarChartGroupData(
                             x: (e.surveyWardNumber) ?? 0,

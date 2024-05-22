@@ -51,7 +51,7 @@ class _PopulationBarGraphState extends State<PopulationBarGraph> {
                   ),
                 ),*/
                 minY: 0,
-                maxY: 1500,
+                maxY: 2000,
                 barGroups: populationData
                     .map((e) => BarChartGroupData(
                             x: (e.surveyWardNumber) ?? 0,
