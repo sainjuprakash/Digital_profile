@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:digital_profile/app_localization/generated/l10n.dart';
 import 'package:digital_profile/src/features/age_table2_2/data/repository/population_acc_age_repository_impl.dart';
 import 'package:digital_profile/src/features/animal_husbandry/data/repository/animals_repository_impl.dart';
@@ -20,7 +22,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'MyHomePage.dart';
 
+class MyHttpOverrides extends HttpOverrides {
+  @override
+  HttpClient createHttpClient(SecurityContext? context) {
+    return super.createHttpClient(context)
+      ..badCertificateCallback =
+          (X509Certificate cert, String host, int port) => true;
+  }
+}
+
 void main() {
+  HttpOverrides.global = MyHttpOverrides();
   runApp(const MyApp());
 }
 

@@ -26,6 +26,8 @@ dependencies:
   data_table_2: ^2.5.12
   shared_preferences: ^2.2.3
   logger: any
+  get_it: ^7.7.0
+  http_interceptor: ^1.0.2
 
 
 dev_dependencies:

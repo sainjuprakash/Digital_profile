@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
@@ -13,12 +11,17 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
   final ImplLoginRepository _loginRepository;
   LoginBloc({required ImplLoginRepository loginRepository})
       : _loginRepository = loginRepository,
-        super(LoginLoading()) {
+        super(LoginInitialState()) {
     on<GetLoginEvent>((event, emit) async {
       try {
+        print("entered try statement");
         await _loginRepository.login(event.email, event.password);
+        print("login callled");
+        emit(LoginSuccessState());
+
+        print("login success state ");
       } catch (errMsg) {
-        emit(LoginFailure(errMsg: errMsg.toString()));
+        emit(LoginFailureState(errMsg: errMsg.toString()));
       }
     });
   }

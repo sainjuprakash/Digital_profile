@@ -21,7 +21,12 @@ const String _key = Endpoints.api_key; // Api key must be private
 
 class DioClient {
   late final Dio _dio;
-  DioClient()
+  static final DioClient _instance = DioClient._internal();
+
+  factory DioClient() {
+    return _instance;
+  }
+  DioClient._internal()
       : _dio = Dio(
           BaseOptions(
               baseUrl: Endpoints.baseUrl,

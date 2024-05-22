@@ -64,8 +64,9 @@ class HomeFacilitiesBarChart extends StatelessWidget {
                       height: 580,
                       width: 1050,
                       child: BarChart(BarChartData(
+                          alignment: BarChartAlignment.spaceAround,
                           minY: 0,
-                          maxY: 4000,
+                          maxY: 2000,
                           titlesData: FlTitlesData(
                             topTitles: const AxisTitles(
                                 sideTitles: SideTitles(

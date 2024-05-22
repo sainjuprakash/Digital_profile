@@ -6,11 +6,11 @@ abstract class LoginState extends Equatable {
   List<Object?> get props => [];
 }
 
-class LoginLoading extends LoginState {}
+class LoginInitialState extends LoginState {}
 
-class LoginSuccess extends LoginState {}
+class LoginSuccessState extends LoginState {}
 
-class LoginFailure extends LoginState {
+class LoginFailureState extends LoginState {
   String errMsg;
-  LoginFailure({required this.errMsg});
+  LoginFailureState({required this.errMsg});
 }

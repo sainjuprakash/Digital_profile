@@ -1,40 +1,43 @@
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:digital_profile/src/features/login/domain/repository/login_repository.dart';
+import 'package:dio/dio.dart';
+import 'package:dio/io.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../../../../../core/network/dio_client.dart';
+import '../../../../../core/network/endpoints.dart';
+
 class ImplLoginRepository extends LoginRepository {
+  final DioClient _dioClient = DioClient();
   get http => null;
 
   @override
   Future<String?> login(String? email, String? password) async {
-    print(email! + password!);
-    try {
-      print('entered try statement');
-      final response = await http.post(
-        Uri.parse('https://rubytest.git.com.np/api/login'),
-        headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json',
-        },
-        body: jsonEncode({'email': email, 'password': password}),
+    try{
+      final response = await _dioClient.post(
+        '/login',
+        data: {'email': email, 'password': password},
       );
-      print('-----------------------');
-      print(response);
-      if (response.statuscode == 200) {
-        final Map<String, dynamic> data = jsonDecode(response.body);
-        final String? token = data['token'];
-        return token;
+      if (response.statusCode == 200) {
+        final accessToken = response.data['access_token'];
+        final refreshToken = response.data['refresh_token'];
+
+        final prefs = await SharedPreferences.getInstance();
+        await prefs.setString('access_token', accessToken);
+        await prefs.setString('refresh_token', refreshToken);
+
+        Endpoints.api_token = accessToken;
+        Endpoints.refreshToken = refreshToken;
       } else {
-        return null;
+        throw Exception('Failed to login');
       }
-    } catch (errormsg) {
-      throw Exception('Fail to login $errormsg');
+    }catch(errMsg){
+      print(errMsg);
+      throw Exception("login fail : $errMsg");
     }
+
   }
 }
 
-// Future<bool> setToken(String value) async {
-//   final SharedPreferences prefs = await SharedPreferences.getInstance();
-//   return prefs.setString('token', value);
-// }
