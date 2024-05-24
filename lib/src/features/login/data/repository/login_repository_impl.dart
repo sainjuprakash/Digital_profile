@@ -1,10 +1,5 @@
-import 'dart:convert';
-import 'dart:io';
-
+import 'package:digital_profile/core/services/shared_preferences_service.dart';
 import 'package:digital_profile/src/features/login/domain/repository/login_repository.dart';
-import 'package:dio/dio.dart';
-import 'package:dio/io.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../../../core/network/dio_client.dart';
 import '../../../../../core/network/endpoints.dart';
@@ -21,12 +16,12 @@ class ImplLoginRepository extends LoginRepository {
         data: {'email': email, 'password': password},
       );
       if (response.statusCode == 200) {
-       // print(response.statusCode);
+        // print(response.statusCode);
         final accessToken = response.data['token'];
         //final refreshToken = response.data['refresh_token'];
 
-        final prefs = await SharedPreferences.getInstance();
-        await prefs.setString('access_token', accessToken);
+        final prefs = await PrefsService.getInstance();
+        await prefs.setString(PrefsServiceKeys.accessTokem, accessToken);
         //await prefs.setString('refresh_token', refreshToken);
 
         Endpoints.api_token = accessToken;

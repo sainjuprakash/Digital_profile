@@ -34,7 +34,17 @@ class DioClient {
               connectTimeout: Endpoints.connectTimeout,
               receiveTimeout: Endpoints.receiveTimeout,
               headers: {'Content-Type': 'application/json; charset=UTF-8'},
-              responseType: ResponseType.json),
+              responseType: ResponseType.json,
+              validateStatus: (status) {
+                if (status == null) {
+                  return false;
+                }
+                if (status == 422) {
+                  return true;
+                } else {
+                  return status >= 200 && status < 300;
+                }
+              }),
         )..interceptors
             .addAll([AuthorizationInterceptor(), LoggerInterceptor()]);
 
