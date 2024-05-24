@@ -20,7 +20,6 @@ import 'package:digital_profile/src/features/pages/household_data.dart';
 import 'package:digital_profile/src/features/pages/report_page.dart';
 import 'package:digital_profile/src/features/population/data/repository/population_repository_impl.dart';
 import 'package:digital_profile/src/features/population/presentation/bloc/population_bloc.dart';
-import 'package:digital_profile/src/features/population/presentation/pages/population_details_page.dart';
 import 'package:digital_profile/src/features/religion/presentation/page/religion_page.dart';
 import 'package:digital_profile/src/features/residence/presentation/pages/residence_page.dart';
 import 'package:digital_profile/src/features/toilet/presentation/pages/toilet_page.dart';
@@ -206,119 +205,6 @@ class _MyHomePageState extends State<MyHomePage> {
                           setState(() {
                             selectedItem = newValue!;
                           });
-
-                          if (newValue ==
-                              "Table 2 - 1.2 उमेर वर्गीकरण अनुसार जनसंख्या") {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) =>
-                                        const AgePopulationPage()));
-                          }
-                          if (newValue ==
-                              "Table 3 - 1.3 जातजाती अनुसार घरपरिवार संख्या") {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) =>
-                                        const EthnicityPage()));
-                          }
-                          if (newValue ==
-                              "Table 4 - 1.4 जातजाती अनुसार जनसंख्या") {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) =>
-                                        const EthnicityPopulationPage()));
-                          }
-                          if (newValue ==
-                              "Table 5 - 1.5 मातृभाषाको आधारमा जनसंख्या") {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) =>
-                                        const LanguageDetails()));
-                          }
-                          if (newValue ==
-                              "Table 6 - 1.6 धर्मको आधारमा जनसंख्या") {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) =>
-                                        const ReligionPage()));
-                          }
-                          if (newValue == "Table 7 - 1.7 साक्षरताको स्थिति") {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) =>
-                                        const LiteracyPage()));
-                          }
-                          if (newValue == "Table 8 - 1.8 बसोबासको अवस्था") {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) =>
-                                        const ResidencePage()));
-                          }
-                          if (newValue == "Table 9 - 1.9 अपाङ्गताको स्थिति") {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => DisabilityPage()));
-                          }
-                          if (newValue == "Table 10 - 1.10 वैवाहिक स्थिति") {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) =>
-                                        const MarriageStatusPage()));
-                          }
-                          if (newValue ==
-                              "Table 11 - 1.11 परिवारका सदस्यहरुको स्वास्थ्य अवस्था") {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) =>
-                                        const HealthConditionPage()));
-                          }
-                          if (newValue ==
-                              "Table 13 - 2.2 बिमा गरेका घरपरिवार विवरण") {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) =>
-                                        const InsurancePage()));
-                          }
-                          if (newValue ==
-                              "Table 16 - 3.6 वत्तीको प्रमुख स्रोत") {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => ElectricityPage()));
-                          }
-                          if (newValue ==
-                              "Table 17 - 3.7 शौचालयको प्रकार अनुसार घरपरिवार संख्या") {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => ToiletPage()));
-                          }
-                          if (newValue ==
-                              "Table 18 - 3.8 घरपरिवारमा उपलब्ध सुविधाहरु") {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) =>
-                                        HomeFacilitiesPage()));
-                          }
-                          if (newValue ==
-                              'Table 23 - 4.4 चौपाया तथा पशुपन्छी पाल्ने घरपरिवार विवरण') {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => AnimalsPage()));
-                          }
                         },
                         items: dropDownOptions
                             .map<DropdownMenuItem<String>>((String value) {
@@ -333,13 +219,14 @@ class _MyHomePageState extends State<MyHomePage> {
                   ),
                 ),
               ),
-              const PopulationDetailsPage()
+              getPage(context)
             ],
           ),
         ),
       ),
     );
   }
+
 
   // Future<void> _checkAccessToken() async {
   //   final prefs = await SharedPreferences.getInstance();
@@ -357,4 +244,46 @@ class _MyHomePageState extends State<MyHomePage> {
   //   }
   //   //return isAccessTokenPresent;
   // }
+
+  Widget getPage(BuildContext context) {
+    if (selectedItem == "Table 2 - 1.2 उमेर वर्गीकरण अनुसार जनसंख्या") {
+      return const AgePopulationPage();
+    } else if (selectedItem == "Table 3 - 1.3 जातजाती अनुसार घरपरिवार संख्या") {
+      return const EthnicityPage();
+    } else if (selectedItem == "Table 4 - 1.4 जातजाती अनुसार जनसंख्या") {
+      return const EthnicityPopulationPage();
+    } else if (selectedItem == "Table 5 - 1.5 मातृभाषाको आधारमा जनसंख्या") {
+      return const LanguageDetails();
+    } else if (selectedItem == "Table 6 - 1.6 धर्मको आधारमा जनसंख्या") {
+      return const ReligionPage();
+    } else if (selectedItem == "Table 7 - 1.7 साक्षरताको स्थिति") {
+      return const LiteracyPage();
+    } else if (selectedItem == "Table 8 - 1.8 बसोबासको अवस्था") {
+      return const ResidencePage();
+    } else if (selectedItem == "Table 9 - 1.9 अपाङ्गताको स्थिति") {
+      return DisabilityPage();
+    } else if (selectedItem == "Table 10 - 1.10 वैवाहिक स्थिति") {
+      return const MarriageStatusPage();
+    } else if (selectedItem ==
+        "Table 11 - 1.11 परिवारका सदस्यहरुको स्वास्थ्य अवस्था") {
+      return const HealthConditionPage();
+    } else if (selectedItem == "Table 13 - 2.2 बिमा गरेका घरपरिवार विवरण") {
+      return const InsurancePage();
+    } else if (selectedItem == "Table 16 - 3.6 वत्तीको प्रमुख स्रोत") {
+      return ElectricityPage();
+    } else if (selectedItem ==
+        "Table 17 - 3.7 शौचालयको प्रकार अनुसार घरपरिवार संख्या") {
+      return ToiletPage();
+    } else if (selectedItem == "Table 18 - 3.8 घरपरिवारमा उपलब्ध सुविधाहरु") {
+      return HomeFacilitiesPage();
+    } else if (selectedItem ==
+        'Table 23 - 4.4 चौपाया तथा पशुपन्छी पाल्ने घरपरिवार विवरण') {
+      return AnimalsPage();
+    } else {
+      return Container(
+        child: Text('Select an option'),
+      );
+    }
+  }
+
 }
