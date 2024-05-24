@@ -30,61 +30,54 @@ class _ElectricityPageState extends State<ElectricityPage> {
       create: (context) => ElectricityBloc(
           RepositoryProvider.of<ImplElectricityRepository>(context))
         ..add(GetElectricityEvent()),
-      child: Scaffold(
-        appBar: AppBar(
-          backgroundColor: Colors.blueAccent,
-          elevation: 50,
-        ),
-        body: BlocBuilder<ElectricityBloc, ElectricityState>(
-          builder: (context, state) {
-            if (state is ElectricitySuccessState) {
-              List<ElectricityModel> fetchedElectricityData =
-                  state.electricityModel;
-              fetchedElectricityData.asMap().forEach((key, value) {
-                totalKerosene += fetchedElectricityData[key].kerosene ?? 0;
-                totalBioGas += fetchedElectricityData[key].bioGas ?? 0;
-                totalSolar += fetchedElectricityData[key].solar ?? 0;
-                totalElectricityLaghu +=
-                    fetchedElectricityData[key].electricityLaghu ?? 0;
-                totalElectricityNational +=
-                    fetchedElectricityData[key].electricityNational ?? 0;
-                totalElectricityOthers +=
-                    fetchedElectricityData[key].others ?? 0;
-                totalNotAvailable +=
-                    fetchedElectricityData[key].notAvailable ?? 0;
-                totalHouseCount +=
-                    fetchedElectricityData[key].totalHouseCount ?? 0;
-              });
-            }
+      child: BlocBuilder<ElectricityBloc, ElectricityState>(
+        builder: (context, state) {
+          if (state is ElectricitySuccessState) {
+            List<ElectricityModel> fetchedElectricityData =
+                state.electricityModel;
+            fetchedElectricityData.asMap().forEach((key, value) {
+              totalKerosene += fetchedElectricityData[key].kerosene ?? 0;
+              totalBioGas += fetchedElectricityData[key].bioGas ?? 0;
+              totalSolar += fetchedElectricityData[key].solar ?? 0;
+              totalElectricityLaghu +=
+                  fetchedElectricityData[key].electricityLaghu ?? 0;
+              totalElectricityNational +=
+                  fetchedElectricityData[key].electricityNational ?? 0;
+              totalElectricityOthers += fetchedElectricityData[key].others ?? 0;
+              totalNotAvailable +=
+                  fetchedElectricityData[key].notAvailable ?? 0;
+              totalHouseCount +=
+                  fetchedElectricityData[key].totalHouseCount ?? 0;
+            });
+          }
 
-            return SingleChildScrollView(
-              scrollDirection: Axis.vertical,
-              child: Column(
-                children: [
-                  ElectricityBarChart(
-                      totalKerosene: totalKerosene,
-                      totalBioGas: totalBioGas,
-                      totalSolar: totalSolar,
-                      totalElectricityLaghu: totalElectricityLaghu,
-                      totalElectricityNational: totalElectricityNational,
-                      totalElectricityOthers: totalElectricityOthers,
-                      totalNotAvailable: totalNotAvailable,
-                      totalHouseCount: totalHouseCount),
-                  verticalspace(),
-                  ElectricityDataTable(
-                      totalKerosene: totalKerosene,
-                      totalBioGas: totalBioGas,
-                      totalSolar: totalSolar,
-                      totalElectricityLaghu: totalElectricityLaghu,
-                      totalElectricityNational: totalElectricityNational,
-                      totalElectricityOthers: totalElectricityOthers,
-                      totalNotAvailable: totalNotAvailable,
-                      totalHouseCount: totalHouseCount),
-                ],
-              ),
-            );
-          },
-        ),
+          return SingleChildScrollView(
+            scrollDirection: Axis.vertical,
+            child: Column(
+              children: [
+                ElectricityBarChart(
+                    totalKerosene: totalKerosene,
+                    totalBioGas: totalBioGas,
+                    totalSolar: totalSolar,
+                    totalElectricityLaghu: totalElectricityLaghu,
+                    totalElectricityNational: totalElectricityNational,
+                    totalElectricityOthers: totalElectricityOthers,
+                    totalNotAvailable: totalNotAvailable,
+                    totalHouseCount: totalHouseCount),
+                verticalspace(),
+                ElectricityDataTable(
+                    totalKerosene: totalKerosene,
+                    totalBioGas: totalBioGas,
+                    totalSolar: totalSolar,
+                    totalElectricityLaghu: totalElectricityLaghu,
+                    totalElectricityNational: totalElectricityNational,
+                    totalElectricityOthers: totalElectricityOthers,
+                    totalNotAvailable: totalNotAvailable,
+                    totalHouseCount: totalHouseCount),
+              ],
+            ),
+          );
+        },
       ),
     );
   }

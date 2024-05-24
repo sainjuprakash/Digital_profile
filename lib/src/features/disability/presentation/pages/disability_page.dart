@@ -11,7 +11,7 @@ import '../../../../../constant/appBar/custom_app_bar.dart';
 import '../bloc/disability_bloc.dart';
 
 class DisabilityPage extends StatefulWidget {
-  DisabilityPage({super.key});
+  const DisabilityPage({super.key});
 
   @override
   State<DisabilityPage> createState() => _DisabilityPageState();
@@ -33,77 +33,70 @@ class _DisabilityPageState extends State<DisabilityPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.blueAccent,
-        elevation: 50,
-      ),
-      body: BlocProvider(
-        create: (context) => DisabilityBloc(
-            RepositoryProvider.of<ImplDisabilityRepository>(context))
-          ..add(GetDisabilityEvent()),
-        child: BlocBuilder<DisabilityBloc, DisabilityState>(
-          builder: (context, state) {
-            if (state is DisabilitySuccessState) {
-              List<DisabilityModel> fetchedDisabilityModel =
-                  state.disabilityModel;
-              fetchedDisabilityModel.asMap().forEach((key, value) {
-                totalAble += fetchedDisabilityModel[key].able ?? 0;
-                totalDisable += fetchedDisabilityModel[key].disable ?? 0;
-                totalDeaf += fetchedDisabilityModel[key].deaf ?? 0;
-                totalBlind += fetchedDisabilityModel[key].blind ?? 0;
-                totalHearingLoss +=
-                    fetchedDisabilityModel[key].hearingLoss ?? 0;
-                totalSlammer += fetchedDisabilityModel[key].slammer ?? 0;
-                totalCeleberal += fetchedDisabilityModel[key].celeberal ?? 0;
-                totalRetarded += fetchedDisabilityModel[key].redarded ?? 0;
-                totalMental += fetchedDisabilityModel[key].mental ?? 0;
+    return BlocProvider(
+      create: (context) => DisabilityBloc(
+          RepositoryProvider.of<ImplDisabilityRepository>(context))
+        ..add(GetDisabilityEvent()),
+      child: BlocBuilder<DisabilityBloc, DisabilityState>(
+        builder: (context, state) {
+          if (state is DisabilitySuccessState) {
+            List<DisabilityModel> fetchedDisabilityModel =
+                state.disabilityModel;
+            fetchedDisabilityModel.asMap().forEach((key, value) {
+              totalAble += fetchedDisabilityModel[key].able ?? 0;
+              totalDisable += fetchedDisabilityModel[key].disable ?? 0;
+              totalDeaf += fetchedDisabilityModel[key].deaf ?? 0;
+              totalBlind += fetchedDisabilityModel[key].blind ?? 0;
+              totalHearingLoss += fetchedDisabilityModel[key].hearingLoss ?? 0;
+              totalSlammer += fetchedDisabilityModel[key].slammer ?? 0;
+              totalCeleberal += fetchedDisabilityModel[key].celeberal ?? 0;
+              totalRetarded += fetchedDisabilityModel[key].redarded ?? 0;
+              totalMental += fetchedDisabilityModel[key].mental ?? 0;
 
-                totalMultiDisable +=
-                    fetchedDisabilityModel[key].multiDisable ?? 0;
-                totalNotAvailable +=
-                    fetchedDisabilityModel[key].notAvailable ?? 0;
-                totalWardDis +=
-                    fetchedDisabilityModel[key].totalDisabilityStatus ?? 0;
-              });
-            }
-            return SingleChildScrollView(
-              scrollDirection: Axis.vertical,
-              child: Column(
-                children: [
-                  verticalspace(),
-                  DisabilityBarChart(
-                      totalAble: totalAble,
-                      totalDisable: totalDisable,
-                      totalDeaf: totalDeaf,
-                      totalBlind: totalBlind,
-                      totalHearingLoss: totalHearingLoss,
-                      totalSlammer: totalSlammer,
-                      totalCeleberal: totalCeleberal,
-                      totalRetarded: totalRetarded,
-                      totalMental: totalMental,
-                      totalMultiDisable: totalMultiDisable,
-                      totalNotAvailable: totalNotAvailable,
-                      totalWardDis: totalWardDis),
-                  verticalspace(),
-                  DisabilityDataTable(
-                      totalAble: totalAble,
-                      totalDisable: totalDisable,
-                      totalDeaf: totalDeaf,
-                      totalBlind: totalBlind,
-                      totalHearingLoss: totalHearingLoss,
-                      totalSlammer: totalSlammer,
-                      totalCeleberal: totalCeleberal,
-                      totalRetarded: totalRetarded,
-                      totalMental: totalMental,
-                      totalMultiDisable: totalMultiDisable,
-                      totalNotAvailable: totalNotAvailable,
-                      totalWardDis: totalWardDis),
-                ],
-              ),
-            );
-          },
-        ),
+              totalMultiDisable +=
+                  fetchedDisabilityModel[key].multiDisable ?? 0;
+              totalNotAvailable +=
+                  fetchedDisabilityModel[key].notAvailable ?? 0;
+              totalWardDis +=
+                  fetchedDisabilityModel[key].totalDisabilityStatus ?? 0;
+            });
+          }
+          return SingleChildScrollView(
+            scrollDirection: Axis.vertical,
+            child: Column(
+              children: [
+                verticalspace(),
+                DisabilityBarChart(
+                    totalAble: totalAble,
+                    totalDisable: totalDisable,
+                    totalDeaf: totalDeaf,
+                    totalBlind: totalBlind,
+                    totalHearingLoss: totalHearingLoss,
+                    totalSlammer: totalSlammer,
+                    totalCeleberal: totalCeleberal,
+                    totalRetarded: totalRetarded,
+                    totalMental: totalMental,
+                    totalMultiDisable: totalMultiDisable,
+                    totalNotAvailable: totalNotAvailable,
+                    totalWardDis: totalWardDis),
+                verticalspace(),
+                DisabilityDataTable(
+                    totalAble: totalAble,
+                    totalDisable: totalDisable,
+                    totalDeaf: totalDeaf,
+                    totalBlind: totalBlind,
+                    totalHearingLoss: totalHearingLoss,
+                    totalSlammer: totalSlammer,
+                    totalCeleberal: totalCeleberal,
+                    totalRetarded: totalRetarded,
+                    totalMental: totalMental,
+                    totalMultiDisable: totalMultiDisable,
+                    totalNotAvailable: totalNotAvailable,
+                    totalWardDis: totalWardDis),
+              ],
+            ),
+          );
+        },
       ),
     );
   }

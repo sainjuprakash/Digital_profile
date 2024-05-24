@@ -35,75 +35,66 @@ class _HomeFacilitiesPageState extends State<HomeFacilitiesPage> {
       create: (context) => HomeFacilitiesBloc(
           RepositoryProvider.of<ImplHomeFacilitiesRepository>(context))
         ..add(GetHomeFacilitiesEvent()),
-      child: Scaffold(
-        appBar: AppBar(
-          backgroundColor: Colors.blueAccent,
-          elevation: 50,
-        ),
-        body: BlocBuilder<HomeFacilitiesBloc, HomeFacilitiesState>(
-          builder: (context, state) {
-            if (state is HomeFacilitiesLoadingState) {
-              return const Center(child: CircularProgressIndicator());
-            }
-            if (state is HomeFacilitiesSuccessState) {
-              List<HomeFacilitiesModel> fetchedHomeFacilitiesData =
-                  state.homeFacilitiesModel;
-              fetchedHomeFacilitiesData.asMap().forEach((key, value) {
-                totalRadio += fetchedHomeFacilitiesData[key].radio ?? 0;
-                totalTelevision +=
-                    fetchedHomeFacilitiesData[key].television ?? 0;
-                totalTelephone += fetchedHomeFacilitiesData[key].telephone ?? 0;
-                totalComputer += fetchedHomeFacilitiesData[key].computer ?? 0;
-                totalInternet += fetchedHomeFacilitiesData[key].internet ?? 0;
-                totalMotorcycle +=
-                    fetchedHomeFacilitiesData[key].motorcycle ?? 0;
-                totalCar += fetchedHomeFacilitiesData[key].car ?? 0;
-                totalRefrigerator +=
-                    fetchedHomeFacilitiesData[key].refrigerator ?? 0;
-                totalBus += fetchedHomeFacilitiesData[key].bus ?? 0;
-                totalNone += fetchedHomeFacilitiesData[key].none ?? 0;
-                totalWardHouse +=
-                    fetchedHomeFacilitiesData[key].houseCount ?? 0;
-                totalAminity +=
-                    fetchedHomeFacilitiesData[key].totalWardAminity ?? 0;
-              });
-            }
-            return SingleChildScrollView(
-              scrollDirection: Axis.vertical,
-              child: Column(
-                children: [
-                  HomeFacilitiesBarChart(
-                      totalRadio,
-                      totalTelevision,
-                      totalTelephone,
-                      totalComputer,
-                      totalInternet,
-                      totalMotorcycle,
-                      totalCar,
-                      totalRefrigerator,
-                      totalBus,
-                      totalNone,
-                      totalWardHouse,
-                      totalAminity),
-                  verticalspace(),
-                  HomeFacilitiesDataTable(
-                      totalRadio,
-                      totalTelevision,
-                      totalTelephone,
-                      totalComputer,
-                      totalInternet,
-                      totalMotorcycle,
-                      totalCar,
-                      totalRefrigerator,
-                      totalBus,
-                      totalNone,
-                      totalWardHouse,
-                      totalAminity),
-                ],
-              ),
-            );
-          },
-        ),
+      child: BlocBuilder<HomeFacilitiesBloc, HomeFacilitiesState>(
+        builder: (context, state) {
+          if (state is HomeFacilitiesLoadingState) {
+            return const Center(child: CircularProgressIndicator());
+          }
+          if (state is HomeFacilitiesSuccessState) {
+            List<HomeFacilitiesModel> fetchedHomeFacilitiesData =
+                state.homeFacilitiesModel;
+            fetchedHomeFacilitiesData.asMap().forEach((key, value) {
+              totalRadio += fetchedHomeFacilitiesData[key].radio ?? 0;
+              totalTelevision += fetchedHomeFacilitiesData[key].television ?? 0;
+              totalTelephone += fetchedHomeFacilitiesData[key].telephone ?? 0;
+              totalComputer += fetchedHomeFacilitiesData[key].computer ?? 0;
+              totalInternet += fetchedHomeFacilitiesData[key].internet ?? 0;
+              totalMotorcycle += fetchedHomeFacilitiesData[key].motorcycle ?? 0;
+              totalCar += fetchedHomeFacilitiesData[key].car ?? 0;
+              totalRefrigerator +=
+                  fetchedHomeFacilitiesData[key].refrigerator ?? 0;
+              totalBus += fetchedHomeFacilitiesData[key].bus ?? 0;
+              totalNone += fetchedHomeFacilitiesData[key].none ?? 0;
+              totalWardHouse += fetchedHomeFacilitiesData[key].houseCount ?? 0;
+              totalAminity +=
+                  fetchedHomeFacilitiesData[key].totalWardAminity ?? 0;
+            });
+          }
+          return SingleChildScrollView(
+            scrollDirection: Axis.vertical,
+            child: Column(
+              children: [
+                HomeFacilitiesBarChart(
+                    totalRadio,
+                    totalTelevision,
+                    totalTelephone,
+                    totalComputer,
+                    totalInternet,
+                    totalMotorcycle,
+                    totalCar,
+                    totalRefrigerator,
+                    totalBus,
+                    totalNone,
+                    totalWardHouse,
+                    totalAminity),
+                verticalspace(),
+                HomeFacilitiesDataTable(
+                    totalRadio,
+                    totalTelevision,
+                    totalTelephone,
+                    totalComputer,
+                    totalInternet,
+                    totalMotorcycle,
+                    totalCar,
+                    totalRefrigerator,
+                    totalBus,
+                    totalNone,
+                    totalWardHouse,
+                    totalAminity),
+              ],
+            ),
+          );
+        },
       ),
     );
   }

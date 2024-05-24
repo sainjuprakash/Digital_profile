@@ -33,64 +33,57 @@ class _MarriageStatusPageState extends State<MarriageStatusPage> {
       create: (context) => MarriageStatusBloc(
           RepositoryProvider.of<ImplMarriageRepository>(context))
         ..add(GetMarriageStatusEvent()),
-      child: Scaffold(
-        appBar: AppBar(
-          backgroundColor: Colors.blueAccent,
-          elevation: 50,
-        ),
-        body: BlocBuilder<MarriageStatusBloc, MarriageStatusState>(
-          builder: (context, state) {
-            if (state is MarriageSuccessState) {
-              List<MarriageStatusModel> fetchedMarriageData =
-                  state.marriageModel;
-              fetchedMarriageData.asMap().forEach((key, value) {
-                totalSingleCount += fetchedMarriageData[key].single ?? 0;
-                totalMarriedCount += fetchedMarriageData[key].married ?? 0;
-                totalSingleWoman += fetchedMarriageData[key].singleWoman ?? 0;
-                totalSingleManCount += fetchedMarriageData[key].singleMana ?? 0;
-                totalPolygami += fetchedMarriageData[key].polygami ?? 0;
-                totalDivorced += fetchedMarriageData[key].divorced ?? 0;
-                totalRemarried += fetchedMarriageData[key].remarried ?? 0;
-                totalSeperated += fetchedMarriageData[key].seperated ?? 0;
-                totalUnderage += fetchedMarriageData[key].underage ?? 0;
-                totalNotAvailable += fetchedMarriageData[key].notAvailable ?? 0;
-                totalMaritalStatus +=
-                    fetchedMarriageData[key].totalMaritalStatus ?? 0;
-              });
-            }
-            return SingleChildScrollView(
-              scrollDirection: Axis.vertical,
-              child: Column(
-                children: [
-                  MarriageBarChart(
-                      totalSingleCount: totalSingleCount,
-                      totalMarriedCount: totalMarriedCount,
-                      totalSingleWoman: totalSingleWoman,
-                      totalSingleManCount: totalSingleManCount,
-                      totalPolygami: totalPolygami,
-                      totalDivorced: totalDivorced,
-                      totalRemarried: totalRemarried,
-                      totalSeperated: totalSeperated,
-                      totalUnderage: totalUnderage,
-                      totalNotAvailable: totalNotAvailable,
-                      totalMaritalStatus: totalMaritalStatus),
-                  MarriageDatatable(
-                      totalSingleCount: totalSingleCount,
-                      totalMarriedCount: totalMarriedCount,
-                      totalSingleWoman: totalSingleWoman,
-                      totalSingleManCount: totalSingleManCount,
-                      totalPolygami: totalPolygami,
-                      totalDivorced: totalDivorced,
-                      totalRemarried: totalRemarried,
-                      totalSeperated: totalSeperated,
-                      totalUnderage: totalUnderage,
-                      totalNotAvailable: totalNotAvailable,
-                      totalMaritalStatus: totalMaritalStatus),
-                ],
-              ),
-            );
-          },
-        ),
+      child: BlocBuilder<MarriageStatusBloc, MarriageStatusState>(
+        builder: (context, state) {
+          if (state is MarriageSuccessState) {
+            List<MarriageStatusModel> fetchedMarriageData = state.marriageModel;
+            fetchedMarriageData.asMap().forEach((key, value) {
+              totalSingleCount += fetchedMarriageData[key].single ?? 0;
+              totalMarriedCount += fetchedMarriageData[key].married ?? 0;
+              totalSingleWoman += fetchedMarriageData[key].singleWoman ?? 0;
+              totalSingleManCount += fetchedMarriageData[key].singleMana ?? 0;
+              totalPolygami += fetchedMarriageData[key].polygami ?? 0;
+              totalDivorced += fetchedMarriageData[key].divorced ?? 0;
+              totalRemarried += fetchedMarriageData[key].remarried ?? 0;
+              totalSeperated += fetchedMarriageData[key].seperated ?? 0;
+              totalUnderage += fetchedMarriageData[key].underage ?? 0;
+              totalNotAvailable += fetchedMarriageData[key].notAvailable ?? 0;
+              totalMaritalStatus +=
+                  fetchedMarriageData[key].totalMaritalStatus ?? 0;
+            });
+          }
+          return SingleChildScrollView(
+            scrollDirection: Axis.vertical,
+            child: Column(
+              children: [
+                MarriageBarChart(
+                    totalSingleCount: totalSingleCount,
+                    totalMarriedCount: totalMarriedCount,
+                    totalSingleWoman: totalSingleWoman,
+                    totalSingleManCount: totalSingleManCount,
+                    totalPolygami: totalPolygami,
+                    totalDivorced: totalDivorced,
+                    totalRemarried: totalRemarried,
+                    totalSeperated: totalSeperated,
+                    totalUnderage: totalUnderage,
+                    totalNotAvailable: totalNotAvailable,
+                    totalMaritalStatus: totalMaritalStatus),
+                MarriageDatatable(
+                    totalSingleCount: totalSingleCount,
+                    totalMarriedCount: totalMarriedCount,
+                    totalSingleWoman: totalSingleWoman,
+                    totalSingleManCount: totalSingleManCount,
+                    totalPolygami: totalPolygami,
+                    totalDivorced: totalDivorced,
+                    totalRemarried: totalRemarried,
+                    totalSeperated: totalSeperated,
+                    totalUnderage: totalUnderage,
+                    totalNotAvailable: totalNotAvailable,
+                    totalMaritalStatus: totalMaritalStatus),
+              ],
+            ),
+          );
+        },
       ),
     );
   }

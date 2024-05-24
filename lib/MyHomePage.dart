@@ -19,6 +19,7 @@ import 'package:digital_profile/src/features/pages/household_data.dart';
 import 'package:digital_profile/src/features/pages/report_page.dart';
 import 'package:digital_profile/src/features/population/data/repository/population_repository_impl.dart';
 import 'package:digital_profile/src/features/population/presentation/bloc/population_bloc.dart';
+import 'package:digital_profile/src/features/population/presentation/pages/population_details_page.dart';
 import 'package:digital_profile/src/features/religion/presentation/page/religion_page.dart';
 import 'package:digital_profile/src/features/residence/presentation/pages/residence_page.dart';
 import 'package:digital_profile/src/features/toilet/presentation/pages/toilet_page.dart';
@@ -208,25 +209,10 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
-
-  // Future<void> _checkAccessToken() async {
-  //   final prefs = await SharedPreferences.getInstance();
-  //   final accessToken = prefs.getString('access_token');
-  //   bool isAccessTokenPresent = accessToken != null && accessToken.isNotEmpty;
-  //   print('Access token present: $isAccessTokenPresent');
-  //   if (isAccessTokenPresent == true) {
-  //     setState(() {
-  //       isLoggedIn == true;
-  //     });
-  //   } else {
-  //     setState(() {
-  //       isLoggedIn == false;
-  //     });
-  //   }
-  //   //return isAccessTokenPresent;
-  // }
-
   Widget getPage(BuildContext context) {
+    if (selectedItem == "Table 1 - 1.1 पारिवारिक तथा जनसंख्या विवरण") {
+      return const PopulationDetailsPage();
+    }
     if (selectedItem == "Table 2 - 1.2 उमेर वर्गीकरण अनुसार जनसंख्या") {
       return const AgePopulationPage();
     } else if (selectedItem == "Table 3 - 1.3 जातजाती अनुसार घरपरिवार संख्या") {

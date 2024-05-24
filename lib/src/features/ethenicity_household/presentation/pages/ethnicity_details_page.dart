@@ -29,61 +29,52 @@ class _EthnicityPageState extends State<EthnicityPage> {
       create: (context) =>
           EthnicityBloc(RepositoryProvider.of<GetEthnicityRepository>(context))
             ..add(LoadEthnicityEvent()),
-      child: Scaffold(
-          appBar: AppBar(
-            backgroundColor: Colors.blueAccent,
-            elevation: 50,
-          ),
-          body: SingleChildScrollView(
-            scrollDirection: Axis.vertical,
-            child: BlocBuilder<EthnicityBloc, EthnicityState>(
-                builder: (context, state) {
-              if (state is EthnicitySuccessState) {
-                List<EthnicityModel> fetchedEthnicityData =
-                    state.fetchedEthnicityModel;
-                fetchedEthnicityData.asMap().forEach((key, value) {
-                  totalMuslim += fetchedEthnicityData[key].muslim ?? 0;
-                  totalHillBrahman +=
-                      fetchedEthnicityData[key].hillBrahman ?? 0;
-                  totalTeraiBrahman +=
-                      fetchedEthnicityData[key].teraiBrahman ?? 0;
-                  totalHillJanajati +=
-                      fetchedEthnicityData[key].hillJanajati ?? 0;
-                  totalTeraiJanajati +=
-                      fetchedEthnicityData[key].teraiJanajati ?? 0;
-                  totalHillDalit += fetchedEthnicityData[key].hillDalit ?? 0;
-                  totalNotAvailable +=
-                      fetchedEthnicityData[key].notAvailable ?? 0;
-                  totalTotalEthnicity +=
-                      fetchedEthnicityData[key].totalEthnicity ?? 0;
-                  //print(totalMuslim);
-                });
-              }
-              return Column(children: [
-                EthnicityBarGraph(
-                    totalMuslim: totalMuslim,
-                    totalHillBrahman: totalHillBrahman,
-                    totalTeraiBrahman: totalTeraiBrahman,
-                    totalHillJanajati: totalHillJanajati,
-                    totalTeraiJanajati: totalTeraiJanajati,
-                    totalHillDalit: totalHillDalit,
-                    totalNotAvailable: totalNotAvailable,
-                    totalTotalEthnicity: totalTotalEthnicity),
-                const SizedBox(
-                  height: 10,
-                ),
-                EthnicityDataTable(
-                    totalMuslim: totalMuslim,
-                    totalHillBrahman: totalHillBrahman,
-                    totalTeraiBrahman: totalTeraiBrahman,
-                    totalHillJanajati: totalHillJanajati,
-                    totalTeraiJanajati: totalTeraiJanajati,
-                    totalHillDalit: totalHillDalit,
-                    totalNotAvailable: totalNotAvailable,
-                    totalTotalEthnicity: totalTotalEthnicity),
-              ]);
-            }),
-          )),
+      child: SingleChildScrollView(
+        scrollDirection: Axis.vertical,
+        child: BlocBuilder<EthnicityBloc, EthnicityState>(
+            builder: (context, state) {
+          if (state is EthnicitySuccessState) {
+            List<EthnicityModel> fetchedEthnicityData =
+                state.fetchedEthnicityModel;
+            fetchedEthnicityData.asMap().forEach((key, value) {
+              totalMuslim += fetchedEthnicityData[key].muslim ?? 0;
+              totalHillBrahman += fetchedEthnicityData[key].hillBrahman ?? 0;
+              totalTeraiBrahman += fetchedEthnicityData[key].teraiBrahman ?? 0;
+              totalHillJanajati += fetchedEthnicityData[key].hillJanajati ?? 0;
+              totalTeraiJanajati +=
+                  fetchedEthnicityData[key].teraiJanajati ?? 0;
+              totalHillDalit += fetchedEthnicityData[key].hillDalit ?? 0;
+              totalNotAvailable += fetchedEthnicityData[key].notAvailable ?? 0;
+              totalTotalEthnicity +=
+                  fetchedEthnicityData[key].totalEthnicity ?? 0;
+              //print(totalMuslim);
+            });
+          }
+          return Column(children: [
+            EthnicityBarGraph(
+                totalMuslim: totalMuslim,
+                totalHillBrahman: totalHillBrahman,
+                totalTeraiBrahman: totalTeraiBrahman,
+                totalHillJanajati: totalHillJanajati,
+                totalTeraiJanajati: totalTeraiJanajati,
+                totalHillDalit: totalHillDalit,
+                totalNotAvailable: totalNotAvailable,
+                totalTotalEthnicity: totalTotalEthnicity),
+            const SizedBox(
+              height: 10,
+            ),
+            EthnicityDataTable(
+                totalMuslim: totalMuslim,
+                totalHillBrahman: totalHillBrahman,
+                totalTeraiBrahman: totalTeraiBrahman,
+                totalHillJanajati: totalHillJanajati,
+                totalTeraiJanajati: totalTeraiJanajati,
+                totalHillDalit: totalHillDalit,
+                totalNotAvailable: totalNotAvailable,
+                totalTotalEthnicity: totalTotalEthnicity),
+          ]);
+        }),
+      ),
     );
   }
 }

@@ -33,12 +33,7 @@ class _EthnicityPopulationPageState extends State<EthnicityPopulationPage> {
       create: (context) => EthnicityPopulationBloc(
           RepositoryProvider.of<ImplEthnicityPopulationRepository>(context))
         ..add(GetEthnicityPopulationEvent()),
-      child: Scaffold(
-        appBar: AppBar(
-          backgroundColor: Colors.blueAccent,
-          elevation: 50,
-        ),
-        body: BlocBuilder<EthnicityPopulationBloc, EthnicityPopulationState>(
+      child: BlocBuilder<EthnicityPopulationBloc, EthnicityPopulationState>(
           builder: (context, state) {
             if (state is EthnicityPopulationLoadingState) {
               return const Center(child: CircularProgressIndicator());
@@ -91,7 +86,7 @@ class _EthnicityPopulationPageState extends State<EthnicityPopulationPage> {
             );
           },
         ),
-      ),
+
     );
   }
 }

@@ -54,82 +54,70 @@ class _LiteracyPageState extends State<LiteracyPage> {
       create: (context) =>
           LiteracyBloc(RepositoryProvider.of<ImplLiteracyRepository>(context))
             ..add(GetLiteracyEvent()),
-      child: Scaffold(
-        appBar: AppBar(
-          backgroundColor: Colors.blueAccent,
-        ),
-        body:
-            BlocBuilder<LiteracyBloc, LiteracyState>(builder: (context, state) {
-          if (state is LiteracySuccessState) {
-            List<LiteracyModel> fetchedLiteracyModel = state.literacyModel;
-            fetchedLiteracyModel.asMap().forEach((key, value) {
-              totalMaleLiterate += fetchedLiteracyModel[key].maleLiterate ?? 0;
-              totalMalePrePrimary +=
-                  fetchedLiteracyModel[key].malePrePrimary ?? 0;
-              totalMalePrimary += fetchedLiteracyModel[key].malePrimary ?? 0;
-              totalMaleSecondary +=
-                  fetchedLiteracyModel[key].maleSecondary ?? 0;
-              totalMaleTechnical +=
-                  fetchedLiteracyModel[key].maleTechnical ?? 0;
-              totalMaleBachelor += fetchedLiteracyModel[key].maleBachelor ?? 0;
-              totalMaleMaster += fetchedLiteracyModel[key].maleMasters ?? 0;
-              totalMaleMphil += fetchedLiteracyModel[key].maleMphil ?? 0;
-              totalMaleUnderAge += fetchedLiteracyModel[key].maleUnderAge ?? 0;
-              totalMaleIlliterate +=
-                  fetchedLiteracyModel[key].maleIlitrate ?? 0;
-              totalMaleNotAvailable +=
-                  fetchedLiteracyModel[key].maleNotAvailable ?? 0;
+      child:
+          BlocBuilder<LiteracyBloc, LiteracyState>(builder: (context, state) {
+        if (state is LiteracySuccessState) {
+          List<LiteracyModel> fetchedLiteracyModel = state.literacyModel;
+          fetchedLiteracyModel.asMap().forEach((key, value) {
+            totalMaleLiterate += fetchedLiteracyModel[key].maleLiterate ?? 0;
+            totalMalePrePrimary +=
+                fetchedLiteracyModel[key].malePrePrimary ?? 0;
+            totalMalePrimary += fetchedLiteracyModel[key].malePrimary ?? 0;
+            totalMaleSecondary += fetchedLiteracyModel[key].maleSecondary ?? 0;
+            totalMaleTechnical += fetchedLiteracyModel[key].maleTechnical ?? 0;
+            totalMaleBachelor += fetchedLiteracyModel[key].maleBachelor ?? 0;
+            totalMaleMaster += fetchedLiteracyModel[key].maleMasters ?? 0;
+            totalMaleMphil += fetchedLiteracyModel[key].maleMphil ?? 0;
+            totalMaleUnderAge += fetchedLiteracyModel[key].maleUnderAge ?? 0;
+            totalMaleIlliterate += fetchedLiteracyModel[key].maleIlitrate ?? 0;
+            totalMaleNotAvailable +=
+                fetchedLiteracyModel[key].maleNotAvailable ?? 0;
 
-              totalFemaleLiterate +=
-                  fetchedLiteracyModel[key].femaleLiterate ?? 0;
-              totalFemalePrePrimary +=
-                  fetchedLiteracyModel[key].femalePrePrimary ?? 0;
-              totalFemalePrimary +=
-                  fetchedLiteracyModel[key].femalePrimary ?? 0;
-              totalFemaleSecondary +=
-                  fetchedLiteracyModel[key].femaleSecondary ?? 0;
-              totalFemaleTechnical +=
-                  fetchedLiteracyModel[key].femaleTechincal ?? 0;
-              totalFemaleBachelor +=
-                  fetchedLiteracyModel[key].femaleBachelor ?? 0;
-              totalFemaleMaster += fetchedLiteracyModel[key].femaleMasters ?? 0;
-              totalFemaleMphil += fetchedLiteracyModel[key].femaleMphil ?? 0;
-              totalFemaleUnderAge +=
-                  fetchedLiteracyModel[key].femaleUnderAge ?? 0;
-              totalFemaleIlliterate +=
-                  fetchedLiteracyModel[key].femaleIliterate ?? 0;
-              totalFemaleNotAvailable +=
-                  fetchedLiteracyModel[key].femaleNotAvailable ?? 0;
+            totalFemaleLiterate +=
+                fetchedLiteracyModel[key].femaleLiterate ?? 0;
+            totalFemalePrePrimary +=
+                fetchedLiteracyModel[key].femalePrePrimary ?? 0;
+            totalFemalePrimary += fetchedLiteracyModel[key].femalePrimary ?? 0;
+            totalFemaleSecondary +=
+                fetchedLiteracyModel[key].femaleSecondary ?? 0;
+            totalFemaleTechnical +=
+                fetchedLiteracyModel[key].femaleTechincal ?? 0;
+            totalFemaleBachelor +=
+                fetchedLiteracyModel[key].femaleBachelor ?? 0;
+            totalFemaleMaster += fetchedLiteracyModel[key].femaleMasters ?? 0;
+            totalFemaleMphil += fetchedLiteracyModel[key].femaleMphil ?? 0;
+            totalFemaleUnderAge +=
+                fetchedLiteracyModel[key].femaleUnderAge ?? 0;
+            totalFemaleIlliterate +=
+                fetchedLiteracyModel[key].femaleIliterate ?? 0;
+            totalFemaleNotAvailable +=
+                fetchedLiteracyModel[key].femaleNotAvailable ?? 0;
 
-              totalOthersLiterate +=
-                  fetchedLiteracyModel[key].othersLiterate ?? 0;
-              totalOthersPrePrimary +=
-                  fetchedLiteracyModel[key].othersPrePrimary ?? 0;
-              totalOthersPrimary +=
-                  fetchedLiteracyModel[key].othersPrimary ?? 0;
-              totalOthersSecondary +=
-                  fetchedLiteracyModel[key].othersSecondary ?? 0;
-              totalOthersTechnical +=
-                  fetchedLiteracyModel[key].othersTechnical ?? 0;
-              totalOthersBachelor +=
-                  fetchedLiteracyModel[key].othersBachelor ?? 0;
-              totalOthersMaster += fetchedLiteracyModel[key].othersMasters ?? 0;
-              totalOthersMphil += fetchedLiteracyModel[key].othersMphil ?? 0;
-              totalOthersUnderAge +=
-                  fetchedLiteracyModel[key].othersUnderAge ?? 0;
-              totalOthersIlliterate +=
-                  fetchedLiteracyModel[key].othersIliterate ?? 0;
-              totalOthersNotAvailable +=
-                  fetchedLiteracyModel[key].othersNotAvailable ?? 0;
-            });
-          }
-          return Column(
-            children: [
-              LiteracyDataTable()
-            ],
-          );
-        }),
-      ),
+            totalOthersLiterate +=
+                fetchedLiteracyModel[key].othersLiterate ?? 0;
+            totalOthersPrePrimary +=
+                fetchedLiteracyModel[key].othersPrePrimary ?? 0;
+            totalOthersPrimary += fetchedLiteracyModel[key].othersPrimary ?? 0;
+            totalOthersSecondary +=
+                fetchedLiteracyModel[key].othersSecondary ?? 0;
+            totalOthersTechnical +=
+                fetchedLiteracyModel[key].othersTechnical ?? 0;
+            totalOthersBachelor +=
+                fetchedLiteracyModel[key].othersBachelor ?? 0;
+            totalOthersMaster += fetchedLiteracyModel[key].othersMasters ?? 0;
+            totalOthersMphil += fetchedLiteracyModel[key].othersMphil ?? 0;
+            totalOthersUnderAge +=
+                fetchedLiteracyModel[key].othersUnderAge ?? 0;
+            totalOthersIlliterate +=
+                fetchedLiteracyModel[key].othersIliterate ?? 0;
+            totalOthersNotAvailable +=
+                fetchedLiteracyModel[key].othersNotAvailable ?? 0;
+          });
+        }
+        return Column(
+          children: [LiteracyDataTable()],
+        );
+      }),
     );
   }
 }

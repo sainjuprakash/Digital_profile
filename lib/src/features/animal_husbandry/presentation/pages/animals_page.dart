@@ -28,41 +28,35 @@ class _AnimalsPageState extends State<AnimalsPage> {
       create: (context) =>
           AnimalsBloc(RepositoryProvider.of<ImplAnimalRepository>(context))
             ..add(GetAnimalsEvent()),
-      child: Scaffold(
-        appBar: AppBar(
-          backgroundColor: Colors.blueAccent,
-          elevation: 50,
-        ),
-        body: BlocBuilder<AnimalsBloc, AnimalsState>(
-          builder: (context, state) {
-            if (state is AnimalsLoadingState) {
-              return const Center(
-                child: CircularProgressIndicator(),
-              );
-            }
-            if (state is AnimalsSuccessState) {
-              List<AnimalsModel> fetchedAnimalsData = state.fetchedAnimalsModel;
-              fetchedAnimalsData.asMap().forEach((key, value) {
-                totalBirds += fetchedAnimalsData[key].wardBirds ?? 0;
-                totalLiveStock += fetchedAnimalsData[key].wardLivestock ?? 0;
-                totalHouses += fetchedAnimalsData[key].wardHouses ?? 0;
-                totalNoAnimals = totalHouses - (totalBirds + totalLiveStock);
-              });
-            }
-            return SingleChildScrollView(
-              scrollDirection: Axis.vertical,
-              child: Column(
-                children: [
-                  AnimalBarChart(
-                      totalBirds, totalLiveStock, totalHouses, totalNoAnimals),
-                  verticalspace(),
-                  AnimalDataTable(
-                      totalBirds, totalLiveStock, totalHouses, totalNoAnimals)
-                ],
-              ),
+      child: BlocBuilder<AnimalsBloc, AnimalsState>(
+        builder: (context, state) {
+          if (state is AnimalsLoadingState) {
+            return const Center(
+              child: CircularProgressIndicator(),
             );
-          },
-        ),
+          }
+          if (state is AnimalsSuccessState) {
+            List<AnimalsModel> fetchedAnimalsData = state.fetchedAnimalsModel;
+            fetchedAnimalsData.asMap().forEach((key, value) {
+              totalBirds += fetchedAnimalsData[key].wardBirds ?? 0;
+              totalLiveStock += fetchedAnimalsData[key].wardLivestock ?? 0;
+              totalHouses += fetchedAnimalsData[key].wardHouses ?? 0;
+              totalNoAnimals = totalHouses - (totalBirds + totalLiveStock);
+            });
+          }
+          return SingleChildScrollView(
+            scrollDirection: Axis.vertical,
+            child: Column(
+              children: [
+                AnimalBarChart(
+                    totalBirds, totalLiveStock, totalHouses, totalNoAnimals),
+                verticalspace(),
+                AnimalDataTable(
+                    totalBirds, totalLiveStock, totalHouses, totalNoAnimals)
+              ],
+            ),
+          );
+        },
       ),
     );
   }

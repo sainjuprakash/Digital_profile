@@ -25,53 +25,46 @@ class _ResidencePageState extends State<ResidencePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.blueAccent,
-        elevation: 50,
-      ),
-      body: BlocProvider(
-        create: (context) => ResidenceBloc(
-            RepositoryProvider.of<ImplResidenceRepository>(context))
-          ..add(GetResidenceEvent()),
-        child: BlocBuilder<ResidenceBloc, ResidenceState>(
-          builder: (context, state) {
-            if (state is ResidenceSuccessState) {
-              List<ResidenceModel> fetchedResidenceData =
-                  state.fetchedResidenceModel;
-              fetchedResidenceData.asMap().forEach((key, value) {
-                totalDefault += fetchedResidenceData[key].lsDefault ?? 0;
-                totalForeign += fetchedResidenceData[key].lsForeign ?? 0;
-                totalCountrySide +=
-                    fetchedResidenceData[key].lsCountrySide ?? 0;
-                totalNotAvailable +=
-                    fetchedResidenceData[key].lsNotAvailable ?? 0;
-                totalLivingStatus +=
-                    fetchedResidenceData[key].lsTotalLivingStatus ?? 0;
-              });
-            }
-            return SingleChildScrollView(
-              scrollDirection: Axis.vertical,
-              child: Column(
-                children: [
-                  ResidenceBarChart(
-                      totalDefault: totalDefault,
-                      totalForeign: totalForeign,
-                      totalCountrySide: totalCountrySide,
-                      totalNotAvailable: totalNotAvailable,
-                      totalLivingStatus: totalLivingStatus),
-                  verticalspace(),
-                  ResidenceDataTable(
-                      totalDefault: totalDefault,
-                      totalForeign: totalForeign,
-                      totalCountrySide: totalCountrySide,
-                      totalNotAvailable: totalNotAvailable,
-                      totalLivingStatus: totalLivingStatus),
-                ],
-              ),
-            );
-          },
-        ),
+    return BlocProvider(
+      create: (context) =>
+          ResidenceBloc(RepositoryProvider.of<ImplResidenceRepository>(context))
+            ..add(GetResidenceEvent()),
+      child: BlocBuilder<ResidenceBloc, ResidenceState>(
+        builder: (context, state) {
+          if (state is ResidenceSuccessState) {
+            List<ResidenceModel> fetchedResidenceData =
+                state.fetchedResidenceModel;
+            fetchedResidenceData.asMap().forEach((key, value) {
+              totalDefault += fetchedResidenceData[key].lsDefault ?? 0;
+              totalForeign += fetchedResidenceData[key].lsForeign ?? 0;
+              totalCountrySide += fetchedResidenceData[key].lsCountrySide ?? 0;
+              totalNotAvailable +=
+                  fetchedResidenceData[key].lsNotAvailable ?? 0;
+              totalLivingStatus +=
+                  fetchedResidenceData[key].lsTotalLivingStatus ?? 0;
+            });
+          }
+          return SingleChildScrollView(
+            scrollDirection: Axis.vertical,
+            child: Column(
+              children: [
+                ResidenceBarChart(
+                    totalDefault: totalDefault,
+                    totalForeign: totalForeign,
+                    totalCountrySide: totalCountrySide,
+                    totalNotAvailable: totalNotAvailable,
+                    totalLivingStatus: totalLivingStatus),
+                verticalspace(),
+                ResidenceDataTable(
+                    totalDefault: totalDefault,
+                    totalForeign: totalForeign,
+                    totalCountrySide: totalCountrySide,
+                    totalNotAvailable: totalNotAvailable,
+                    totalLivingStatus: totalLivingStatus),
+              ],
+            ),
+          );
+        },
       ),
     );
   }

@@ -32,73 +32,67 @@ class _LanguageDetailsState extends State<LanguageDetails> {
       create: (context) =>
           LanguageBloc(RepositoryProvider.of<GetLanguageRepository>(context))
             ..add(LoadLanguageEvent()),
-      child: Scaffold(
-        appBar: AppBar(
-          title: const Text('मातृभाषाको आधारमा जनसंख्या'),
-          backgroundColor: Colors.blueAccent,
-        ),
-        body: BlocBuilder<LanguageBloc, LanguageState>(
-          builder: (context, state) {
-            if (state is LanguageLoadedState) {
-              List<LanguageModel> fetchedLanguageData =
-                  state.fetchedLanguageModel;
-              fetchedLanguageData.asMap().forEach((index, element) {
-                totalTamang += (fetchedLanguageData[index].tamang ?? 0);
-                totalNepali += (fetchedLanguageData[index].nepali ?? 0);
-                totalSherpa += (fetchedLanguageData[index].sherpa ?? 0);
-                totalLimbu += (fetchedLanguageData[index].limbu ?? 0);
-                totalRai += (fetchedLanguageData[index].rai ?? 0);
-                totalGurung += (fetchedLanguageData[index].gurung ?? 0);
-                totalGhale += (fetchedLanguageData[index].ghale ?? 0);
-                totalOthers += (fetchedLanguageData[index].othersLanguage ?? 0);
-                totalNotAvailable +=
-                    (fetchedLanguageData[index].notAvailable ?? 0);
-                totalTotal +=
-                    (fetchedLanguageData[index].totalLanguageCount ?? 0);
-                // print(fetchedLanguageData[index].nepali);
-                // print(totalNepali);
-              });
-            }
-            return SingleChildScrollView(
-              scrollDirection: Axis.vertical,
-              child: (Column(
-                children: [
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  LanguagePieChart(
-                      totalNepali: totalNepali,
-                      totalTamang: totalTamang,
-                      totalSherpa: totalSherpa,
-                      totalLimbu: totalLimbu,
-                      totalRai: totalRai,
-                      totalGurung: totalGurung,
-                      totalGhale: totalGhale,
-                      totalOthers: totalOthers,
-                      totalNotAvailable: totalNotAvailable,
-                      totalTotal: totalTotal),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  LanguageTable(
-                      totalNepali: totalNepali,
-                      totalTamang: totalTamang,
-                      totalSherpa: totalSherpa,
-                      totalLimbu: totalLimbu,
-                      totalRai: totalRai,
-                      totalGurung: totalGurung,
-                      totalGhale: totalGhale,
-                      totalOthers: totalOthers,
-                      totalNotAvailable: totalNotAvailable,
-                      totalTotal: totalTotal),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                ],
-              )),
-            );
-          },
-        ),
+      child: BlocBuilder<LanguageBloc, LanguageState>(
+        builder: (context, state) {
+          if (state is LanguageLoadedState) {
+            List<LanguageModel> fetchedLanguageData =
+                state.fetchedLanguageModel;
+            fetchedLanguageData.asMap().forEach((index, element) {
+              totalTamang += (fetchedLanguageData[index].tamang ?? 0);
+              totalNepali += (fetchedLanguageData[index].nepali ?? 0);
+              totalSherpa += (fetchedLanguageData[index].sherpa ?? 0);
+              totalLimbu += (fetchedLanguageData[index].limbu ?? 0);
+              totalRai += (fetchedLanguageData[index].rai ?? 0);
+              totalGurung += (fetchedLanguageData[index].gurung ?? 0);
+              totalGhale += (fetchedLanguageData[index].ghale ?? 0);
+              totalOthers += (fetchedLanguageData[index].othersLanguage ?? 0);
+              totalNotAvailable +=
+                  (fetchedLanguageData[index].notAvailable ?? 0);
+              totalTotal +=
+                  (fetchedLanguageData[index].totalLanguageCount ?? 0);
+              // print(fetchedLanguageData[index].nepali);
+              // print(totalNepali);
+            });
+          }
+          return SingleChildScrollView(
+            scrollDirection: Axis.vertical,
+            child: (Column(
+              children: [
+                const SizedBox(
+                  height: 10,
+                ),
+                LanguagePieChart(
+                    totalNepali: totalNepali,
+                    totalTamang: totalTamang,
+                    totalSherpa: totalSherpa,
+                    totalLimbu: totalLimbu,
+                    totalRai: totalRai,
+                    totalGurung: totalGurung,
+                    totalGhale: totalGhale,
+                    totalOthers: totalOthers,
+                    totalNotAvailable: totalNotAvailable,
+                    totalTotal: totalTotal),
+                const SizedBox(
+                  height: 10,
+                ),
+                LanguageTable(
+                    totalNepali: totalNepali,
+                    totalTamang: totalTamang,
+                    totalSherpa: totalSherpa,
+                    totalLimbu: totalLimbu,
+                    totalRai: totalRai,
+                    totalGurung: totalGurung,
+                    totalGhale: totalGhale,
+                    totalOthers: totalOthers,
+                    totalNotAvailable: totalNotAvailable,
+                    totalTotal: totalTotal),
+                const SizedBox(
+                  height: 20,
+                ),
+              ],
+            )),
+          );
+        },
       ),
     );
   }

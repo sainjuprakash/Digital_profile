@@ -33,60 +33,54 @@ class _ReligionPageState extends State<ReligionPage> {
       create: (context) =>
           ReligionBloc(RepositoryProvider.of<ImplReligionRepository>(context))
             ..add(GetReligionEvent()),
-      child: Scaffold(
-        appBar: AppBar(
-          backgroundColor: Colors.blueAccent,
-          elevation: 50,
-        ),
-        body:
-            BlocBuilder<ReligionBloc, ReligionState>(builder: (context, state) {
-          if (state is ReligionSuccessState) {
-            List<ReligionModel> fetchedReligionData = state.religionModel;
-            fetchedReligionData.asMap().forEach((key, value) {
-              totalHindu += fetchedReligionData[key].hindu ?? 0;
-              totalBoudha += fetchedReligionData[key].boudha ?? 0;
-              totalMuslim += fetchedReligionData[key].muslim ?? 0;
-              totalBon += fetchedReligionData[key].bon ?? 0;
-              totalChristian += fetchedReligionData[key].christian ?? 0;
-              totalJains += fetchedReligionData[key].jains ?? 0;
-              totalKirat += fetchedReligionData[key].kirat ?? 0;
-              totalOthers += fetchedReligionData[key].others ?? 0;
-              totalNotAvailable += fetchedReligionData[key].notAvailable ?? 0;
-              totalWardRel += fetchedReligionData[key].wardRelCount ?? 0;
-            });
-          }
-          return SingleChildScrollView(
-            scrollDirection: Axis.vertical,
-            child: Column(
-              children: [
-                ReligionBarChart(
-                    totalHindu: totalHindu,
-                    totalBoudha: totalBoudha,
-                    totalChristian: totalChristian,
-                    totalMuslim: totalMuslim,
-                    totalKirat: totalKirat,
-                    totalJains: totalJains,
-                    totalBon: totalBon,
-                    totalOthers: totalOthers,
-                    totalNotAvailable: totalNotAvailable,
-                    totalWardRel: totalWardRel),
-                verticalspace(),
-                ReligionDataTable(
-                    totalHindu: totalHindu,
-                    totalBoudha: totalBoudha,
-                    totalChristian: totalChristian,
-                    totalMuslim: totalMuslim,
-                    totalKirat: totalKirat,
-                    totalJains: totalJains,
-                    totalBon: totalBon,
-                    totalOthers: totalOthers,
-                    totalNotAvailable: totalNotAvailable,
-                    totalWardRel: totalWardRel),
-              ],
-            ),
-          );
-        }),
-      ),
+      child:
+          BlocBuilder<ReligionBloc, ReligionState>(builder: (context, state) {
+        if (state is ReligionSuccessState) {
+          List<ReligionModel> fetchedReligionData = state.religionModel;
+          fetchedReligionData.asMap().forEach((key, value) {
+            totalHindu += fetchedReligionData[key].hindu ?? 0;
+            totalBoudha += fetchedReligionData[key].boudha ?? 0;
+            totalMuslim += fetchedReligionData[key].muslim ?? 0;
+            totalBon += fetchedReligionData[key].bon ?? 0;
+            totalChristian += fetchedReligionData[key].christian ?? 0;
+            totalJains += fetchedReligionData[key].jains ?? 0;
+            totalKirat += fetchedReligionData[key].kirat ?? 0;
+            totalOthers += fetchedReligionData[key].others ?? 0;
+            totalNotAvailable += fetchedReligionData[key].notAvailable ?? 0;
+            totalWardRel += fetchedReligionData[key].wardRelCount ?? 0;
+          });
+        }
+        return SingleChildScrollView(
+          scrollDirection: Axis.vertical,
+          child: Column(
+            children: [
+              ReligionBarChart(
+                  totalHindu: totalHindu,
+                  totalBoudha: totalBoudha,
+                  totalChristian: totalChristian,
+                  totalMuslim: totalMuslim,
+                  totalKirat: totalKirat,
+                  totalJains: totalJains,
+                  totalBon: totalBon,
+                  totalOthers: totalOthers,
+                  totalNotAvailable: totalNotAvailable,
+                  totalWardRel: totalWardRel),
+              verticalspace(),
+              ReligionDataTable(
+                  totalHindu: totalHindu,
+                  totalBoudha: totalBoudha,
+                  totalChristian: totalChristian,
+                  totalMuslim: totalMuslim,
+                  totalKirat: totalKirat,
+                  totalJains: totalJains,
+                  totalBon: totalBon,
+                  totalOthers: totalOthers,
+                  totalNotAvailable: totalNotAvailable,
+                  totalWardRel: totalWardRel),
+            ],
+          ),
+        );
+      }),
     );
   }
 }

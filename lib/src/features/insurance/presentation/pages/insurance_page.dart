@@ -30,53 +30,46 @@ class _InsurancePageState extends State<InsurancePage> {
       create: (context) =>
           InsuranceBloc(RepositoryProvider.of<ImplInsuranceRepository>(context))
             ..add(GetInsuranceEvent()),
-      child: Scaffold(
-        appBar: AppBar(
-          backgroundColor: Colors.blueAccent,
-          elevation: 50,
-        ),
-        body: BlocBuilder<InsuranceBloc, InsuranceState>(
-          builder: (context, state) {
-            if (state is InsuranceSuccessState) {
-              List<InsuranceModel> fetchedInsuranceData = state.insuranceModel;
-              fetchedInsuranceData.asMap().forEach((key, value) {
-                totalLifeInsurance +=
-                    fetchedInsuranceData[key].lifeInsurance ?? 0;
-                totalHealthInsurance +=
-                    fetchedInsuranceData[key].healthInsurance ?? 0;
-                totalLiveStockInsurance +=
-                    fetchedInsuranceData[key].liveStockInsurance ?? 0;
-                totalOthersInsurance +=
-                    fetchedInsuranceData[key].othersInsurance ?? 0;
-                totalNotAvailable +=
-                    fetchedInsuranceData[key].notAvailable ?? 0;
-                totalInsurance += fetchedInsuranceData[key].totalInsurance ?? 0;
-              });
-            }
-            return SingleChildScrollView(
-              scrollDirection: Axis.vertical,
-              child: Column(
-                children: [
-                  InsuranceBarChart(
-                      totalLifeInsurance: totalLifeInsurance,
-                      totalHealthInsurance: totalHealthInsurance,
-                      totalLiveStockInsurance: totalLiveStockInsurance,
-                      totalOthersInsurance: totalOthersInsurance,
-                      totalNotAvailable: totalNotAvailable,
-                      totalInsurance: totalInsurance),
-                  verticalspace(),
-                  InsuranceDataTable(
-                      totalLifeInsurance: totalLifeInsurance,
-                      totalHealthInsurance: totalHealthInsurance,
-                      totalLiveStockInsurance: totalLiveStockInsurance,
-                      totalOthersInsurance: totalOthersInsurance,
-                      totalNotAvailable: totalNotAvailable,
-                      totalInsurance: totalInsurance),
-                ],
-              ),
-            );
-          },
-        ),
+      child: BlocBuilder<InsuranceBloc, InsuranceState>(
+        builder: (context, state) {
+          if (state is InsuranceSuccessState) {
+            List<InsuranceModel> fetchedInsuranceData = state.insuranceModel;
+            fetchedInsuranceData.asMap().forEach((key, value) {
+              totalLifeInsurance +=
+                  fetchedInsuranceData[key].lifeInsurance ?? 0;
+              totalHealthInsurance +=
+                  fetchedInsuranceData[key].healthInsurance ?? 0;
+              totalLiveStockInsurance +=
+                  fetchedInsuranceData[key].liveStockInsurance ?? 0;
+              totalOthersInsurance +=
+                  fetchedInsuranceData[key].othersInsurance ?? 0;
+              totalNotAvailable += fetchedInsuranceData[key].notAvailable ?? 0;
+              totalInsurance += fetchedInsuranceData[key].totalInsurance ?? 0;
+            });
+          }
+          return SingleChildScrollView(
+            scrollDirection: Axis.vertical,
+            child: Column(
+              children: [
+                InsuranceBarChart(
+                    totalLifeInsurance: totalLifeInsurance,
+                    totalHealthInsurance: totalHealthInsurance,
+                    totalLiveStockInsurance: totalLiveStockInsurance,
+                    totalOthersInsurance: totalOthersInsurance,
+                    totalNotAvailable: totalNotAvailable,
+                    totalInsurance: totalInsurance),
+                verticalspace(),
+                InsuranceDataTable(
+                    totalLifeInsurance: totalLifeInsurance,
+                    totalHealthInsurance: totalHealthInsurance,
+                    totalLiveStockInsurance: totalLiveStockInsurance,
+                    totalOthersInsurance: totalOthersInsurance,
+                    totalNotAvailable: totalNotAvailable,
+                    totalInsurance: totalInsurance),
+              ],
+            ),
+          );
+        },
       ),
     );
   }

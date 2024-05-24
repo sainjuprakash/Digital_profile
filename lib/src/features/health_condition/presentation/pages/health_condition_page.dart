@@ -32,52 +32,45 @@ class _HealthConditionPageState extends State<HealthConditionPage> {
       create: (context) => HealthConditionBloc(
           RepositoryProvider.of<ImplHealthConditionRepository>(context))
         ..add(GetHealthConditionEvent()),
-      child: Scaffold(
-        appBar: AppBar(
-          backgroundColor: Colors.blueAccent,
-          elevation: 50,
-        ),
-        body: BlocBuilder<HealthConditionBloc, HealthConditionState>(
-          builder: (context, state) {
-            if (state is HealthConditionSuccessState) {
-              List<HealthConditionModel> fetchedHealthData =
-                  state.healthConditionModel;
-              fetchedHealthData.asMap().forEach((key, value) {
-                totalHealthy += fetchedHealthData[key].healthy ?? 0;
-                totalGeneralDisease +=
-                    fetchedHealthData[key].generalDisease ?? 0;
-                totalLongTermDisease +=
-                    fetchedHealthData[key].longTermDisease ?? 0;
-                totalCovid += fetchedHealthData[key].covid ?? 0;
-                totalNotAvailable += fetchedHealthData[key].notAvailable ?? 0;
-                totalWardHealthCondition +=
-                    fetchedHealthData[key].totalWardHealthCondition ?? 0;
-              });
-            }
-            return SingleChildScrollView(
-              scrollDirection: Axis.vertical,
-              child: Column(
-                children: [
-                  HealthConditionBarChart(
-                      totalHealthy: totalHealthy,
-                      totalGeneralDisease: totalGeneralDisease,
-                      totalLongTermDisease: totalLongTermDisease,
-                      totalCovid: totalCovid,
-                      totalNotAvailable: totalNotAvailable,
-                      totalWardHealthCondition: totalWardHealthCondition),
-                  verticalspace(),
-                  HealthConditionDataTable(
-                      totalHealthy: totalHealthy,
-                      totalGeneralDisease: totalGeneralDisease,
-                      totalLongTermDisease: totalLongTermDisease,
-                      totalCovid: totalCovid,
-                      totalNotAvailable: totalNotAvailable,
-                      totalWardHealthCondition: totalWardHealthCondition),
-                ],
-              ),
-            );
-          },
-        ),
+      child: BlocBuilder<HealthConditionBloc, HealthConditionState>(
+        builder: (context, state) {
+          if (state is HealthConditionSuccessState) {
+            List<HealthConditionModel> fetchedHealthData =
+                state.healthConditionModel;
+            fetchedHealthData.asMap().forEach((key, value) {
+              totalHealthy += fetchedHealthData[key].healthy ?? 0;
+              totalGeneralDisease += fetchedHealthData[key].generalDisease ?? 0;
+              totalLongTermDisease +=
+                  fetchedHealthData[key].longTermDisease ?? 0;
+              totalCovid += fetchedHealthData[key].covid ?? 0;
+              totalNotAvailable += fetchedHealthData[key].notAvailable ?? 0;
+              totalWardHealthCondition +=
+                  fetchedHealthData[key].totalWardHealthCondition ?? 0;
+            });
+          }
+          return SingleChildScrollView(
+            scrollDirection: Axis.vertical,
+            child: Column(
+              children: [
+                HealthConditionBarChart(
+                    totalHealthy: totalHealthy,
+                    totalGeneralDisease: totalGeneralDisease,
+                    totalLongTermDisease: totalLongTermDisease,
+                    totalCovid: totalCovid,
+                    totalNotAvailable: totalNotAvailable,
+                    totalWardHealthCondition: totalWardHealthCondition),
+                verticalspace(),
+                HealthConditionDataTable(
+                    totalHealthy: totalHealthy,
+                    totalGeneralDisease: totalGeneralDisease,
+                    totalLongTermDisease: totalLongTermDisease,
+                    totalCovid: totalCovid,
+                    totalNotAvailable: totalNotAvailable,
+                    totalWardHealthCondition: totalWardHealthCondition),
+              ],
+            ),
+          );
+        },
       ),
     );
   }
