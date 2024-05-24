@@ -26,6 +26,7 @@ import 'package:digital_profile/src/features/residence/presentation/pages/reside
 import 'package:digital_profile/src/features/toilet/presentation/pages/toilet_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key});
@@ -53,55 +54,9 @@ class _MyHomePageState extends State<MyHomePage> {
     'Table 18 - 3.8 घरपरिवारमा उपलब्ध सुविधाहरु',
     'Table 23 - 4.4 चौपाया तथा पशुपन्छी पाल्ने घरपरिवार विवरण'
   ];
-  final List<Color> _colorsMaleFemale = [
-    const Color(0xFF1976D2),
-    const Color(0xFF64B5F6),
-    const Color(0xFF2196F3)
-  ];
-  final List<Color> _colorsMaleFemaleHh = [
-    const Color(0xFF1976D2),
-    const Color(0xFF64B5F6),
-  ];
-  final List<String> _representations = ['पुरुष', 'महिला', 'तेस्रो लिङ्गी'];
-  final List<String> _representationsMfHh = [
-    'पुरुष घरमुली',
-    'महिला घरमुली',
-  ];
-  bool isLoggedIn = false;
+
   @override
   Widget build(BuildContext context) {
-    final List<Padding> containeers = List.generate(3, (index) {
-      return Padding(
-        padding: const EdgeInsets.only(right: 40.0),
-        child: Row(
-          children: [
-            Container(
-              height: 14,
-              width: 14,
-              color: _colorsMaleFemale[index],
-              margin: const EdgeInsets.all(5),
-            ),
-            Text(_representations[index]),
-          ],
-        ),
-      );
-    });
-    final List<Padding> containeersMfHh = List.generate(2, (index) {
-      return Padding(
-        padding: const EdgeInsets.only(right: 40.0),
-        child: Row(
-          children: [
-            Container(
-              height: 14,
-              width: 14,
-              color: _colorsMaleFemaleHh[index],
-              margin: const EdgeInsets.all(5),
-            ),
-            Text(_representationsMfHh[index]),
-          ],
-        ),
-      );
-    });
     return MultiBlocProvider(
       providers: [
         BlocProvider(
@@ -109,6 +64,9 @@ class _MyHomePageState extends State<MyHomePage> {
             RepositoryProvider.of<GetPopulationRepository>(context),
           )..add(LoadPopulationEvent()),
         ),
+        BlocProvider(
+            create: (context) =>
+                LoginBloc(loginRepository: RepositoryProvider.of(context))),
         // BlocProvider(
         //   create: (context) => LanguageBloc(
         //       RepositoryProvider.of<GetLanguageRepository>(context))
@@ -126,6 +84,7 @@ class _MyHomePageState extends State<MyHomePage> {
       ],
       child: Scaffold(
         appBar: AppBar(
+          //automaticallyImplyLeading: false,
           elevation: 50,
           title: Text(l10n.digitalprofile),
           actions: [
@@ -149,55 +108,59 @@ class _MyHomePageState extends State<MyHomePage> {
           // foregroundColor: Colors.blue,
           backgroundColor: Colors.blueAccent,
         ),
-        drawer: Drawer(
-          backgroundColor: Colors.blueAccent,
-          width: MediaQuery.of(context).size.width / 1.4,
-          child: SafeArea(
-            child: ListView(
-              children: [
-                ListTile(
-                  leading: const Icon(Icons.other_houses),
-                  title: const Text('घरदुरी ताथ्याङ्का'),
-                  onTap: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => DropDown()));
-                  },
+        drawer:  Drawer(
+                backgroundColor: Colors.blueAccent,
+                width: MediaQuery.of(context).size.width / 1.4,
+                child: SafeArea(
+                  child: ListView(
+                    children: [
+                      ListTile(
+                        leading: const Icon(Icons.other_houses),
+                        title: const Text('घरदुरी ताथ्याङ्का'),
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => DropDown()));
+                        },
+                      ),
+                      ListTile(
+                        leading: const Icon(Icons.data_exploration_outlined),
+                        title: const Text('Institutional Data'),
+                        onTap: () {},
+                      ),
+                      ListTile(
+                        leading: const Icon(Icons.warehouse),
+                        title: const Text('All Household Data'),
+                        onTap: () {
+                          Navigator.pop(context);
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      const AllHouseholdData()));
+                        },
+                      ),
+                      ListTile(
+                        leading: const Icon(Icons.report),
+                        title: const Text('Report'),
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const ReportPage()));
+                        },
+                      ),
+                      ListTile(
+                        leading: Icon(Icons.login),
+                        title: Text('Log Out'),
+                        onTap: () {},
+                      ),
+                    ],
+                  ),
                 ),
-                ListTile(
-                  leading: const Icon(Icons.data_exploration_outlined),
-                  title: const Text('Institutional Data'),
-                  onTap: () {},
-                ),
-                ListTile(
-                  leading: const Icon(Icons.warehouse),
-                  title: const Text('All Household Data'),
-                  onTap: () {
-                    Navigator.pop(context);
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const AllHouseholdData()));
-                  },
-                ),
-                ListTile(
-                  leading: const Icon(Icons.report),
-                  title: const Text('Report'),
-                  onTap: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const ReportPage()));
-                  },
-                ),
-                ListTile(
-                  leading: Icon(Icons.login),
-                  title: Text('Log Out'),
-                  onTap: () {},
-                ),
-              ],
-            ),
-          ),
-        ),
+              ),
+
         body: SingleChildScrollView(
           scrollDirection: Axis.vertical,
           child: Column(
@@ -359,4 +322,21 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
     );
   }
+
+  // Future<void> _checkAccessToken() async {
+  //   final prefs = await SharedPreferences.getInstance();
+  //   final accessToken = prefs.getString('access_token');
+  //   bool isAccessTokenPresent = accessToken != null && accessToken.isNotEmpty;
+  //   print('Access token present: $isAccessTokenPresent');
+  //   if (isAccessTokenPresent == true) {
+  //     setState(() {
+  //       isLoggedIn == true;
+  //     });
+  //   } else {
+  //     setState(() {
+  //       isLoggedIn == false;
+  //     });
+  //   }
+  //   //return isAccessTokenPresent;
+  // }
 }

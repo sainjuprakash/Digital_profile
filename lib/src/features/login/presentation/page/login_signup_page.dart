@@ -2,7 +2,6 @@ import 'dart:ui';
 
 import 'package:digital_profile/MyHomePage.dart';
 import 'package:digital_profile/app_localization/l10n.dart';
-import 'package:digital_profile/src/features/pages/report_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -31,9 +30,12 @@ class _LoginPageState extends State<LoginPage> {
       listener: (context, state) {
         if (state is LoginSuccessState) {
           print("success state emitted");
-          Navigator.push(
-              context, MaterialPageRoute(builder: (context) => MyHomePage()));
-
+         /* Navigator.of(context).replace(
+              oldRoute: ModalRoute.of(context)!,
+              newRoute: MaterialPageRoute(builder: (context) => MyHomePage()));*/
+          Navigator.of(context).pushAndRemoveUntil(
+              MaterialPageRoute(builder: (context) => MyHomePage()),
+              (route) => false);
         }
       },
       child: Scaffold(
