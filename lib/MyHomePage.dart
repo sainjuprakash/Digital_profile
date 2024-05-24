@@ -1,11 +1,11 @@
 import 'package:digital_profile/app_localization/l10n.dart';
+import 'package:digital_profile/core/services/shared_preferences_service.dart';
 import 'package:digital_profile/src/features/age_table2_2/presentation/page/age_population_page.dart';
 import 'package:digital_profile/src/features/animal_husbandry/presentation/pages/animals_page.dart';
 import 'package:digital_profile/src/features/disability/presentation/pages/disability_page.dart';
 import 'package:digital_profile/src/features/electricity/presentation/pages/electricity_page.dart';
 import 'package:digital_profile/src/features/ethenicity_household/presentation/pages/ethnicity_details_page.dart';
 import 'package:digital_profile/src/features/ethnicity_population/presentation/page/ethnicity_population_page.dart';
-import 'package:digital_profile/src/features/ethnicity_population/presentation/widget/ethnicity_population_bar_graph.dart';
 import 'package:digital_profile/src/features/health_condition/presentation/pages/health_condition_page.dart';
 import 'package:digital_profile/src/features/home_facilities/presentation/pages/home_facilities_page.dart';
 import 'package:digital_profile/src/features/insurance/presentation/pages/insurance_page.dart';
@@ -26,7 +26,6 @@ import 'package:digital_profile/src/features/residence/presentation/pages/reside
 import 'package:digital_profile/src/features/toilet/presentation/pages/toilet_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key});
@@ -54,6 +53,24 @@ class _MyHomePageState extends State<MyHomePage> {
     'Table 18 - 3.8 घरपरिवारमा उपलब्ध सुविधाहरु',
     'Table 23 - 4.4 चौपाया तथा पशुपन्छी पाल्ने घरपरिवार विवरण'
   ];
+  bool isUserLoggedIn = false;
+
+  void checkUser() async {
+    final prefs = await PrefsService.getInstance();
+    final aToken = prefs.getString(PrefsServiceKeys.accessTokem);
+
+    setState(() {
+      if (aToken != null) {
+        isUserLoggedIn = aToken.isEmpty ? false : true;
+      }
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    checkUser();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -108,7 +125,9 @@ class _MyHomePageState extends State<MyHomePage> {
           // foregroundColor: Colors.blue,
           backgroundColor: Colors.blueAccent,
         ),
-        drawer:  Drawer(
+        drawer: !isUserLoggedIn
+            ? null
+            : Drawer(
                 backgroundColor: Colors.blueAccent,
                 width: MediaQuery.of(context).size.width / 1.4,
                 child: SafeArea(
@@ -160,7 +179,6 @@ class _MyHomePageState extends State<MyHomePage> {
                   ),
                 ),
               ),
-
         body: SingleChildScrollView(
           scrollDirection: Axis.vertical,
           child: Column(
