@@ -13,7 +13,7 @@ class Endpoints {
   static const String api_key = '';
 
   // will save token here for now
-  static String api_token = '';
+  static String? api_token = '';
   static const Duration connectTimeout = Duration(milliseconds: 5000);
   static const Duration receiveTimeout = Duration(seconds: 10);
 

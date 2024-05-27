@@ -16,7 +16,6 @@ class ImplLoginRepository extends LoginRepository {
         data: {'email': email, 'password': password},
       );
       if (response.statusCode == 200) {
-        // print(response.statusCode);
         final accessToken = response.data['token'];
         //final refreshToken = response.data['refresh_token'];
 
@@ -34,4 +33,19 @@ class ImplLoginRepository extends LoginRepository {
       throw Exception("login fail : $errMsg");
     }
   }
+
+ /* @override
+  Future<void> logOut() async {
+    print('before logout');
+    try {
+      final prefs = await PrefsService.getInstance();
+      await prefs.remove(PrefsServiceKeys.accessTokem);
+      Endpoints.api_token = '';
+      print('token after logout  : ${Endpoints.api_token}');
+    } catch (errMsg) {
+      print(errMsg);
+      throw Exception("Unable to log-out $errMsg");
+    }
+    throw UnimplementedError();
+  }*/
 }

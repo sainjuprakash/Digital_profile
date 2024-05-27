@@ -7,6 +7,7 @@
 
 // ignore_for_file: constant_identifier_names
 
+import 'package:digital_profile/core/network/refresh_token_interceptor.dart';
 import 'package:dio/dio.dart';
 
 import 'endpoints.dart';
@@ -45,8 +46,10 @@ class DioClient {
                   return status >= 200 && status < 300;
                 }
               }),
-        )..interceptors
-            .addAll([AuthorizationInterceptor(), LoggerInterceptor()]);
+        )..interceptors.addAll([
+            AuthorizationInterceptor(),
+            LoggerInterceptor(),
+          ]);
 
   // GET METHOD
   Future<Response> get(

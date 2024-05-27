@@ -1529,6 +1529,76 @@ class AppLocalizations {
       args: [],
     );
   }
+
+  /// `बसोबास गरेको घरको छाना सम्बन्धी विवरण`
+  String get houseFacilityTitle {
+    return Intl.message(
+      'बसोबास गरेको घरको छाना सम्बन्धी विवरण',
+      name: 'houseFacilityTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `फुस वा खरको छाना`
+  String get khar {
+    return Intl.message(
+      'फुस वा खरको छाना',
+      name: 'khar',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `जस्ता/च्यादरको छाना`
+  String get jasta {
+    return Intl.message(
+      'जस्ता/च्यादरको छाना',
+      name: 'jasta',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `टायल/ढुङ्गाको छाना`
+  String get stoneRoof {
+    return Intl.message(
+      'टायल/ढुङ्गाको छाना',
+      name: 'stoneRoof',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `आरसिसि ढलान`
+  String get rcc {
+    return Intl.message(
+      'आरसिसि ढलान',
+      name: 'rcc',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `काठको छाना`
+  String get wood {
+    return Intl.message(
+      'काठको छाना',
+      name: 'wood',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `माटोेको छानो`
+  String get mud {
+    return Intl.message(
+      'माटोेको छानो',
+      name: 'mud',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<AppLocalizations> {

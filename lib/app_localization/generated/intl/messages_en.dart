@@ -98,6 +98,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "hindu": MessageLookupByLibrary.simpleMessage("हिन्दु"),
         "homeFacilitiesTitle":
             MessageLookupByLibrary.simpleMessage("घरपरिवारमा उपलब्ध सुविधाहरु"),
+        "houseFacilityTitle": MessageLookupByLibrary.simpleMessage(
+            "बसोबास गरेको घरको छाना सम्बन्धी विवरण"),
         "householdCount": MessageLookupByLibrary.simpleMessage("घरधुरी संख्या"),
         "householddata": MessageLookupByLibrary.simpleMessage("घरपरिवार डाटा"),
         "illiterate": MessageLookupByLibrary.simpleMessage("निरक्षर"),
@@ -107,7 +109,9 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("बिमा गरेका घरपरिवार विवरण"),
         "internet": MessageLookupByLibrary.simpleMessage("र्इन्टरनेट"),
         "jains": MessageLookupByLibrary.simpleMessage("जैन"),
+        "jasta": MessageLookupByLibrary.simpleMessage("जस्ता/च्यादरको छाना"),
         "kerosene": MessageLookupByLibrary.simpleMessage("मट्टितेल"),
+        "khar": MessageLookupByLibrary.simpleMessage("फुस वा खरको छाना"),
         "kirat": MessageLookupByLibrary.simpleMessage("किरात"),
         "lessthan6": MessageLookupByLibrary.simpleMessage("६ भन्दा कम"),
         "lifeInsurance": MessageLookupByLibrary.simpleMessage("जीवन बिमा"),
@@ -135,6 +139,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "mental": MessageLookupByLibrary.simpleMessage("बौद्विक अपाङगता भएको"),
         "motorcycle": MessageLookupByLibrary.simpleMessage("माेटरसार्इकल"),
         "mphil": MessageLookupByLibrary.simpleMessage("एमफिल"),
+        "mud": MessageLookupByLibrary.simpleMessage("माटोेको छानो"),
         "multidisable": MessageLookupByLibrary.simpleMessage("बहु अपाँगता"),
         "muslim": MessageLookupByLibrary.simpleMessage("मुस्लिम"),
         "nepali": MessageLookupByLibrary.simpleMessage("नेपाली"),
@@ -166,6 +171,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "publicDhal": MessageLookupByLibrary.simpleMessage("सार्वजनिक ढल"),
         "radio": MessageLookupByLibrary.simpleMessage("रेडियाे"),
         "rai": MessageLookupByLibrary.simpleMessage("राई"),
+        "rcc": MessageLookupByLibrary.simpleMessage("आरसिसि ढलान"),
         "refrigerator": MessageLookupByLibrary.simpleMessage("रेफ्रिजरेटर"),
         "religiontitle":
             MessageLookupByLibrary.simpleMessage("धर्मको आधारमा जनसंख्या"),
@@ -189,6 +195,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "sixttofifteen": MessageLookupByLibrary.simpleMessage("६-१५"),
         "slammer": MessageLookupByLibrary.simpleMessage("भकभके"),
         "solar": MessageLookupByLibrary.simpleMessage("सोलार"),
+        "stoneRoof": MessageLookupByLibrary.simpleMessage("टायल/ढुङ्गाको छाना"),
         "tamang": MessageLookupByLibrary.simpleMessage("तामाङ"),
         "technical": MessageLookupByLibrary.simpleMessage("प्राविधिक"),
         "telephone": MessageLookupByLibrary.simpleMessage("टेलिफाेन,माेबार्इल"),
@@ -207,6 +214,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "totalwardpopulation":
             MessageLookupByLibrary.simpleMessage("कुल वडा जनसंख्या"),
         "underage": MessageLookupByLibrary.simpleMessage("उमेर कम"),
-        "wardnumber": MessageLookupByLibrary.simpleMessage("वडा नम्बर")
+        "wardnumber": MessageLookupByLibrary.simpleMessage("वडा नम्बर"),
+        "wood": MessageLookupByLibrary.simpleMessage("काठको छाना")
       };
 }

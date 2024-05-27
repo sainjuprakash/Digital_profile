@@ -16,9 +16,9 @@ class AnimalsBloc extends Bloc<AnimalsEvent, AnimalsState> {
   AnimalsBloc(this._animalsRepository) : super(AnimalsLoadingState()) {
     on<GetAnimalsEvent>((event, emit) async {
       try {
-        List<AnimalsModel> fetchedAnimalasData =
+        List<AnimalsModel> fetchedAnimalsData =
             await _animalsRepository.getAnimalsData();
-        emit(AnimalsSuccessState(fetchedAnimalasData));
+        emit(AnimalsSuccessState(fetchedAnimalsData));
       } catch (errMsg) {
         emit(AnimalsFailureState(errMsg.toString()));
       }

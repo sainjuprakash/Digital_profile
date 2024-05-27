@@ -23,7 +23,6 @@ dependencies:
   dio: ^5.4.3+1
   flutter_bloc: ^8.1.5
   flutter_table: ^1.1.0
-  data_table_2: ^2.5.12
   shared_preferences: ^2.2.3
   logger: any
   get_it: ^7.7.0

@@ -5,7 +5,6 @@ import 'package:digital_profile/app_localization/l10n.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import '../../../../../constant/custom_text_from_field.dart';
 import '../bloc/login_bloc.dart';
 
@@ -29,13 +28,23 @@ class _LoginPageState extends State<LoginPage> {
     return BlocListener<LoginBloc, LoginState>(
       listener: (context, state) {
         if (state is LoginSuccessState) {
-          print("success state emitted");
-         /* Navigator.of(context).replace(
+          setState(() {
+            signInRequired = false;
+          });
+          /* Navigator.of(context).replace(
               oldRoute: ModalRoute.of(context)!,
               newRoute: MaterialPageRoute(builder: (context) => MyHomePage()));*/
           Navigator.of(context).pushAndRemoveUntil(
               MaterialPageRoute(builder: (context) => MyHomePage()),
               (route) => false);
+        }
+        if (state is LoginInProcessState) {
+          setState(() {
+            signInRequired = true;
+          });
+        }
+        if (state is LoginFailureState) {
+          signInRequired = false;
         }
       },
       child: Scaffold(
@@ -176,8 +185,6 @@ class _LoginPageState extends State<LoginPage> {
                                             builder: (context, state) {
                                               return TextButton(
                                                   onPressed: () {
-                                                    print(
-                                                        'login button tapped');
                                                     if (_formKey.currentState!
                                                         .validate()) {
                                                       context

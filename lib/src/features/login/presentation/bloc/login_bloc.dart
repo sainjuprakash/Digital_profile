@@ -14,12 +14,9 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
         super(LoginInitialState()) {
     on<GetLoginEvent>((event, emit) async {
       try {
-        print("entered try statement");
+        emit(LoginInProcessState());
         await _loginRepository.login(event.email, event.password);
-        print("login callled");
         emit(LoginSuccessState());
-
-        print("login success state ");
       } catch (errMsg) {
         emit(LoginFailureState(errMsg: errMsg.toString()));
       }
