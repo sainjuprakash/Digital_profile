@@ -6,9 +6,11 @@ import '../../data/repository/ethnicity_repository_impl.dart';
 import '../bloc/ethnicity_bloc.dart';
 import '../widgets/ethnicity_bar_chart.dart';
 import '../widgets/ethnicity_data_table.dart';
+//Table no.3
 
 class EthnicityPage extends StatefulWidget {
-  const EthnicityPage({super.key});
+  String baseUrl;
+  EthnicityPage(this.baseUrl, {super.key});
 
   @override
   State<EthnicityPage> createState() => _EthnicityPageState();
@@ -26,9 +28,10 @@ class _EthnicityPageState extends State<EthnicityPage> {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) =>
-          EthnicityBloc(RepositoryProvider.of<GetEthnicityRepository>(context))
-            ..add(LoadEthnicityEvent()),
+      create: (context) => EthnicityBloc(
+          RepositoryProvider.of<GetEthnicityRepository>(context),
+          widget.baseUrl)
+        ..add(LoadEthnicityEvent()),
       child: SingleChildScrollView(
         scrollDirection: Axis.vertical,
         child: BlocBuilder<EthnicityBloc, EthnicityState>(

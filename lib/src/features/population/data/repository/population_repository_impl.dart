@@ -10,7 +10,8 @@ import '../models/population_model.dart';
 class GetPopulationRepository extends PopulationRepository {
   final dio = Dio();
   @override
-  Future<List<PopulationModel>> getPopData() async {
+  Future<List<PopulationModel>> getPopData(String Url) async {
+    String baseUrl = Url;
     dio.httpClientAdapter = IOHttpClientAdapter(
       createHttpClient: () {
         // Don't trust any certificate just because their root cert is trusted.
@@ -24,7 +25,7 @@ class GetPopulationRepository extends PopulationRepository {
     );
     try {
       Response<dynamic> response =
-          await dio.get('https://rubytest.git.com.np/api/household/reports?table_no=table1');
+          await dio.get('$baseUrl/api/household/reports?table_no=table1');
       if (response.statusCode == 200) {
 //        return result.map(((e) => PopulationModel.fromJson(e))).toList();
         final List<dynamic> results = response.data['result'];

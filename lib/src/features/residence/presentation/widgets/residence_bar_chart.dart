@@ -42,28 +42,29 @@ class ResidenceBarChart extends StatelessWidget {
                     padding: const EdgeInsets.all(8.0),
                     child: BarChart(BarChartData(
                       minY: 0,
-                      maxY: 5000,
+                      maxY: 7000,
                       alignment: BarChartAlignment.spaceAround,
                       titlesData: FlTitlesData(
                           topTitles: const AxisTitles(
                               sideTitles: SideTitles(showTitles: false)),
-                          bottomTitles: AxisTitles(sideTitles:
-                              SideTitles(
-                                showTitles: true,
+                          bottomTitles: AxisTitles(
+                              sideTitles: SideTitles(
+                                  showTitles: true,
                                   reservedSize: 35,
                                   getTitlesWidget: (value, meta) {
-                            final residenceRepresentation = [
-                              l10n.defaultresidence,
-                              l10n.countryside,
-                              l10n.foreign,
-                              l10n.notavailable
-                            ];
-                            int index = value.toInt();
-                            return Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Text(residenceRepresentation[index]),
-                            );
-                          }))),
+                                    final residenceRepresentation = [
+                                      l10n.defaultresidence,
+                                      l10n.countryside,
+                                      l10n.foreign,
+                                      l10n.notavailable
+                                    ];
+                                    int index = value.toInt();
+                                    return Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child:
+                                          Text(residenceRepresentation[index]),
+                                    );
+                                  }))),
                       barGroups: [
                         BarChartGroupData(x: 0, barRods: [
                           BarChartRodData(

@@ -35,19 +35,23 @@ class HealthConditionBarChart extends StatelessWidget {
         BlocBuilder<HealthConditionBloc, HealthConditionState>(
             builder: (context, state) {
           if (state is HealthConditionLoadingState) {
-            return const Center(child: CircularProgressIndicator());
+            return const Center(
+                child: Padding(
+              padding: EdgeInsets.all(8.0),
+              child: CircularProgressIndicator(),
+            ));
           }
           if (state is HealthConditionSuccessState) {
             return SingleChildScrollView(
               scrollDirection: Axis.horizontal,
               child: SizedBox(
-                height: 610,
+                height: 550,
                 width: 630,
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: BarChart(BarChartData(
                       minY: 0,
-                      maxY: 10000,
+                      maxY: 13000,
                       alignment: BarChartAlignment.spaceAround,
                       titlesData: FlTitlesData(
                           topTitles: const AxisTitles(

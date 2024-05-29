@@ -1,9 +1,10 @@
 import 'dart:io';
 
-import 'package:digital_profile/src/features/house_condition/data/model/house_condition_model.dart';
-import 'package:digital_profile/src/features/house_condition/domain/repository/house_condition_repository.dart';
 import 'package:dio/dio.dart';
 import 'package:dio/io.dart';
+
+import '../../domain/repository/house_condition_repository.dart';
+import '../model/house_condition_model.dart';
 
 class ImplHouseRepository extends HouseConditionRepository {
   @override

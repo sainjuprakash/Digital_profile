@@ -8,7 +8,7 @@ import '../../domain/repository/ethnicity_population_repository.dart';
 
 class ImplEthnicityPopulationRepository extends EthnicityPopulationRepository {
   @override
-  Future<List<EthnicityPopulationModel>> getEthnicityPopulation() async {
+  Future<List<EthnicityPopulationModel>> getEthnicityPopulation(String url) async {
     final dio = Dio();
     dio.httpClientAdapter = IOHttpClientAdapter(
       createHttpClient: () {
@@ -23,7 +23,7 @@ class ImplEthnicityPopulationRepository extends EthnicityPopulationRepository {
     );
     try {
       Response<dynamic> responseFromServer = await dio.get(
-          'http://rubytest.git.com.np/api/household/reports?table_no=table4');
+          '$url/api/household/reports?table_no=table4');
       if (responseFromServer.statusCode == 200) {
         List<dynamic> results = responseFromServer.data['result'];
         //print(results);

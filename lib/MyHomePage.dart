@@ -8,7 +8,7 @@ import 'package:digital_profile/src/features/ethenicity_household/presentation/p
 import 'package:digital_profile/src/features/ethnicity_population/presentation/page/ethnicity_population_page.dart';
 import 'package:digital_profile/src/features/health_condition/presentation/pages/health_condition_page.dart';
 import 'package:digital_profile/src/features/home_facilities/presentation/pages/home_facilities_page.dart';
-import 'package:digital_profile/src/features/house_condition/presentation/pages/house_page.dart';
+import 'package:digital_profile/src/features/house_roof_condition/presentation/pages/house_page.dart';
 import 'package:digital_profile/src/features/insurance/presentation/pages/insurance_page.dart';
 import 'package:digital_profile/src/features/language/presentation/pages/language_details_page.dart';
 import 'package:digital_profile/src/features/literacy_status/presentation/pages/literacy_page.dart';
@@ -31,7 +31,8 @@ import 'core/network/endpoints.dart';
 
 class MyHomePage extends StatefulWidget {
   final ImplLoginRepository _loginRepository = ImplLoginRepository();
-  MyHomePage({super.key});
+  String baseUrl, endPoint;
+  MyHomePage(this.baseUrl, this.endPoint, {super.key});
   @override
   State<MyHomePage> createState() => _MyHomePageState();
 }
@@ -87,11 +88,6 @@ class _MyHomePageState extends State<MyHomePage> {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: (context) => PopulationBloc(
-            RepositoryProvider.of<GetPopulationRepository>(context),
-          )..add(LoadPopulationEvent()),
-        ),
-        BlocProvider(
             create: (context) =>
                 LoginBloc(loginRepository: RepositoryProvider.of(context))),
       ],
@@ -115,7 +111,8 @@ class _MyHomePageState extends State<MyHomePage> {
                                           loginRepository: RepositoryProvider
                                               .of<ImplLoginRepository>(
                                                   context)),
-                                      child: const LoginPage(),
+                                      child: LoginPage(
+                                          widget.baseUrl, widget.endPoint),
                                     )));
                       },
                       icon: const Icon(Icons.person_3_rounded)),
@@ -167,7 +164,8 @@ class _MyHomePageState extends State<MyHomePage> {
                           checkUser();
                           Navigator.of(context).pushAndRemoveUntil(
                               MaterialPageRoute(
-                                  builder: (context) => MyHomePage()),
+                                  builder: (context) => MyHomePage(
+                                      widget.baseUrl, widget.endPoint)),
                               (route) => false);
                         },
                       ),
@@ -179,6 +177,7 @@ class _MyHomePageState extends State<MyHomePage> {
           scrollDirection: Axis.vertical,
           child: Column(
             children: [
+              // Text(widget.baseUrl),
               // Text(isUserLoggedIn.toString()),
               Padding(
                 padding: const EdgeInsets.all(8.0),
@@ -227,29 +226,29 @@ class _MyHomePageState extends State<MyHomePage> {
 
   Widget getPage(BuildContext context) {
     if (selectedItem == "Table 1 - 1.1 पारिवारिक तथा जनसंख्या विवरण") {
-      return const PopulationDetailsPage();
+      return PopulationDetailsPage(widget.baseUrl);
     }
     if (selectedItem == "Table 2 - 1.2 उमेर वर्गीकरण अनुसार जनसंख्या") {
-      return const AgePopulationPage();
+      return AgePopulationPage(widget.baseUrl);
     } else if (selectedItem == "Table 3 - 1.3 जातजाती अनुसार घरपरिवार संख्या") {
-      return const EthnicityPage();
+      return EthnicityPage(widget.baseUrl);
     } else if (selectedItem == "Table 4 - 1.4 जातजाती अनुसार जनसंख्या") {
-      return const EthnicityPopulationPage();
+      return EthnicityPopulationPage(widget.baseUrl);
     } else if (selectedItem == "Table 5 - 1.5 मातृभाषाको आधारमा जनसंख्या") {
-      return const LanguageDetails();
+      return LanguageDetails(widget.baseUrl);
     } else if (selectedItem == "Table 6 - 1.6 धर्मको आधारमा जनसंख्या") {
-      return const ReligionPage();
+      return ReligionPage(widget.baseUrl, widget.endPoint);
     } else if (selectedItem == "Table 7 - 1.7 साक्षरताको स्थिति") {
-      return const LiteracyPage();
+      return LiteracyPage(widget.baseUrl, widget.endPoint);
     } else if (selectedItem == "Table 8 - 1.8 बसोबासको अवस्था") {
-      return const ResidencePage();
+      return ResidencePage(widget.baseUrl, widget.endPoint);
     } else if (selectedItem == "Table 9 - 1.9 अपाङ्गताको स्थिति") {
-      return DisabilityPage();
+      return DisabilityPage(widget.baseUrl, widget.endPoint);
     } else if (selectedItem == "Table 10 - 1.10 वैवाहिक स्थिति") {
-      return const MarriageStatusPage();
+      return MarriageStatusPage(widget.baseUrl, widget.endPoint);
     } else if (selectedItem ==
         "Table 11 - 1.11 परिवारका सदस्यहरुको स्वास्थ्य अवस्था") {
-      return const HealthConditionPage();
+      return HealthConditionPage(widget.baseUrl, widget.endPoint);
     } else if (selectedItem == "Table 13 - 2.2 बिमा गरेका घरपरिवार विवरण") {
       return const InsurancePage();
     } else if (selectedItem == "Table 16 - 3.6 वत्तीको प्रमुख स्रोत") {

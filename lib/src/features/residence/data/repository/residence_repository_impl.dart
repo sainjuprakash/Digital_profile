@@ -8,7 +8,8 @@ import '../../domain/repository/residence_repository.dart';
 
 class ImplResidenceRepository extends ResidenceRepository {
   @override
-  Future<List<ResidenceModel>> getResidenceData() async {
+  Future<List<ResidenceModel>> getResidenceData(
+      String baseUrl, String endPoints) async {
     final dio = Dio();
     dio.httpClientAdapter = IOHttpClientAdapter(
       createHttpClient: () {
@@ -23,8 +24,8 @@ class ImplResidenceRepository extends ResidenceRepository {
     );
 
     try {
-      Response<dynamic> responseFromServer = await dio.get(
-          'http://rubytest.git.com.np/api/household/reports?table_no=table8');
+      Response<dynamic> responseFromServer =
+          await dio.get('$baseUrl/${endPoints}8');
 
       if (responseFromServer.statusCode == 200) {
         List<dynamic> data = responseFromServer.data['result'];

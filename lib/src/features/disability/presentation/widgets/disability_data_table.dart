@@ -35,15 +35,15 @@ class DisabilityDataTable extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      child: SingleChildScrollView(
-        scrollDirection: Axis.horizontal,
-        child: SizedBox(child: BlocBuilder<DisabilityBloc, DisabilityState>(
-          builder: (context, state) {
-            if (state is DisabilitySuccessState) {
-              List<DisabilityModel> fetchedDisabilityData =
-                  state.disabilityModel;
-              return DataTable(
+    return SingleChildScrollView(
+      scrollDirection: Axis.horizontal,
+      child: SizedBox(child: BlocBuilder<DisabilityBloc, DisabilityState>(
+        builder: (context, state) {
+          if (state is DisabilitySuccessState) {
+            List<DisabilityModel> fetchedDisabilityData =
+                state.disabilityModel;
+            return Card(
+              child: DataTable(
                 columns: [
                   DataColumn(label: Text(l10n.wardnumber)),
                   DataColumn(label: Text(l10n.able)),
@@ -129,13 +129,13 @@ class DisabilityDataTable extends StatelessWidget {
                         DataCell(Text(totalNotAvailable.toString())),
                         DataCell(Text(totalWardDis.toString())),
                       ])),
-              );
-            } else {
-              return const Center(child: CircularProgressIndicator());
-            }
-          },
-        )),
-      ),
+              ),
+            );
+          } else {
+            return const Center(child: CircularProgressIndicator());
+          }
+        },
+      )),
     );
     ;
   }

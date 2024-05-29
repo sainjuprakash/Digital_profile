@@ -1,5 +1,5 @@
 import '../../data/model/health_condition_model.dart';
 
 abstract class HealthConditionRepository {
-  Future<List<HealthConditionModel>> getHealthCondition();
+  Future<List<HealthConditionModel>> getHealthCondition(String baseUrl, String endPoints);
 }

@@ -11,12 +11,13 @@ part 'disability_event.dart';
 part 'disability_state.dart';
 
 class DisabilityBloc extends Bloc<DisabilityEvent, DisabilityState> {
+  String baseUrl,endPoints;
   DisabilityRepository _disabilityRepository;
-  DisabilityBloc(this._disabilityRepository) : super(DisabilityLoadingState()) {
+  DisabilityBloc(this._disabilityRepository,this.baseUrl,this.endPoints) : super(DisabilityLoadingState()) {
     on<DisabilityEvent>((event, emit) async {
       try {
         List<DisabilityModel> fetchedDisabilityData =
-            await _disabilityRepository.getDisabilityData();
+            await _disabilityRepository.getDisabilityData(baseUrl,endPoints);
         emit(DisabilitySuccessState(disabilityModel: fetchedDisabilityData));
       } catch (errMsg) {
         emit(DisabilityFailureState(errMsg: errMsg.toString()));

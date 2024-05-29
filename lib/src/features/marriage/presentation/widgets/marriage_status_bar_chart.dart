@@ -50,24 +50,24 @@ class MarriageBarChart extends StatelessWidget {
           verticalspace(),
           SingleChildScrollView(
             scrollDirection: Axis.horizontal,
-            child: SizedBox(
-              height: 550,
-              width: 1200,
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: BlocBuilder<MarriageStatusBloc, MarriageStatusState>(
-                  builder: (context, state) {
-                    if (state is MarriageLoadingState) {
-                      return const Padding(
-                        padding: EdgeInsets.all(8.0),
-                        child: Center(child: CircularProgressIndicator()),
-                      );
-                    }
-                    if (state is MarriageSuccessState) {
-                      return BarChart(BarChartData(
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: BlocBuilder<MarriageStatusBloc, MarriageStatusState>(
+                builder: (context, state) {
+                  if (state is MarriageLoadingState) {
+                    return const Padding(
+                      padding: EdgeInsets.all(8.0),
+                      child: Center(child: CircularProgressIndicator()),
+                    );
+                  }
+                  if (state is MarriageSuccessState) {
+                    return SizedBox(
+                      height: 550,
+                      width: 1100,
+                      child: BarChart(BarChartData(
                           alignment: BarChartAlignment.spaceAround,
                           minY: 0,
-                          maxY: 5000,
+                          maxY: 7000,
                           titlesData: FlTitlesData(
                               topTitles: const AxisTitles(
                                   sideTitles: SideTitles(showTitles: false)),
@@ -149,22 +149,22 @@ class MarriageBarChart extends StatelessWidget {
                                   width: 20,
                                   borderRadius: BorderRadius.circular(2))
                             ]),
-                          ]));
-                    }
-                    if (state is MarriageFailureState) {
-                      return const Padding(
-                        padding: EdgeInsets.all(8.0),
-                        child:
-                            Center(child: Text('Unable to load marriage data')),
-                      );
-                    }
-
+                          ])),
+                    );
+                  }
+                  if (state is MarriageFailureState) {
                     return const Padding(
                       padding: EdgeInsets.all(8.0),
-                      child: Center(child: Text('Something went wrong')),
+                      child:
+                          Center(child: Text('Unable to load marriage data')),
                     );
-                  },
-                ),
+                  }
+
+                  return const Padding(
+                    padding: EdgeInsets.all(8.0),
+                    child: Center(child: Text('Something went wrong')),
+                  );
+                },
               ),
             ),
           )

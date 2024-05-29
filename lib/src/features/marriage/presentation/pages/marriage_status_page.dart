@@ -1,3 +1,4 @@
+import 'package:digital_profile/constant/spacing.dart';
 import 'package:digital_profile/src/features/marriage/data/repository/marriage_status_repository_impl.dart';
 import 'package:digital_profile/src/features/marriage/presentation/widgets/marriage_status_bar_chart.dart';
 import 'package:digital_profile/src/features/marriage/presentation/widgets/marriage_status_data_table.dart';
@@ -6,9 +7,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../data/model/marriage_status_model.dart';
 import '../bloc/marriage_status_bloc.dart';
-
+//Table 10
 class MarriageStatusPage extends StatefulWidget {
-  const MarriageStatusPage({super.key});
+  String baseUrl, endPoints;
+  MarriageStatusPage(this.baseUrl, this.endPoints, {super.key});
 
   @override
   State<MarriageStatusPage> createState() => _MarriageStatusPageState();
@@ -31,7 +33,9 @@ class _MarriageStatusPageState extends State<MarriageStatusPage> {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => MarriageStatusBloc(
-          RepositoryProvider.of<ImplMarriageRepository>(context))
+          RepositoryProvider.of<ImplMarriageRepository>(context),
+          widget.baseUrl,
+          widget.endPoints)
         ..add(GetMarriageStatusEvent()),
       child: BlocBuilder<MarriageStatusBloc, MarriageStatusState>(
         builder: (context, state) {
@@ -68,6 +72,7 @@ class _MarriageStatusPageState extends State<MarriageStatusPage> {
                     totalUnderage: totalUnderage,
                     totalNotAvailable: totalNotAvailable,
                     totalMaritalStatus: totalMaritalStatus),
+                verticalspace(),
                 MarriageDatatable(
                     totalSingleCount: totalSingleCount,
                     totalMarriedCount: totalMarriedCount,

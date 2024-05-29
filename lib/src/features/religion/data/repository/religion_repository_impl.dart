@@ -10,7 +10,7 @@ import '../../../ethenicity_household/data/models/ethnicity_model.dart';
 class ImplReligionRepository extends ReligionRepository {
   final dio = Dio();
   @override
-  Future<List<ReligionModel>> getReligionData() async {
+  Future<List<ReligionModel>> getReligionData(String baseUrl, String endPoint) async {
     dio.httpClientAdapter = IOHttpClientAdapter(
       createHttpClient: () {
         // Don't trust any certificate just because their root cert is trusted.
@@ -24,7 +24,7 @@ class ImplReligionRepository extends ReligionRepository {
     );
     try {
       Response<dynamic> responseFromServer = await dio.get(
-          'http://rubytest.git.com.np/api/household/reports?table_no=table6');
+          '$baseUrl/${endPoint}6');
       if (responseFromServer.statusCode == 200) {
         final List<dynamic> result = responseFromServer.data['result'];
         return result.map((e) => ReligionModel.fromJson(e)).toList();

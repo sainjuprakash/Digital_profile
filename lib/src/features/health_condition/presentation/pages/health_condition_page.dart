@@ -12,7 +12,8 @@ import '../../../marriage/presentation/bloc/marriage_status_bloc.dart';
 import '../bloc/health_condition_bloc.dart';
 
 class HealthConditionPage extends StatefulWidget {
-  const HealthConditionPage({super.key});
+  String baseUrl, endPoints;
+  HealthConditionPage(this.baseUrl, this.endPoints, {super.key});
 
   @override
   State<HealthConditionPage> createState() => _HealthConditionPageState();
@@ -30,7 +31,9 @@ class _HealthConditionPageState extends State<HealthConditionPage> {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => HealthConditionBloc(
-          RepositoryProvider.of<ImplHealthConditionRepository>(context))
+          RepositoryProvider.of<ImplHealthConditionRepository>(context),
+          widget.baseUrl,
+          widget.endPoints)
         ..add(GetHealthConditionEvent()),
       child: BlocBuilder<HealthConditionBloc, HealthConditionState>(
         builder: (context, state) {

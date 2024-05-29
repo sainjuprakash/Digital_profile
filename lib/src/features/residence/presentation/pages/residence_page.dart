@@ -10,7 +10,8 @@ import '../../data/model/residence_model.dart';
 import '../bloc/residence_bloc.dart';
 
 class ResidencePage extends StatefulWidget {
-  const ResidencePage({super.key});
+  String baseUrl, endPoints;
+  ResidencePage(this.baseUrl, this.endPoints, {super.key});
 
   @override
   State<ResidencePage> createState() => _ResidencePageState();
@@ -26,9 +27,11 @@ class _ResidencePageState extends State<ResidencePage> {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) =>
-          ResidenceBloc(RepositoryProvider.of<ImplResidenceRepository>(context))
-            ..add(GetResidenceEvent()),
+      create: (context) => ResidenceBloc(
+          RepositoryProvider.of<ImplResidenceRepository>(context),
+          widget.baseUrl,
+          widget.endPoints)
+        ..add(GetResidenceEvent()),
       child: BlocBuilder<ResidenceBloc, ResidenceState>(
         builder: (context, state) {
           if (state is ResidenceSuccessState) {

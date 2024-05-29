@@ -8,7 +8,8 @@ import 'package:dio/io.dart';
 class ImplDisabilityRepository extends DisabilityRepository {
   final dio = Dio();
   @override
-  Future<List<DisabilityModel>> getDisabilityData() async {
+  Future<List<DisabilityModel>> getDisabilityData(
+      String baseUrl, String endPoints) async {
     dio.httpClientAdapter = IOHttpClientAdapter(
       createHttpClient: () {
         // Don't trust any certificate just because their root cert is trusted.
@@ -21,8 +22,8 @@ class ImplDisabilityRepository extends DisabilityRepository {
       },
     );
     try {
-      Response<dynamic> responseFromServer = await dio.get(
-          'http://rubytest.git.com.np/api/household/reports?table_no=table9');
+      Response<dynamic> responseFromServer =
+          await dio.get('$baseUrl/${endPoints}9');
       if (responseFromServer.statusCode == 200) {
         List<dynamic> data = responseFromServer.data['result'];
         return data.map((e) => DisabilityModel.fromJson(e)).toList();

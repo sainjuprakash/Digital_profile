@@ -1,5 +1,5 @@
 import '../../data/model/residence_model.dart';
 
 abstract class ResidenceRepository {
-  Future<List<ResidenceModel>> getResidenceData();
+  Future<List<ResidenceModel>> getResidenceData(String baseUrl,String endPoints);
 }

@@ -45,6 +45,8 @@ flutter:
   assets:
     - assets/familyData.json
     - assets/population_count.json
+    - assets/gov_logo/
+    - assets/gov_transparent/
 flutter_intl:
   enabled: true
   class_name: AppLocalizations

@@ -8,7 +8,7 @@ import 'package:dio/io.dart';
 class ImplAgeRepository extends AgeRepository {
   final dio = Dio();
   @override
-  Future<List<AgePopulationModel>> getAgeData() async {
+  Future<List<AgePopulationModel>> getAgeData(String url) async {
     dio.httpClientAdapter = IOHttpClientAdapter(
       createHttpClient: () {
         // Don't trust any certificate just because their root cert is trusted.
@@ -22,7 +22,7 @@ class ImplAgeRepository extends AgeRepository {
     );
     try {
       Response<dynamic> responseFromServer = await dio.get(
-          'http://rubytest.git.com.np/api/household/reports?table_no=table2_2');
+          '$url/household/reports?table_no=table2_2');
       if (responseFromServer.statusCode == 200) {
         List<dynamic> data = responseFromServer.data['result'];
         return data.map((e) => AgePopulationModel.fromJson(e)).toList();

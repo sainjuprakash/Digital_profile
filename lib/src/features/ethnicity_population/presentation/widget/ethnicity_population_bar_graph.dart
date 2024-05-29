@@ -1,3 +1,4 @@
+import 'package:digital_profile/constant/spacing.dart';
 import 'package:digital_profile/src/features/ethnicity_population/data/repository/ethnicity_population_repository_impl.dart';
 import 'package:digital_profile/src/features/ethnicity_population/presentation/bloc/ethnicity_population_bloc.dart';
 import 'package:fl_chart/fl_chart.dart';
@@ -36,9 +37,7 @@ class EthnicityPopulationBarChart extends StatelessWidget {
     return Card(
       child: Column(
         children: [
-          const SizedBox(
-            height: 10,
-          ),
+         verticalspace(),
           const Center(
             child: Text(
               'जातजाती अनुसार जनसंख्या',
@@ -48,10 +47,12 @@ class EthnicityPopulationBarChart extends StatelessWidget {
           BlocBuilder<EthnicityPopulationBloc, EthnicityPopulationState>(
               builder: (context, state) {
             if (state is EthnicityPopulationLoadingState) {
-              return const Center(child: CircularProgressIndicator());
+              return const Center(child: Padding(
+                padding: EdgeInsets.all(8.0),
+                child: CircularProgressIndicator(),
+              ));
             }
             if (state is EthnicityPopulationSuccessState) {
-              //print(totalHillJanajati);
               return SingleChildScrollView(
                 scrollDirection: Axis.horizontal,
                 child: SizedBox(
@@ -92,11 +93,9 @@ class EthnicityPopulationBarChart extends StatelessWidget {
                               },
                             ),
                           ),
-                          // rightTitles: const AxisTitles(),
-                          // topTitles: const AxisTitles(),
                         ),
                         minY: 0,
-                        maxY: 9000,
+                        maxY: 12000,
                         barGroups: [
                           BarChartGroupData(
                             x: 0,

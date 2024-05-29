@@ -10,18 +10,17 @@ part 'ethnicity_population_state.dart';
 
 class EthnicityPopulationBloc
     extends Bloc<EthnicityPopulationEvent, EthnicityPopulationState> {
+  String baseUrl;
   final EthnicityPopulationRepository _ethnicityPopulationRepository;
-  EthnicityPopulationBloc(this._ethnicityPopulationRepository)
+  EthnicityPopulationBloc(this._ethnicityPopulationRepository,this.baseUrl)
       : super(EthnicityPopulationLoadingState()) {
     on<GetEthnicityPopulationEvent>((event, emit) async {
       try {
         List<EthnicityPopulationModel> ethnicityPopulationModel =
-            await _ethnicityPopulationRepository.getEthnicityPopulation();
-        print(ethnicityPopulationModel);
+            await _ethnicityPopulationRepository.getEthnicityPopulation(baseUrl);
         emit(EthnicityPopulationSuccessState(
             ethnicityPopulationModel: ethnicityPopulationModel));
       } catch (errMsg) {
-        print(errMsg);
         emit(EthnicityPopulationFailureState(errMsg: errMsg.toString()));
       }
     });

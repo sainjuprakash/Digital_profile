@@ -1,3 +1,4 @@
+import 'package:digital_profile/constant/spacing.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -8,7 +9,8 @@ import '../widgets/Language_pie_chart.dart';
 import '../widgets/language_table.dart';
 
 class LanguageDetails extends StatefulWidget {
-  const LanguageDetails({super.key});
+  String baseUrl;
+   LanguageDetails(this.baseUrl,{super.key});
 
   @override
   State<LanguageDetails> createState() => _LanguageDetailsState();
@@ -30,7 +32,7 @@ class _LanguageDetailsState extends State<LanguageDetails> {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) =>
-          LanguageBloc(RepositoryProvider.of<GetLanguageRepository>(context))
+          LanguageBloc(RepositoryProvider.of<GetLanguageRepository>(context),widget.baseUrl)
             ..add(LoadLanguageEvent()),
       child: BlocBuilder<LanguageBloc, LanguageState>(
         builder: (context, state) {
@@ -58,9 +60,6 @@ class _LanguageDetailsState extends State<LanguageDetails> {
             scrollDirection: Axis.vertical,
             child: (Column(
               children: [
-                const SizedBox(
-                  height: 10,
-                ),
                 LanguagePieChart(
                     totalNepali: totalNepali,
                     totalTamang: totalTamang,
@@ -72,9 +71,7 @@ class _LanguageDetailsState extends State<LanguageDetails> {
                     totalOthers: totalOthers,
                     totalNotAvailable: totalNotAvailable,
                     totalTotal: totalTotal),
-                const SizedBox(
-                  height: 10,
-                ),
+                verticalspace(),
                 LanguageTable(
                     totalNepali: totalNepali,
                     totalTamang: totalTamang,

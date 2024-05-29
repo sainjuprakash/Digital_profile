@@ -8,7 +8,8 @@ import '../../domain/repository/health_condition_repository.dart';
 
 class ImplHealthConditionRepository extends HealthConditionRepository {
   @override
-  Future<List<HealthConditionModel>> getHealthCondition() async {
+  Future<List<HealthConditionModel>> getHealthCondition(
+      String baseUrl, String endPoints) async {
     final dio = Dio();
     dio.httpClientAdapter = IOHttpClientAdapter(
       createHttpClient: () {
@@ -22,8 +23,7 @@ class ImplHealthConditionRepository extends HealthConditionRepository {
       },
     );
     try {
-      Response<dynamic> response = await dio.get(
-          'https://rubytest.git.com.np/api/household/reports?table_no=table11');
+      Response<dynamic> response = await dio.get("$baseUrl/${endPoints}11");
       if (response.statusCode == 200) {
         List<dynamic> data = response.data['result'];
         return data.map((e) => HealthConditionModel.fromJson(e)).toList();

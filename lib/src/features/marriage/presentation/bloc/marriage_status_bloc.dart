@@ -10,12 +10,13 @@ part 'marriage_status_state.dart';
 
 class MarriageStatusBloc
     extends Bloc<MarriageStatusEvent, MarriageStatusState> {
+  String baseUrl,endPoints;
   MarriageRepository _marriageRepository;
-  MarriageStatusBloc(this._marriageRepository) : super(MarriageLoadingState()) {
+  MarriageStatusBloc(this._marriageRepository,this.baseUrl,this.endPoints) : super(MarriageLoadingState()) {
     on<GetMarriageStatusEvent>((event, emit) async {
       try {
         List<MarriageStatusModel> fetchedModel =
-            await _marriageRepository.getMarriageData();
+            await _marriageRepository.getMarriageData(baseUrl,endPoints);
         emit(MarriageSuccessState(marriageModel: fetchedModel));
       } catch (errMsg) {
         emit(MarriageFailureState(errMsg: errMsg.toString()));

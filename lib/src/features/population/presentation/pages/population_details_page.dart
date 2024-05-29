@@ -9,7 +9,9 @@ import '../widgets/househead_details_bar_graph.dart';
 import '../widgets/population_details_bar_graph.dart';
 
 class PopulationDetailsPage extends StatefulWidget {
-  const PopulationDetailsPage({super.key});
+  String baseUrl;
+
+  PopulationDetailsPage(this.baseUrl, {super.key});
 
   @override
   State<PopulationDetailsPage> createState() => _PopulationDetailsPageState();
@@ -67,7 +69,8 @@ class _PopulationDetailsPageState extends State<PopulationDetailsPage> {
     });
     return BlocProvider(
       create: (context) => PopulationBloc(
-          RepositoryProvider.of<GetPopulationRepository>(context))
+          RepositoryProvider.of<GetPopulationRepository>(context),
+          widget.baseUrl)
         ..add(LoadPopulationEvent()),
       child: SingleChildScrollView(
         scrollDirection: Axis.vertical,

@@ -11,12 +11,13 @@ part 'religion_event.dart';
 part 'religion_state.dart';
 
 class ReligionBloc extends Bloc<ReligionEvent, ReligionState> {
+  String baseUrl,endPoint;
   final ReligionRepository _religionRepository;
-  ReligionBloc(this._religionRepository) : super(ReligionLoadingState()) {
+  ReligionBloc(this._religionRepository,this.baseUrl,this.endPoint) : super(ReligionLoadingState()) {
     on<GetReligionEvent>((event, emit) async {
       try {
         List<ReligionModel> religionModel =
-            await _religionRepository.getReligionData();
+            await _religionRepository.getReligionData(baseUrl,endPoint);
         emit(ReligionSuccessState(religionModel: religionModel));
       } catch (errMsg) {
         emit(ReligionFailureState(errMsg: errMsg.toString()));

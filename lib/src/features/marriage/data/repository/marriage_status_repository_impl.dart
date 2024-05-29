@@ -8,7 +8,8 @@ import 'package:dio/io.dart';
 class ImplMarriageRepository extends MarriageRepository {
   final dio = Dio();
   @override
-  Future<List<MarriageStatusModel>> getMarriageData() async {
+  Future<List<MarriageStatusModel>> getMarriageData(
+      String baseUrl, String endpoints) async {
     dio.httpClientAdapter = IOHttpClientAdapter(
       createHttpClient: () {
         // Don't trust any certificate just because their root cert is trusted.
@@ -21,8 +22,7 @@ class ImplMarriageRepository extends MarriageRepository {
       },
     );
     try {
-      Response<dynamic> response = await dio.get(
-          "https://rubytest.git.com.np/api/household/reports?table_no=table10");
+      Response<dynamic> response = await dio.get("$baseUrl/${endpoints}10");
       if (response.statusCode == 200) {
         List<dynamic> data = response.data['result'];
         return data.map((e) => MarriageStatusModel.fromJson(e)).toList();

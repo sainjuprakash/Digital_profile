@@ -12,7 +12,8 @@ class ImplLiteracyRepository extends LiteracyRepository {
   final dio = Dio();
 
   @override
-  Future<List<LiteracyModel>> getLiteracyData() async {
+  Future<List<LiteracyModel>> getLiteracyData(
+      String baseUrl, String endPoints) async {
     dio.httpClientAdapter = IOHttpClientAdapter(
       createHttpClient: () {
         // Don't trust any certificate just because their root cert is trusted.
@@ -25,8 +26,8 @@ class ImplLiteracyRepository extends LiteracyRepository {
       },
     );
     try {
-      Response<dynamic> responseFromServer = await dio.get(
-          'http://rubytest.git.com.np/api/household/reports?table_no=table7');
+      Response<dynamic> responseFromServer =
+          await dio.get('$baseUrl/${endPoints}7');
       if (responseFromServer.statusCode == 200) {
         List<dynamic> data = responseFromServer.data['result'];
         return data.map((e) => LiteracyModel.fromJson(e)).toList();

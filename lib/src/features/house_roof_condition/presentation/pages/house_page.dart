@@ -1,10 +1,11 @@
-import 'package:digital_profile/src/features/house_condition/data/model/house_condition_model.dart';
-import 'package:digital_profile/src/features/house_condition/data/repository/house_condition_repository_impl.dart';
-import 'package:digital_profile/src/features/house_condition/presentation/widgets/house_bar_chart.dart';
+import 'package:digital_profile/src/features/house_roof_condition/domain/repository/house_condition_repository.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../data/model/house_condition_model.dart';
+import '../../data/repository/house_condition_repository_impl.dart';
 import '../bloc/house_bloc.dart';
+import '../widgets/house_bar_chart.dart';
 
 class HousePage extends StatefulWidget {
   const HousePage({super.key});

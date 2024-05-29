@@ -33,14 +33,14 @@ class ReligionDataTable extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      child: SingleChildScrollView(
-        scrollDirection: Axis.horizontal,
-        child: BlocBuilder<ReligionBloc, ReligionState>(
-          builder: (context, state) {
-            if (state is ReligionSuccessState) {
-              List<ReligionModel> fetchedReligionData = state.religionModel;
-              return DataTable(
+    return SingleChildScrollView(
+      scrollDirection: Axis.horizontal,
+      child: BlocBuilder<ReligionBloc, ReligionState>(
+        builder: (context, state) {
+          if (state is ReligionSuccessState) {
+            List<ReligionModel> fetchedReligionData = state.religionModel;
+            return Card(
+              child: DataTable(
                 columns: [
                   DataColumn(label: Text(l10n.wardnumber)),
                   DataColumn(label: Text(l10n.hindu)),
@@ -94,11 +94,11 @@ class ReligionDataTable extends StatelessWidget {
                         DataCell(Text(totalNotAvailable.toString())),
                         DataCell(Text(totalWardRel.toString())),
                       ])),
-              );
-            }
-            return const Center(child: CircularProgressIndicator());
-          },
-        ),
+              ),
+            );
+          }
+          return const Center(child: CircularProgressIndicator());
+        },
       ),
     );
   }

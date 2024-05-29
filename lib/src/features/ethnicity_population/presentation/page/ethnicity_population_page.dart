@@ -1,3 +1,4 @@
+import 'package:digital_profile/constant/spacing.dart';
 import 'package:digital_profile/src/features/ethnicity_population/data/model/ethnicity_population_model.dart';
 import 'package:digital_profile/src/features/ethnicity_population/data/repository/ethnicity_population_repository_impl.dart';
 import 'package:digital_profile/src/features/ethnicity_population/presentation/widget/ethnicity_population_bar_graph.dart';
@@ -8,8 +9,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../bloc/ethnicity_population_bloc.dart';
 
+//Table no.4
+
 class EthnicityPopulationPage extends StatefulWidget {
-  const EthnicityPopulationPage({super.key});
+  String baseUrl;
+  EthnicityPopulationPage(this.baseUrl, {super.key});
 
   @override
   State<EthnicityPopulationPage> createState() =>
@@ -31,62 +35,58 @@ class _EthnicityPopulationPageState extends State<EthnicityPopulationPage> {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => EthnicityPopulationBloc(
-          RepositoryProvider.of<ImplEthnicityPopulationRepository>(context))
+          RepositoryProvider.of<ImplEthnicityPopulationRepository>(context),
+          widget.baseUrl)
         ..add(GetEthnicityPopulationEvent()),
       child: BlocBuilder<EthnicityPopulationBloc, EthnicityPopulationState>(
-          builder: (context, state) {
-            if (state is EthnicityPopulationLoadingState) {
-              return const Center(child: CircularProgressIndicator());
-            }
-            if (state is EthnicityPopulationSuccessState) {
-              List<EthnicityPopulationModel> fetchedEthPopData =
-                  state.ethnicityPopulationModel;
-              fetchedEthPopData.asMap().forEach((key, value) {
-                totalMuslim += fetchedEthPopData[key].muslim ?? 0;
-                totalHillBrahman += fetchedEthPopData[key].hillBrahman ?? 0;
-                totalTeraiBrahman += fetchedEthPopData[key].teraiBrahman ?? 0;
-                totalHillJanajati += fetchedEthPopData[key].hillJanajati ?? 0;
-                totalTeraiJanajati += fetchedEthPopData[key].teraiJanajati ?? 0;
-                totalHillDalit += fetchedEthPopData[key].hillDalit ?? 0;
-                totalNotAvailable += fetchedEthPopData[key].notAvailable ?? 0;
-                totalWardEthnicity +=
-                    fetchedEthPopData[key].totalWardEthnicity ?? 0;
-                totalOthersCount += fetchedEthPopData[key].others ?? 0;
-              });
-            }
-            return SingleChildScrollView(
-              scrollDirection: Axis.vertical,
-              child: Column(
-                children: [
-                  EthnicityPopulationBarChart(
-                      totalMuslim: totalMuslim,
-                      totalHillBrahman: totalHillBrahman,
-                      totalTeraiBrahman: totalTeraiBrahman,
-                      totalHillJanajati: totalHillJanajati,
-                      totalTeraiJanajati: totalTeraiJanajati,
-                      totalHillDalit: totalHillDalit,
-                      totalOthersCount: totalOthersCount,
-                      totalNotAvailable: totalNotAvailable,
-                      totalWardEthnicity: totalWardEthnicity),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  EthnicityPopulationDataTable(
-                      totalMuslim: totalMuslim,
-                      totalHillBrahman: totalHillBrahman,
-                      totalTeraiBrahman: totalTeraiBrahman,
-                      totalHillJanajati: totalHillJanajati,
-                      totalTeraiJanajati: totalTeraiJanajati,
-                      totalHillDalit: totalHillDalit,
-                      totalOthersCount: totalOthersCount,
-                      totalNotAvailable: totalNotAvailable,
-                      totalWardEthnicity: totalWardEthnicity)
-                ],
-              ),
-            );
-          },
-        ),
+        builder: (context, state) {
 
+          if (state is EthnicityPopulationSuccessState) {
+            List<EthnicityPopulationModel> fetchedEthPopData =
+                state.ethnicityPopulationModel;
+            fetchedEthPopData.asMap().forEach((key, value) {
+              totalMuslim += fetchedEthPopData[key].muslim ?? 0;
+              totalHillBrahman += fetchedEthPopData[key].hillBrahman ?? 0;
+              totalTeraiBrahman += fetchedEthPopData[key].teraiBrahman ?? 0;
+              totalHillJanajati += fetchedEthPopData[key].hillJanajati ?? 0;
+              totalTeraiJanajati += fetchedEthPopData[key].teraiJanajati ?? 0;
+              totalHillDalit += fetchedEthPopData[key].hillDalit ?? 0;
+              totalNotAvailable += fetchedEthPopData[key].notAvailable ?? 0;
+              totalWardEthnicity +=
+                  fetchedEthPopData[key].totalWardEthnicity ?? 0;
+              totalOthersCount += fetchedEthPopData[key].others ?? 0;
+            });
+          }
+          return SingleChildScrollView(
+            scrollDirection: Axis.vertical,
+            child: Column(
+              children: [
+                EthnicityPopulationBarChart(
+                    totalMuslim: totalMuslim,
+                    totalHillBrahman: totalHillBrahman,
+                    totalTeraiBrahman: totalTeraiBrahman,
+                    totalHillJanajati: totalHillJanajati,
+                    totalTeraiJanajati: totalTeraiJanajati,
+                    totalHillDalit: totalHillDalit,
+                    totalOthersCount: totalOthersCount,
+                    totalNotAvailable: totalNotAvailable,
+                    totalWardEthnicity: totalWardEthnicity),
+                verticalspace(),
+                EthnicityPopulationDataTable(
+                    totalMuslim: totalMuslim,
+                    totalHillBrahman: totalHillBrahman,
+                    totalTeraiBrahman: totalTeraiBrahman,
+                    totalHillJanajati: totalHillJanajati,
+                    totalTeraiJanajati: totalTeraiJanajati,
+                    totalHillDalit: totalHillDalit,
+                    totalOthersCount: totalOthersCount,
+                    totalNotAvailable: totalNotAvailable,
+                    totalWardEthnicity: totalWardEthnicity)
+              ],
+            ),
+          );
+        },
+      ),
     );
   }
 }

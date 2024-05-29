@@ -7,8 +7,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../data/model/literacy_model.dart';
 import '../bloc/literacy_bloc.dart';
 
+//Table no.8
 class LiteracyPage extends StatefulWidget {
-  const LiteracyPage({super.key});
+  String baseUrl, endPoint;
+  LiteracyPage(this.baseUrl, this.endPoint, {super.key});
 
   @override
   State<LiteracyPage> createState() => _LiteracyPageState();
@@ -51,9 +53,11 @@ class _LiteracyPageState extends State<LiteracyPage> {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) =>
-          LiteracyBloc(RepositoryProvider.of<ImplLiteracyRepository>(context))
-            ..add(GetLiteracyEvent()),
+      create: (context) => LiteracyBloc(
+          RepositoryProvider.of<ImplLiteracyRepository>(context),
+          widget.baseUrl,
+          widget.endPoint)
+        ..add(GetLiteracyEvent()),
       child:
           BlocBuilder<LiteracyBloc, LiteracyState>(builder: (context, state) {
         if (state is LiteracySuccessState) {

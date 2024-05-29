@@ -9,8 +9,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../data/model/religion_model.dart';
 import '../bloc/religion_bloc.dart';
 
+//Table no.6
+
 class ReligionPage extends StatefulWidget {
-  const ReligionPage({super.key});
+  String baseUrl, endPoint;
+  ReligionPage(this.baseUrl, this.endPoint, {super.key});
 
   @override
   State<ReligionPage> createState() => _ReligionPageState();
@@ -30,9 +33,11 @@ class _ReligionPageState extends State<ReligionPage> {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) =>
-          ReligionBloc(RepositoryProvider.of<ImplReligionRepository>(context))
-            ..add(GetReligionEvent()),
+      create: (context) => ReligionBloc(
+          RepositoryProvider.of<ImplReligionRepository>(context),
+          widget.baseUrl,
+          widget.endPoint)
+        ..add(GetReligionEvent()),
       child:
           BlocBuilder<ReligionBloc, ReligionState>(builder: (context, state) {
         if (state is ReligionSuccessState) {

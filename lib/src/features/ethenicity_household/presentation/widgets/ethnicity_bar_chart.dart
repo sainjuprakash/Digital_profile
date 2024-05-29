@@ -7,6 +7,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../../app_localization/l10n.dart';
 import '../bloc/ethnicity_bloc.dart';
 
+
+
 class EthnicityBarGraph extends StatelessWidget {
   int? totalMuslim;
   int? totalHillBrahman;
@@ -90,7 +92,7 @@ class EthnicityBarGraph extends StatelessWidget {
                         // topTitles: const AxisTitles(),
                       ),
                       minY: 0,
-                      maxY: 1700,
+                      maxY: 2500,
                       barGroups: [
                         BarChartGroupData(
                           x: 0,

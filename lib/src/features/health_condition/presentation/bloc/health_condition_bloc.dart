@@ -12,13 +12,16 @@ part 'health_condition_state.dart';
 
 class HealthConditionBloc
     extends Bloc<HealthConditionEvent, HealthConditionState> {
+  String baseUrl, endPoints;
   HealthConditionRepository _healthConditionRepository;
-  HealthConditionBloc(this._healthConditionRepository)
+  HealthConditionBloc(
+      this._healthConditionRepository, this.baseUrl, this.endPoints)
       : super(HealthConditionLoadingState()) {
     on<GetHealthConditionEvent>((event, emit) async {
       try {
         List<HealthConditionModel> fetchedHlthModel =
-            await _healthConditionRepository.getHealthCondition();
+            await _healthConditionRepository.getHealthCondition(
+                baseUrl, endPoints);
         emit(HealthConditionSuccessState(
             healthConditionModel: fetchedHlthModel));
       } catch (errMsg) {

@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
@@ -12,11 +10,13 @@ part 'residence_state.dart';
 
 class ResidenceBloc extends Bloc<ResidenceEvent, ResidenceState> {
   ResidenceRepository _residenceRepository;
-  ResidenceBloc(this._residenceRepository) : super(ResidenceLoadingState()) {
+  String baseUrl, endPoints;
+  ResidenceBloc(this._residenceRepository, this.baseUrl, this.endPoints)
+      : super(ResidenceLoadingState()) {
     on<GetResidenceEvent>((event, emit) async {
       try {
         List<ResidenceModel> fetchedResidenceModel =
-            await _residenceRepository.getResidenceData();
+            await _residenceRepository.getResidenceData(baseUrl,endPoints);
         emit(ResidenceSuccessState(
             fetchedResidenceModel: fetchedResidenceModel));
       } catch (errMsg) {

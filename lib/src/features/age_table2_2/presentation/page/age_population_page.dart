@@ -9,7 +9,8 @@ import '../../data/repository/population_acc_age_repository_impl.dart';
 import '../bloc/age_population_bloc.dart';
 
 class AgePopulationPage extends StatefulWidget {
-  const AgePopulationPage({super.key});
+  String baseUrl;
+  AgePopulationPage(this.baseUrl, {super.key});
 
   @override
   State<AgePopulationPage> createState() => _AgePopulationPageState();
@@ -38,9 +39,9 @@ class _AgePopulationPageState extends State<AgePopulationPage> {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) =>
-          AgePopulationBloc(RepositoryProvider.of<ImplAgeRepository>(context))
-            ..add(GetAgePopulationEvent()),
+      create: (context) => AgePopulationBloc(
+          RepositoryProvider.of<ImplAgeRepository>(context), widget.baseUrl)
+        ..add(GetAgePopulationEvent()),
       child: BlocBuilder<AgePopulationBloc, AgePopulationState>(
         builder: (context, state) {
           if (state is AgePopulationLoadingState) {

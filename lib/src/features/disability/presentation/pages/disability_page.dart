@@ -6,12 +6,13 @@ import 'package:digital_profile/src/features/disability/presentation/widgets/dis
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
-import '../../../../../constant/appBar/custom_app_bar.dart';
 import '../bloc/disability_bloc.dart';
 
+//Table no.9
+
 class DisabilityPage extends StatefulWidget {
-  const DisabilityPage({super.key});
+  String baseUrl, endPoints;
+  DisabilityPage(this.baseUrl, this.endPoints, {super.key});
 
   @override
   State<DisabilityPage> createState() => _DisabilityPageState();
@@ -35,7 +36,9 @@ class _DisabilityPageState extends State<DisabilityPage> {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => DisabilityBloc(
-          RepositoryProvider.of<ImplDisabilityRepository>(context))
+          RepositoryProvider.of<ImplDisabilityRepository>(context),
+          widget.baseUrl,
+          widget.endPoints)
         ..add(GetDisabilityEvent()),
       child: BlocBuilder<DisabilityBloc, DisabilityState>(
         builder: (context, state) {
@@ -65,7 +68,6 @@ class _DisabilityPageState extends State<DisabilityPage> {
             scrollDirection: Axis.vertical,
             child: Column(
               children: [
-                verticalspace(),
                 DisabilityBarChart(
                     totalAble: totalAble,
                     totalDisable: totalDisable,

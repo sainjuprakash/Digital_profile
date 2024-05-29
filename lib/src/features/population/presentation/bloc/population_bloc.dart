@@ -11,11 +11,12 @@ part 'population_state.dart';
 
 class PopulationBloc extends Bloc<PopulationEvent, PopulationState> {
   final PopulationRepository _populationRepository;
-  PopulationBloc(this._populationRepository) : super(PopulationLoadingState()) {
+  String baseurl;
+  PopulationBloc(this._populationRepository,this.baseurl) : super(PopulationLoadingState()) {
     on<LoadPopulationEvent>((event, emit) async {
       try {
         List<PopulationModel> populationData =
-            await _populationRepository.getPopData();
+            await _populationRepository.getPopData(baseurl);
 
         emit(PopulationSuccessState(populationModel: populationData));
         // print("Success State");

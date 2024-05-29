@@ -8,7 +8,7 @@ import '../models/language_model.dart';
 class GetLanguageRepository extends LanguageRepository {
 
   @override
-  Future<List<LanguageModel>> getLanguageData() async {
+  Future<List<LanguageModel>> getLanguageData(String baseUrl) async {
     final dio = Dio();
     dio.httpClientAdapter = IOHttpClientAdapter(
       createHttpClient: () {
@@ -23,7 +23,7 @@ class GetLanguageRepository extends LanguageRepository {
     );
     try {
       Response<dynamic> responseFromServer = await dio.get(
-          'http://rubytest.git.com.np/api/household/reports?table_no=table5');
+          '$baseUrl/api/household/reports?table_no=table5');
       if (responseFromServer.statusCode == 200) {
         final List<dynamic> results = responseFromServer.data['result'];
         //print(results);
