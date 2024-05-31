@@ -100,6 +100,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("घरपरिवारमा उपलब्ध सुविधाहरु"),
         "houseFacilityTitle": MessageLookupByLibrary.simpleMessage(
             "बसोबास गरेको घरको छाना सम्बन्धी विवरण"),
+        "houseOwnershipTitle": MessageLookupByLibrary.simpleMessage(
+            "बसोबास गरेको घरको स्वामित्व सम्बन्धी विवरण"),
         "householdCount": MessageLookupByLibrary.simpleMessage("घरधुरी संख्या"),
         "householddata": MessageLookupByLibrary.simpleMessage("घरपरिवार डाटा"),
         "illiterate": MessageLookupByLibrary.simpleMessage("निरक्षर"),
@@ -151,6 +153,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "none": MessageLookupByLibrary.simpleMessage("कुनै पनि छैन"),
         "notavailable": MessageLookupByLibrary.simpleMessage("उपलब्ध नभएको"),
         "ordinary": MessageLookupByLibrary.simpleMessage("साधारण"),
+        "organizational": MessageLookupByLibrary.simpleMessage("संस्थागत घर"),
         "others": MessageLookupByLibrary.simpleMessage("अन्य"),
         "others16to49": MessageLookupByLibrary.simpleMessage("अन्य(१६-४९)"),
         "others50to69": MessageLookupByLibrary.simpleMessage("अन्य(५०-६९)"),
@@ -163,6 +166,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("अन्य(६ भन्दा कम)"),
         "othrslanguage": MessageLookupByLibrary.simpleMessage("अन्य भाषा"),
         "password": MessageLookupByLibrary.simpleMessage("पासवर्ड"),
+        "personal": MessageLookupByLibrary.simpleMessage("नीजि/आफ्नै"),
         "polygami": MessageLookupByLibrary.simpleMessage("वहुविवाह"),
         "populationClassificationtitle": MessageLookupByLibrary.simpleMessage(
             "उमेर वर्गीकरण अनुसार जनसंख्या"),
@@ -176,6 +180,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "religiontitle":
             MessageLookupByLibrary.simpleMessage("धर्मको आधारमा जनसंख्या"),
         "remarried": MessageLookupByLibrary.simpleMessage("पुनःविवाह"),
+        "rental": MessageLookupByLibrary.simpleMessage("भाडाको धर"),
         "report": MessageLookupByLibrary.simpleMessage("रिपोर्ट"),
         "residencetitle":
             MessageLookupByLibrary.simpleMessage("बसोबासको अवस्था"),
@@ -197,6 +202,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "slammer": MessageLookupByLibrary.simpleMessage("भकभके"),
         "solar": MessageLookupByLibrary.simpleMessage("सोलार"),
         "stoneRoof": MessageLookupByLibrary.simpleMessage("टायल/ढुङ्गाको"),
+        "sukumbasi": MessageLookupByLibrary.simpleMessage("सुकुम्वासी"),
         "tamang": MessageLookupByLibrary.simpleMessage("तामाङ"),
         "technical": MessageLookupByLibrary.simpleMessage("प्राविधिक"),
         "telephone": MessageLookupByLibrary.simpleMessage("टेलिफाेन,माेबार्इल"),

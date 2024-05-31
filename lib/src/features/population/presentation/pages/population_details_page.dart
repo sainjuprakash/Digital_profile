@@ -1,3 +1,4 @@
+import 'package:digital_profile/constant/spacing.dart';
 import 'package:digital_profile/src/features/population/data/repository/population_repository_impl.dart';
 import 'package:digital_profile/src/features/population/presentation/widgets/population_data_table.dart';
 import 'package:flutter/cupertino.dart';
@@ -98,14 +99,9 @@ class _PopulationDetailsPageState extends State<PopulationDetailsPage> {
                       children: containeers,
                     ),
                   ),
-                  const SizedBox(
-                    height: 10,
-                  ),
+                  verticalspace(),
                 ],
               ),
-            ),
-            const SizedBox(
-              height: 10,
             ),
             Card(
               child: Column(

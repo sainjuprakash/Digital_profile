@@ -1,4 +1,5 @@
 import 'package:digital_profile/src/features/literacy_status/data/repository/literacy_repository_impl.dart';
+import 'package:digital_profile/src/features/literacy_status/presentation/widgets/literacy_bar_chart.dart';
 import 'package:digital_profile/src/features/literacy_status/presentation/widgets/literacy_data_table.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -160,6 +161,41 @@ class _LiteracyPageState extends State<LiteracyPage> {
         }
         return Column(
           children: [
+            LiteracyBarChart(
+                totalLiterate,
+                totalPrePrimary,
+                totalPrimary,
+                totalSecondary,
+                totalTechnical,
+                totalBachelor,
+                totalMaster,
+                totalMphil,
+                totalUnderAge,
+                totalIlliterate,
+                totalNotAvailable,
+                totalMaleLiterate,
+                totalMalePrePrimary,
+                totalMalePrimary,
+                totalMaleSecondary,
+                totalMaleTechnical,
+                totalMaleBachelor,
+                totalMaleMaster,
+                totalMaleMphil,
+                totalMaleUnderAge,
+                totalMaleIlliterate,
+                totalMaleNotAvailable,
+                totalFemaleLiterate,
+                totalFemalePrePrimary,
+                totalFemalePrimary,
+                totalFemaleSecondary,
+                totalFemaleTechnical,
+                totalFemaleBachelor,
+                totalFemaleMaster,
+                totalFemaleMphil,
+                totalFemaleUnderAge,
+                totalFemaleIlliterate,
+                totalFemaleNotAvailable,
+                totalVillageEduCount),
             LiteracyDataTable(
                 totalLiterate,
                 totalPrePrimary,

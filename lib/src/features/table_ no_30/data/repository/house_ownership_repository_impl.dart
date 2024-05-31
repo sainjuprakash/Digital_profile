@@ -1,16 +1,15 @@
 import 'dart:io';
 
-import 'package:digital_profile/src/features/religion/data/model/religion_model.dart';
-import 'package:digital_profile/src/features/religion/domain/repository/religion_repository.dart';
+import 'package:digital_profile/src/features/table_%20no_30/data/model/house_ownership_model.dart';
+import 'package:digital_profile/src/features/table_%20no_30/domain/repositiry/house_ownership_repository.dart';
 import 'package:dio/dio.dart';
 import 'package:dio/io.dart';
 
-import '../../../ethenicity_household/data/models/ethnicity_model.dart';
-
-class ImplReligionRepository extends ReligionRepository {
-  final dio = Dio();
+class ImplHouseOwnershipRepository extends HouseOwnershipRepository {
   @override
-  Future<List<ReligionModel>> getReligionData(String baseUrl, String endPoint) async {
+  Future<List<HouseOwnershipModel>> getHouseOwnershipData(
+      String baseUrl, String endPoint) async {
+    final dio = Dio();
     dio.httpClientAdapter = IOHttpClientAdapter(
       createHttpClient: () {
         // Don't trust any certificate just because their root cert is trusted.
@@ -23,16 +22,16 @@ class ImplReligionRepository extends ReligionRepository {
       },
     );
     try {
-      Response<dynamic> responseFromServer = await dio.get(
-          '$baseUrl/${endPoint}6');
+      Response<dynamic> responseFromServer =
+          await dio.get('$baseUrl/${endPoint}30');
       if (responseFromServer.statusCode == 200) {
         final List<dynamic> result = responseFromServer.data['result'];
-        return result.map((e) => ReligionModel.fromJson(e)).toList();
+        return result.map((e) => HouseOwnershipModel.fromJson(e)).toList();
       } else {
         throw Exception(responseFromServer.statusCode);
       }
     } catch (errMsg) {
-      throw Exception('Unable to load religion data $errMsg');
+      throw Exception('Unable to load data $errMsg');
     }
   }
 }

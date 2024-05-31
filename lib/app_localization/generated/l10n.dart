@@ -1609,6 +1609,56 @@ class AppLocalizations {
       args: [],
     );
   }
+
+  /// `बसोबास गरेको घरको स्वामित्व सम्बन्धी विवरण`
+  String get houseOwnershipTitle {
+    return Intl.message(
+      'बसोबास गरेको घरको स्वामित्व सम्बन्धी विवरण',
+      name: 'houseOwnershipTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `नीजि/आफ्नै`
+  String get personal {
+    return Intl.message(
+      'नीजि/आफ्नै',
+      name: 'personal',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `भाडाको धर`
+  String get rental {
+    return Intl.message(
+      'भाडाको धर',
+      name: 'rental',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `संस्थागत घर`
+  String get organizational {
+    return Intl.message(
+      'संस्थागत घर',
+      name: 'organizational',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `सुकुम्वासी`
+  String get sukumbasi {
+    return Intl.message(
+      'सुकुम्वासी',
+      name: 'sukumbasi',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<AppLocalizations> {

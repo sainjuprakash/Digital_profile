@@ -23,6 +23,7 @@ import 'package:digital_profile/src/features/population/presentation/bloc/popula
 import 'package:digital_profile/src/features/population/presentation/pages/population_details_page.dart';
 import 'package:digital_profile/src/features/religion/presentation/page/religion_page.dart';
 import 'package:digital_profile/src/features/residence/presentation/pages/residence_page.dart';
+import 'package:digital_profile/src/features/table_%20no_30/presentation/pages/house_ownership_page.dart';
 import 'package:digital_profile/src/features/toilet/presentation/pages/toilet_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -56,6 +57,7 @@ class _MyHomePageState extends State<MyHomePage> {
     'Table 17 - 3.7 शौचालयको प्रकार अनुसार घरपरिवार संख्या',
     'Table 18 - 3.8 घरपरिवारमा उपलब्ध सुविधाहरु',
     'Table 23 - 4.4 चौपाया तथा पशुपन्छी पाल्ने घरपरिवार विवरण',
+    'Table 30 - 5.3 बसोबास गरेको घरको स्वामित्व सम्बन्धी विवरण',
     'Table 31 - 5.4 बसोबास गरेको घरको छाना सम्बन्धी विवरण'
   ];
   bool isUserLoggedIn = false;
@@ -261,6 +263,9 @@ class _MyHomePageState extends State<MyHomePage> {
     } else if (selectedItem ==
         'Table 23 - 4.4 चौपाया तथा पशुपन्छी पाल्ने घरपरिवार विवरण') {
       return AnimalsPage(widget.baseUrl, widget.endPoint);
+    } else if (selectedItem ==
+        'Table 30 - 5.3 बसोबास गरेको घरको स्वामित्व सम्बन्धी विवरण') {
+      return HouseOwnershipPage(widget.baseUrl, widget.endPoint);
     } else if (selectedItem ==
         'Table 31 - 5.4 बसोबास गरेको घरको छाना सम्बन्धी विवरण') {
       return HousePage(widget.baseUrl, widget.endPoint);

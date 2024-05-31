@@ -33,23 +33,6 @@ class _PopulationBarGraphState extends State<PopulationBarGraph> {
               ),
               child: BarChart(BarChartData(
                 alignment: BarChartAlignment.spaceAround,
-                /*gridData: FlGridData(
-                  show: true,
-                  drawVerticalLine: false,
-                  drawHorizontalLine: false,
-                  getDrawingHorizontalLine: (value) => FlLine(
-                  color: Colors.pink.withOpacity(0.2),
-                    strokeWidth: 1,
-                  ),
-                ),*/
-                /*borderData: FlBorderData(
-                  show: true,
-                  border: Border.symmetric(
-                    horizontal: BorderSide(
-                      color: Colors.pinkAccent.withOpacity(0.2),
-                    ),
-                  ),
-                ),*/
                 minY: 0,
                 maxY: 2000,
                 barGroups: populationData

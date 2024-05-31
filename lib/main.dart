@@ -19,6 +19,7 @@ import 'package:digital_profile/src/features/marriage/data/repository/marriage_s
 import 'package:digital_profile/src/features/population/data/repository/population_repository_impl.dart';
 import 'package:digital_profile/src/features/religion/data/repository/religion_repository_impl.dart';
 import 'package:digital_profile/src/features/residence/data/repository/residence_repository_impl.dart';
+import 'package:digital_profile/src/features/table_%20no_30/data/repository/house_ownership_repository_impl.dart';
 import 'package:digital_profile/src/features/toilet/data/repository/toilet_repository_impl.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -71,6 +72,7 @@ class MyApp extends StatelessWidget {
         RepositoryProvider(create: (context) => ImplToiletRepository()),
         RepositoryProvider(create: (context) => ImplHomeFacilitiesRepository()),
         RepositoryProvider(create: (context) => ImplAnimalRepository()),
+        RepositoryProvider(create: (context) => ImplHouseOwnershipRepository()),
         RepositoryProvider(create: (context) => ImplHouseRoofRepository()),
       ],
       child: MaterialApp(
