@@ -1,5 +1,5 @@
 import '../../data/model/animals_model.dart';
 
 abstract class AnimalRepository {
-  Future<List<AnimalsModel>> getAnimalsData();
+  Future<List<AnimalsModel>> getAnimalsData(String baseUrl, String endPoint);
 }

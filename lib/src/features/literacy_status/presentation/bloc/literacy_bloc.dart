@@ -18,6 +18,7 @@ class LiteracyBloc extends Bloc<LiteracyEvent, LiteracyState> {
         List<LiteracyModel> fetchedLiteracyData =
             await _literacyRepository.getLiteracyData(baseUrl, endPoints);
         emit(LiteracySuccessState(literacyModel: fetchedLiteracyData));
+        print('literacy success state');
       } catch (errMsg) {
         emit(LiteracyFailureState(errMsg: errMsg.toString()));
       }

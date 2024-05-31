@@ -7,7 +7,8 @@ import 'package:dio/io.dart';
 
 class ImplToiletRepository extends ToiletRepository {
   @override
-  Future<List<ToiletModel>> getToiletData() async {
+  Future<List<ToiletModel>> getToiletData(
+      String baseUrl, String endPoint) async {
     final dio = Dio();
     dio.httpClientAdapter = IOHttpClientAdapter(
       createHttpClient: () {
@@ -21,8 +22,8 @@ class ImplToiletRepository extends ToiletRepository {
       },
     );
     try {
-      Response<dynamic> responseFromServer = await dio.get(
-          'http://rubytest.git.com.np/api/household/reports?table_no=table17');
+      Response<dynamic> responseFromServer =
+          await dio.get('$baseUrl/${endPoint}17');
       if (responseFromServer.statusCode == 200) {
         final List<dynamic> result = responseFromServer.data['result'];
         return result.map((e) => ToiletModel.fromJson(e)).toList();

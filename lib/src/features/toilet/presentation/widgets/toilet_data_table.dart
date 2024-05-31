@@ -20,14 +20,14 @@ class ToiletDataTable extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      child: SingleChildScrollView(
-        scrollDirection: Axis.horizontal,
-        child: BlocBuilder<ToiletBloc, ToiletState>(
-          builder: (context, state) {
-            if (state is ToiletSuccessState) {
-              List<ToiletModel> fetchedToiletData = state.toiletModel;
-              return DataTable(
+    return SingleChildScrollView(
+      scrollDirection: Axis.horizontal,
+      child: BlocBuilder<ToiletBloc, ToiletState>(
+        builder: (context, state) {
+          if (state is ToiletSuccessState) {
+            List<ToiletModel> fetchedToiletData = state.toiletModel;
+            return Card(
+              child: DataTable(
                 columns: [
                   DataColumn(label: Text(l10n.wardnumber)),
                   DataColumn(label: Text(l10n.noToilet)),
@@ -69,11 +69,11 @@ class ToiletDataTable extends StatelessWidget {
                         DataCell(Text(totalNotAvailable.toString())),
                         DataCell(Text(totalWardToilet.toString())),
                       ])),
-              );
-            }
-            return const Center(child: CircularProgressIndicator());
-          },
-        ),
+              ),
+            );
+          }
+          return const Center(child: CircularProgressIndicator());
+        },
       ),
     );
   }

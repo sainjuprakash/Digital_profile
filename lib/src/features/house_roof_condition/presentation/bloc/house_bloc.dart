@@ -9,12 +9,14 @@ part 'house_event.dart';
 part 'house_state.dart';
 
 class HouseBloc extends Bloc<HouseEvent, HouseState> {
-  HouseConditionRepository _houseConditionRepository;
-  HouseBloc(this._houseConditionRepository) : super(HouseLoadingState()) {
+  String baseUrl, endPoint;
+  HouseRoofConditionRepository _houseConditionRepository;
+  HouseBloc(this._houseConditionRepository, this.baseUrl, this.endPoint)
+      : super(HouseLoadingState()) {
     on<GetHouseEvent>((event, emit) async {
       try {
         List<HouseConditionModel> fetchedModel =
-            await _houseConditionRepository.getHomeData();
+            await _houseConditionRepository.getHomeData(baseUrl, endPoint);
         emit(HouseSuccessState(fetchedModel));
       } catch (errMsg) {
         emit(HouseFailureState(errMsg.toString()));

@@ -7,7 +7,8 @@ import 'package:dio/io.dart';
 
 class ImplInsuranceRepository extends InsuranceRepository {
   @override
-  Future<List<InsuranceModel>> getInsuranceData() async {
+  Future<List<InsuranceModel>> getInsuranceData(
+      String baseUrl, String endPoint) async {
     final dio = Dio();
     dio.httpClientAdapter = IOHttpClientAdapter(
       createHttpClient: () {
@@ -21,8 +22,7 @@ class ImplInsuranceRepository extends InsuranceRepository {
       },
     );
     try {
-      Response<dynamic> response = await dio.get(
-          "http://rubytest.git.com.np/api/household/reports?table_no=table13");
+      Response<dynamic> response = await dio.get("$baseUrl/${endPoint}13");
       if (response.statusCode == 200) {
         List<dynamic> data = response.data['result'];
         return data.map((e) => InsuranceModel.fromJson(e)).toList();

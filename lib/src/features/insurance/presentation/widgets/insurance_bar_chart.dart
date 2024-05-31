@@ -55,7 +55,7 @@ class InsuranceBarChart extends StatelessWidget {
                       child: BarChart(BarChartData(
                           alignment: BarChartAlignment.spaceAround,
                           minY: 0,
-                          maxY: 2000,
+                          maxY: 4000,
                           titlesData: FlTitlesData(
                               topTitles: const AxisTitles(
                                   sideTitles: SideTitles(showTitles: false)),

@@ -10,7 +10,8 @@ import '../../data/repository/animals_repository_impl.dart';
 import '../bloc/animals_bloc.dart';
 
 class AnimalsPage extends StatefulWidget {
-  const AnimalsPage({super.key});
+  String baseUrl, endPoint;
+  AnimalsPage(this.baseUrl, this.endPoint, {super.key});
 
   @override
   State<AnimalsPage> createState() => _AnimalsPageState();
@@ -25,9 +26,11 @@ class _AnimalsPageState extends State<AnimalsPage> {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) =>
-          AnimalsBloc(RepositoryProvider.of<ImplAnimalRepository>(context))
-            ..add(GetAnimalsEvent()),
+      create: (context) => AnimalsBloc(
+          RepositoryProvider.of<ImplAnimalRepository>(context),
+          widget.baseUrl,
+          widget.endPoint)
+        ..add(GetAnimalsEvent()),
       child: BlocBuilder<AnimalsBloc, AnimalsState>(
         builder: (context, state) {
           if (state is AnimalsLoadingState) {

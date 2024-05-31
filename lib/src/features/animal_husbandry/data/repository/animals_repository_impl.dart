@@ -7,7 +7,8 @@ import 'package:dio/io.dart';
 
 class ImplAnimalRepository extends AnimalRepository {
   @override
-  Future<List<AnimalsModel>> getAnimalsData() async {
+  Future<List<AnimalsModel>> getAnimalsData(
+      String baseUrl, String endPoint) async {
     final dio = Dio();
     dio.httpClientAdapter = IOHttpClientAdapter(
       createHttpClient: () {
@@ -21,8 +22,7 @@ class ImplAnimalRepository extends AnimalRepository {
       },
     );
     try {
-      Response<dynamic> response = await dio.get(
-          'https://rubytest.git.com.np/api/household/reports?table_no=table23');
+      Response<dynamic> response = await dio.get('$baseUrl/${endPoint}23');
       if (response.statusCode == 200) {
         List<dynamic> data = response.data['result'];
         return data.map((e) => AnimalsModel.fromJson(e)).toList();

@@ -10,7 +10,8 @@ import '../../data/model/toilet_model.dart';
 import '../bloc/toilet_bloc.dart';
 
 class ToiletPage extends StatefulWidget {
-  const ToiletPage({super.key});
+  String baseUrl, endPoint;
+  ToiletPage(this.baseUrl, this.endPoint, {super.key});
 
   @override
   State<ToiletPage> createState() => _ToiletPageState();
@@ -27,9 +28,11 @@ class _ToiletPageState extends State<ToiletPage> {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) =>
-          ToiletBloc(RepositoryProvider.of<ImplToiletRepository>(context))
-            ..add(GetToiletEvent()),
+      create: (context) => ToiletBloc(
+          RepositoryProvider.of<ImplToiletRepository>(context),
+          widget.baseUrl,
+          widget.endPoint)
+        ..add(GetToiletEvent()),
       child: BlocBuilder<ToiletBloc, ToiletState>(
         builder: (context, state) {
           if (state is ToiletLoadingState) {

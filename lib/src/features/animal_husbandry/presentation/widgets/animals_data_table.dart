@@ -18,15 +18,15 @@ class AnimalDataTable extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      child: BlocBuilder<AnimalsBloc, AnimalsState>(
-        builder: (context, state) {
-          if (state is AnimalsSuccessState) {
-            List<AnimalsModel> fetchedAnimalsData = state.fetchedAnimalsModel;
-            return SingleChildScrollView(
+    return BlocBuilder<AnimalsBloc, AnimalsState>(
+      builder: (context, state) {
+        if (state is AnimalsSuccessState) {
+          List<AnimalsModel> fetchedAnimalsData = state.fetchedAnimalsModel;
+          return SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: SingleChildScrollView(
               scrollDirection: Axis.horizontal,
-              child: SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
+              child: Card(
                 child: DataTable(
                   columns: [
                     DataColumn(label: Text(l10n.wardnumber)),
@@ -66,11 +66,11 @@ class AnimalDataTable extends StatelessWidget {
                         ])),
                 ),
               ),
-            );
-          }
-          return const Center(child: CircularProgressIndicator());
-        },
-      ),
+            ),
+          );
+        }
+        return const Center(child: CircularProgressIndicator());
+      },
     );
   }
 }

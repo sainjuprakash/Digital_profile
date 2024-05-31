@@ -9,7 +9,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../bloc/electricity_bloc.dart';
 
 class ElectricityPage extends StatefulWidget {
-  const ElectricityPage({super.key});
+  String baseUrl, endPoint;
+  ElectricityPage(this.baseUrl, this.endPoint, {super.key});
 
   @override
   State<ElectricityPage> createState() => _ElectricityPageState();
@@ -28,7 +29,9 @@ class _ElectricityPageState extends State<ElectricityPage> {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => ElectricityBloc(
-          RepositoryProvider.of<ImplElectricityRepository>(context))
+          RepositoryProvider.of<ImplElectricityRepository>(context),
+          widget.baseUrl,
+          widget.endPoint)
         ..add(GetElectricityEvent()),
       child: BlocBuilder<ElectricityBloc, ElectricityState>(
         builder: (context, state) {

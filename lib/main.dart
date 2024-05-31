@@ -10,7 +10,7 @@ import 'package:digital_profile/src/features/ethenicity_household/data/repositor
 import 'package:digital_profile/src/features/ethnicity_population/data/repository/ethnicity_population_repository_impl.dart';
 import 'package:digital_profile/src/features/health_condition/data/repository/health_condition_repository_impl.dart';
 import 'package:digital_profile/src/features/home_facilities/data/repository/home_facilities_repository_impl.dart';
-import 'package:digital_profile/src/features/house_roof_condition/data/repository/house_condition_repository_impl.dart';
+import 'package:digital_profile/src/features/house_roof_condition/data/repository/house_roof_condition_repository_impl.dart';
 import 'package:digital_profile/src/features/insurance/data/repository/insurance_repository_impl.dart';
 import 'package:digital_profile/src/features/language/data/repository/language_repository_impl.dart';
 import 'package:digital_profile/src/features/literacy_status/data/repository/literacy_repository_impl.dart';
@@ -71,7 +71,7 @@ class MyApp extends StatelessWidget {
         RepositoryProvider(create: (context) => ImplToiletRepository()),
         RepositoryProvider(create: (context) => ImplHomeFacilitiesRepository()),
         RepositoryProvider(create: (context) => ImplAnimalRepository()),
-        RepositoryProvider(create: (context) => ImplHouseRepository()),
+        RepositoryProvider(create: (context) => ImplHouseRoofRepository()),
       ],
       child: MaterialApp(
         localizationsDelegates: const [

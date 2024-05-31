@@ -12,13 +12,15 @@ part 'home_facilities_state.dart';
 
 class HomeFacilitiesBloc
     extends Bloc<HomeFacilitiesEvent, HomeFacilitiesState> {
+  String baseUrl, endPoint;
   HomeFacilitiesRepository _homeFacilitiesRepository;
-  HomeFacilitiesBloc(this._homeFacilitiesRepository)
+  HomeFacilitiesBloc(
+      this._homeFacilitiesRepository, this.baseUrl, this.endPoint)
       : super(HomeFacilitiesLoadingState()) {
     on<HomeFacilitiesEvent>((event, emit) async {
       try {
-        List<HomeFacilitiesModel> fetchedModel =
-            await _homeFacilitiesRepository.getHomeFacilities();
+        List<HomeFacilitiesModel> fetchedModel = await _homeFacilitiesRepository
+            .getHomeFacilities(baseUrl, endPoint);
         emit(HomeFacilitiesSuccessState(fetchedModel));
       } catch (errMsg) {
         emit(HomeFacilitiesFailureState(errMsg.toString()));

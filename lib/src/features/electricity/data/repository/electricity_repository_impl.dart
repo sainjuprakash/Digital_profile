@@ -4,10 +4,12 @@ import 'package:digital_profile/src/features/electricity/data/model/electricity_
 import 'package:digital_profile/src/features/electricity/domain/repository/electricity_repository.dart';
 import 'package:dio/dio.dart';
 import 'package:dio/io.dart';
+import 'package:flutter/cupertino.dart';
 
 class ImplElectricityRepository extends ElectricityRepository {
   @override
-  Future<List<ElectricityModel>> getElectricityData() async {
+  Future<List<ElectricityModel>> getElectricityData(
+      String baseUrl, String endPoint) async {
     final dio = Dio();
     dio.httpClientAdapter = IOHttpClientAdapter(
       createHttpClient: () {
@@ -21,8 +23,7 @@ class ImplElectricityRepository extends ElectricityRepository {
       },
     );
     try {
-      Response<dynamic> response = await dio.get(
-          "http://rubytest.git.com.np/api/household/reports?table_no=table16");
+      Response<dynamic> response = await dio.get("$baseUrl/${endPoint}16");
       if (response.statusCode == 200) {
         List<dynamic> data = response.data['result'];
         return data.map((e) => ElectricityModel.fromJson(e)).toList();

@@ -7,7 +7,8 @@ import 'package:dio/io.dart';
 
 class ImplHomeFacilitiesRepository extends HomeFacilitiesRepository {
   @override
-  Future<List<HomeFacilitiesModel>> getHomeFacilities() async {
+  Future<List<HomeFacilitiesModel>> getHomeFacilities(
+      String baseUrl, String endPoint) async {
     final dio = Dio();
     dio.httpClientAdapter = IOHttpClientAdapter(
       createHttpClient: () {
@@ -21,8 +22,8 @@ class ImplHomeFacilitiesRepository extends HomeFacilitiesRepository {
       },
     );
     try {
-      Response<dynamic> responseFromServer = await dio.get(
-          'http://rubytest.git.com.np/api/household/reports?table_no=table18');
+      Response<dynamic> responseFromServer =
+          await dio.get('$baseUrl/${endPoint}18');
       if (responseFromServer.statusCode == 200) {
         List<dynamic> results = responseFromServer.data['result'];
         //print(results);

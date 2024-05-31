@@ -1540,30 +1540,30 @@ class AppLocalizations {
     );
   }
 
-  /// `फुस वा खरको छाना`
+  /// `फुस वा खरको`
   String get khar {
     return Intl.message(
-      'फुस वा खरको छाना',
+      'फुस वा खरको',
       name: 'khar',
       desc: '',
       args: [],
     );
   }
 
-  /// `जस्ता/च्यादरको छाना`
+  /// `जस्ता/च्यादरको`
   String get jasta {
     return Intl.message(
-      'जस्ता/च्यादरको छाना',
+      'जस्ता/च्यादरको',
       name: 'jasta',
       desc: '',
       args: [],
     );
   }
 
-  /// `टायल/ढुङ्गाको छाना`
+  /// `टायल/ढुङ्गाको`
   String get stoneRoof {
     return Intl.message(
-      'टायल/ढुङ्गाको छाना',
+      'टायल/ढुङ्गाको',
       name: 'stoneRoof',
       desc: '',
       args: [],
@@ -1580,21 +1580,31 @@ class AppLocalizations {
     );
   }
 
-  /// `काठको छाना`
+  /// `काठको`
   String get wood {
     return Intl.message(
-      'काठको छाना',
+      'काठको',
       name: 'wood',
       desc: '',
       args: [],
     );
   }
 
-  /// `माटोेको छानो`
+  /// `माटोेको`
   String get mud {
     return Intl.message(
-      'माटोेको छानो',
+      'माटोेको',
       name: 'mud',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `छाना`
+  String get roof {
+    return Intl.message(
+      'छाना',
+      name: 'roof',
       desc: '',
       args: [],
     );

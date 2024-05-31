@@ -6,9 +6,10 @@ import 'package:dio/io.dart';
 import '../../domain/repository/house_condition_repository.dart';
 import '../model/house_condition_model.dart';
 
-class ImplHouseRepository extends HouseConditionRepository {
+class ImplHouseRoofRepository extends HouseRoofConditionRepository {
   @override
-  Future<List<HouseConditionModel>> getHomeData() async {
+  Future<List<HouseConditionModel>> getHomeData(
+      String baseUrl, String endPoint) async {
     final dio = Dio();
     dio.httpClientAdapter = IOHttpClientAdapter(
       createHttpClient: () {
@@ -23,7 +24,7 @@ class ImplHouseRepository extends HouseConditionRepository {
     );
     try {
       Response<dynamic> response = await dio.get(
-          "http://rubytest.git.com.np/api/household/reports?table_no=table31");
+          "$baseUrl/${endPoint}31");
       if (response.statusCode == 200) {
         List<dynamic> data = response.data['result'];
         return data.map((e) => HouseConditionModel.fromJson(e)).toList();

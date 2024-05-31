@@ -10,7 +10,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../bloc/insurance_bloc.dart';
 
 class InsurancePage extends StatefulWidget {
-  const InsurancePage({super.key});
+  String baseUrl, endPoint;
+  InsurancePage(this.baseUrl, this.endPoint, {super.key});
 
   @override
   State<InsurancePage> createState() => _InsurancePageState();
@@ -27,9 +28,11 @@ class _InsurancePageState extends State<InsurancePage> {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) =>
-          InsuranceBloc(RepositoryProvider.of<ImplInsuranceRepository>(context))
-            ..add(GetInsuranceEvent()),
+      create: (context) => InsuranceBloc(
+          RepositoryProvider.of<ImplInsuranceRepository>(context),
+          widget.baseUrl,
+          widget.endPoint)
+        ..add(GetInsuranceEvent()),
       child: BlocBuilder<InsuranceBloc, InsuranceState>(
         builder: (context, state) {
           if (state is InsuranceSuccessState) {

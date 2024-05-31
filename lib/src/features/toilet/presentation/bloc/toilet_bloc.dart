@@ -11,12 +11,14 @@ part 'toilet_event.dart';
 part 'toilet_state.dart';
 
 class ToiletBloc extends Bloc<ToiletEvent, ToiletState> {
+  String baseUrl, endPoint;
   ToiletRepository _toiletRepository;
-  ToiletBloc(this._toiletRepository) : super(ToiletLoadingState()) {
+  ToiletBloc(this._toiletRepository, this.baseUrl, this.endPoint)
+      : super(ToiletLoadingState()) {
     on<ToiletEvent>((event, emit) async {
       try {
         List<ToiletModel> fetchedToiletModel =
-            await _toiletRepository.getToiletData();
+            await _toiletRepository.getToiletData(baseUrl,endPoint);
         emit(ToiletSuccessState(toiletModel: fetchedToiletModel));
       } catch (errMsg) {
         emit(ToiletFailureState(errMsg: errMsg.toString()));

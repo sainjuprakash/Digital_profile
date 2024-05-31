@@ -1,14 +1,17 @@
+import 'package:digital_profile/constant/spacing.dart';
 import 'package:digital_profile/src/features/house_roof_condition/domain/repository/house_condition_repository.dart';
+import 'package:digital_profile/src/features/house_roof_condition/presentation/widgets/house_roof_data_table.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../data/model/house_condition_model.dart';
-import '../../data/repository/house_condition_repository_impl.dart';
+import '../../data/repository/house_roof_condition_repository_impl.dart';
 import '../bloc/house_bloc.dart';
-import '../widgets/house_bar_chart.dart';
+import '../widgets/house_roof_bar_chart.dart';
 
 class HousePage extends StatefulWidget {
-  const HousePage({super.key});
+  String baseUrl, endPoint;
+  HousePage(this.baseUrl, this.endPoint, {super.key});
 
   @override
   State<HousePage> createState() => _HousePageState();
@@ -27,9 +30,11 @@ class _HousePageState extends State<HousePage> {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) =>
-          HouseBloc(RepositoryProvider.of<ImplHouseRepository>(context))
-            ..add(GetHouseEvent()),
+      create: (context) => HouseBloc(
+          RepositoryProvider.of<ImplHouseRoofRepository>(context),
+          widget.baseUrl,
+          widget.endPoint)
+        ..add(GetHouseEvent()),
       child: BlocBuilder<HouseBloc, HouseState>(
         builder: (context, state) {
           if (state is HouseSuccessState) {
@@ -48,7 +53,18 @@ class _HousePageState extends State<HousePage> {
           }
           return Column(
             children: [
-              HouseBarChart(
+              HouseRoofBarChart(
+                  totalKhar,
+                  totalJasta,
+                  totalStoneTile,
+                  totalRcc,
+                  totalWood,
+                  totalMud,
+                  totalOthers,
+                  totalNotAvailable,
+                  totalWardRoof),
+              verticalspace(),
+              HouseRoofDataTable(
                   totalKhar,
                   totalJasta,
                   totalStoneTile,

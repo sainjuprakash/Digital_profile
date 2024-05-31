@@ -17,6 +17,18 @@ class LiteracyPage extends StatefulWidget {
 }
 
 class _LiteracyPageState extends State<LiteracyPage> {
+  int totalLiterate = 0;
+  int totalPrePrimary = 0;
+  int totalPrimary = 0;
+  int totalSecondary = 0;
+  int totalTechnical = 0;
+  int totalBachelor = 0;
+  int totalMaster = 0;
+  int totalMphil = 0;
+  int totalUnderAge = 0;
+  int totalIlliterate = 0;
+  int totalNotAvailable = 0;
+  int totalVillageEduCount = 0;
   int totalMaleLiterate = 0;
   int totalMalePrePrimary = 0;
   int totalMalePrimary = 0;
@@ -116,10 +128,85 @@ class _LiteracyPageState extends State<LiteracyPage> {
                 fetchedLiteracyModel[key].othersIliterate ?? 0;
             totalOthersNotAvailable +=
                 fetchedLiteracyModel[key].othersNotAvailable ?? 0;
+
+            totalLiterate =
+                totalMaleLiterate + totalFemaleLiterate + totalOthersLiterate;
+            totalPrePrimary = totalMalePrePrimary +
+                totalFemalePrePrimary +
+                totalOthersPrePrimary;
+            totalPrimary =
+                totalMalePrimary + totalFemalePrimary + totalOthersPrimary;
+            totalSecondary = totalMaleSecondary +
+                totalFemaleSecondary +
+                totalOthersSecondary;
+            totalTechnical = totalMaleTechnical +
+                totalFemaleTechnical +
+                totalOthersTechnical;
+            totalBachelor =
+                totalMaleBachelor + totalFemaleBachelor + totalOthersBachelor;
+            totalMaster =
+                totalMaleMaster + totalFemaleMaster + totalOthersMaster;
+            totalMphil = totalMaleMphil + totalFemaleMphil + totalOthersMphil;
+            totalUnderAge =
+                totalMaleUnderAge + totalFemaleUnderAge + totalOthersUnderAge;
+            totalIlliterate = totalMaleIlliterate +
+                totalFemaleIlliterate +
+                totalOthersIlliterate;
+            totalNotAvailable = totalMaleNotAvailable +
+                totalFemaleNotAvailable +
+                totalOthersNotAvailable;
+            totalVillageEduCount += fetchedLiteracyModel[key].totalWardEdu ?? 0;
           });
         }
         return Column(
-          children: [LiteracyDataTable()],
+          children: [
+            LiteracyDataTable(
+                totalLiterate,
+                totalPrePrimary,
+                totalPrimary,
+                totalSecondary,
+                totalTechnical,
+                totalBachelor,
+                totalMaster,
+                totalMphil,
+                totalUnderAge,
+                totalIlliterate,
+                totalNotAvailable,
+                totalMaleLiterate,
+                totalMalePrePrimary,
+                totalMalePrimary,
+                totalMaleSecondary,
+                totalMaleTechnical,
+                totalMaleBachelor,
+                totalMaleMaster,
+                totalMaleMphil,
+                totalMaleUnderAge,
+                totalMaleIlliterate,
+                totalMaleNotAvailable,
+                totalFemaleLiterate,
+                totalFemalePrePrimary,
+                totalFemalePrimary,
+                totalFemaleSecondary,
+                totalFemaleTechnical,
+                totalFemaleBachelor,
+                totalFemaleMaster,
+                totalFemaleMphil,
+                totalFemaleUnderAge,
+                totalFemaleIlliterate,
+                totalFemaleNotAvailable,
+                totalOthersLiterate,
+                totalOthersPrePrimary,
+                totalOthersPrimary,
+                totalOthersSecondary,
+                totalOthersTechnical,
+                totalOthersBachelor,
+                totalOthersMaster,
+                totalOthersMphil,
+                totalOthersUnderAge,
+                totalOthersIlliterate,
+                totalOthersNotAvailable,
+                totalVillageEduCount),
+          ],
         );
       }),
     );

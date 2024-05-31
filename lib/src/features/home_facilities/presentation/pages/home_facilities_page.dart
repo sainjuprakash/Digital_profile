@@ -10,7 +10,8 @@ import '../../data/model/home_facilities_model.dart';
 import '../bloc/home_facilities_bloc.dart';
 
 class HomeFacilitiesPage extends StatefulWidget {
-  const HomeFacilitiesPage({super.key});
+  String baseUrl, endPoint;
+  HomeFacilitiesPage(this.baseUrl, this.endPoint, {super.key});
 
   @override
   State<HomeFacilitiesPage> createState() => _HomeFacilitiesPageState();
@@ -33,7 +34,9 @@ class _HomeFacilitiesPageState extends State<HomeFacilitiesPage> {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => HomeFacilitiesBloc(
-          RepositoryProvider.of<ImplHomeFacilitiesRepository>(context))
+          RepositoryProvider.of<ImplHomeFacilitiesRepository>(context),
+          widget.baseUrl,
+          widget.endPoint)
         ..add(GetHomeFacilitiesEvent()),
       child: BlocBuilder<HomeFacilitiesBloc, HomeFacilitiesState>(
         builder: (context, state) {
