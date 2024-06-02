@@ -1659,6 +1659,36 @@ class AppLocalizations {
       args: [],
     );
   }
+
+  /// `भवन मापण्ड तथा भूकम्प प्रतिरोधी घरको विवरण`
+  String get earthquakeTitle {
+    return Intl.message(
+      'भवन मापण्ड तथा भूकम्प प्रतिरोधी घरको विवरण',
+      name: 'earthquakeTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `भूकम्प प्रतिरोधी भएको`
+  String get resistance {
+    return Intl.message(
+      'भूकम्प प्रतिरोधी भएको',
+      name: 'resistance',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `भूकम्प प्रतिरोधी नभएको`
+  String get notResistance {
+    return Intl.message(
+      'भूकम्प प्रतिरोधी नभएको',
+      name: 'notResistance',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<AppLocalizations> {

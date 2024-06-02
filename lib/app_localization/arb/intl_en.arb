@@ -160,5 +160,8 @@
 "personal" : "नीजि/आफ्नै",
 "rental" : "भाडाको धर",
 "organizational" : "संस्थागत घर",
-"sukumbasi" : "सुकुम्वासी"
+"sukumbasi" : "सुकुम्वासी",
+"earthquakeTitle" : "भवन मापण्ड तथा भूकम्प प्रतिरोधी घरको विवरण",
+"resistance" : "भूकम्प प्रतिरोधी भएको",
+"notResistance" : "भूकम्प प्रतिरोधी नभएको"
 }

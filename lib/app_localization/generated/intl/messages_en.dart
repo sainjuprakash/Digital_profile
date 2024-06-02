@@ -53,6 +53,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("अपाङ्गताको स्थिति"),
         "disable": MessageLookupByLibrary.simpleMessage("शारिरीक अपाङगता"),
         "divorced": MessageLookupByLibrary.simpleMessage("सम्बन्ध विच्छेद"),
+        "earthquakeTitle": MessageLookupByLibrary.simpleMessage(
+            "भवन मापण्ड तथा भूकम्प प्रतिरोधी घरको विवरण"),
         "electricityLaghu":
             MessageLookupByLibrary.simpleMessage("विद्युत (लघु)"),
         "electricityNational":
@@ -151,6 +153,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("कुनै पनि गरेकाे छैन"),
         "noToilet": MessageLookupByLibrary.simpleMessage("शौचालय नभएको"),
         "none": MessageLookupByLibrary.simpleMessage("कुनै पनि छैन"),
+        "notResistance":
+            MessageLookupByLibrary.simpleMessage("भूकम्प प्रतिरोधी नभएको"),
         "notavailable": MessageLookupByLibrary.simpleMessage("उपलब्ध नभएको"),
         "ordinary": MessageLookupByLibrary.simpleMessage("साधारण"),
         "organizational": MessageLookupByLibrary.simpleMessage("संस्थागत घर"),
@@ -184,6 +188,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "report": MessageLookupByLibrary.simpleMessage("रिपोर्ट"),
         "residencetitle":
             MessageLookupByLibrary.simpleMessage("बसोबासको अवस्था"),
+        "resistance":
+            MessageLookupByLibrary.simpleMessage("भूकम्प प्रतिरोधी भएको"),
         "retarded":
             MessageLookupByLibrary.simpleMessage("मनोसामाजिक अपाङगता भएको"),
         "roof": MessageLookupByLibrary.simpleMessage("छाना"),

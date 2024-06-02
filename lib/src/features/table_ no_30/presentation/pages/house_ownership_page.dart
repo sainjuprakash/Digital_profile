@@ -1,6 +1,7 @@
 import 'package:digital_profile/src/features/table_%20no_30/data/model/house_ownership_model.dart';
 import 'package:digital_profile/src/features/table_%20no_30/data/repository/house_ownership_repository_impl.dart';
 import 'package:digital_profile/src/features/table_%20no_30/presentation/widgets/house_ownership_bar_chart.dart';
+import 'package:digital_profile/src/features/table_%20no_30/presentation/widgets/house_ownership_data_table.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -43,20 +44,31 @@ class _HouseOwnershipPageState extends State<HouseOwnershipPage> {
               totalSukumbasi += fetcheData[key].sukumbasi ?? 0;
               totalOthers += fetcheData[key].others ?? 0;
               totalNotAvailable += fetcheData[key].notAvailable ?? 0;
-              totalOwnerShip += fetcheData[key].others ?? 0;
+              totalOwnerShip += fetcheData[key].total ?? 0;
             });
           }
-          return Column(
-            children: [
-              HouseOwnershipBarChart(
-                  totalPersonal,
-                  totalRental,
-                  totalOrganizational,
-                  totalSukumbasi,
-                  totalOthers,
-                  totalNotAvailable,
-                  totalOwnerShip),
-            ],
+          return SingleChildScrollView(
+            scrollDirection: Axis.vertical,
+            child: Column(
+              children: [
+                HouseOwnershipBarChart(
+                    totalPersonal,
+                    totalRental,
+                    totalOrganizational,
+                    totalSukumbasi,
+                    totalOthers,
+                    totalNotAvailable,
+                    totalOwnerShip),
+                HouseOwnershipDataTable(
+                    totalPersonal,
+                    totalRental,
+                    totalOrganizational,
+                    totalSukumbasi,
+                    totalOthers,
+                    totalNotAvailable,
+                    totalOwnerShip),
+              ],
+            ),
           );
         },
       ),
