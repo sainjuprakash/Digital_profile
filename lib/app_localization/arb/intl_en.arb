@@ -163,5 +163,17 @@
 "sukumbasi" : "सुकुम्वासी",
 "earthquakeTitle" : "भवन मापण्ड तथा भूकम्प प्रतिरोधी घरको विवरण",
 "resistance" : "भूकम्प प्रतिरोधी भएको",
-"notResistance" : "भूकम्प प्रतिरोधी नभएको"
+"notResistance" : "भूकम्प प्रतिरोधी नभएको",
+"OccupationTitle" : "प्रमुख पेशा अनुसार जनसंख्या",
+"agriculture" : "कृषि तथा",
+"office" : "नोकरी जागिर",
+"business" : "उद्योग व्यापार",
+"worker" : "ज्याला मजदुरी",
+"entrepreneur" : "व्यवसायिक",
+"foreignEmp" : "बैदेशिक",
+"student" : "विद्यार्थी",
+"houseWife" : "गृहिणी",
+"unemployed" : "बेरोजगार",
+"pension" : "पेन्सन",
+"seniorCtzn" : "बढी उमेर"
 }

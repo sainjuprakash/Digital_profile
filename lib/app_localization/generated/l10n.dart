@@ -1689,6 +1689,126 @@ class AppLocalizations {
       args: [],
     );
   }
+
+  /// `प्रमुख पेशा अनुसार जनसंख्या`
+  String get OccupationTitle {
+    return Intl.message(
+      'प्रमुख पेशा अनुसार जनसंख्या',
+      name: 'OccupationTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `कृषि तथा`
+  String get agriculture {
+    return Intl.message(
+      'कृषि तथा',
+      name: 'agriculture',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `नोकरी जागिर`
+  String get office {
+    return Intl.message(
+      'नोकरी जागिर',
+      name: 'office',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `उद्योग व्यापार`
+  String get business {
+    return Intl.message(
+      'उद्योग व्यापार',
+      name: 'business',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `ज्याला मजदुरी`
+  String get worker {
+    return Intl.message(
+      'ज्याला मजदुरी',
+      name: 'worker',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `व्यवसायिक`
+  String get entrepreneur {
+    return Intl.message(
+      'व्यवसायिक',
+      name: 'entrepreneur',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `बैदेशिक`
+  String get foreignEmp {
+    return Intl.message(
+      'बैदेशिक',
+      name: 'foreignEmp',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `विद्यार्थी`
+  String get student {
+    return Intl.message(
+      'विद्यार्थी',
+      name: 'student',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `गृहिणी`
+  String get houseWife {
+    return Intl.message(
+      'गृहिणी',
+      name: 'houseWife',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `बेरोजगार`
+  String get unemployed {
+    return Intl.message(
+      'बेरोजगार',
+      name: 'unemployed',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `पेन्सन`
+  String get pension {
+    return Intl.message(
+      'पेन्सन',
+      name: 'pension',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `बढी उमेर`
+  String get seniorCtzn {
+    return Intl.message(
+      'बढी उमेर',
+      name: 'seniorCtzn',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<AppLocalizations> {

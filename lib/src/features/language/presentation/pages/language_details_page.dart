@@ -1,3 +1,4 @@
+import 'package:digital_profile/app_localization/l10n.dart';
 import 'package:digital_profile/constant/spacing.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -10,7 +11,7 @@ import '../widgets/language_table.dart';
 
 class LanguageDetails extends StatefulWidget {
   String baseUrl;
-   LanguageDetails(this.baseUrl,{super.key});
+  LanguageDetails(this.baseUrl, {super.key});
 
   @override
   State<LanguageDetails> createState() => _LanguageDetailsState();
@@ -31,9 +32,9 @@ class _LanguageDetailsState extends State<LanguageDetails> {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) =>
-          LanguageBloc(RepositoryProvider.of<GetLanguageRepository>(context),widget.baseUrl)
-            ..add(LoadLanguageEvent()),
+      create: (context) => LanguageBloc(
+          RepositoryProvider.of<GetLanguageRepository>(context), widget.baseUrl)
+        ..add(LoadLanguageEvent()),
       child: BlocBuilder<LanguageBloc, LanguageState>(
         builder: (context, state) {
           if (state is LanguageLoadedState) {
