@@ -81,7 +81,7 @@ class OccupationBarChart extends StatelessWidget {
                                 bottomTitles: AxisTitles(
                                     sideTitles: SideTitles(
                                         showTitles: true,
-                                        reservedSize: 60,
+                                        reservedSize: 50,
                                         getTitlesWidget: (value, meta) {
                                           final residenceRepresentation = [
                                             '${l10n.agriculture}\nपशुपालन',

@@ -31,6 +31,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "animalsTitle": MessageLookupByLibrary.simpleMessage(
             "चौपाया तथा पशुपन्छी पाल्ने घरपरिवार विवरण"),
         "bachelor": MessageLookupByLibrary.simpleMessage("स्नातक तह"),
+        "bankTitle": MessageLookupByLibrary.simpleMessage(
+            "बैंङ्क तथा वित्तिय संस्थामा खाता हुने घरपरिवार सम्बन्धी विवरण"),
         "bioGas": MessageLookupByLibrary.simpleMessage("वायोग्यास"),
         "birds": MessageLookupByLibrary.simpleMessage("पशुपन्छी पालन गर्ने"),
         "blind":
@@ -93,6 +95,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("सामान्य राेग लागेकाे"),
         "ghale": MessageLookupByLibrary.simpleMessage("घले"),
         "gurung": MessageLookupByLibrary.simpleMessage("गुरुङ"),
+        "hasbankAc":
+            MessageLookupByLibrary.simpleMessage("खाता हुने घरपरिवार संख्या"),
         "healthInsurance":
             MessageLookupByLibrary.simpleMessage("स्वास्थ्य बिमा"),
         "healthconditiontitle": MessageLookupByLibrary.simpleMessage(
@@ -156,6 +160,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "nepali": MessageLookupByLibrary.simpleMessage("नेपाली"),
         "noAnimals":
             MessageLookupByLibrary.simpleMessage("पालन नगर्ने घरपरिवार"),
+        "noBankAc": MessageLookupByLibrary.simpleMessage("खाता नहुने घरपरिवार"),
         "noInsurance":
             MessageLookupByLibrary.simpleMessage("कुनै पनि गरेकाे छैन"),
         "noToilet": MessageLookupByLibrary.simpleMessage("शौचालय नभएको"),

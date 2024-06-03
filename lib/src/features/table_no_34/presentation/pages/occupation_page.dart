@@ -1,5 +1,7 @@
+import 'package:digital_profile/constant/spacing.dart';
 import 'package:digital_profile/src/features/table_no_34/data/repository/occupation_repository_impl.dart';
 import 'package:digital_profile/src/features/table_no_34/presentation/widgets/occupation_bar_chart.dart';
+import 'package:digital_profile/src/features/table_no_34/presentation/widgets/occupation_data_table.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -67,6 +69,24 @@ class _OccupationPageState extends State<OccupationPage> {
           return Column(
             children: [
               OccupationBarChart(
+                  totalAgriculture,
+                  totalOffice,
+                  totalBusiness,
+                  totalWorker,
+                  totalEntrepreneur,
+                  totalForeignEmp,
+                  totalStudent,
+                  totalHousewife,
+                  totalUnemployed,
+                  totalUnderage,
+                  totalPension,
+                  totalTechnical,
+                  totalSenior,
+                  totalOthers,
+                  totalNotAvailable,
+                  totalOccupation),
+              verticalspace(),
+              OccupationDataTable(
                   totalAgriculture,
                   totalOffice,
                   totalBusiness,

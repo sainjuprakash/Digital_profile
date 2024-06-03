@@ -1809,6 +1809,36 @@ class AppLocalizations {
       args: [],
     );
   }
+
+  /// `बैंङ्क तथा वित्तिय संस्थामा खाता हुने घरपरिवार सम्बन्धी विवरण`
+  String get bankTitle {
+    return Intl.message(
+      'बैंङ्क तथा वित्तिय संस्थामा खाता हुने घरपरिवार सम्बन्धी विवरण',
+      name: 'bankTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `खाता हुने घरपरिवार संख्या`
+  String get hasbankAc {
+    return Intl.message(
+      'खाता हुने घरपरिवार संख्या',
+      name: 'hasbankAc',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `खाता नहुने घरपरिवार`
+  String get noBankAc {
+    return Intl.message(
+      'खाता नहुने घरपरिवार',
+      name: 'noBankAc',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<AppLocalizations> {

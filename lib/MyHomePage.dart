@@ -26,6 +26,7 @@ import 'package:digital_profile/src/features/residence/presentation/pages/reside
 import 'package:digital_profile/src/features/table_%20no_30/presentation/pages/house_ownership_page.dart';
 import 'package:digital_profile/src/features/table_no_33/presentation/pages/earthquake_resistance_page.dart';
 import 'package:digital_profile/src/features/table_no_34/presentation/pages/occupation_page.dart';
+import 'package:digital_profile/src/features/table_no_37/presentation/pages/bank_page.dart';
 import 'package:digital_profile/src/features/toilet/presentation/pages/toilet_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -63,6 +64,7 @@ class _MyHomePageState extends State<MyHomePage> {
     'Table 31 - 5.4 बसोबास गरेको घरको छाना सम्बन्धी विवरण',
     'Table 33 - 5.5 भवन मापण्ड तथा भूकम्प प्रतिरोधी घरको विवरण',
     'Table 34 - 1.12 प्रमुख पेशा अनुसार जनसंख्या',
+    'Table 37 - 2.4 बैंङ्क तथा वित्तिय संस्थामा खाता हुने घरपरिवार सम्बन्धी विवरण'
   ];
   bool isUserLoggedIn = false;
 
@@ -278,6 +280,9 @@ class _MyHomePageState extends State<MyHomePage> {
       return EarthquakeResistancePage(widget.baseUrl, widget.endPoint);
     } else if (selectedItem == 'Table 34 - 1.12 प्रमुख पेशा अनुसार जनसंख्या') {
       return OccupationPage(widget.baseUrl, widget.endPoint);
+    } else if (selectedItem ==
+        'Table 37 - 2.4 बैंङ्क तथा वित्तिय संस्थामा खाता हुने घरपरिवार सम्बन्धी विवरण') {
+      return BankPage(widget.baseUrl, widget.endPoint);
     } else {
       return const Center(child: Text('Select an option'));
     }
