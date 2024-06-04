@@ -23,6 +23,9 @@ import 'package:digital_profile/src/features/table_%20no_30/data/repository/hous
 import 'package:digital_profile/src/features/table_no_33/data/repository/earthquake_resistance_repository_impl.dart';
 import 'package:digital_profile/src/features/table_no_34/data/repository/occupation_repository_impl.dart';
 import 'package:digital_profile/src/features/table_no_37/data/repository/bank_repository_impl.dart';
+import 'package:digital_profile/src/features/table_no_45/data/repository/meat_repository_impl.dart';
+import 'package:digital_profile/src/features/table_no_64/data/repository/expenses_repository_impl.dart';
+import 'package:digital_profile/src/features/table_no_65/data/repository/income_repository_impl.dart';
 import 'package:digital_profile/src/features/toilet/data/repository/toilet_repository_impl.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -81,6 +84,9 @@ class MyApp extends StatelessWidget {
             create: (context) => ImplEarthquakeResistanceRepository()),
         RepositoryProvider(create: (context) => ImplOccupationRepository()),
         RepositoryProvider(create: (context) => ImplBankRepository()),
+        RepositoryProvider(create: (context) => ImplMeatRepository()),
+        RepositoryProvider(create: (context) => ImplExpensesRepository()),
+        RepositoryProvider(create: (context) => ImplIncomeRepository()),
       ],
       child: MaterialApp(
         localizationsDelegates: const [

@@ -27,6 +27,9 @@ import 'package:digital_profile/src/features/table_%20no_30/presentation/pages/h
 import 'package:digital_profile/src/features/table_no_33/presentation/pages/earthquake_resistance_page.dart';
 import 'package:digital_profile/src/features/table_no_34/presentation/pages/occupation_page.dart';
 import 'package:digital_profile/src/features/table_no_37/presentation/pages/bank_page.dart';
+import 'package:digital_profile/src/features/table_no_45/presentation/pages/meat_page.dart';
+import 'package:digital_profile/src/features/table_no_64/presentation/pages/expenses_page.dart';
+import 'package:digital_profile/src/features/table_no_65/presentation/pages/income_page.dart';
 import 'package:digital_profile/src/features/toilet/presentation/pages/toilet_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -64,7 +67,10 @@ class _MyHomePageState extends State<MyHomePage> {
     'Table 31 - 5.4 बसोबास गरेको घरको छाना सम्बन्धी विवरण',
     'Table 33 - 5.5 भवन मापण्ड तथा भूकम्प प्रतिरोधी घरको विवरण',
     'Table 34 - 1.12 प्रमुख पेशा अनुसार जनसंख्या',
-    'Table 37 - 2.4 बैंङ्क तथा वित्तिय संस्थामा खाता हुने घरपरिवार सम्बन्धी विवरण'
+    'Table 37 - 2.4 बैंङ्क तथा वित्तिय संस्थामा खाता हुने घरपरिवार सम्बन्धी विवरण',
+    'Table 45 - 10.2  मासु तथा अन्य प्रयाेजनकाे लागि पालिने चाैपायकाे बिवरण',
+    'Table 64 - 4.2 परिवारको सरदर वार्षिक खर्च',
+    'Table 65 - 4.1 परिवारको सरदर वार्षिक आम्दानी',
   ];
   bool isUserLoggedIn = false;
 
@@ -283,6 +289,13 @@ class _MyHomePageState extends State<MyHomePage> {
     } else if (selectedItem ==
         'Table 37 - 2.4 बैंङ्क तथा वित्तिय संस्थामा खाता हुने घरपरिवार सम्बन्धी विवरण') {
       return BankPage(widget.baseUrl, widget.endPoint);
+    } else if (selectedItem ==
+        'Table 45 - 10.2  मासु तथा अन्य प्रयाेजनकाे लागि पालिने चाैपायकाे बिवरण') {
+      return MeatPage(widget.baseUrl, widget.endPoint);
+    } else if (selectedItem == 'Table 64 - 4.2 परिवारको सरदर वार्षिक खर्च') {
+      return ExpensesPage(widget.baseUrl, widget.endPoint);
+    } else if (selectedItem == 'Table 65 - 4.1 परिवारको सरदर वार्षिक आम्दानी') {
+      return IncomePage(widget.baseUrl, widget.endPoint);
     } else {
       return const Center(child: Text('Select an option'));
     }

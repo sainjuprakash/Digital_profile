@@ -1700,10 +1700,10 @@ class AppLocalizations {
     );
   }
 
-  /// `कृषि तथा`
+  /// `कृषि कार्य`
   String get agriculture {
     return Intl.message(
-      'कृषि तथा',
+      'कृषि कार्य',
       name: 'agriculture',
       desc: '',
       args: [],
@@ -1835,6 +1835,166 @@ class AppLocalizations {
     return Intl.message(
       'खाता नहुने घरपरिवार',
       name: 'noBankAc',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `मासु तथा अन्य प्रयाेजनकाे लागि पालिने चाैपायकाे बिवरण`
+  String get meatTitle {
+    return Intl.message(
+      'मासु तथा अन्य प्रयाेजनकाे लागि पालिने चाैपायकाे बिवरण',
+      name: 'meatTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `मासुजन्य पशुको संख्या`
+  String get animalsQnty {
+    return Intl.message(
+      'मासुजन्य पशुको संख्या',
+      name: 'animalsQnty',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `वार्षिक मासु उत्पादन (के.जि.)`
+  String get meatKg {
+    return Intl.message(
+      'वार्षिक मासु उत्पादन (के.जि.)',
+      name: 'meatKg',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `मासु बिक्रीबाट वार्षिक आम्दानी`
+  String get meatEarning {
+    return Intl.message(
+      'मासु बिक्रीबाट वार्षिक आम्दानी',
+      name: 'meatEarning',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `मासुजन्य पशु पाल्ने घरधुरी`
+  String get meatHouseCount {
+    return Intl.message(
+      'मासुजन्य पशु पाल्ने घरधुरी',
+      name: 'meatHouseCount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `परिवारको सरदर वार्षिक खर्च`
+  String get expensesTitle {
+    return Intl.message(
+      'परिवारको सरदर वार्षिक खर्च',
+      name: 'expensesTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `लत्ता कपडा`
+  String get clothes {
+    return Intl.message(
+      'लत्ता कपडा',
+      name: 'clothes',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `शिक्षा`
+  String get education {
+    return Intl.message(
+      'शिक्षा',
+      name: 'education',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `स्वास्थ्य`
+  String get health {
+    return Intl.message(
+      'स्वास्थ्य',
+      name: 'health',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `चाडपर्व`
+  String get festival {
+    return Intl.message(
+      'चाडपर्व',
+      name: 'festival',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `परिवारको सरदर वार्षिक आम्दानी`
+  String get incomeTitle {
+    return Intl.message(
+      'परिवारको सरदर वार्षिक आम्दानी',
+      name: 'incomeTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `अन्नवालि`
+  String get crops {
+    return Intl.message(
+      'अन्नवालि',
+      name: 'crops',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `फलफुल`
+  String get fruits {
+    return Intl.message(
+      'फलफुल',
+      name: 'fruits',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `तरकारी`
+  String get vegetables {
+    return Intl.message(
+      'तरकारी',
+      name: 'vegetables',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `पशुपन्छी`
+  String get livestock {
+    return Intl.message(
+      'पशुपन्छी',
+      name: 'livestock',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `जडिवुटी`
+  String get herbs {
+    return Intl.message(
+      'जडिवुटी',
+      name: 'herbs',
       desc: '',
       args: [],
     );
