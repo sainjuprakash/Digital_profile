@@ -210,6 +210,16 @@ class AppLocalizations {
     );
   }
 
+  /// `नखुलाइएकाे`
+  String get Undisclosed {
+    return Intl.message(
+      'नखुलाइएकाे',
+      name: 'Undisclosed',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `कुल वडा जनसंख्या`
   String get totalwardpop {
     return Intl.message(
@@ -1995,6 +2005,136 @@ class AppLocalizations {
     return Intl.message(
       'जडिवुटी',
       name: 'herbs',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `श्रम`
+  String get labour {
+    return Intl.message(
+      'श्रम',
+      name: 'labour',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `बसोबासको प्रकृति अनुसार घरपरिवार विवरण`
+  String get settlementTitle {
+    return Intl.message(
+      'बसोबासको प्रकृति अनुसार घरपरिवार विवरण',
+      name: 'settlementTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `स्थायी बसोबास गर्ने`
+  String get permanent {
+    return Intl.message(
+      'स्थायी बसोबास गर्ने',
+      name: 'permanent',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `अस्थायी बसोबास गर्नेे`
+  String get temporary {
+    return Intl.message(
+      'अस्थायी बसोबास गर्नेे',
+      name: 'temporary',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `सामाजिक सुरक्षा भत्ताको विवरण`
+  String get allowanceTitle {
+    return Intl.message(
+      'सामाजिक सुरक्षा भत्ताको विवरण',
+      name: 'allowanceTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `लिन नमिल्ने`
+  String get processWrong {
+    return Intl.message(
+      'लिन नमिल्ने',
+      name: 'processWrong',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `बृद्घा भत्ता`
+  String get briddhaBhatta {
+    return Intl.message(
+      'बृद्घा भत्ता',
+      name: 'briddhaBhatta',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `विधवा भत्ता`
+  String get widow {
+    return Intl.message(
+      'विधवा भत्ता',
+      name: 'widow',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `एकल भत्ता`
+  String get widower {
+    return Intl.message(
+      'एकल भत्ता',
+      name: 'widower',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `भत्ता नलिएका`
+  String get notTaken {
+    return Intl.message(
+      'भत्ता नलिएका',
+      name: 'notTaken',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `प्रक्रिया गरेकाे छैन`
+  String get notProcessed {
+    return Intl.message(
+      'प्रक्रिया गरेकाे छैन',
+      name: 'notProcessed',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `आदिवासी भत्ता`
+  String get indigenous {
+    return Intl.message(
+      'आदिवासी भत्ता',
+      name: 'indigenous',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `अपांग भत्ता`
+  String get disableAllowance {
+    return Intl.message(
+      'अपांग भत्ता',
+      name: 'disableAllowance',
       desc: '',
       args: [],
     );

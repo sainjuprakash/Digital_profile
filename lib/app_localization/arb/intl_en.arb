@@ -16,6 +16,7 @@
 "gurung" : "गुरुङ",
 "othrslanguage" : "अन्य भाषा",
 "notavailable" : "उपलब्ध नभएको",
+"Undisclosed" : "नखुलाइएकाे",
 "totalwardpop" : "कुल वडा जनसंख्या",
 "total" : "जम्मा",
 "malecount" : "पुरुष गणना",
@@ -195,5 +196,18 @@
 "fruits" : "फलफुल",
 "vegetables" : "तरकारी",
 "livestock" : "पशुपन्छी",
-"herbs" : "जडिवुटी"
+"herbs" : "जडिवुटी",
+"labour" : "श्रम",
+"settlementTitle" : "बसोबासको प्रकृति अनुसार घरपरिवार विवरण",
+"permanent" : "स्थायी बसोबास गर्ने",
+"temporary" : "अस्थायी बसोबास गर्नेे",
+"allowanceTitle" : "सामाजिक सुरक्षा भत्ताको विवरण",
+"processWrong" : "लिन नमिल्ने",
+"briddhaBhatta" : "बृद्घा भत्ता",
+"widow" : "विधवा भत्ता",
+"widower" : "एकल भत्ता",
+"notTaken" : "भत्ता नलिएका",
+"notProcessed" : "प्रक्रिया गरेकाे छैन",
+"indigenous" : "आदिवासी भत्ता",
+"disableAllowance" : "अपांग भत्ता"
 }

@@ -24,9 +24,12 @@ class MessageLookup extends MessageLookupByLibrary {
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "OccupationTitle":
             MessageLookupByLibrary.simpleMessage("प्रमुख पेशा अनुसार जनसंख्या"),
+        "Undisclosed": MessageLookupByLibrary.simpleMessage("नखुलाइएकाे"),
         "able": MessageLookupByLibrary.simpleMessage("अपाङ्गता नभएको"),
         "above90": MessageLookupByLibrary.simpleMessage("९० माथि"),
         "agriculture": MessageLookupByLibrary.simpleMessage("कृषि कार्य"),
+        "allowanceTitle": MessageLookupByLibrary.simpleMessage(
+            "सामाजिक सुरक्षा भत्ताको विवरण"),
         "animals": MessageLookupByLibrary.simpleMessage("चौपाया पालन गर्ने"),
         "animalsQnty":
             MessageLookupByLibrary.simpleMessage("मासुजन्य पशुको संख्या"),
@@ -41,6 +44,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("दृश्टिबिहिन(अाखा नदेख्ने)"),
         "bon": MessageLookupByLibrary.simpleMessage("बोन"),
         "boudha": MessageLookupByLibrary.simpleMessage("बौद्ध"),
+        "briddhaBhatta": MessageLookupByLibrary.simpleMessage("बृद्घा भत्ता"),
         "bus": MessageLookupByLibrary.simpleMessage("बस,ट्रक अादी"),
         "business": MessageLookupByLibrary.simpleMessage("उद्योग व्यापार"),
         "car": MessageLookupByLibrary.simpleMessage("माेटर,कार"),
@@ -62,6 +66,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "disabilitytitle":
             MessageLookupByLibrary.simpleMessage("अपाङ्गताको स्थिति"),
         "disable": MessageLookupByLibrary.simpleMessage("शारिरीक अपाङगता"),
+        "disableAllowance": MessageLookupByLibrary.simpleMessage("अपांग भत्ता"),
         "divorced": MessageLookupByLibrary.simpleMessage("सम्बन्ध विच्छेद"),
         "earthquakeTitle": MessageLookupByLibrary.simpleMessage(
             "भवन मापण्ड तथा भूकम्प प्रतिरोधी घरको विवरण"),
@@ -131,6 +136,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "illiterate": MessageLookupByLibrary.simpleMessage("निरक्षर"),
         "incomeTitle": MessageLookupByLibrary.simpleMessage(
             "परिवारको सरदर वार्षिक आम्दानी"),
+        "indigenous": MessageLookupByLibrary.simpleMessage("आदिवासी भत्ता"),
         "instutionaldata":
             MessageLookupByLibrary.simpleMessage("संस्थागत डाटा"),
         "insuranceTitle":
@@ -141,6 +147,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "kerosene": MessageLookupByLibrary.simpleMessage("मट्टितेल"),
         "khar": MessageLookupByLibrary.simpleMessage("फुस वा खरको"),
         "kirat": MessageLookupByLibrary.simpleMessage("किरात"),
+        "labour": MessageLookupByLibrary.simpleMessage("श्रम"),
         "lessthan6": MessageLookupByLibrary.simpleMessage("६ भन्दा कम"),
         "lifeInsurance": MessageLookupByLibrary.simpleMessage("जीवन बिमा"),
         "limbu": MessageLookupByLibrary.simpleMessage("लिम्बु"),
@@ -187,8 +194,11 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("कुनै पनि गरेकाे छैन"),
         "noToilet": MessageLookupByLibrary.simpleMessage("शौचालय नभएको"),
         "none": MessageLookupByLibrary.simpleMessage("कुनै पनि छैन"),
+        "notProcessed":
+            MessageLookupByLibrary.simpleMessage("प्रक्रिया गरेकाे छैन"),
         "notResistance":
             MessageLookupByLibrary.simpleMessage("भूकम्प प्रतिरोधी नभएको"),
+        "notTaken": MessageLookupByLibrary.simpleMessage("भत्ता नलिएका"),
         "notavailable": MessageLookupByLibrary.simpleMessage("उपलब्ध नभएको"),
         "office": MessageLookupByLibrary.simpleMessage("नोकरी जागिर"),
         "ordinary": MessageLookupByLibrary.simpleMessage("साधारण"),
@@ -206,12 +216,15 @@ class MessageLookup extends MessageLookupByLibrary {
         "othrslanguage": MessageLookupByLibrary.simpleMessage("अन्य भाषा"),
         "password": MessageLookupByLibrary.simpleMessage("पासवर्ड"),
         "pension": MessageLookupByLibrary.simpleMessage("पेन्सन"),
+        "permanent":
+            MessageLookupByLibrary.simpleMessage("स्थायी बसोबास गर्ने"),
         "personal": MessageLookupByLibrary.simpleMessage("नीजि/आफ्नै"),
         "polygami": MessageLookupByLibrary.simpleMessage("वहुविवाह"),
         "populationClassificationtitle": MessageLookupByLibrary.simpleMessage(
             "उमेर वर्गीकरण अनुसार जनसंख्या"),
         "preprimary": MessageLookupByLibrary.simpleMessage("पूर्वप्राथमिक"),
         "primary": MessageLookupByLibrary.simpleMessage("प्राथमिक"),
+        "processWrong": MessageLookupByLibrary.simpleMessage("लिन नमिल्ने"),
         "publicDhal": MessageLookupByLibrary.simpleMessage("सार्वजनिक ढल"),
         "radio": MessageLookupByLibrary.simpleMessage("रेडियाे"),
         "rai": MessageLookupByLibrary.simpleMessage("राई"),
@@ -235,6 +248,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "seniorCtzn": MessageLookupByLibrary.simpleMessage("बढी उमेर"),
         "seperated":
             MessageLookupByLibrary.simpleMessage("विवाहित तर अलग बसेको"),
+        "settlementTitle": MessageLookupByLibrary.simpleMessage(
+            "बसोबासको प्रकृति अनुसार घरपरिवार विवरण"),
         "seventytoninety": MessageLookupByLibrary.simpleMessage("७०-९०"),
         "sherpa": MessageLookupByLibrary.simpleMessage("शेर्पा"),
         "single": MessageLookupByLibrary.simpleMessage("अविवाहित"),
@@ -251,6 +266,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "technical": MessageLookupByLibrary.simpleMessage("प्राविधिक"),
         "telephone": MessageLookupByLibrary.simpleMessage("टेलिफाेन,माेबार्इल"),
         "television": MessageLookupByLibrary.simpleMessage("टेलिभिजन"),
+        "temporary":
+            MessageLookupByLibrary.simpleMessage("अस्थायी बसोबास गर्नेे"),
         "teraiBrahman": MessageLookupByLibrary.simpleMessage("तराई ब्राह्मण"),
         "teraiJanajati": MessageLookupByLibrary.simpleMessage("तराई जनजाति"),
         "toiletTitle": MessageLookupByLibrary.simpleMessage(
@@ -268,6 +285,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "unemployed": MessageLookupByLibrary.simpleMessage("बेरोजगार"),
         "vegetables": MessageLookupByLibrary.simpleMessage("तरकारी"),
         "wardnumber": MessageLookupByLibrary.simpleMessage("वडा नम्बर"),
+        "widow": MessageLookupByLibrary.simpleMessage("विधवा भत्ता"),
+        "widower": MessageLookupByLibrary.simpleMessage("एकल भत्ता"),
         "wood": MessageLookupByLibrary.simpleMessage("काठको"),
         "worker": MessageLookupByLibrary.simpleMessage("ज्याला मजदुरी")
       };

@@ -1,5 +1,6 @@
 import 'package:digital_profile/constant/spacing.dart';
 import 'package:digital_profile/src/features/table_no_65/data/repository/income_repository_impl.dart';
+import 'package:digital_profile/src/features/table_no_65/presentation/widgets/income_data_table.dart';
 import 'package:digital_profile/src/features/table_no_65/presentation/widgets/income_pie_chart.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -70,6 +71,18 @@ class _IncomePageState extends State<IncomePage> {
                   totalOthers,
                   totalIncome),
               verticalspace(),
+              IncomeDataTable(
+                  totalCrops,
+                  totalFruits,
+                  totalLivestock,
+                  totalVegi,
+                  totalHerbs,
+                  totalLabour,
+                  totalBusiness,
+                  totalForeignEmp,
+                  totalOffice,
+                  totalOthers,
+                  totalIncome),
             ],
           );
         },

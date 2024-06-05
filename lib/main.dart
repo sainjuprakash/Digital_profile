@@ -26,6 +26,8 @@ import 'package:digital_profile/src/features/table_no_37/data/repository/bank_re
 import 'package:digital_profile/src/features/table_no_45/data/repository/meat_repository_impl.dart';
 import 'package:digital_profile/src/features/table_no_64/data/repository/expenses_repository_impl.dart';
 import 'package:digital_profile/src/features/table_no_65/data/repository/income_repository_impl.dart';
+import 'package:digital_profile/src/features/table_no_74/data/repository/settlement_repository_impl.dart';
+import 'package:digital_profile/src/features/table_no_95/data/repository/allowance_repository_impl.dart';
 import 'package:digital_profile/src/features/toilet/data/repository/toilet_repository_impl.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -87,6 +89,8 @@ class MyApp extends StatelessWidget {
         RepositoryProvider(create: (context) => ImplMeatRepository()),
         RepositoryProvider(create: (context) => ImplExpensesRepository()),
         RepositoryProvider(create: (context) => ImplIncomeRepository()),
+        RepositoryProvider(create: (context) => ImplSettlementRepository()),
+        RepositoryProvider(create: (context) => ImplAllowanceRepository())
       ],
       child: MaterialApp(
         localizationsDelegates: const [
