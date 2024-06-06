@@ -32,6 +32,7 @@ import 'package:digital_profile/src/features/table_no_64/presentation/pages/expe
 import 'package:digital_profile/src/features/table_no_65/presentation/pages/income_page.dart';
 import 'package:digital_profile/src/features/table_no_74/presentation/pages/settlement_page.dart';
 import 'package:digital_profile/src/features/table_no_95/presentation/pages/allowance_page.dart';
+import 'package:digital_profile/src/features/table_no_97/presentation/pages/road_distance_page.dart';
 import 'package:digital_profile/src/features/toilet/presentation/pages/toilet_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -74,7 +75,8 @@ class _MyHomePageState extends State<MyHomePage> {
     'Table 64 - 4.2 परिवारको सरदर वार्षिक खर्च',
     'Table 65 - 4.1 परिवारको सरदर वार्षिक आम्दानी',
     'Table 74 - 5.0  बसोबासको प्रकृति अनुसार घरपरिवार विवरण',
-    'Table 95 - 2.6 सामाजिक सुरक्षा भत्ताको विवरण'
+    'Table 95 - 2.6 सामाजिक सुरक्षा भत्ताको विवरण',
+    'Table 97 - 3.1 घरबाट हिडेर नजिकको बजार पुग्न लाग्ने समय (घरधुरी संख्या)',
   ];
   bool isUserLoggedIn = false;
 
@@ -305,6 +307,9 @@ class _MyHomePageState extends State<MyHomePage> {
       return SettlementPage(widget.baseUrl, widget.endPoint);
     } else if (selectedItem == 'Table 95 - 2.6 सामाजिक सुरक्षा भत्ताको विवरण') {
       return AllowancePage(widget.baseUrl, widget.endPoint);
+    } else if (selectedItem ==
+        'Table 97 - 3.1 घरबाट हिडेर नजिकको बजार पुग्न लाग्ने समय (घरधुरी संख्या)') {
+      return RoadDistancePage(widget.baseUrl, widget.endPoint);
     } else {
       return const Center(child: Text('Select an option'));
     }

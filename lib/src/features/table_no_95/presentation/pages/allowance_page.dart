@@ -1,7 +1,9 @@
+import 'package:digital_profile/constant/spacing.dart';
 import 'package:digital_profile/src/features/table_no_95/data/model/allowance_model.dart';
 import 'package:digital_profile/src/features/table_no_95/data/repository/allowance_repository_impl.dart';
 import 'package:digital_profile/src/features/table_no_95/presentation/bloc/allowance_bloc.dart';
 import 'package:digital_profile/src/features/table_no_95/presentation/widgets/allowance_bar_chart.dart';
+import 'package:digital_profile/src/features/table_no_95/presentation/widgets/allowance_data_table.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -16,7 +18,7 @@ class AllowancePage extends StatefulWidget {
 
 class _AllowancePageState extends State<AllowancePage> {
   int totalProcessWrong = 0;
-  int totalbriddhaBhatta = 0;
+  int totalBriddhaBhatta = 0;
   int totalWidow = 0;
   int totalWidower = 0;
   int totalDisabled = 0;
@@ -40,7 +42,7 @@ class _AllowancePageState extends State<AllowancePage> {
             List<AllowanceModel> fetchedData = state.fetchedModel;
             fetchedData.asMap().forEach((key, value) {
               totalProcessWrong += fetchedData[key].processWrong ?? 0;
-              totalbriddhaBhatta += fetchedData[key].briddhaBhatta ?? 0;
+              totalBriddhaBhatta += fetchedData[key].briddhaBhatta ?? 0;
               totalWidow += fetchedData[key].widow ?? 0;
               totalWidower += fetchedData[key].widower ?? 0;
               totalDisabled += fetchedData[key].disabled ?? 0;
@@ -55,7 +57,19 @@ class _AllowancePageState extends State<AllowancePage> {
             children: [
               AllowanceBarChart(
                   totalProcessWrong,
-                  totalbriddhaBhatta,
+                  totalBriddhaBhatta,
+                  totalWidow,
+                  totalWidower,
+                  totalDisabled,
+                  totalNotTaken,
+                  totalNotProcessed,
+                  totalIndigenous,
+                  totalNotAvailable,
+                  totalSocialSecurity),
+              verticalspace(),
+              AllowanceDataTable(
+                  totalProcessWrong,
+                  totalBriddhaBhatta,
                   totalWidow,
                   totalWidower,
                   totalDisabled,

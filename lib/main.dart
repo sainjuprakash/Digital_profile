@@ -28,6 +28,7 @@ import 'package:digital_profile/src/features/table_no_64/data/repository/expense
 import 'package:digital_profile/src/features/table_no_65/data/repository/income_repository_impl.dart';
 import 'package:digital_profile/src/features/table_no_74/data/repository/settlement_repository_impl.dart';
 import 'package:digital_profile/src/features/table_no_95/data/repository/allowance_repository_impl.dart';
+import 'package:digital_profile/src/features/table_no_97/data/repository/road_distance_repository_impl.dart';
 import 'package:digital_profile/src/features/toilet/data/repository/toilet_repository_impl.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -90,7 +91,8 @@ class MyApp extends StatelessWidget {
         RepositoryProvider(create: (context) => ImplExpensesRepository()),
         RepositoryProvider(create: (context) => ImplIncomeRepository()),
         RepositoryProvider(create: (context) => ImplSettlementRepository()),
-        RepositoryProvider(create: (context) => ImplAllowanceRepository())
+        RepositoryProvider(create: (context) => ImplAllowanceRepository()),
+        RepositoryProvider(create: (context) => ImplRoadDistanceRepository())
       ],
       child: MaterialApp(
         localizationsDelegates: const [

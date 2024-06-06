@@ -209,5 +209,10 @@
 "notTaken" : "भत्ता नलिएका",
 "notProcessed" : "प्रक्रिया गरेकाे छैन",
 "indigenous" : "आदिवासी भत्ता",
-"disableAllowance" : "अपांग भत्ता"
+"disableAllowance" : "अपांग भत्ता",
+"roadDistanceTitle" : "घरबाट हिडेर नजिकको बजार पुग्न लाग्ने समय (घरधुरी संख्या)",
+"lessThanOneHours" : "१ घण्टा वा १ भन्दा कम",
+"twoHours" : "२ घण्टा",
+"upToFiveHours" : "२ देखि ५ घण्टा",
+"moreThanFive" : "५ घण्टा"
 }

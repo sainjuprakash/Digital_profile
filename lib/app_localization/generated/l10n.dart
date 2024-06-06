@@ -2139,6 +2139,56 @@ class AppLocalizations {
       args: [],
     );
   }
+
+  /// `घरबाट हिडेर नजिकको बजार पुग्न लाग्ने समय (घरधुरी संख्या)`
+  String get roadDistanceTitle {
+    return Intl.message(
+      'घरबाट हिडेर नजिकको बजार पुग्न लाग्ने समय (घरधुरी संख्या)',
+      name: 'roadDistanceTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `१ घण्टा वा १ भन्दा कम`
+  String get lessThanOneHours {
+    return Intl.message(
+      '१ घण्टा वा १ भन्दा कम',
+      name: 'lessThanOneHours',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `२ घण्टा`
+  String get twoHours {
+    return Intl.message(
+      '२ घण्टा',
+      name: 'twoHours',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `२ देखि ५ घण्टा`
+  String get upToFiveHours {
+    return Intl.message(
+      '२ देखि ५ घण्टा',
+      name: 'upToFiveHours',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `५ घण्टा`
+  String get moreThanFive {
+    return Intl.message(
+      '५ घण्टा',
+      name: 'moreThanFive',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<AppLocalizations> {

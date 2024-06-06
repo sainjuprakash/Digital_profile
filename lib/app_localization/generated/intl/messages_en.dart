@@ -148,6 +148,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "khar": MessageLookupByLibrary.simpleMessage("फुस वा खरको"),
         "kirat": MessageLookupByLibrary.simpleMessage("किरात"),
         "labour": MessageLookupByLibrary.simpleMessage("श्रम"),
+        "lessThanOneHours":
+            MessageLookupByLibrary.simpleMessage("१ घण्टा वा १ भन्दा कम"),
         "lessthan6": MessageLookupByLibrary.simpleMessage("६ भन्दा कम"),
         "lifeInsurance": MessageLookupByLibrary.simpleMessage("जीवन बिमा"),
         "limbu": MessageLookupByLibrary.simpleMessage("लिम्बु"),
@@ -181,6 +183,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "meatTitle": MessageLookupByLibrary.simpleMessage(
             "मासु तथा अन्य प्रयाेजनकाे लागि पालिने चाैपायकाे बिवरण"),
         "mental": MessageLookupByLibrary.simpleMessage("बौद्विक अपाङगता भएको"),
+        "moreThanFive": MessageLookupByLibrary.simpleMessage("५ घण्टा"),
         "motorcycle": MessageLookupByLibrary.simpleMessage("माेटरसार्इकल"),
         "mphil": MessageLookupByLibrary.simpleMessage("एमफिल"),
         "mud": MessageLookupByLibrary.simpleMessage("माटोेको"),
@@ -241,6 +244,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("भूकम्प प्रतिरोधी भएको"),
         "retarded":
             MessageLookupByLibrary.simpleMessage("मनोसामाजिक अपाङगता भएको"),
+        "roadDistanceTitle": MessageLookupByLibrary.simpleMessage(
+            "घरबाट हिडेर नजिकको बजार पुग्न लाग्ने समय (घरधुरी संख्या)"),
         "roof": MessageLookupByLibrary.simpleMessage("छाना"),
         "rubyvalley": MessageLookupByLibrary.simpleMessage("रुबी भ्याली"),
         "secondary": MessageLookupByLibrary.simpleMessage("माध्यमिक"),
@@ -281,8 +286,10 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("कुल वडा जनसंख्या"),
         "totalwardpopulation":
             MessageLookupByLibrary.simpleMessage("कुल वडा जनसंख्या"),
+        "twoHours": MessageLookupByLibrary.simpleMessage("२ घण्टा"),
         "underage": MessageLookupByLibrary.simpleMessage("उमेर कम"),
         "unemployed": MessageLookupByLibrary.simpleMessage("बेरोजगार"),
+        "upToFiveHours": MessageLookupByLibrary.simpleMessage("२ देखि ५ घण्टा"),
         "vegetables": MessageLookupByLibrary.simpleMessage("तरकारी"),
         "wardnumber": MessageLookupByLibrary.simpleMessage("वडा नम्बर"),
         "widow": MessageLookupByLibrary.simpleMessage("विधवा भत्ता"),
