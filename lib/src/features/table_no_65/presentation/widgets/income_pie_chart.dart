@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../table_no_74/presentation/bloc/settlement_bloc.dart';
+import '../bloc/income_bloc.dart';
 
 class IncomePieChart extends StatelessWidget {
   int totalCrops,
@@ -43,15 +44,15 @@ class IncomePieChart extends StatelessWidget {
           verticalspace(),
           AppTitleText(text: l10n.incomeTitle),
           verticalspace(),
-          BlocBuilder<SettlementBloc, SettlementState>(
+          BlocBuilder<IncomeBloc, IncomeState>(
             builder: (context, state) {
-              if (state is SettlementLoadingState) {
+              if (state is IncomeLoadingState) {
                 return const Padding(
                   padding: EdgeInsets.all(8.0),
                   child: Center(child: CircularProgressIndicator()),
                 );
               }
-              if (state is SettlementSuccessState) {
+              if (state is IncomeSuccessState) {
                 return Padding(
                   padding: const EdgeInsets.all(10.0),
                   child: SizedBox(
@@ -114,7 +115,7 @@ class IncomePieChart extends StatelessWidget {
                           ]))),
                 );
               }
-              if (state is SettlementFailureState) {
+              if (state is IncomeFailureState) {
                 return const Center(
                   child: Padding(
                     padding: EdgeInsets.all(8.0),

@@ -18,12 +18,12 @@ import 'package:digital_profile/src/features/login/presentation/page/login_signu
 import 'package:digital_profile/src/features/marriage/presentation/pages/marriage_status_page.dart';
 import 'package:digital_profile/src/features/pages/all_household_data.dart';
 import 'package:digital_profile/src/features/pages/report_page.dart';
-import 'package:digital_profile/src/features/population/data/repository/population_repository_impl.dart';
-import 'package:digital_profile/src/features/population/presentation/bloc/population_bloc.dart';
 import 'package:digital_profile/src/features/population/presentation/pages/population_details_page.dart';
 import 'package:digital_profile/src/features/religion/presentation/page/religion_page.dart';
 import 'package:digital_profile/src/features/residence/presentation/pages/residence_page.dart';
 import 'package:digital_profile/src/features/table_%20no_30/presentation/pages/house_ownership_page.dart';
+import 'package:digital_profile/src/features/table_no_100/presentation/pages/child_worker_page.dart';
+import 'package:digital_profile/src/features/table_no_105/presentation/pages/bank_account_page.dart';
 import 'package:digital_profile/src/features/table_no_33/presentation/pages/earthquake_resistance_page.dart';
 import 'package:digital_profile/src/features/table_no_34/presentation/pages/occupation_page.dart';
 import 'package:digital_profile/src/features/table_no_37/presentation/pages/bank_page.dart';
@@ -40,7 +40,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'core/network/endpoints.dart';
 
 class MyHomePage extends StatefulWidget {
-  final ImplLoginRepository _loginRepository = ImplLoginRepository();
   String baseUrl, endPoint;
   MyHomePage(this.baseUrl, this.endPoint, {super.key});
   @override
@@ -77,6 +76,8 @@ class _MyHomePageState extends State<MyHomePage> {
     'Table 74 - 5.0  बसोबासको प्रकृति अनुसार घरपरिवार विवरण',
     'Table 95 - 2.6 सामाजिक सुरक्षा भत्ताको विवरण',
     'Table 97 - 3.1 घरबाट हिडेर नजिकको बजार पुग्न लाग्ने समय (घरधुरी संख्या)',
+    'Table 100 - 7.2 घरमा १६ बर्ष मुनिको (बालबालिका) काम गर्न राख्ने घरधुरी संख्या',
+    'Table 105 - 2.5 परिवारको सदस्यकाे बैंक तथा वित्तीय संस्थामा खाताको बिवरण',
   ];
   bool isUserLoggedIn = false;
 
@@ -310,6 +311,12 @@ class _MyHomePageState extends State<MyHomePage> {
     } else if (selectedItem ==
         'Table 97 - 3.1 घरबाट हिडेर नजिकको बजार पुग्न लाग्ने समय (घरधुरी संख्या)') {
       return RoadDistancePage(widget.baseUrl, widget.endPoint);
+    } else if (selectedItem ==
+        'Table 100 - 7.2 घरमा १६ बर्ष मुनिको (बालबालिका) काम गर्न राख्ने घरधुरी संख्या') {
+      return ChildWorkerPage(widget.baseUrl, widget.endPoint);
+    } else if (selectedItem ==
+        'Table 105 - 2.5 परिवारको सदस्यकाे बैंक तथा वित्तीय संस्थामा खाताको बिवरण') {
+      return BankAccountPage(widget.baseUrl, widget.endPoint);
     } else {
       return const Center(child: Text('Select an option'));
     }

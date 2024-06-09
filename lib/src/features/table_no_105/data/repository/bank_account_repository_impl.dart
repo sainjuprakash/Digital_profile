@@ -1,13 +1,13 @@
 import 'dart:io';
 
-import 'package:digital_profile/src/features/table_no_100/data/model/child_worker_model.dart';
-import 'package:digital_profile/src/features/table_no_100/domain/repository/child_worker_repository.dart';
+import 'package:digital_profile/src/features/table_no_105/data/model/bank_account_model.dart';
+import 'package:digital_profile/src/features/table_no_105/domain/repository/bank_account_repository.dart';
 import 'package:dio/dio.dart';
 import 'package:dio/io.dart';
 
-class ImplChildWorkerRepository extends ChildWorkerRepository {
+class ImplBankAccountRepository implements BankAccountRepository {
   @override
-  Future<List<ChildWorkerModel>> getChildData(
+  Future<List<BankAccountModel>> getBankDetails(
       String baseUrl, String endPoint) async {
     final dio = Dio();
     dio.httpClientAdapter = IOHttpClientAdapter(
@@ -23,10 +23,10 @@ class ImplChildWorkerRepository extends ChildWorkerRepository {
     );
     try {
       Response<dynamic> responseFromServer =
-          await dio.get('$baseUrl/${endPoint}100');
+          await dio.get('$baseUrl/${endPoint}105');
       if (responseFromServer.statusCode == 200) {
         final List<dynamic> result = responseFromServer.data['result'];
-        return result.map((e) => ChildWorkerModel.fromJson(e)).toList();
+        return result.map((e) => BankAccountModel.fromJson(e)).toList();
       } else {
         throw Exception(responseFromServer.statusCode);
       }

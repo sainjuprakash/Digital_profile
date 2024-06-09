@@ -36,10 +36,14 @@ class MessageLookup extends MessageLookupByLibrary {
         "animalsTitle": MessageLookupByLibrary.simpleMessage(
             "चौपाया तथा पशुपन्छी पाल्ने घरपरिवार विवरण"),
         "bachelor": MessageLookupByLibrary.simpleMessage("स्नातक तह"),
+        "bankAccountTitle": MessageLookupByLibrary.simpleMessage(
+            "परिवारको सदस्यकाे बैंक तथा वित्तीय संस्थामा खाताको बिवरण"),
         "bankTitle": MessageLookupByLibrary.simpleMessage(
             "बैंङ्क तथा वित्तिय संस्थामा खाता हुने घरपरिवार सम्बन्धी विवरण"),
         "bioGas": MessageLookupByLibrary.simpleMessage("वायोग्यास"),
         "birds": MessageLookupByLibrary.simpleMessage("पशुपन्छी पालन गर्ने"),
+        "bittiyaSanstha":
+            MessageLookupByLibrary.simpleMessage("वित्तीय संस्था"),
         "blind":
             MessageLookupByLibrary.simpleMessage("दृश्टिबिहिन(अाखा नदेख्ने)"),
         "bon": MessageLookupByLibrary.simpleMessage("बोन"),
@@ -49,9 +53,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "business": MessageLookupByLibrary.simpleMessage("उद्योग व्यापार"),
         "car": MessageLookupByLibrary.simpleMessage("माेटर,कार"),
         "celeberal": MessageLookupByLibrary.simpleMessage("सुस्त मनस्थिती"),
+        "childWorkerTitle": MessageLookupByLibrary.simpleMessage(
+            "घरमा १६ बर्ष मुनिको (बालबालिका) काम गर्न राख्ने घरधुरी संख्या"),
         "christian":
             MessageLookupByLibrary.simpleMessage(" इसार्इ(क्रिश्चियन)"),
         "clothes": MessageLookupByLibrary.simpleMessage("लत्ता कपडा"),
+        "commercialBank": MessageLookupByLibrary.simpleMessage("बाणिज्य बैंक"),
         "computer": MessageLookupByLibrary.simpleMessage("कम्प्यूटर"),
         "countryside":
             MessageLookupByLibrary.simpleMessage("स्वदेशमा अन्यत्र बसेको"),
@@ -61,6 +68,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("बहिरा(सुन्न र बोल्न नसक्ने)"),
         "defaultresidence":
             MessageLookupByLibrary.simpleMessage("गणना गरेकै ठाउँमा बसेको"),
+        "devBank": MessageLookupByLibrary.simpleMessage("बिकास बैंक"),
         "digitalprofile":
             MessageLookupByLibrary.simpleMessage("डिजिटल प्रोफाइल"),
         "disabilitytitle":
@@ -111,6 +119,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "gurung": MessageLookupByLibrary.simpleMessage("गुरुङ"),
         "hasbankAc":
             MessageLookupByLibrary.simpleMessage("खाता हुने घरपरिवार संख्या"),
+        "haveChildWorker": MessageLookupByLibrary.simpleMessage("छ"),
+        "haveNoChildWorker": MessageLookupByLibrary.simpleMessage("छैन"),
         "health": MessageLookupByLibrary.simpleMessage("स्वास्थ्य"),
         "healthInsurance":
             MessageLookupByLibrary.simpleMessage("स्वास्थ्य बिमा"),
@@ -248,6 +258,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "घरबाट हिडेर नजिकको बजार पुग्न लाग्ने समय (घरधुरी संख्या)"),
         "roof": MessageLookupByLibrary.simpleMessage("छाना"),
         "rubyvalley": MessageLookupByLibrary.simpleMessage("रुबी भ्याली"),
+        "sahakari": MessageLookupByLibrary.simpleMessage("सहकारी"),
         "secondary": MessageLookupByLibrary.simpleMessage("माध्यमिक"),
         "seftiTank": MessageLookupByLibrary.simpleMessage("सेफ्टी ट्यांक"),
         "seniorCtzn": MessageLookupByLibrary.simpleMessage("बढी उमेर"),

@@ -214,5 +214,13 @@
 "lessThanOneHours" : "१ घण्टा वा १ भन्दा कम",
 "twoHours" : "२ घण्टा",
 "upToFiveHours" : "२ देखि ५ घण्टा",
-"moreThanFive" : "५ घण्टा"
+"moreThanFive" : "५ घण्टा",
+"childWorkerTitle" : "घरमा १६ बर्ष मुनिको (बालबालिका) काम गर्न राख्ने घरधुरी संख्या",
+"haveChildWorker" : "छ",
+"haveNoChildWorker" : "छैन",
+"bankAccountTitle" : "परिवारको सदस्यकाे बैंक तथा वित्तीय संस्थामा खाताको बिवरण",
+"commercialBank" : "बाणिज्य बैंक",
+"devBank" : "बिकास बैंक",
+"sahakari" : "सहकारी",
+"bittiyaSanstha" : "वित्तीय संस्था"
 }

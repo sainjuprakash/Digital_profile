@@ -40,7 +40,6 @@ class _SettlementPageState extends State<SettlementPage> {
               totalTemporary += fetchedData[key].temporary ?? 0;
               totalOthers += fetchedData[key].others ?? 0;
               totalResidence += fetchedData[key].total ?? 0;
-              print(totalPermanent);
             });
           }
           return Column(

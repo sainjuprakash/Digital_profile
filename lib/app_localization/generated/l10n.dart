@@ -2189,6 +2189,86 @@ class AppLocalizations {
       args: [],
     );
   }
+
+  /// `घरमा १६ बर्ष मुनिको (बालबालिका) काम गर्न राख्ने घरधुरी संख्या`
+  String get childWorkerTitle {
+    return Intl.message(
+      'घरमा १६ बर्ष मुनिको (बालबालिका) काम गर्न राख्ने घरधुरी संख्या',
+      name: 'childWorkerTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `छ`
+  String get haveChildWorker {
+    return Intl.message(
+      'छ',
+      name: 'haveChildWorker',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `छैन`
+  String get haveNoChildWorker {
+    return Intl.message(
+      'छैन',
+      name: 'haveNoChildWorker',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `परिवारको सदस्यकाे बैंक तथा वित्तीय संस्थामा खाताको बिवरण`
+  String get bankAccountTitle {
+    return Intl.message(
+      'परिवारको सदस्यकाे बैंक तथा वित्तीय संस्थामा खाताको बिवरण',
+      name: 'bankAccountTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `बाणिज्य बैंक`
+  String get commercialBank {
+    return Intl.message(
+      'बाणिज्य बैंक',
+      name: 'commercialBank',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `बिकास बैंक`
+  String get devBank {
+    return Intl.message(
+      'बिकास बैंक',
+      name: 'devBank',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `सहकारी`
+  String get sahakari {
+    return Intl.message(
+      'सहकारी',
+      name: 'sahakari',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `वित्तीय संस्था`
+  String get bittiyaSanstha {
+    return Intl.message(
+      'वित्तीय संस्था',
+      name: 'bittiyaSanstha',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<AppLocalizations> {
