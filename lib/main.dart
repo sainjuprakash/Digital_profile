@@ -22,6 +22,7 @@ import 'package:digital_profile/src/features/residence/data/repository/residence
 import 'package:digital_profile/src/features/table_%20no_30/data/repository/house_ownership_repository_impl.dart';
 import 'package:digital_profile/src/features/table_no_100/data/repository/child_worker_repository_impl.dart';
 import 'package:digital_profile/src/features/table_no_105/data/repository/bank_account_repository_impl.dart';
+import 'package:digital_profile/src/features/table_no_109/data/repository/loan_repository_impl.dart';
 import 'package:digital_profile/src/features/table_no_33/data/repository/earthquake_resistance_repository_impl.dart';
 import 'package:digital_profile/src/features/table_no_34/data/repository/occupation_repository_impl.dart';
 import 'package:digital_profile/src/features/table_no_37/data/repository/bank_repository_impl.dart';
@@ -97,6 +98,7 @@ class MyApp extends StatelessWidget {
         RepositoryProvider(create: (context) => ImplRoadDistanceRepository()),
         RepositoryProvider(create: (context) => ImplChildWorkerRepository()),
         RepositoryProvider(create: (context) => ImplBankAccountRepository()),
+        RepositoryProvider(create: (context) => ImplLoanRepository()),
       ],
       child: MaterialApp(
         localizationsDelegates: const [

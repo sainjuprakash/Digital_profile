@@ -2269,6 +2269,66 @@ class AppLocalizations {
       args: [],
     );
   }
+
+  /// `ऋणको उद्देश्य अनुसार घरपरिवार विवरण`
+  String get loanTitle {
+    return Intl.message(
+      'ऋणको उद्देश्य अनुसार घरपरिवार विवरण',
+      name: 'loanTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `कृषि तथा पशुपालन`
+  String get agricultureLoan {
+    return Intl.message(
+      'कृषि तथा पशुपालन',
+      name: 'agricultureLoan',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `उद्योग/ब्यापार`
+  String get businessLoan {
+    return Intl.message(
+      'उद्योग/ब्यापार',
+      name: 'businessLoan',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `घर खर्च`
+  String get houseExpLoan {
+    return Intl.message(
+      'घर खर्च',
+      name: 'houseExpLoan',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `शिक्षा`
+  String get educationLoan {
+    return Intl.message(
+      'शिक्षा',
+      name: 'educationLoan',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `औषधि उपचार`
+  String get medicalLoan {
+    return Intl.message(
+      'औषधि उपचार',
+      name: 'medicalLoan',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<AppLocalizations> {

@@ -222,5 +222,12 @@
 "commercialBank" : "बाणिज्य बैंक",
 "devBank" : "बिकास बैंक",
 "sahakari" : "सहकारी",
-"bittiyaSanstha" : "वित्तीय संस्था"
+"bittiyaSanstha" : "वित्तीय संस्था",
+"loanTitle" : "ऋणको उद्देश्य अनुसार घरपरिवार विवरण",
+"agricultureLoan" : "कृषि तथा पशुपालन",
+"businessLoan" : "उद्योग/ब्यापार",
+"houseExpLoan" : "घर खर्च",
+"educationLoan" : "शिक्षा",
+"medicalLoan" : "औषधि उपचार"
+
 }

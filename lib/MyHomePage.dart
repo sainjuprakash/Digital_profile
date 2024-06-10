@@ -24,6 +24,7 @@ import 'package:digital_profile/src/features/residence/presentation/pages/reside
 import 'package:digital_profile/src/features/table_%20no_30/presentation/pages/house_ownership_page.dart';
 import 'package:digital_profile/src/features/table_no_100/presentation/pages/child_worker_page.dart';
 import 'package:digital_profile/src/features/table_no_105/presentation/pages/bank_account_page.dart';
+import 'package:digital_profile/src/features/table_no_109/presentation/pages/loan_page.dart';
 import 'package:digital_profile/src/features/table_no_33/presentation/pages/earthquake_resistance_page.dart';
 import 'package:digital_profile/src/features/table_no_34/presentation/pages/occupation_page.dart';
 import 'package:digital_profile/src/features/table_no_37/presentation/pages/bank_page.dart';
@@ -78,6 +79,7 @@ class _MyHomePageState extends State<MyHomePage> {
     'Table 97 - 3.1 घरबाट हिडेर नजिकको बजार पुग्न लाग्ने समय (घरधुरी संख्या)',
     'Table 100 - 7.2 घरमा १६ बर्ष मुनिको (बालबालिका) काम गर्न राख्ने घरधुरी संख्या',
     'Table 105 - 2.5 परिवारको सदस्यकाे बैंक तथा वित्तीय संस्थामा खाताको बिवरण',
+    'Table 109 - 2.5 ऋणको उद्देश्य अनुसार घरपरिवार विवरण'
   ];
   bool isUserLoggedIn = false;
 
@@ -317,6 +319,9 @@ class _MyHomePageState extends State<MyHomePage> {
     } else if (selectedItem ==
         'Table 105 - 2.5 परिवारको सदस्यकाे बैंक तथा वित्तीय संस्थामा खाताको बिवरण') {
       return BankAccountPage(widget.baseUrl, widget.endPoint);
+    } else if (selectedItem ==
+        'Table 109 - 2.5 ऋणको उद्देश्य अनुसार घरपरिवार विवरण') {
+      return LoanPage(widget.baseUrl, widget.endPoint);
     } else {
       return const Center(child: Text('Select an option'));
     }

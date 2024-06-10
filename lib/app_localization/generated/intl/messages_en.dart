@@ -28,6 +28,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "able": MessageLookupByLibrary.simpleMessage("अपाङ्गता नभएको"),
         "above90": MessageLookupByLibrary.simpleMessage("९० माथि"),
         "agriculture": MessageLookupByLibrary.simpleMessage("कृषि कार्य"),
+        "agricultureLoan":
+            MessageLookupByLibrary.simpleMessage("कृषि तथा पशुपालन"),
         "allowanceTitle": MessageLookupByLibrary.simpleMessage(
             "सामाजिक सुरक्षा भत्ताको विवरण"),
         "animals": MessageLookupByLibrary.simpleMessage("चौपाया पालन गर्ने"),
@@ -51,6 +53,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "briddhaBhatta": MessageLookupByLibrary.simpleMessage("बृद्घा भत्ता"),
         "bus": MessageLookupByLibrary.simpleMessage("बस,ट्रक अादी"),
         "business": MessageLookupByLibrary.simpleMessage("उद्योग व्यापार"),
+        "businessLoan": MessageLookupByLibrary.simpleMessage("उद्योग/ब्यापार"),
         "car": MessageLookupByLibrary.simpleMessage("माेटर,कार"),
         "celeberal": MessageLookupByLibrary.simpleMessage("सुस्त मनस्थिती"),
         "childWorkerTitle": MessageLookupByLibrary.simpleMessage(
@@ -79,6 +82,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "earthquakeTitle": MessageLookupByLibrary.simpleMessage(
             "भवन मापण्ड तथा भूकम्प प्रतिरोधी घरको विवरण"),
         "education": MessageLookupByLibrary.simpleMessage("शिक्षा"),
+        "educationLoan": MessageLookupByLibrary.simpleMessage("शिक्षा"),
         "electricityLaghu":
             MessageLookupByLibrary.simpleMessage("विद्युत (लघु)"),
         "electricityNational":
@@ -136,6 +140,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "hindu": MessageLookupByLibrary.simpleMessage("हिन्दु"),
         "homeFacilitiesTitle":
             MessageLookupByLibrary.simpleMessage("घरपरिवारमा उपलब्ध सुविधाहरु"),
+        "houseExpLoan": MessageLookupByLibrary.simpleMessage("घर खर्च"),
         "houseFacilityTitle": MessageLookupByLibrary.simpleMessage(
             "बसोबास गरेको घरको छाना सम्बन्धी विवरण"),
         "houseOwnershipTitle": MessageLookupByLibrary.simpleMessage(
@@ -168,6 +173,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "literate": MessageLookupByLibrary.simpleMessage("साक्षर"),
         "liveStockInsurance": MessageLookupByLibrary.simpleMessage("पशु विमा"),
         "livestock": MessageLookupByLibrary.simpleMessage("पशुपन्छी"),
+        "loanTitle": MessageLookupByLibrary.simpleMessage(
+            "ऋणको उद्देश्य अनुसार घरपरिवार विवरण"),
         "login": MessageLookupByLibrary.simpleMessage("लग-इन"),
         "longTermDisease":
             MessageLookupByLibrary.simpleMessage("दीर्घ राेग लागेकाे"),
@@ -192,6 +199,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "वार्षिक मासु उत्पादन (के.जि.)"),
         "meatTitle": MessageLookupByLibrary.simpleMessage(
             "मासु तथा अन्य प्रयाेजनकाे लागि पालिने चाैपायकाे बिवरण"),
+        "medicalLoan": MessageLookupByLibrary.simpleMessage("औषधि उपचार"),
         "mental": MessageLookupByLibrary.simpleMessage("बौद्विक अपाङगता भएको"),
         "moreThanFive": MessageLookupByLibrary.simpleMessage("५ घण्टा"),
         "motorcycle": MessageLookupByLibrary.simpleMessage("माेटरसार्इकल"),

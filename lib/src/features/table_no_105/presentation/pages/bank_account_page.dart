@@ -43,6 +43,7 @@ class _BankAccountPageState extends State<BankAccountPage> {
               totalBitiyaSanstha += fetchedData[key].bitiyaSanstha ?? 0;
               totalNotAvailable += (fetchedData[key].total ?? 0) -
                   (fetchedData[key].totalBankCount ?? 0);
+              totalTotal += fetchedData[key].total ?? 0;
             });
           }
           return Column(
