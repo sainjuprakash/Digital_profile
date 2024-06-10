@@ -1671,10 +1671,10 @@ class AppLocalizations {
   }
 
   /// `भवन मापण्ड तथा भूकम्प प्रतिरोधी घरको विवरण`
-  String get earthquakeTitle {
+  String get earthquakeResistanceTitle {
     return Intl.message(
       'भवन मापण्ड तथा भूकम्प प्रतिरोधी घरको विवरण',
-      name: 'earthquakeTitle',
+      name: 'earthquakeResistanceTitle',
       desc: '',
       args: [],
     );
@@ -2325,6 +2325,16 @@ class AppLocalizations {
     return Intl.message(
       'औषधि उपचार',
       name: 'medicalLoan',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `२०७२ को भुकम्पबाट घर क्षति भएको नभएको विवरण`
+  String get earthquakeTitle {
+    return Intl.message(
+      '२०७२ को भुकम्पबाट घर क्षति भएको नभएको विवरण',
+      name: 'earthquakeTitle',
       desc: '',
       args: [],
     );

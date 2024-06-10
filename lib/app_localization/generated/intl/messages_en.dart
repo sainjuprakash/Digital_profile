@@ -79,8 +79,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "disable": MessageLookupByLibrary.simpleMessage("शारिरीक अपाङगता"),
         "disableAllowance": MessageLookupByLibrary.simpleMessage("अपांग भत्ता"),
         "divorced": MessageLookupByLibrary.simpleMessage("सम्बन्ध विच्छेद"),
-        "earthquakeTitle": MessageLookupByLibrary.simpleMessage(
+        "earthquakeResistanceTitle": MessageLookupByLibrary.simpleMessage(
             "भवन मापण्ड तथा भूकम्प प्रतिरोधी घरको विवरण"),
+        "earthquakeTitle": MessageLookupByLibrary.simpleMessage(
+            "२०७२ को भुकम्पबाट घर क्षति भएको नभएको विवरण"),
         "education": MessageLookupByLibrary.simpleMessage("शिक्षा"),
         "educationLoan": MessageLookupByLibrary.simpleMessage("शिक्षा"),
         "electricityLaghu":

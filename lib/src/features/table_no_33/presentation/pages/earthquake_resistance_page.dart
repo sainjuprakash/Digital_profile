@@ -43,7 +43,7 @@ class _EarthquakeResistancePageState extends State<EarthquakeResistancePage> {
           }
           return Column(
             children: [
-              EarthquakeBarChart(
+              EarthquakeResistanceBarChart(
                   totalResistance, totalNotResistance, totalResistanceData),
               EarthquakeResistanceDataTable(
                   totalResistance, totalNotResistance, totalResistanceData),

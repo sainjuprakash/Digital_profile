@@ -162,7 +162,7 @@
 "rental" : "भाडाको धर",
 "organizational" : "संस्थागत घर",
 "sukumbasi" : "सुकुम्वासी",
-"earthquakeTitle" : "भवन मापण्ड तथा भूकम्प प्रतिरोधी घरको विवरण",
+"earthquakeResistanceTitle" : "भवन मापण्ड तथा भूकम्प प्रतिरोधी घरको विवरण",
 "resistance" : "भूकम्प प्रतिरोधी भएको",
 "notResistance" : "भूकम्प प्रतिरोधी नभएको",
 "OccupationTitle" : "प्रमुख पेशा अनुसार जनसंख्या",
@@ -228,6 +228,6 @@
 "businessLoan" : "उद्योग/ब्यापार",
 "houseExpLoan" : "घर खर्च",
 "educationLoan" : "शिक्षा",
-"medicalLoan" : "औषधि उपचार"
-
+"medicalLoan" : "औषधि उपचार",
+"earthquakeTitle" : "२०७२ को भुकम्पबाट घर क्षति भएको नभएको विवरण"
 }

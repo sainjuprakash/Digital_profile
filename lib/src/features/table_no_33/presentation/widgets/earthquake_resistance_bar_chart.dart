@@ -6,9 +6,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
-class EarthquakeBarChart extends StatelessWidget {
+class EarthquakeResistanceBarChart extends StatelessWidget {
   int totalResistance, totalNotResistance, totalResistanceData;
-  EarthquakeBarChart(
+  EarthquakeResistanceBarChart(
       this.totalResistance, this.totalNotResistance, this.totalResistanceData,
       {super.key});
   @override
@@ -19,7 +19,7 @@ class EarthquakeBarChart extends StatelessWidget {
           verticalspace(),
           Padding(
             padding: const EdgeInsets.only(left: 15.0),
-            child: AppTitleText(text: l10n.earthquakeTitle),
+            child: AppTitleText(text: l10n.earthquakeResistanceTitle),
           ),
           verticalspace(),
           SingleChildScrollView(

@@ -61,8 +61,6 @@ class ToiletBarChart extends StatelessWidget {
                                 showTitles: true,
                                 reservedSize: 36,
                                 getTitlesWidget: (value, meta) {
-                                  // print(value);
-                                  // print(meta);
                                   final lists = [
                                     l10n.noToilet,
                                     l10n.publicDhal,
