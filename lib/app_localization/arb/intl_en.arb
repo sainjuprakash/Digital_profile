@@ -229,5 +229,8 @@
 "houseExpLoan" : "घर खर्च",
 "educationLoan" : "शिक्षा",
 "medicalLoan" : "औषधि उपचार",
-"earthquakeTitle" : "२०७२ को भुकम्पबाट घर क्षति भएको नभएको विवरण"
+"earthquakeTitle" : "२०७२ को भुकम्पबाट घर क्षति भएको नभएको विवरण",
+"earthquakeGrantTitle" : "भूकम्पबाट क्षति भएको हो भने अनुदान पाए नपाएको विवरण",
+"got" : "पाए",
+"doesNotGot" : "पाइन"
 }

@@ -79,6 +79,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "disable": MessageLookupByLibrary.simpleMessage("शारिरीक अपाङगता"),
         "disableAllowance": MessageLookupByLibrary.simpleMessage("अपांग भत्ता"),
         "divorced": MessageLookupByLibrary.simpleMessage("सम्बन्ध विच्छेद"),
+        "doesNotGot": MessageLookupByLibrary.simpleMessage("पाइन"),
+        "earthquakeGrantTitle": MessageLookupByLibrary.simpleMessage(
+            "भूकम्पबाट क्षति भएको हो भने अनुदान पाए नपाएको विवरण"),
         "earthquakeResistanceTitle": MessageLookupByLibrary.simpleMessage(
             "भवन मापण्ड तथा भूकम्प प्रतिरोधी घरको विवरण"),
         "earthquakeTitle": MessageLookupByLibrary.simpleMessage(
@@ -122,6 +125,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "generalDisease":
             MessageLookupByLibrary.simpleMessage("सामान्य राेग लागेकाे"),
         "ghale": MessageLookupByLibrary.simpleMessage("घले"),
+        "got": MessageLookupByLibrary.simpleMessage("पाए"),
         "gurung": MessageLookupByLibrary.simpleMessage("गुरुङ"),
         "hasbankAc":
             MessageLookupByLibrary.simpleMessage("खाता हुने घरपरिवार संख्या"),

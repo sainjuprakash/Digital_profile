@@ -2339,6 +2339,36 @@ class AppLocalizations {
       args: [],
     );
   }
+
+  /// `भूकम्पबाट क्षति भएको हो भने अनुदान पाए नपाएको विवरण`
+  String get earthquakeGrantTitle {
+    return Intl.message(
+      'भूकम्पबाट क्षति भएको हो भने अनुदान पाए नपाएको विवरण',
+      name: 'earthquakeGrantTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `पाए`
+  String get got {
+    return Intl.message(
+      'पाए',
+      name: 'got',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `पाइन`
+  String get doesNotGot {
+    return Intl.message(
+      'पाइन',
+      name: 'doesNotGot',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<AppLocalizations> {
