@@ -7,13 +7,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../bloc/earthquake_grant_bloc.dart';
+import '../bloc/grant_stage_bloc.dart';
 
-class EarthquakeGrantBarChart extends StatelessWidget {
-  int totalGotGrant, totalHasNotGotGranted, totalNotAvailable;
+class GrantStageBarChart extends StatelessWidget {
+  int totalFirst, totalSecond, totalLast, totalNotAvailable, totalTotal;
 
-  EarthquakeGrantBarChart(
-      this.totalNotAvailable, this.totalHasNotGotGranted, this.totalGotGrant,
+  GrantStageBarChart(this.totalFirst, this.totalSecond, this.totalLast,
+      this.totalNotAvailable, this.totalTotal,
       {super.key});
 
   @override
@@ -22,11 +22,11 @@ class EarthquakeGrantBarChart extends StatelessWidget {
       child: Column(
         children: [
           verticalspace(),
-          AppTitleText(text: l10n.earthquakeGrantTitle),
+          AppTitleText(text: l10n.grantStageTitle),
           verticalspace(),
-          BlocBuilder<EarthquakeGrantBloc, EarthquakeGrantState>(
+          BlocBuilder<GrantStageBloc, GrantStageState>(
             builder: (context, state) {
-              if (state is EarthquakeGrantLoadingState) {
+              if (state is GrantStageLoadingState) {
                 return const Center(
                   child: Padding(
                     padding: EdgeInsets.all(8.0),
@@ -34,12 +34,12 @@ class EarthquakeGrantBarChart extends StatelessWidget {
                   ),
                 );
               }
-              if (state is EarthquakeGrantSuccessState) {
+              if (state is GrantStageSuccessState) {
                 return SingleChildScrollView(
                   scrollDirection: Axis.horizontal,
                   child: SizedBox(
                       height: 550,
-                      width: 400,
+                      width: 500,
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: BarChart(BarChartData(
@@ -57,9 +57,10 @@ class EarthquakeGrantBarChart extends StatelessWidget {
                                   reservedSize: 36,
                                   getTitlesWidget: (value, meta) {
                                     final lists = [
-                                      l10n.got,
-                                      l10n.doesNotGot,
-                                      l10n.Undisclosed,
+                                      l10n.first,
+                                      l10n.second,
+                                      l10n.last,
+                                      l10n.Undisclosed
                                     ];
                                     final index = value.toInt();
                                     //print(index);
@@ -74,17 +75,23 @@ class EarthquakeGrantBarChart extends StatelessWidget {
                             barGroups: [
                               BarChartGroupData(x: 0, barRods: [
                                 BarChartRodData(
-                                    toY: totalGotGrant.toDouble(),
+                                    toY: totalFirst.toDouble(),
                                     width: 20,
                                     borderRadius: BorderRadius.circular(2))
                               ]),
                               BarChartGroupData(x: 1, barRods: [
                                 BarChartRodData(
-                                    toY: totalHasNotGotGranted.toDouble(),
+                                    toY: totalSecond.toDouble(),
                                     width: 20,
                                     borderRadius: BorderRadius.circular(2))
                               ]),
                               BarChartGroupData(x: 2, barRods: [
+                                BarChartRodData(
+                                    toY: totalLast.toDouble(),
+                                    width: 20,
+                                    borderRadius: BorderRadius.circular(2))
+                              ]),
+                              BarChartGroupData(x: 3, barRods: [
                                 BarChartRodData(
                                     toY: totalNotAvailable.toDouble(),
                                     width: 20,
@@ -94,14 +101,12 @@ class EarthquakeGrantBarChart extends StatelessWidget {
                       )),
                 );
               }
-              if (state is EarthquakeGrantFailureState) {
+              if (state is GrantStageFailureState) {
                 return const Padding(
                   padding: EdgeInsets.all(8.0),
                   child: Center(child: Text("Unable to load data")),
                 );
               }
-
-
               return const Padding(
                 padding: EdgeInsets.all(8.0),
                 child: Center(child: Text("Something went wrong")),
