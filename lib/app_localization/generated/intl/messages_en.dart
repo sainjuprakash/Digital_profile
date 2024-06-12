@@ -119,6 +119,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("महिला(६ भन्दा कम)"),
         "festival": MessageLookupByLibrary.simpleMessage("चाडपर्व"),
         "fiftytosixtynine": MessageLookupByLibrary.simpleMessage("५०-६९"),
+        "first": MessageLookupByLibrary.simpleMessage("पहिलो"),
         "foreign": MessageLookupByLibrary.simpleMessage("स्बिदेशमा बसेको"),
         "foreignEmp": MessageLookupByLibrary.simpleMessage("बैदेशिक"),
         "fruits": MessageLookupByLibrary.simpleMessage("फलफुल"),
@@ -126,7 +127,13 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("सामान्य राेग लागेकाे"),
         "ghale": MessageLookupByLibrary.simpleMessage("घले"),
         "got": MessageLookupByLibrary.simpleMessage("पाए"),
+        "grantHouseTitle": MessageLookupByLibrary.simpleMessage(
+            "अनुदानले घर बने नबनेको विवरण"),
+        "grantStageTitle": MessageLookupByLibrary.simpleMessage(
+            "अनुदान पाएको भए कति पाएको विवरण"),
         "gurung": MessageLookupByLibrary.simpleMessage("गुरुङ"),
+        "hasBuild": MessageLookupByLibrary.simpleMessage("बनाए"),
+        "hasNotBuild": MessageLookupByLibrary.simpleMessage("बनेन"),
         "hasbankAc":
             MessageLookupByLibrary.simpleMessage("खाता हुने घरपरिवार संख्या"),
         "haveChildWorker": MessageLookupByLibrary.simpleMessage("छ"),
@@ -169,6 +176,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "khar": MessageLookupByLibrary.simpleMessage("फुस वा खरको"),
         "kirat": MessageLookupByLibrary.simpleMessage("किरात"),
         "labour": MessageLookupByLibrary.simpleMessage("श्रम"),
+        "last": MessageLookupByLibrary.simpleMessage("अन्तिम"),
         "lessThanOneHours":
             MessageLookupByLibrary.simpleMessage("१ घण्टा वा १ भन्दा कम"),
         "lessthan6": MessageLookupByLibrary.simpleMessage("६ भन्दा कम"),
@@ -273,6 +281,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "roof": MessageLookupByLibrary.simpleMessage("छाना"),
         "rubyvalley": MessageLookupByLibrary.simpleMessage("रुबी भ्याली"),
         "sahakari": MessageLookupByLibrary.simpleMessage("सहकारी"),
+        "second": MessageLookupByLibrary.simpleMessage("दोश्राे"),
         "secondary": MessageLookupByLibrary.simpleMessage("माध्यमिक"),
         "seftiTank": MessageLookupByLibrary.simpleMessage("सेफ्टी ट्यांक"),
         "seniorCtzn": MessageLookupByLibrary.simpleMessage("बढी उमेर"),

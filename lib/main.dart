@@ -25,6 +25,8 @@ import 'package:digital_profile/src/features/table_no_105/data/repository/bank_a
 import 'package:digital_profile/src/features/table_no_109/data/repository/loan_repository_impl.dart';
 import 'package:digital_profile/src/features/table_no_112/data/repository/earthquake_repository_impl.dart';
 import 'package:digital_profile/src/features/table_no_113/data/repository/earthquake_grant_repository_impl.dart';
+import 'package:digital_profile/src/features/table_no_114/data/repository/grant_stage_repository_impl.dart';
+import 'package:digital_profile/src/features/table_no_115/data/repository/grant_houses_repository_impl.dart';
 import 'package:digital_profile/src/features/table_no_33/data/repository/earthquake_resistance_repository_impl.dart';
 import 'package:digital_profile/src/features/table_no_34/data/repository/occupation_repository_impl.dart';
 import 'package:digital_profile/src/features/table_no_37/data/repository/bank_repository_impl.dart';
@@ -102,7 +104,11 @@ class MyApp extends StatelessWidget {
         RepositoryProvider(create: (context) => ImplBankAccountRepository()),
         RepositoryProvider(create: (context) => ImplLoanRepository()),
         RepositoryProvider(create: (context) => ImplEarthquakeRepository()),
-        RepositoryProvider(create: (context) => ImplEarthquakeGrantRepository()),
+        RepositoryProvider(
+            create: (context) => ImplEarthquakeGrantRepository()),
+        RepositoryProvider(create: (context) => ImplGrantStageRepository()),
+        RepositoryProvider(create: (context) => ImplGrantHouseRepository()),
+
       ],
       child: MaterialApp(
         localizationsDelegates: const [

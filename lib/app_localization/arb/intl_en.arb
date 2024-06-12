@@ -232,5 +232,12 @@
 "earthquakeTitle" : "२०७२ को भुकम्पबाट घर क्षति भएको नभएको विवरण",
 "earthquakeGrantTitle" : "भूकम्पबाट क्षति भएको हो भने अनुदान पाए नपाएको विवरण",
 "got" : "पाए",
-"doesNotGot" : "पाइन"
+"doesNotGot" : "पाइन",
+"grantStageTitle" : "अनुदान पाएको भए कति पाएको विवरण",
+"first" : "पहिलो",
+"second" : "दोश्राे",
+"last" : "अन्तिम",
+"grantHouseTitle" : "अनुदानले घर बने नबनेको विवरण",
+"hasBuild" : "बनाए",
+"hasNotBuild" : "बनेन"
 }

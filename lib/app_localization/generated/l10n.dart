@@ -2369,6 +2369,76 @@ class AppLocalizations {
       args: [],
     );
   }
+
+  /// `अनुदान पाएको भए कति पाएको विवरण`
+  String get grantStageTitle {
+    return Intl.message(
+      'अनुदान पाएको भए कति पाएको विवरण',
+      name: 'grantStageTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `पहिलो`
+  String get first {
+    return Intl.message(
+      'पहिलो',
+      name: 'first',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `दोश्राे`
+  String get second {
+    return Intl.message(
+      'दोश्राे',
+      name: 'second',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `अन्तिम`
+  String get last {
+    return Intl.message(
+      'अन्तिम',
+      name: 'last',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `अनुदानले घर बने नबनेको विवरण`
+  String get grantHouseTitle {
+    return Intl.message(
+      'अनुदानले घर बने नबनेको विवरण',
+      name: 'grantHouseTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `बनाए`
+  String get hasBuild {
+    return Intl.message(
+      'बनाए',
+      name: 'hasBuild',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `बनेन`
+  String get hasNotBuild {
+    return Intl.message(
+      'बनेन',
+      name: 'hasNotBuild',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<AppLocalizations> {
