@@ -10,8 +10,8 @@ import '../widgets/Language_pie_chart.dart';
 import '../widgets/language_table.dart';
 
 class LanguageDetails extends StatefulWidget {
-  String baseUrl;
-  LanguageDetails(this.baseUrl, {super.key});
+  String baseUrl, endPoint;
+  LanguageDetails(this.baseUrl, this.endPoint, {super.key});
 
   @override
   State<LanguageDetails> createState() => _LanguageDetailsState();
@@ -33,7 +33,9 @@ class _LanguageDetailsState extends State<LanguageDetails> {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => LanguageBloc(
-          RepositoryProvider.of<GetLanguageRepository>(context), widget.baseUrl)
+          RepositoryProvider.of<GetLanguageRepository>(context),
+          widget.baseUrl,
+          widget.endPoint)
         ..add(LoadLanguageEvent()),
       child: BlocBuilder<LanguageBloc, LanguageState>(
         builder: (context, state) {

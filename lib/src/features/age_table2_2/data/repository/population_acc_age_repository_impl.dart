@@ -8,7 +8,7 @@ import 'package:dio/io.dart';
 class ImplAgeRepository extends AgeRepository {
   final dio = Dio();
   @override
-  Future<List<AgePopulationModel>> getAgeData(String url) async {
+  Future<List<AgePopulationModel>> getAgeData(String baseUrl,String endPoint) async {
     dio.httpClientAdapter = IOHttpClientAdapter(
       createHttpClient: () {
         // Don't trust any certificate just because their root cert is trusted.
@@ -22,7 +22,7 @@ class ImplAgeRepository extends AgeRepository {
     );
     try {
       Response<dynamic> responseFromServer = await dio.get(
-          '$url/household/reports?table_no=table2_2');
+          '$baseUrl/${endPoint}2_2');
       if (responseFromServer.statusCode == 200) {
         List<dynamic> data = responseFromServer.data['result'];
         return data.map((e) => AgePopulationModel.fromJson(e)).toList();

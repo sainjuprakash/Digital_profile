@@ -22,6 +22,11 @@ class _InitialPageState extends State<InitialPage> {
     'चिचिला',
     'कोन्ज्योसोम',
   ];
+  List<String> householdUrls = [
+    'http://rubytest.git.com.np/api/household/reports/all',
+    'http://rubytest.git.com.np/api/househots/',
+    'http://rubytest.git.com.np/api/all'
+  ];
 
   String? _selectedOption;
   @override
@@ -31,6 +36,9 @@ class _InitialPageState extends State<InitialPage> {
         getEndPoints(context);
       }
       if (_selectedOption != null && _selectedOption == 'चिचिला') {
+        getEndPoints(context);
+      }
+      if (_selectedOption != null && _selectedOption == 'कोन्ज्योसोम') {
         getEndPoints(context);
       }
     });
@@ -128,15 +136,22 @@ class _InitialPageState extends State<InitialPage> {
       Navigator.push(
           context,
           MaterialPageRoute(
-              builder: (context) => MyHomePage('https://rubytest.git.com.np',
-                  'api/household/reports?table_no=table')));
+              builder: (context) => MyHomePage(
+                  baseUrls[0], endPoints[0], _options[0], householdUrls[0])));
     }
     if (_selectedOption == 'चिचिला') {
       Navigator.push(
           context,
           MaterialPageRoute(
-              builder: (context) => MyHomePage('https://chichila.git.com.np',
-                  'api/household/reports?table_no=table')));
+              builder: (context) => MyHomePage(
+                  baseUrls[1], endPoints[0], _options[1], householdUrls[1])));
+    }
+    if (_selectedOption == 'कोन्ज्योसोम') {
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) => MyHomePage(
+                  baseUrls[2], endPoints[0], _options[2], householdUrls[2])));
     }
   }
 }

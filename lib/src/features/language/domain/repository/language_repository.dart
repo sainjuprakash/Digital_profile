@@ -1,5 +1,5 @@
 import '../../data/models/language_model.dart';
 
-abstract class LanguageRepository{
-  Future<List<LanguageModel>> getLanguageData(String baseUrl);
+abstract class LanguageRepository {
+  Future<List<LanguageModel>> getLanguageData(String baseUrl, String endPoint);
 }

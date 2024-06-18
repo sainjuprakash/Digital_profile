@@ -33,13 +33,13 @@ class EthnicityPopulationDataTable extends StatelessWidget {
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
-      child: Card(
-        child: BlocBuilder<EthnicityPopulationBloc, EthnicityPopulationState>(
-            builder: (context, state) {
-          if (state is EthnicityPopulationSuccessState) {
-            List<EthnicityPopulationModel> fetchedEthPopData =
-                state.ethnicityPopulationModel;
-            return DataTable(
+      child: BlocBuilder<EthnicityPopulationBloc, EthnicityPopulationState>(
+          builder: (context, state) {
+        if (state is EthnicityPopulationSuccessState) {
+          List<EthnicityPopulationModel> fetchedEthPopData =
+              state.ethnicityPopulationModel;
+          return Card(
+            child: DataTable(
                 columns: [
                   DataColumn(label: Text(l10n.wardnumber)),
                   DataColumn(label: Text(l10n.hillbrahmen)),
@@ -93,12 +93,12 @@ class EthnicityPopulationDataTable extends StatelessWidget {
                         DataCell(Text(totalNotAvailable.toString())),
                         DataCell(Text(totalOthersCount.toString())),
                         DataCell(Text(totalWardEthnicity.toString())),
-                      ])));
-          }
+                      ]))),
+          );
+        }
 
-          return const CircularProgressIndicator();
-        }),
-      ),
+        return const CircularProgressIndicator();
+      }),
     );
   }
 }

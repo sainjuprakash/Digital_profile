@@ -9,8 +9,8 @@ import '../widgets/ethnicity_data_table.dart';
 //Table no.3
 
 class EthnicityPage extends StatefulWidget {
-  String baseUrl;
-  EthnicityPage(this.baseUrl, {super.key});
+  String baseUrl,endPoint;
+  EthnicityPage(this.baseUrl,this.endPoint, {super.key});
 
   @override
   State<EthnicityPage> createState() => _EthnicityPageState();
@@ -30,7 +30,7 @@ class _EthnicityPageState extends State<EthnicityPage> {
     return BlocProvider(
       create: (context) => EthnicityBloc(
           RepositoryProvider.of<GetEthnicityRepository>(context),
-          widget.baseUrl)
+          widget.baseUrl,widget.endPoint)
         ..add(LoadEthnicityEvent()),
       child: SingleChildScrollView(
         scrollDirection: Axis.vertical,

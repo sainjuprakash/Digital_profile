@@ -12,8 +12,8 @@ import '../bloc/ethnicity_population_bloc.dart';
 //Table no.4
 
 class EthnicityPopulationPage extends StatefulWidget {
-  String baseUrl;
-  EthnicityPopulationPage(this.baseUrl, {super.key});
+  String baseUrl, endPoint;
+  EthnicityPopulationPage(this.baseUrl, this.endPoint, {super.key});
 
   @override
   State<EthnicityPopulationPage> createState() =>
@@ -36,11 +36,11 @@ class _EthnicityPopulationPageState extends State<EthnicityPopulationPage> {
     return BlocProvider(
       create: (context) => EthnicityPopulationBloc(
           RepositoryProvider.of<ImplEthnicityPopulationRepository>(context),
-          widget.baseUrl)
+          widget.baseUrl,
+          widget.endPoint)
         ..add(GetEthnicityPopulationEvent()),
       child: BlocBuilder<EthnicityPopulationBloc, EthnicityPopulationState>(
         builder: (context, state) {
-
           if (state is EthnicityPopulationSuccessState) {
             List<EthnicityPopulationModel> fetchedEthPopData =
                 state.ethnicityPopulationModel;

@@ -5,8 +5,8 @@ import 'dart:convert';
 
 import 'package:flutter/services.dart';
 
-import 'family_details.dart';
-import 'individual_family_data.dart';
+import '../household/data/model/family_details_model.dart';
+import '../household/data/model/individual_family_model.dart';
 
 Future<List<FamilyDetailsModel>> LoadFamilyData() async {
   String jsonData = await rootBundle.loadString('assets/familyData.json');
@@ -23,10 +23,10 @@ Future<List<IndividualFamilyData>> loadIndividualData() async {
    // print("group family item: ${e}");
     return IndividualFamilyData.fromJson(e);
   }).toList();
-  return jsonList.map((e) {
-    print("group family: ${e['group_family']}");
-    final testObject = IndividualFamilyData.fromJson(e['group_family'][0]);
-    return IndividualFamilyData.fromJson(e['group_family']);
-  }).toList();
+  // return jsonList.map((e) {
+  //   print("group family: ${e['group_family']}");
+  //   final testObject = IndividualFamilyData.fromJson(e['group_family'][0]);
+  //   return IndividualFamilyData.fromJson(e['group_family']);
+  // }).toList();
 }
 

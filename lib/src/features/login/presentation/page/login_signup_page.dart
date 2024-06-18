@@ -9,8 +9,9 @@ import '../../../../../constant/custom_text_from_field.dart';
 import '../bloc/login_bloc.dart';
 
 class LoginPage extends StatefulWidget {
-  String baseUrl, endPoint;
-  LoginPage(this.baseUrl, this.endPoint, {super.key});
+  String baseUrl, endPoint, villageName, householdUrl;
+  LoginPage(this.baseUrl, this.endPoint, this.villageName, this.householdUrl,
+      {super.key});
 
   @override
   State<LoginPage> createState() => _LoginPageState();
@@ -37,8 +38,11 @@ class _LoginPageState extends State<LoginPage> {
               newRoute: MaterialPageRoute(builder: (context) => MyHomePage()));*/
           Navigator.of(context).pushAndRemoveUntil(
               MaterialPageRoute(
-                  builder: (context) =>
-                      MyHomePage(widget.baseUrl, widget.endPoint)),
+                  builder: (context) => MyHomePage(
+                      widget.baseUrl,
+                      widget.endPoint,
+                      widget.villageName,
+                      widget.householdUrl)),
               (route) => false);
         }
         if (state is LoginInProcessState) {

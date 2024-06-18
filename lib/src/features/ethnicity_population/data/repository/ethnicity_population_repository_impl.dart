@@ -8,7 +8,8 @@ import '../../domain/repository/ethnicity_population_repository.dart';
 
 class ImplEthnicityPopulationRepository extends EthnicityPopulationRepository {
   @override
-  Future<List<EthnicityPopulationModel>> getEthnicityPopulation(String url) async {
+  Future<List<EthnicityPopulationModel>> getEthnicityPopulation(
+      String baseUrl, String endPoint) async {
     final dio = Dio();
     dio.httpClientAdapter = IOHttpClientAdapter(
       createHttpClient: () {
@@ -22,8 +23,8 @@ class ImplEthnicityPopulationRepository extends EthnicityPopulationRepository {
       },
     );
     try {
-      Response<dynamic> responseFromServer = await dio.get(
-          '$url/api/household/reports?table_no=table4');
+      Response<dynamic> responseFromServer =
+          await dio.get('$baseUrl/${endPoint}4');
       if (responseFromServer.statusCode == 200) {
         List<dynamic> results = responseFromServer.data['result'];
         //print(results);

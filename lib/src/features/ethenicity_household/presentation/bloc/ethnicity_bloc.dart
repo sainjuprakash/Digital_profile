@@ -11,14 +11,14 @@ part 'ethnicity_event.dart';
 part 'ethnicity_state.dart';
 
 class EthnicityBloc extends Bloc<EthnicityEvent, EthnicityState> {
-  String baseUrl;
+  String baseUrl,endPoint;
   final EthnicityRepository _ethnicityRepository;
-  EthnicityBloc(this._ethnicityRepository,this.baseUrl) : super(EthnicityLoadingState()) {
+  EthnicityBloc(this._ethnicityRepository,this.baseUrl,this.endPoint) : super(EthnicityLoadingState()) {
     on<LoadEthnicityEvent>((event, emit) async {
       //print("before try statement");
       try {
         List<EthnicityModel> ethnicityModel =
-            await _ethnicityRepository.getEthnicityData(baseUrl);
+            await _ethnicityRepository.getEthnicityData(baseUrl,endPoint);
         emit(EthnicitySuccessState(fetchedEthnicityModel: ethnicityModel));
        // print('success state emitted');
       } catch (errormsg) {

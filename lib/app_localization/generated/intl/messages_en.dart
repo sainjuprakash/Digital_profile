@@ -27,6 +27,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "Undisclosed": MessageLookupByLibrary.simpleMessage("नखुलाइएकाे"),
         "able": MessageLookupByLibrary.simpleMessage("अपाङ्गता नभएको"),
         "above90": MessageLookupByLibrary.simpleMessage("९० माथि"),
+        "age": MessageLookupByLibrary.simpleMessage("उमेर"),
         "agriculture": MessageLookupByLibrary.simpleMessage("कृषि कार्य"),
         "agricultureLoan":
             MessageLookupByLibrary.simpleMessage("कृषि तथा पशुपालन"),
@@ -37,6 +38,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("मासुजन्य पशुको संख्या"),
         "animalsTitle": MessageLookupByLibrary.simpleMessage(
             "चौपाया तथा पशुपन्छी पाल्ने घरपरिवार विवरण"),
+        "anySpecialist": MessageLookupByLibrary.simpleMessage("विशेषज्ञ"),
         "bachelor": MessageLookupByLibrary.simpleMessage("स्नातक तह"),
         "bankAccountTitle": MessageLookupByLibrary.simpleMessage(
             "परिवारको सदस्यकाे बैंक तथा वित्तीय संस्थामा खाताको बिवरण"),
@@ -69,11 +71,13 @@ class MessageLookup extends MessageLookupByLibrary {
         "crops": MessageLookupByLibrary.simpleMessage("अन्नवालि"),
         "deaf":
             MessageLookupByLibrary.simpleMessage("बहिरा(सुन्न र बोल्न नसक्ने)"),
+        "deathQty": MessageLookupByLibrary.simpleMessage("मृत्यु संख्या"),
         "defaultresidence":
             MessageLookupByLibrary.simpleMessage("गणना गरेकै ठाउँमा बसेको"),
         "devBank": MessageLookupByLibrary.simpleMessage("बिकास बैंक"),
         "digitalprofile":
             MessageLookupByLibrary.simpleMessage("डिजिटल प्रोफाइल"),
+        "disability": MessageLookupByLibrary.simpleMessage("सारिरिक आवस्थ "),
         "disabilitytitle":
             MessageLookupByLibrary.simpleMessage("अपाङ्गताको स्थिति"),
         "disable": MessageLookupByLibrary.simpleMessage("शारिरीक अपाङगता"),
@@ -87,6 +91,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "earthquakeTitle": MessageLookupByLibrary.simpleMessage(
             "२०७२ को भुकम्पबाट घर क्षति भएको नभएको विवरण"),
         "education": MessageLookupByLibrary.simpleMessage("शिक्षा"),
+        "educationLevel": MessageLookupByLibrary.simpleMessage("शिक्षा स्तर"),
         "educationLoan": MessageLookupByLibrary.simpleMessage("शिक्षा"),
         "electricityLaghu":
             MessageLookupByLibrary.simpleMessage("विद्युत (लघु)"),
@@ -105,8 +110,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "entervalidpassword": MessageLookupByLibrary.simpleMessage(
             "कृपया मान्य पासवर्ड प्रविष्ट गर्नुहोस्"),
         "entrepreneur": MessageLookupByLibrary.simpleMessage("व्यवसायिक"),
+        "ethnicity": MessageLookupByLibrary.simpleMessage("जातियता"),
         "expensesTitle":
             MessageLookupByLibrary.simpleMessage("परिवारको सरदर वार्षिक खर्च"),
+        "familyNumber":
+            MessageLookupByLibrary.simpleMessage("परिवार सदस्य संख्या"),
         "female": MessageLookupByLibrary.simpleMessage("महिला"),
         "female16to49": MessageLookupByLibrary.simpleMessage("महिला(१६-४९)"),
         "female50to69": MessageLookupByLibrary.simpleMessage("महिला(५०-६९)"),
@@ -139,6 +147,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "haveChildWorker": MessageLookupByLibrary.simpleMessage("छ"),
         "haveNoChildWorker": MessageLookupByLibrary.simpleMessage("छैन"),
         "health": MessageLookupByLibrary.simpleMessage("स्वास्थ्य"),
+        "healthCondition":
+            MessageLookupByLibrary.simpleMessage("स्वास्थ्य अवस्था"),
         "healthInsurance":
             MessageLookupByLibrary.simpleMessage("स्वास्थ्य बिमा"),
         "healthconditiontitle": MessageLookupByLibrary.simpleMessage(
@@ -160,22 +170,26 @@ class MessageLookup extends MessageLookupByLibrary {
             "बसोबास गरेको घरको स्वामित्व सम्बन्धी विवरण"),
         "houseWife": MessageLookupByLibrary.simpleMessage("गृहिणी"),
         "householdCount": MessageLookupByLibrary.simpleMessage("घरधुरी संख्या"),
-        "householddata": MessageLookupByLibrary.simpleMessage("घरपरिवार डाटा"),
+        "householdData": MessageLookupByLibrary.simpleMessage("घरपरिवार डेटा"),
         "illiterate": MessageLookupByLibrary.simpleMessage("निरक्षर"),
         "incomeTitle": MessageLookupByLibrary.simpleMessage(
             "परिवारको सरदर वार्षिक आम्दानी"),
         "indigenous": MessageLookupByLibrary.simpleMessage("आदिवासी भत्ता"),
+        "individualData":
+            MessageLookupByLibrary.simpleMessage("व्यक्तिगत डेटा"),
         "instutionaldata":
             MessageLookupByLibrary.simpleMessage("संस्थागत डाटा"),
         "insuranceTitle":
             MessageLookupByLibrary.simpleMessage("बिमा गरेका घरपरिवार विवरण"),
         "internet": MessageLookupByLibrary.simpleMessage("र्इन्टरनेट"),
+        "isDeathMember": MessageLookupByLibrary.simpleMessage("मृत्यु"),
         "jains": MessageLookupByLibrary.simpleMessage("जैन"),
         "jasta": MessageLookupByLibrary.simpleMessage("जस्ता/च्यादरको"),
         "kerosene": MessageLookupByLibrary.simpleMessage("मट्टितेल"),
         "khar": MessageLookupByLibrary.simpleMessage("फुस वा खरको"),
         "kirat": MessageLookupByLibrary.simpleMessage("किरात"),
         "labour": MessageLookupByLibrary.simpleMessage("श्रम"),
+        "language": MessageLookupByLibrary.simpleMessage("भाषा"),
         "last": MessageLookupByLibrary.simpleMessage("अन्तिम"),
         "lessThanOneHours":
             MessageLookupByLibrary.simpleMessage("१ घण्टा वा १ भन्दा कम"),
@@ -187,6 +201,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "literate": MessageLookupByLibrary.simpleMessage("साक्षर"),
         "liveStockInsurance": MessageLookupByLibrary.simpleMessage("पशु विमा"),
         "livestock": MessageLookupByLibrary.simpleMessage("पशुपन्छी"),
+        "livingStatus": MessageLookupByLibrary.simpleMessage("बसोबासको अवस्था"),
         "loanTitle": MessageLookupByLibrary.simpleMessage(
             "ऋणको उद्देश्य अनुसार घरपरिवार विवरण"),
         "login": MessageLookupByLibrary.simpleMessage("लग-इन"),
@@ -202,6 +217,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "malehhcount": MessageLookupByLibrary.simpleMessage("पुरुष घरमुली"),
         "malelessthan6":
             MessageLookupByLibrary.simpleMessage("पुरुष(६ भन्दा कम)"),
+        "maritalStatus": MessageLookupByLibrary.simpleMessage("वैवाहिक स्थिति"),
         "marriagetitle": MessageLookupByLibrary.simpleMessage("वैवाहिक स्थिति"),
         "married": MessageLookupByLibrary.simpleMessage("विवाहित"),
         "master": MessageLookupByLibrary.simpleMessage("स्नातकोत्तर तह"),
@@ -215,12 +231,15 @@ class MessageLookup extends MessageLookupByLibrary {
             "मासु तथा अन्य प्रयाेजनकाे लागि पालिने चाैपायकाे बिवरण"),
         "medicalLoan": MessageLookupByLibrary.simpleMessage("औषधि उपचार"),
         "mental": MessageLookupByLibrary.simpleMessage("बौद्विक अपाङगता भएको"),
+        "migrationType":
+            MessageLookupByLibrary.simpleMessage("बसाईसराईको प्रकार"),
         "moreThanFive": MessageLookupByLibrary.simpleMessage("५ घण्टा"),
         "motorcycle": MessageLookupByLibrary.simpleMessage("माेटरसार्इकल"),
         "mphil": MessageLookupByLibrary.simpleMessage("एमफिल"),
         "mud": MessageLookupByLibrary.simpleMessage("माटोेको"),
         "multidisable": MessageLookupByLibrary.simpleMessage("बहु अपाँगता"),
         "muslim": MessageLookupByLibrary.simpleMessage("मुस्लिम"),
+        "nameAndSurname": MessageLookupByLibrary.simpleMessage("नाम र थर"),
         "nepali": MessageLookupByLibrary.simpleMessage("नेपाली"),
         "noAnimals":
             MessageLookupByLibrary.simpleMessage("पालन नगर्ने घरपरिवार"),
@@ -235,6 +254,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("भूकम्प प्रतिरोधी नभएको"),
         "notTaken": MessageLookupByLibrary.simpleMessage("भत्ता नलिएका"),
         "notavailable": MessageLookupByLibrary.simpleMessage("उपलब्ध नभएको"),
+        "occupation": MessageLookupByLibrary.simpleMessage("पेशा"),
         "office": MessageLookupByLibrary.simpleMessage("नोकरी जागिर"),
         "ordinary": MessageLookupByLibrary.simpleMessage("साधारण"),
         "organizational": MessageLookupByLibrary.simpleMessage("संस्थागत घर"),
@@ -265,6 +285,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "rai": MessageLookupByLibrary.simpleMessage("राई"),
         "rcc": MessageLookupByLibrary.simpleMessage("आरसिसि ढलान"),
         "refrigerator": MessageLookupByLibrary.simpleMessage("रेफ्रिजरेटर"),
+        "relatioWithHh":
+            MessageLookupByLibrary.simpleMessage("घरमुली संग सम्बन्ध"),
+        "relationHh": MessageLookupByLibrary.simpleMessage("घरमुली हो"),
         "religiontitle":
             MessageLookupByLibrary.simpleMessage("धर्मको आधारमा जनसंख्या"),
         "remarried": MessageLookupByLibrary.simpleMessage("पुनःविवाह"),
@@ -274,10 +297,16 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("बसोबासको अवस्था"),
         "resistance":
             MessageLookupByLibrary.simpleMessage("भूकम्प प्रतिरोधी भएको"),
+        "respondentName":
+            MessageLookupByLibrary.simpleMessage("प्रतिवादीको नाम"),
+        "respondentNumber":
+            MessageLookupByLibrary.simpleMessage("प्रतिवादीको मोबाइल नम्बर"),
         "retarded":
             MessageLookupByLibrary.simpleMessage("मनोसामाजिक अपाङगता भएको"),
+        "road": MessageLookupByLibrary.simpleMessage("सडक"),
         "roadDistanceTitle": MessageLookupByLibrary.simpleMessage(
             "घरबाट हिडेर नजिकको बजार पुग्न लाग्ने समय (घरधुरी संख्या)"),
+        "roadToHouse": MessageLookupByLibrary.simpleMessage("घर जाने बाटो"),
         "roof": MessageLookupByLibrary.simpleMessage("छाना"),
         "rubyvalley": MessageLookupByLibrary.simpleMessage("रुबी भ्याली"),
         "sahakari": MessageLookupByLibrary.simpleMessage("सहकारी"),
@@ -287,9 +316,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "seniorCtzn": MessageLookupByLibrary.simpleMessage("बढी उमेर"),
         "seperated":
             MessageLookupByLibrary.simpleMessage("विवाहित तर अलग बसेको"),
+        "settName": MessageLookupByLibrary.simpleMessage("बस्तीको नाम"),
         "settlementTitle": MessageLookupByLibrary.simpleMessage(
             "बसोबासको प्रकृति अनुसार घरपरिवार विवरण"),
         "seventytoninety": MessageLookupByLibrary.simpleMessage("७०-९०"),
+        "sex": MessageLookupByLibrary.simpleMessage("लिङ्ग"),
         "sherpa": MessageLookupByLibrary.simpleMessage("शेर्पा"),
         "single": MessageLookupByLibrary.simpleMessage("अविवाहित"),
         "singleman": MessageLookupByLibrary.simpleMessage("एकल पुरूष"),

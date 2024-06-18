@@ -11,6 +11,7 @@ import 'package:digital_profile/src/features/ethnicity_population/data/repositor
 import 'package:digital_profile/src/features/health_condition/data/repository/health_condition_repository_impl.dart';
 import 'package:digital_profile/src/features/home_facilities/data/repository/home_facilities_repository_impl.dart';
 import 'package:digital_profile/src/features/house_roof_condition/data/repository/house_roof_condition_repository_impl.dart';
+import 'package:digital_profile/src/features/household/data/repository/household_repository_impl.dart';
 import 'package:digital_profile/src/features/insurance/data/repository/insurance_repository_impl.dart';
 import 'package:digital_profile/src/features/language/data/repository/language_repository_impl.dart';
 import 'package:digital_profile/src/features/literacy_status/data/repository/literacy_repository_impl.dart';
@@ -63,6 +64,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiRepositoryProvider(
       providers: [
+        RepositoryProvider(create: (context) => ImplHouseholdRepository()),
         RepositoryProvider(create: (context) => ImplAgeRepository()),
         RepositoryProvider(
           create: (context) => GetPopulationRepository(),
@@ -108,7 +110,6 @@ class MyApp extends StatelessWidget {
             create: (context) => ImplEarthquakeGrantRepository()),
         RepositoryProvider(create: (context) => ImplGrantStageRepository()),
         RepositoryProvider(create: (context) => ImplGrantHouseRepository()),
-
       ],
       child: MaterialApp(
         localizationsDelegates: const [

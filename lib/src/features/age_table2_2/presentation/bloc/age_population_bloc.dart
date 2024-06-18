@@ -11,13 +11,13 @@ part 'age_population_event.dart';
 part 'age_population_state.dart';
 
 class AgePopulationBloc extends Bloc<AgePopulationEvent, AgePopulationState> {
-  String baseurl;
+  String baseurl,endPoint;
   final AgeRepository _ageRepository;
-  AgePopulationBloc(this._ageRepository,this.baseurl) : super(AgePopulationLoadingState()) {
+  AgePopulationBloc(this._ageRepository,this.baseurl,this.endPoint) : super(AgePopulationLoadingState()) {
     on<GetAgePopulationEvent>((event, emit) async {
       try {
         List<AgePopulationModel> fetchedAgePopulationModel =
-            await _ageRepository.getAgeData(baseurl);
+            await _ageRepository.getAgeData(baseurl,endPoint);
         emit(AgePopulationSuccessState(
             agePopulationModel: fetchedAgePopulationModel));
       } catch (errMsg) {

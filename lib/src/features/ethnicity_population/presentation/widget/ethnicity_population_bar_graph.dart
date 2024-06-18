@@ -95,7 +95,7 @@ class EthnicityPopulationBarChart extends StatelessWidget {
                           ),
                         ),
                         minY: 0,
-                        maxY: 12000,
+                        maxY: 14000,
                         barGroups: [
                           BarChartGroupData(
                             x: 0,

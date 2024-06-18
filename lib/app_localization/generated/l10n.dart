@@ -80,16 +80,6 @@ class AppLocalizations {
     );
   }
 
-  /// `घरपरिवार डाटा`
-  String get householddata {
-    return Intl.message(
-      'घरपरिवार डाटा',
-      name: 'householddata',
-      desc: '',
-      args: [],
-    );
-  }
-
   /// `पुरुष`
   String get male {
     return Intl.message(
@@ -2435,6 +2425,256 @@ class AppLocalizations {
     return Intl.message(
       'बनेन',
       name: 'hasNotBuild',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `प्रतिवादीको नाम`
+  String get respondentName {
+    return Intl.message(
+      'प्रतिवादीको नाम',
+      name: 'respondentName',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `प्रतिवादीको मोबाइल नम्बर`
+  String get respondentNumber {
+    return Intl.message(
+      'प्रतिवादीको मोबाइल नम्बर',
+      name: 'respondentNumber',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `बस्तीको नाम`
+  String get settName {
+    return Intl.message(
+      'बस्तीको नाम',
+      name: 'settName',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `सडक`
+  String get road {
+    return Intl.message(
+      'सडक',
+      name: 'road',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `घर जाने बाटो`
+  String get roadToHouse {
+    return Intl.message(
+      'घर जाने बाटो',
+      name: 'roadToHouse',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `घरमुली हो`
+  String get relationHh {
+    return Intl.message(
+      'घरमुली हो',
+      name: 'relationHh',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `बसाईसराईको प्रकार`
+  String get migrationType {
+    return Intl.message(
+      'बसाईसराईको प्रकार',
+      name: 'migrationType',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `परिवार सदस्य संख्या`
+  String get familyNumber {
+    return Intl.message(
+      'परिवार सदस्य संख्या',
+      name: 'familyNumber',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `मृत्यु`
+  String get isDeathMember {
+    return Intl.message(
+      'मृत्यु',
+      name: 'isDeathMember',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `मृत्यु संख्या`
+  String get deathQty {
+    return Intl.message(
+      'मृत्यु संख्या',
+      name: 'deathQty',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `नाम र थर`
+  String get nameAndSurname {
+    return Intl.message(
+      'नाम र थर',
+      name: 'nameAndSurname',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `जातियता`
+  String get ethnicity {
+    return Intl.message(
+      'जातियता',
+      name: 'ethnicity',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `लिङ्ग`
+  String get sex {
+    return Intl.message(
+      'लिङ्ग',
+      name: 'sex',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `घरमुली संग सम्बन्ध`
+  String get relatioWithHh {
+    return Intl.message(
+      'घरमुली संग सम्बन्ध',
+      name: 'relatioWithHh',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `उमेर`
+  String get age {
+    return Intl.message(
+      'उमेर',
+      name: 'age',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `भाषा`
+  String get language {
+    return Intl.message(
+      'भाषा',
+      name: 'language',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `वैवाहिक स्थिति`
+  String get maritalStatus {
+    return Intl.message(
+      'वैवाहिक स्थिति',
+      name: 'maritalStatus',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `शिक्षा स्तर`
+  String get educationLevel {
+    return Intl.message(
+      'शिक्षा स्तर',
+      name: 'educationLevel',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `विशेषज्ञ`
+  String get anySpecialist {
+    return Intl.message(
+      'विशेषज्ञ',
+      name: 'anySpecialist',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `पेशा`
+  String get occupation {
+    return Intl.message(
+      'पेशा',
+      name: 'occupation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `बसोबासको अवस्था`
+  String get livingStatus {
+    return Intl.message(
+      'बसोबासको अवस्था',
+      name: 'livingStatus',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `सारिरिक आवस्थ `
+  String get disability {
+    return Intl.message(
+      'सारिरिक आवस्थ ',
+      name: 'disability',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `स्वास्थ्य अवस्था`
+  String get healthCondition {
+    return Intl.message(
+      'स्वास्थ्य अवस्था',
+      name: 'healthCondition',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `घरपरिवार डेटा`
+  String get householdData {
+    return Intl.message(
+      'घरपरिवार डेटा',
+      name: 'householdData',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `व्यक्तिगत डेटा`
+  String get individualData {
+    return Intl.message(
+      'व्यक्तिगत डेटा',
+      name: 'individualData',
       desc: '',
       args: [],
     );

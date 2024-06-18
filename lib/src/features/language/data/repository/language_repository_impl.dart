@@ -6,9 +6,9 @@ import '../../domain/repository/language_repository.dart';
 import '../models/language_model.dart';
 
 class GetLanguageRepository extends LanguageRepository {
-
   @override
-  Future<List<LanguageModel>> getLanguageData(String baseUrl) async {
+  Future<List<LanguageModel>> getLanguageData(
+      String baseUrl, String endPoint) async {
     final dio = Dio();
     dio.httpClientAdapter = IOHttpClientAdapter(
       createHttpClient: () {
@@ -22,11 +22,10 @@ class GetLanguageRepository extends LanguageRepository {
       },
     );
     try {
-      Response<dynamic> responseFromServer = await dio.get(
-          '$baseUrl/api/household/reports?table_no=table5');
+      Response<dynamic> responseFromServer =
+          await dio.get('$baseUrl/${endPoint}5');
       if (responseFromServer.statusCode == 200) {
         final List<dynamic> results = responseFromServer.data['result'];
-        //print(results);
         return results.map((e) => LanguageModel.fromJson(e)).toList();
       } else {
         throw Exception(responseFromServer.statusCode);

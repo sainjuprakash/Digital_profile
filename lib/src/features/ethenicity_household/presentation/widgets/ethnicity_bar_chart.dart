@@ -92,7 +92,7 @@ class EthnicityBarGraph extends StatelessWidget {
                         // topTitles: const AxisTitles(),
                       ),
                       minY: 0,
-                      maxY: 2500,
+                      maxY: 3000,
                       barGroups: [
                         BarChartGroupData(
                           x: 0,

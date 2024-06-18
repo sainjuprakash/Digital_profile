@@ -8,16 +8,17 @@ part 'language_event.dart';
 part 'language_state.dart';
 
 class LanguageBloc extends Bloc<LanguageEvent, LanguageState> {
-  String baseUrl;
+  String baseUrl, endPoint;
   final LanguageRepository _languageRepository;
-  LanguageBloc(this._languageRepository,this.baseUrl) : super(LanguageLoadingState()) {
+  LanguageBloc(
+    this._languageRepository,
+    this.baseUrl,
+    this.endPoint,
+  ) : super(LanguageLoadingState()) {
     on<LoadLanguageEvent>((event, emit) async {
-     // print("before try statement");
       try {
-        //print("entered try statement");
         List<LanguageModel> fetchedLanguageData =
-            await _languageRepository.getLanguageData(baseUrl);
-     // print('data fetched ');
+            await _languageRepository.getLanguageData(baseUrl, endPoint);
         emit(LanguageLoadedState(fetchedLanguageModel: fetchedLanguageData));
       } catch (errMsg) {
         emit(LanguageFailureState(errmsg: errMsg.toString()));

@@ -1,16 +1,14 @@
 import 'dart:io';
 
+import 'package:digital_profile/src/features/household/data/model/family_details_model.dart';
+import 'package:digital_profile/src/features/household/domain/repository/household_repository.dart';
 import 'package:dio/dio.dart';
 import 'package:dio/io.dart';
 
-import '../../domain/repository/population_repository.dart';
-import '../models/population_model.dart';
-
-class GetPopulationRepository extends PopulationRepository {
-  final dio = Dio();
+class ImplHouseholdRepository implements HouseholdRepository {
   @override
-  Future<List<PopulationModel>> getPopData(
-      String baseUrl, String endPoint) async {
+  Future<List<FamilyDetailsModel>> getFamilyDetails(String houseHoldUrl) async {
+    final dio = Dio();
     dio.httpClientAdapter = IOHttpClientAdapter(
       createHttpClient: () {
         // Don't trust any certificate just because their root cert is trusted.
@@ -23,15 +21,16 @@ class GetPopulationRepository extends PopulationRepository {
       },
     );
     try {
-      Response<dynamic> response = await dio.get('$baseUrl/${endPoint}1');
+      Response<dynamic> response = await dio
+          .get(houseHoldUrl);
       if (response.statusCode == 200) {
-        final List<dynamic> results = response.data['result'];
-        return results.map((e) => PopulationModel.fromJson(e)).toList();
+        List<dynamic> data = response.data;
+        return data.map((e) => FamilyDetailsModel.fromJson(e)).toList();
       } else {
         throw Exception(response.statusCode);
       }
-    } catch (error) {
-      throw Exception('Failed to load population data : $error');
+    } catch (errMsg) {
+      throw Exception("Unable to load data $errMsg");
     }
   }
 }

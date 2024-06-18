@@ -7,7 +7,7 @@ import '../models/ethnicity_model.dart';
 
 class GetEthnicityRepository extends EthnicityRepository {
   @override
-  Future<List<EthnicityModel>> getEthnicityData(String url) async {
+  Future<List<EthnicityModel>> getEthnicityData(String baseUrl,String endPoint) async {
     final dio = Dio();
     dio.httpClientAdapter = IOHttpClientAdapter(
       createHttpClient: () {
@@ -22,7 +22,7 @@ class GetEthnicityRepository extends EthnicityRepository {
     );
     try {
       Response<dynamic> responseFromServer =
-          await dio.get('$url/api/household/reports?table_no=table3');
+          await dio.get('$baseUrl/${endPoint}3');
       if (responseFromServer.statusCode == 200) {
         List<dynamic> results = responseFromServer.data['result'];
         print(results);

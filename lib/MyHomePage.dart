@@ -9,6 +9,7 @@ import 'package:digital_profile/src/features/ethnicity_population/presentation/p
 import 'package:digital_profile/src/features/health_condition/presentation/pages/health_condition_page.dart';
 import 'package:digital_profile/src/features/home_facilities/presentation/pages/home_facilities_page.dart';
 import 'package:digital_profile/src/features/house_roof_condition/presentation/pages/house_roof_page.dart';
+import 'package:digital_profile/src/features/household/presentation/pages/household_page.dart';
 import 'package:digital_profile/src/features/insurance/presentation/pages/insurance_page.dart';
 import 'package:digital_profile/src/features/language/presentation/pages/language_details_page.dart';
 import 'package:digital_profile/src/features/literacy_status/presentation/pages/literacy_page.dart';
@@ -16,7 +17,6 @@ import 'package:digital_profile/src/features/login/data/repository/login_reposit
 import 'package:digital_profile/src/features/login/presentation/bloc/login_bloc.dart';
 import 'package:digital_profile/src/features/login/presentation/page/login_signup_page.dart';
 import 'package:digital_profile/src/features/marriage/presentation/pages/marriage_status_page.dart';
-import 'package:digital_profile/src/features/pages/all_household_data.dart';
 import 'package:digital_profile/src/features/pages/report_page.dart';
 import 'package:digital_profile/src/features/population/presentation/pages/population_details_page.dart';
 import 'package:digital_profile/src/features/religion/presentation/page/religion_page.dart';
@@ -45,8 +45,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'core/network/endpoints.dart';
 
 class MyHomePage extends StatefulWidget {
-  String baseUrl, endPoint;
-  MyHomePage(this.baseUrl, this.endPoint, {super.key});
+  String baseUrl, endPoint, villageName, householdUrl;
+  MyHomePage(this.baseUrl, this.endPoint, this.villageName, this.householdUrl,
+      {super.key});
   @override
   State<MyHomePage> createState() => _MyHomePageState();
 }
@@ -126,7 +127,7 @@ class _MyHomePageState extends State<MyHomePage> {
         appBar: AppBar(
           //automaticallyImplyLeading: false,
           elevation: 50,
-          title: Text(l10n.digitalprofile),
+          title: Text(widget.villageName),
           actions: [
             Padding(
               padding: const EdgeInsets.only(right: 12.0),
@@ -143,7 +144,10 @@ class _MyHomePageState extends State<MyHomePage> {
                                               .of<ImplLoginRepository>(
                                                   context)),
                                       child: LoginPage(
-                                          widget.baseUrl, widget.endPoint),
+                                          widget.baseUrl,
+                                          widget.endPoint,
+                                          widget.villageName,
+                                          widget.householdUrl),
                                     )));
                       },
                       icon: const Icon(Icons.person_3_rounded)),
@@ -161,24 +165,24 @@ class _MyHomePageState extends State<MyHomePage> {
                     children: [
                       ListTile(
                         leading: const Icon(Icons.data_exploration_outlined),
-                        title: const Text('Institutional Data'),
+                        title:  Text(l10n.instutionaldata),
                         onTap: () {},
                       ),
                       ListTile(
                         leading: const Icon(Icons.warehouse),
-                        title: const Text('All Household Data'),
+                        title: Text(l10n.householdData),
                         onTap: () {
                           Navigator.pop(context);
                           Navigator.push(
                               context,
                               MaterialPageRoute(
                                   builder: (context) =>
-                                      const AllHouseholdData()));
+                                      HouseholdPage(widget.householdUrl)));
                         },
                       ),
                       ListTile(
                         leading: const Icon(Icons.report),
-                        title: const Text('Report'),
+                        title:  Text(l10n.report),
                         onTap: () {
                           Navigator.push(
                               context,
@@ -196,7 +200,10 @@ class _MyHomePageState extends State<MyHomePage> {
                           Navigator.of(context).pushAndRemoveUntil(
                               MaterialPageRoute(
                                   builder: (context) => MyHomePage(
-                                      widget.baseUrl, widget.endPoint)),
+                                      widget.baseUrl,
+                                      widget.endPoint,
+                                      widget.villageName,
+                                      widget.householdUrl)),
                               (route) => false);
                         },
                       ),
@@ -257,16 +264,16 @@ class _MyHomePageState extends State<MyHomePage> {
 
   Widget getPage(BuildContext context) {
     if (selectedItem == "Table 1 - 1.1 पारिवारिक तथा जनसंख्या विवरण") {
-      return PopulationDetailsPage(widget.baseUrl);
+      return PopulationDetailsPage(widget.baseUrl, widget.endPoint);
     }
     if (selectedItem == "Table 2 - 1.2 उमेर वर्गीकरण अनुसार जनसंख्या") {
-      return AgePopulationPage(widget.baseUrl);
+      return AgePopulationPage(widget.baseUrl, widget.endPoint);
     } else if (selectedItem == "Table 3 - 1.3 जातजाती अनुसार घरपरिवार संख्या") {
-      return EthnicityPage(widget.baseUrl);
+      return EthnicityPage(widget.baseUrl, widget.endPoint);
     } else if (selectedItem == "Table 4 - 1.4 जातजाती अनुसार जनसंख्या") {
-      return EthnicityPopulationPage(widget.baseUrl);
+      return EthnicityPopulationPage(widget.baseUrl, widget.endPoint);
     } else if (selectedItem == "Table 5 - 1.5 मातृभाषाको आधारमा जनसंख्या") {
-      return LanguageDetails(widget.baseUrl);
+      return LanguageDetails(widget.baseUrl, widget.endPoint);
     } else if (selectedItem == "Table 6 - 1.6 धर्मको आधारमा जनसंख्या") {
       return ReligionPage(widget.baseUrl, widget.endPoint);
     } else if (selectedItem == "Table 7 - 1.7 साक्षरताको स्थिति") {
