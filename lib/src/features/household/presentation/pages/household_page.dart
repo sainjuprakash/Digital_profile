@@ -19,7 +19,7 @@ class HouseholdPage extends StatefulWidget {
 }
 
 class _HouseholdPageState extends State<HouseholdPage> {
-  List<FamilyDetailsModel> _foundUser = [];
+  List<FamilyDetailsModel> foundUser = [];
   final ScrollController _scrollController = ScrollController();
   final _searchController = TextEditingController();
 
@@ -34,23 +34,19 @@ class _HouseholdPageState extends State<HouseholdPage> {
     super.dispose();
   }
 
-  void _scrollToBottom() {
-    _scrollController.animateTo(
-      _scrollController.position.maxScrollExtent,
-      duration: const Duration(seconds: 2),
-      curve: Curves.easeOut,
-    );
-  }
-
-  void _runFilter(String enteredKeyword) {
+  _runFilter(String enteredKeyword) {
     List<FamilyDetailsModel>? results = [];
     if (enteredKeyword.isEmpty) {
-      results = _foundUser;
+      results = foundUser;
     } else {
-      results = _foundUser
-          .where((element) => element["wardNo"].contains(enteredKeyword.toString()))
+      results = foundUser
+          .where(
+              (element) => element.wardNo!.contains(enteredKeyword.toString()))
           .toList();
     }
+    setState(() {
+      foundUser = results!;
+    });
   }
 
   @override
@@ -72,12 +68,13 @@ class _HouseholdPageState extends State<HouseholdPage> {
             }
             if (state is HouseholdSuccessState) {
               List<FamilyDetailsModel> fetchedData = state.fetchedModel;
-              _foundUser = fetchedData;
+              foundUser = fetchedData;
               return Column(
                 children: [
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: MyTextField(
+                      onChanged: (value) => _runFilter(value!),
                       hintText: 'search ward number',
                       obsecureText: false,
                       keyboardType: TextInputType.text,
@@ -87,9 +84,9 @@ class _HouseholdPageState extends State<HouseholdPage> {
                   Expanded(
                     child: ListView.builder(
                         controller: _scrollController,
-                        itemCount: _foundUser.length,
+                        itemCount: foundUser.length,
                         itemBuilder: (context, index) {
-                          FamilyDetailsModel familyDetails = _foundUser[index];
+                          FamilyDetailsModel familyDetails = foundUser[index];
                           return InkWell(
                             onTap: () {
                               Navigator.push(
