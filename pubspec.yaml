@@ -26,7 +26,8 @@ dependencies:
   shared_preferences: ^2.2.3
   logger: any
   get_it: ^7.7.0
-  http_interceptor: ^1.0.2
+  flutter_map: ^7.0.1
+  latlong2: ^0.9.1
 
 
 dev_dependencies:
@@ -34,10 +35,10 @@ dev_dependencies:
     sdk: flutter
   freezed: ^2.2.1
   injectable_generator: ^1.5.5
-  mocktail: ^0.3.0
   flutter_lints: ^3.0.0
   build_runner: ^2.4.9
   json_serializable: ^6.7.1
+
 
 
 flutter:

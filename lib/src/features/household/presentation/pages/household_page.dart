@@ -1,27 +1,30 @@
+import 'dart:async';
+
 import 'package:digital_profile/app_localization/l10n.dart';
 import 'package:digital_profile/constant/custom_text_from_field.dart';
 import 'package:digital_profile/src/features/household/data/model/family_details_model.dart';
 import 'package:digital_profile/src/features/household/data/repository/household_repository_impl.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:digital_profile/src/features/maps/presentation/pages/map_page.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../bloc/household_bloc.dart';
 import 'individual_page.dart';
 
 class HouseholdPage extends StatefulWidget {
-  String houseHoldUrl;
-  HouseholdPage(this.houseHoldUrl, {super.key});
+  final String houseHoldUrl;
+  const HouseholdPage(this.houseHoldUrl, {super.key});
 
   @override
   State<HouseholdPage> createState() => _HouseholdPageState();
 }
 
 class _HouseholdPageState extends State<HouseholdPage> {
+  List<FamilyDetailsModel> allData = [];
   List<FamilyDetailsModel> foundUser = [];
   final ScrollController _scrollController = ScrollController();
   final _searchController = TextEditingController();
+  Timer? _debounce;
 
   @override
   void initState() {
@@ -31,21 +34,25 @@ class _HouseholdPageState extends State<HouseholdPage> {
   @override
   void dispose() {
     _scrollController.dispose();
+    _searchController.dispose();
+    _debounce?.cancel();
     super.dispose();
   }
 
   _runFilter(String enteredKeyword) {
-    List<FamilyDetailsModel>? results = [];
-    if (enteredKeyword.isEmpty) {
-      results = foundUser;
-    } else {
-      results = foundUser
-          .where(
-              (element) => element.wardNo!.contains(enteredKeyword.toString()))
-          .toList();
-    }
-    setState(() {
-      foundUser = results!;
+    if (_debounce?.isActive ?? false) _debounce?.cancel();
+    _debounce = Timer(const Duration(milliseconds: 500), () {
+      List<FamilyDetailsModel> results = [];
+      if (enteredKeyword.isEmpty) {
+        results = allData;
+      } else {
+        results = allData
+            .where((element) => element.wardNo!.contains(enteredKeyword))
+            .toList();
+      }
+      setState(() {
+        foundUser = results;
+      });
     });
   }
 
@@ -68,7 +75,9 @@ class _HouseholdPageState extends State<HouseholdPage> {
             }
             if (state is HouseholdSuccessState) {
               List<FamilyDetailsModel> fetchedData = state.fetchedModel;
+              allData = fetchedData;
               foundUser = fetchedData;
+
               return Column(
                 children: [
                   Padding(
@@ -128,6 +137,24 @@ class _HouseholdPageState extends State<HouseholdPage> {
                                           '${l10n.isDeathMember} : ${familyDetails.isDeath}'),
                                       Text(
                                           '${l10n.deathQty} : ${familyDetails.deathQty}'),
+                                      Center(
+                                        child: ElevatedButton(
+                                            onPressed: () {
+                                              Navigator.push(
+                                                  context,
+                                                  MaterialPageRoute(
+                                                      builder: (context) => MapsPage(
+                                                          double.tryParse(
+                                                                  familyDetails
+                                                                      .latitude!) ??
+                                                              0,
+                                                          double.tryParse(
+                                                                  familyDetails
+                                                                      .longitude!) ??
+                                                              0)));
+                                            },
+                                            child: const Text('view on map')),
+                                      )
                                     ],
                                   ),
                                 ),

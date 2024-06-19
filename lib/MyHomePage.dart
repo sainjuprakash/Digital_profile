@@ -16,6 +16,7 @@ import 'package:digital_profile/src/features/literacy_status/presentation/pages/
 import 'package:digital_profile/src/features/login/data/repository/login_repository_impl.dart';
 import 'package:digital_profile/src/features/login/presentation/bloc/login_bloc.dart';
 import 'package:digital_profile/src/features/login/presentation/page/login_signup_page.dart';
+import 'package:digital_profile/src/features/maps/presentation/pages/map_page.dart';
 import 'package:digital_profile/src/features/marriage/presentation/pages/marriage_status_page.dart';
 import 'package:digital_profile/src/features/pages/report_page.dart';
 import 'package:digital_profile/src/features/population/presentation/pages/population_details_page.dart';
@@ -165,7 +166,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     children: [
                       ListTile(
                         leading: const Icon(Icons.data_exploration_outlined),
-                        title:  Text(l10n.instutionaldata),
+                        title: Text(l10n.instutionaldata),
                         onTap: () {},
                       ),
                       ListTile(
@@ -181,8 +182,18 @@ class _MyHomePageState extends State<MyHomePage> {
                         },
                       ),
                       ListTile(
+                        leading: const Icon(Icons.map_outlined),
+                        title: const Text('Maps'),
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => MapsPage(27.700769,85.300140)));
+                        },
+                      ),
+                      ListTile(
                         leading: const Icon(Icons.report),
-                        title:  Text(l10n.report),
+                        title: Text(l10n.report),
                         onTap: () {
                           Navigator.push(
                               context,

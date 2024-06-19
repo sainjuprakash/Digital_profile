@@ -21,6 +21,8 @@ class FamilyDetailsModel with _$FamilyDetailsModel {
     @JsonKey(name: "family_number") required int? familyCount,
     @JsonKey(name: "death") required String? isDeath,
     @JsonKey(name: "death_qty") required int? deathQty,
+    @JsonKey(name: "gps_longitude") required String? latitude,
+    @JsonKey(name: "gps_latitude") required String? longitude,
     @JsonKey(name: "families")
     required List<IndividualFamilyData> individualData,
   }) = _FamilyDetailsModel;
