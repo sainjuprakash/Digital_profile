@@ -1,5 +1,6 @@
 import 'package:digital_profile/app_localization/l10n.dart';
 import 'package:digital_profile/core/services/shared_preferences_service.dart';
+import 'package:digital_profile/src/features/advance_search/presentation/pages/advance_search_page.dart';
 import 'package:digital_profile/src/features/age_table2_2/presentation/page/age_population_page.dart';
 import 'package:digital_profile/src/features/animal_husbandry/presentation/pages/animals_page.dart';
 import 'package:digital_profile/src/features/disability/presentation/pages/disability_page.dart';
@@ -179,6 +180,16 @@ class _MyHomePageState extends State<MyHomePage> {
                               MaterialPageRoute(
                                   builder: (context) =>
                                       HouseholdPage(widget.householdUrl)));
+                        },
+                      ),
+                      ListTile(
+                        leading: const Icon(Icons.search_sharp),
+                        title: const Text('Advance Search'),
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => AdvanceSearchPage()));
                         },
                       ),
                       ListTile(

@@ -68,30 +68,32 @@ class _HouseholdPageState extends State<HouseholdPage> {
           backgroundColor: Colors.blueAccent,
           title: Text(l10n.householdData),
         ),
-        body: BlocBuilder<HouseholdBloc, HouseholdState>(
-          builder: (context, state) {
-            if (state is HouseholdLoadingState) {
-              return const Center(child: CircularProgressIndicator());
-            }
-            if (state is HouseholdSuccessState) {
-              List<FamilyDetailsModel> fetchedData = state.fetchedModel;
-              allData = fetchedData;
-              foundUser = fetchedData;
+        body: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: MyTextField(
+                onChanged: (value) => _runFilter(value!),
+                hintText: 'search ward number',
+                obsecureText: false,
+                keyboardType: TextInputType.text,
+                controller: _searchController,
+              ),
+            ),
+            Expanded(
+              child: BlocBuilder<HouseholdBloc, HouseholdState>(
+                builder: (context, state) {
+                  if (state is HouseholdLoadingState) {
+                    return const Center(child: CircularProgressIndicator());
+                  }
+                  if (state is HouseholdSuccessState) {
+                    List<FamilyDetailsModel> fetchedData = state.fetchedModel;
+                    allData = fetchedData;
+                    if (_searchController.text.isEmpty) {
+                      foundUser = fetchedData;
+                    }
 
-              return Column(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: MyTextField(
-                      onChanged: (value) => _runFilter(value!),
-                      hintText: 'search ward number',
-                      obsecureText: false,
-                      keyboardType: TextInputType.text,
-                      controller: _searchController,
-                    ),
-                  ),
-                  Expanded(
-                    child: ListView.builder(
+                    return ListView.builder(
                         controller: _scrollController,
                         itemCount: foundUser.length,
                         itemBuilder: (context, index) {
@@ -161,13 +163,13 @@ class _HouseholdPageState extends State<HouseholdPage> {
                               ),
                             ),
                           );
-                        }),
-                  ),
-                ],
-              );
-            }
-            return const Center(child: Text('Something went wrong'));
-          },
+                        });
+                  }
+                  return const Center(child: Text('Something went wrong'));
+                },
+              ),
+            ),
+          ],
         ),
       ),
     );

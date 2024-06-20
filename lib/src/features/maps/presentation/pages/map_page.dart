@@ -5,8 +5,8 @@ import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
 
 class MapsPage extends StatefulWidget {
-  double latitide, longitude;
-  MapsPage(this.latitide, this.longitude, {super.key});
+  double latitude, longitude;
+  MapsPage(this.latitude, this.longitude, {super.key});
 
   @override
   State<MapsPage> createState() => _MapsPageState();
@@ -21,10 +21,10 @@ class _MapsPageState extends State<MapsPage> {
       children: [
         FlutterMap(
             options: MapOptions(
-                initialCenter: LatLng(widget.latitide, widget.longitude),
+                initialCenter: LatLng(widget.latitude, widget.longitude),
                 initialZoom: 15,
-                interactionOptions:
-                    InteractionOptions(flags: ~InteractiveFlag.doubleTapZoom)),
+                interactionOptions: const InteractionOptions(
+                    flags: ~InteractiveFlag.doubleTapZoom)),
             children: [
               _selectedValue == 'OSM'
                   ? openStreetMapTileLayer
@@ -33,7 +33,7 @@ class _MapsPageState extends State<MapsPage> {
                 Marker(
                     width: 15,
                     height: 30,
-                    point: LatLng(widget.latitide.toDouble(),
+                    point: LatLng(widget.latitude.toDouble(),
                         widget.longitude.toDouble()),
                     child: const Icon(
                       Icons.location_pin,
