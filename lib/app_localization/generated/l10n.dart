@@ -80,6 +80,16 @@ class AppLocalizations {
     );
   }
 
+  /// `सम्पर्क नम्बर`
+  String get contact {
+    return Intl.message(
+      'सम्पर्क नम्बर',
+      name: 'contact',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `पुरुष`
   String get male {
     return Intl.message(
@@ -2675,6 +2685,16 @@ class AppLocalizations {
     return Intl.message(
       'व्यक्तिगत डेटा',
       name: 'individualData',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `घर नम्बर`
+  String get houseNumber {
+    return Intl.message(
+      'घर नम्बर',
+      name: 'houseNumber',
       desc: '',
       args: [],
     );

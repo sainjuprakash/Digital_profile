@@ -41,6 +41,7 @@ class _IndividualPageState extends State<IndividualPage> {
                 itemCount:
                     fetchedData[widget.indexOfCard].individualData.length,
                 itemBuilder: (context, index) {
+                  print(index);
                   String sexText = '';
                           switch (fetchedData[widget.indexOfCard]
                               .individualData[index]

@@ -199,7 +199,11 @@ class _MyHomePageState extends State<MyHomePage> {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => MapsPage(27.700769,85.300140)));
+                                  builder: (context) => MapsPage(
+                                        27.700769,
+                                        85.300140,
+                                        zoom: 5.5,
+                                      )));
                         },
                       ),
                       ListTile(

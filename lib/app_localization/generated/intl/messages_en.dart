@@ -65,6 +65,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "clothes": MessageLookupByLibrary.simpleMessage("लत्ता कपडा"),
         "commercialBank": MessageLookupByLibrary.simpleMessage("बाणिज्य बैंक"),
         "computer": MessageLookupByLibrary.simpleMessage("कम्प्यूटर"),
+        "contact": MessageLookupByLibrary.simpleMessage("सम्पर्क नम्बर"),
         "countryside":
             MessageLookupByLibrary.simpleMessage("स्वदेशमा अन्यत्र बसेको"),
         "covid": MessageLookupByLibrary.simpleMessage("covid-19"),
@@ -166,6 +167,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "houseExpLoan": MessageLookupByLibrary.simpleMessage("घर खर्च"),
         "houseFacilityTitle": MessageLookupByLibrary.simpleMessage(
             "बसोबास गरेको घरको छाना सम्बन्धी विवरण"),
+        "houseNumber": MessageLookupByLibrary.simpleMessage("घर नम्बर"),
         "houseOwnershipTitle": MessageLookupByLibrary.simpleMessage(
             "बसोबास गरेको घरको स्वामित्व सम्बन्धी विवरण"),
         "houseWife": MessageLookupByLibrary.simpleMessage("गृहिणी"),

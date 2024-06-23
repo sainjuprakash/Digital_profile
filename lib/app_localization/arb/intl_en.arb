@@ -3,6 +3,7 @@
 "digitalprofile": "डिजिटल प्रोफाइल",
 "instutionaldata": "संस्थागत डाटा",
 "report": "रिपोर्ट",
+"contact" : "सम्पर्क नम्बर",
 "male" : "पुरुष",
 "female" : "महिला",
 "wardnumber" : "वडा नम्बर",
@@ -263,5 +264,6 @@
 "disability" : "सारिरिक आवस्थ ",
 "healthCondition" : "स्वास्थ्य अवस्था",
 "householdData" : "घरपरिवार डेटा",
-"individualData" : "व्यक्तिगत डेटा"
+"individualData" : "व्यक्तिगत डेटा",
+"houseNumber" : "घर नम्बर"
 }

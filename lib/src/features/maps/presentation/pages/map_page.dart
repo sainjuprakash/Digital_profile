@@ -6,7 +6,8 @@ import 'package:latlong2/latlong.dart';
 
 class MapsPage extends StatefulWidget {
   double latitude, longitude;
-  MapsPage(this.latitude, this.longitude, {super.key});
+  double? zoom;
+  MapsPage(this.latitude, this.longitude, {this.zoom, super.key});
 
   @override
   State<MapsPage> createState() => _MapsPageState();
@@ -22,7 +23,7 @@ class _MapsPageState extends State<MapsPage> {
         FlutterMap(
             options: MapOptions(
                 initialCenter: LatLng(widget.latitude, widget.longitude),
-                initialZoom: 15,
+                initialZoom: widget.zoom ?? 15,
                 interactionOptions: const InteractionOptions(
                     flags: ~InteractiveFlag.doubleTapZoom)),
             children: [

@@ -10,6 +10,7 @@ class FamilyDetailsModel with _$FamilyDetailsModel {
 
   factory FamilyDetailsModel({
     @JsonKey(name: "id") required int id,
+    @JsonKey(name: "hh_number") required int? houseNumber,
     @JsonKey(name: "survey_ward_no") required String? wardNo,
     @JsonKey(name: "Sett_Name") required String? setName,
     @JsonKey(name: "road") required String? road,
