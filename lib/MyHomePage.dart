@@ -183,16 +183,6 @@ class _MyHomePageState extends State<MyHomePage> {
                         },
                       ),
                       ListTile(
-                        leading: const Icon(Icons.search_sharp),
-                        title: const Text('Advance Search'),
-                        onTap: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => AdvanceSearchPage()));
-                        },
-                      ),
-                      ListTile(
                         leading: const Icon(Icons.map_outlined),
                         title: const Text('Maps'),
                         onTap: () {

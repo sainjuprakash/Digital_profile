@@ -119,6 +119,7 @@ class _HouseholdPageState extends State<HouseholdPage> {
               }
 
               return Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Row(
                     children: [
@@ -176,20 +177,28 @@ class _HouseholdPageState extends State<HouseholdPage> {
                       ),
                     ],
                   ),
+                  Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: Text(
+                      '${l10n.total} : ${foundUser.length}',
+                      style: const TextStyle(
+                          fontWeight: FontWeight.bold, fontSize: 17),
+                    ),
+                  ),
                   Expanded(
                     child: ListView.builder(
                         controller: _scrollController,
                         itemCount: foundUser.length,
                         itemBuilder: (context, index) {
                           FamilyDetailsModel familyDetails = foundUser[index];
-                          print(index);
                           return InkWell(
                             onTap: () {
                               Navigator.push(
                                   context,
                                   MaterialPageRoute(
                                       builder: (context) => IndividualPage(
-                                          index, widget.houseHoldUrl)));
+                                          foundUser[index],
+                                          widget.houseHoldUrl)));
                             },
                             child: Card(
                               color: Colors.blueAccent.withOpacity(0.1),
