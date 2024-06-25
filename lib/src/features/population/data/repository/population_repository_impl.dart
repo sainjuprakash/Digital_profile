@@ -4,13 +4,14 @@ import 'package:dio/dio.dart';
 import 'package:dio/io.dart';
 
 import '../../domain/repository/population_repository.dart';
+import 'package:connectivity_plus/connectivity_plus.dart';
 import '../models/population_model.dart';
 
 class GetPopulationRepository extends PopulationRepository {
   final dio = Dio();
   @override
   Future<List<PopulationModel>> getPopData(
-      String baseUrl, String endPoint) async {
+      String? baseUrl, String? endPoint) async {
     dio.httpClientAdapter = IOHttpClientAdapter(
       createHttpClient: () {
         // Don't trust any certificate just because their root cert is trusted.
@@ -34,4 +35,9 @@ class GetPopulationRepository extends PopulationRepository {
       throw Exception('Failed to load population data : $error');
     }
   }
+}
+
+Future<bool> isConnectedToWiFi() async {
+  var connectivityResult = await (Connectivity().checkConnectivity());
+  return connectivityResult == ConnectivityResult.wifi;
 }

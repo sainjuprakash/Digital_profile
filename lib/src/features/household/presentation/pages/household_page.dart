@@ -29,6 +29,8 @@ class _HouseholdPageState extends State<HouseholdPage> {
   final _familyNumberController = TextEditingController();
   final _contactController = TextEditingController();
   final _houseNumberController = TextEditingController();
+  final _nameController = TextEditingController();
+
   Timer? _debounce;
 
   @override
@@ -43,6 +45,7 @@ class _HouseholdPageState extends State<HouseholdPage> {
     _familyNumberController.dispose();
     _contactController.dispose();
     _houseNumberController.dispose();
+    _nameController.dispose();
     _debounce?.cancel();
     super.dispose();
   }
@@ -82,6 +85,12 @@ class _HouseholdPageState extends State<HouseholdPage> {
                 element.phoneNumber!.contains(_contactController.text))
             .toList();
       }
+      if (_nameController.text.isNotEmpty) {
+        results = results
+            .where((element) =>
+                element.respondent.contains(_nameController.text.toString()))
+            .toList();
+      }
 
       setState(() {
         foundUser = results;
@@ -114,7 +123,8 @@ class _HouseholdPageState extends State<HouseholdPage> {
               if (_wardController.text.isEmpty &&
                   _familyNumberController.text.isEmpty &&
                   _contactController.text.isEmpty &&
-                  _houseNumberController.text.isEmpty) {
+                  _houseNumberController.text.isEmpty &&
+                  _nameController.text.isEmpty) {
                 foundUser = fetchedData;
               }
 
@@ -178,6 +188,16 @@ class _HouseholdPageState extends State<HouseholdPage> {
                     ],
                   ),
                   Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: MyTextField(
+                      onChanged: (value) => _runFilter(),
+                      hintText: l10n.nameAndSurname,
+                      obsecureText: false,
+                      keyboardType: TextInputType.text,
+                      controller: _nameController,
+                    ),
+                  ),
+                  Padding(
                     padding: const EdgeInsets.all(16.0),
                     child: Text(
                       '${l10n.total} : ${foundUser.length}',
@@ -191,6 +211,54 @@ class _HouseholdPageState extends State<HouseholdPage> {
                         itemCount: foundUser.length,
                         itemBuilder: (context, index) {
                           FamilyDetailsModel familyDetails = foundUser[index];
+                          String roadToHouse = '';
+                          String isHouseHead = '';
+                          String residenceType = '';
+                          String isDead = '';
+                          switch (familyDetails.roadToHouse) {
+                            case 'goreto':
+                              roadToHouse = 'गोरेटो बाटो';
+                              break;
+                            case 'garvel':
+                              roadToHouse = 'ग्राभेल बाटो';
+                              break;
+                            case 'ghreto':
+                              roadToHouse = 'घोडेटो';
+                              break;
+                            case 'motorable':
+                              roadToHouse = 'मोटरबाटो';
+                              break;
+                            case 'noway':
+                              roadToHouse = 'बाटो नभएको';
+                              break;
+                          }
+                          switch (familyDetails.relationHh) {
+                            case 'yes':
+                              isHouseHead = 'हाे';
+                              break;
+                            case 'no':
+                              isHouseHead = 'होईन';
+                              break;
+                          }
+                          switch (familyDetails.migrationType) {
+                            case 'perma':
+                              residenceType = 'स्थायी';
+                              break;
+                            case 'tempory':
+                              residenceType = 'अस्थायी';
+                              break;
+                            case 'gypsy':
+                              residenceType = 'स्थायी (सुकुम्वासी)';
+                              break;
+                          }
+                          switch (familyDetails.isDeath) {
+                            case 'yes':
+                              isDead = 'छ';
+                              break;
+                            case 'no':
+                              isDead = 'छैन';
+                              break;
+                          }
                           return InkWell(
                             onTap: () {
                               Navigator.push(
@@ -223,17 +291,15 @@ class _HouseholdPageState extends State<HouseholdPage> {
                                       Text(
                                           '${l10n.road} : ${familyDetails.road}'),
                                       Text(
-                                          '${l10n.roadToHouse} : ${familyDetails.roadToHouse}'),
+                                          '${l10n.roadToHouse} : $roadToHouse'),
+                                      Text('${l10n.relationHh} : $isHouseHead'),
                                       Text(
-                                          '${l10n.relationHh} : ${familyDetails.relationHh}'),
-                                      Text(
-                                          '${l10n.migrationType} : ${familyDetails.migrationType}'),
+                                          '${l10n.migrationType} : $residenceType'),
                                       Text(
                                           '${l10n.familyNumber} : ${familyDetails.familyCount}'),
+                                      Text('${l10n.isDeathMember} : $isDead'),
                                       Text(
-                                          '${l10n.isDeathMember} : ${familyDetails.isDeath}'),
-                                      Text(
-                                          '${l10n.deathQty} : ${familyDetails.deathQty}'),
+                                          '${l10n.deathQty} : ${familyDetails.deathQty ?? 0}'),
                                       Center(
                                         child: ElevatedButton(
                                             onPressed: () {

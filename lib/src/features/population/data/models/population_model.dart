@@ -13,7 +13,7 @@ class PopulationModel with _$PopulationModel {
     @JsonKey(name: "male_count") required int? maleCount,
     @JsonKey(name: "female_count") required int? femaleCount,
     @JsonKey(name: "other_count") required int? othersCount,
-    @JsonKey(name: "total_ward_population") required int? totalWardpop,
+    @JsonKey(name: "total_ward_population") required int? totalWardPop,
     @JsonKey(name: "male_hh_count") required int? maleHhCount,
     @JsonKey(name: "female_hh_count") required int? femaleHhCount,
     @JsonKey(name: "total_ward_hh_population") required int? totalWardHhCount,

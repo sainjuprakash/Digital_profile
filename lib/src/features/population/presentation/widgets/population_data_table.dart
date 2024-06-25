@@ -28,7 +28,7 @@ class PopulationDatatable extends StatelessWidget {
             totalMale += populationData[key].maleCount ?? 0;
             totalFemale += populationData[key].femaleCount ?? 0;
             totalOthers += populationData[key].othersCount ?? 0;
-            totalMaleFemale += populationData[key].totalWardpop ?? 0;
+            totalMaleFemale += populationData[key].totalWardPop ?? 0;
             totalHhMale += populationData[key].maleHhCount ?? 0;
             totalHhFemale += populationData[key].femaleHhCount ?? 0;
           });
@@ -69,7 +69,7 @@ class PopulationDatatable extends StatelessWidget {
                           DataCell(Text(
                               population.value.othersCount?.toString() ?? '-')),
                           DataCell(
-                              Text(population.value.totalWardpop.toString())),
+                              Text(population.value.totalWardPop.toString())),
                           DataCell(
                               Text(population.value.maleHhCount.toString())),
                           DataCell(

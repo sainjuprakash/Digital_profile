@@ -23,7 +23,7 @@ class PopulationBloc extends Bloc<PopulationEvent, PopulationState> {
         // print("Success State");
       } catch (e) {
         emit(PopulationFailureState(errmsg: e.toString()));
-        print(e.toString());
+        // print(e.toString());
       }
     });
   }
