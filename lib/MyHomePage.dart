@@ -20,6 +20,8 @@ import 'package:digital_profile/src/features/login/presentation/page/login_signu
 import 'package:digital_profile/src/features/maps/presentation/pages/map_page.dart';
 import 'package:digital_profile/src/features/marriage/presentation/pages/marriage_status_page.dart';
 import 'package:digital_profile/src/features/pages/report_page.dart';
+import 'package:digital_profile/src/features/population/data/population_database/population_database.dart';
+import 'package:digital_profile/src/features/population/presentation/pages/popn_page.dart';
 import 'package:digital_profile/src/features/population/presentation/pages/population_details_page.dart';
 import 'package:digital_profile/src/features/religion/presentation/page/religion_page.dart';
 import 'package:digital_profile/src/features/residence/presentation/pages/residence_page.dart';
@@ -280,7 +282,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   Widget getPage(BuildContext context) {
     if (selectedItem == "Table 1 - 1.1 पारिवारिक तथा जनसंख्या विवरण") {
-      return PopulationDetailsPage(widget.baseUrl, widget.endPoint);
+      return PopulationPage(widget.baseUrl, widget.endPoint);
     }
     if (selectedItem == "Table 2 - 1.2 उमेर वर्गीकरण अनुसार जनसंख्या") {
       return AgePopulationPage(widget.baseUrl, widget.endPoint);
