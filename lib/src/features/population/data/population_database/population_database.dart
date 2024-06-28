@@ -3,8 +3,8 @@ import 'dart:io';
 import 'package:digital_profile/src/features/population/data/population_database/population_table.dart';
 import 'package:drift/drift.dart';
 import 'package:drift/native.dart';
-import 'package:path_provider/path_provider.dart';
 import 'package:path/path.dart' as p;
+import 'package:path_provider/path_provider.dart';
 
 part 'population_database.g.dart';
 
@@ -14,8 +14,11 @@ class MyDatabase extends _$MyDatabase {
 
   @override
   int get schemaVersion => 1;
-}
 
+  Future<int> createItem(PopulationTableData item) {
+    return into(populationTable).insert(item);
+  }
+}
 
 LazyDatabase _openConnection() {
   return LazyDatabase(() async {
@@ -25,54 +28,6 @@ LazyDatabase _openConnection() {
     return NativeDatabase.createInBackground(file);
   });
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 // import 'package:drift/drift.dart';
 // import 'package:drift/native.dart';

@@ -1,6 +1,8 @@
 import 'dart:ui';
 
 import 'package:digital_profile/MyHomePage.dart';
+import 'package:digital_profile/src/features/population/data/population_database/population_database.dart';
+import 'package:digital_profile/src/features/population/data/table_helper/employee_table_helper.dart';
 import 'package:flutter/material.dart';
 
 class InitialPage extends StatefulWidget {
@@ -29,6 +31,29 @@ class _InitialPageState extends State<InitialPage> {
   ];
 
   String? _selectedOption;
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    callFunc();
+  }
+
+  void callFunc() async {
+    print("calling add population");
+    addPopulation(const PopulationTableData(
+      id: 5,
+      femaleCount: 32,
+      maleCount: 43,
+      femaleHhCount: 4,
+      maleHhCount: 3,
+      othersCount: 2,
+      surveyWardNumber: 43,
+      totalWardHhCount: 23,
+      totalWardPop: 3,
+    ));
+    print("end");
+  }
+
   @override
   Widget build(BuildContext context) {
     WidgetsBinding.instance.addPostFrameCallback((_) {

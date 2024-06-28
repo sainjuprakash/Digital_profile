@@ -1,8 +1,12 @@
 import 'package:digital_profile/src/features/population/data/population_database/population_database.dart';
-import 'package:drift/drift.dart';
-import '../population_database/population_table.dart';
 
-Future<int> addPopulation(PopulationTableCompanion entry) async {
+Future<int> addPopulation(PopulationTableData entry) async {
   final db = MyDatabase();
-  return await db.into(db.populationTable).insert(entry);
+  final idEntered = await db.createItem(entry);
+  print("id entered: ${idEntered}");
+  List<PopulationTableData> allItems =
+      await db.select(db.populationTable).get();
+
+  print('items in database: $allItems');
+  return idEntered;
 }
