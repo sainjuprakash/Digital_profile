@@ -1,4 +1,3 @@
-import 'package:digital_profile/src/features/population/data/population_database/population_database.dart';
 import 'package:digital_profile/src/features/population/data/repository/population_repository_impl.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

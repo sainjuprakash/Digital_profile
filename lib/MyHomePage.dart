@@ -282,7 +282,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   Widget getPage(BuildContext context) {
     if (selectedItem == "Table 1 - 1.1 पारिवारिक तथा जनसंख्या विवरण") {
-      return PopulationPage(widget.baseUrl, widget.endPoint);
+      return PopulationDetailsPage(widget.baseUrl, widget.endPoint);
     }
     if (selectedItem == "Table 2 - 1.2 उमेर वर्गीकरण अनुसार जनसंख्या") {
       return AgePopulationPage(widget.baseUrl, widget.endPoint);

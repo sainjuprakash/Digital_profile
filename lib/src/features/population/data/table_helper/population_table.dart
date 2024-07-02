@@ -1,8 +1,6 @@
 import 'package:drift/drift.dart';
 
 class PopulationTable extends Table{
-
-  IntColumn get id => integer().autoIncrement()();
   IntColumn get surveyWardNumber => integer().nullable()();
   IntColumn get maleCount => integer().nullable()();
   IntColumn get femaleCount => integer().nullable()();

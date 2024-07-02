@@ -1,65 +1,88 @@
 import 'package:bloc/bloc.dart';
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:digital_profile/src/features/population/data/table_helper/employee_table_helper.dart';
-import 'package:drift/drift.dart';
 import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
 import '../../data/models/population_model.dart';
+import '../../data/population_database/population_database.dart';
 import '../../domain/repository/population_repository.dart';
-import 'package:connectivity_plus/connectivity_plus.dart';
 
 part 'population_event.dart';
 part 'population_state.dart';
 
 class PopulationBloc extends Bloc<PopulationEvent, PopulationState> {
   final PopulationRepository _populationRepository;
-  String baseurl, endPoint;
+  final String baseUrl;
+  final String endPoint;
 
-  PopulationBloc(this._populationRepository, this.baseurl, this.endPoint)
+  PopulationBloc(this._populationRepository, this.baseUrl, this.endPoint)
       : super(PopulationLoadingState()) {
     on<LoadPopulationEvent>((event, emit) async {
       try {
-        // Check for connectivity
-        final connectivityResult = await (Connectivity().checkConnectivity());
-      //  addPopulation(entry);
-        // if (connectivityResult == ConnectivityResult.wifi) {
-        //   // Fetch data from API
-        //   List<PopulationModel> populationData =
-        //   await _populationRepository.getPopData(baseurl, endPoint);
-        //
-        //   // Convert to Drift model
-        //   final populationList = populationData.map((pop) => PopulationsCompanion(
-        //     title: Value(pop.title),
-        //     surveyWardNumber: Value(pop.surveyWardNumber),
-        //     maleCount: Value(pop.maleCount),
-        //     femaleCount: Value(pop.femaleCount),
-        //     othersCount: Value(pop.othersCount),
-        //     totalWardPop: Value(pop.totalWardPop),
-        //     maleHhCount: Value(pop.maleHhCount),
-        //     femaleHhCount: Value(pop.femaleHhCount),
-        //     totalWardHhCount: Value(pop.totalWardHhCount),
-        //   )).toList();
-        //
-        //   // Save to database
-        //   await _appDatabase.insertPopulations(populationList.cast<Population>());
-        //
-        //   emit(PopulationSuccessState(populationModel: populationData));
-        // } else {
-        //   // Load data from database if no Wi-Fi
-        //   final dbData = await _appDatabase.getAllPopulations();
-        //   final populationModel = dbData.map((pop) => PopulationModel(
-        //     title: pop.title,
-        //     surveyWardNumber: pop.surveyWardNumber,
-        //     maleCount: pop.maleCount,
-        //     femaleCount: pop.femaleCount,
-        //     othersCount: pop.othersCount,
-        //     totalWardPop: pop.totalWardPop,
-        //     maleHhCount: pop.maleHhCount,
-        //     femaleHhCount: pop.femaleHhCount,
-        //     totalWardHhCount: pop.totalWardHhCount,
-        //   )).toList();
-        //
-        //   emit(PopulationSuccessState(populationModel: populationModel));
-        // }
+        // First, check for cached data in the local database
+        final cachedData = await getAllPopulationData();
+        if (cachedData.isNotEmpty) {
+          final cachedModel = cachedData.map((e) {
+            return PopulationModel(
+              surveyWardNumber: e.surveyWardNumber,
+              maleCount: e.maleCount,
+              femaleCount: e.femaleCount,
+              othersCount: e.othersCount,
+              totalWardPop: e.totalWardPop,
+              maleHhCount: e.maleHhCount,
+              femaleHhCount: e.femaleHhCount,
+              totalWardHhCount: e.totalWardHhCount,
+            );
+          }).toList();
+          emit(PopulationSuccessState(populationModel: cachedModel));
+          return;
+        }
+
+        // Check for internet connectivity
+        final connectivityResult = await Connectivity().checkConnectivity();
+        print(connectivityResult);
+
+        if (connectivityResult == ConnectivityResult.wifi ||
+            connectivityResult == ConnectivityResult.mobile) {
+          // Fetch data from the API
+          List<PopulationModel> fetchedModel =
+              await _populationRepository.getPopData(baseUrl, endPoint);
+          for (var model in fetchedModel) {
+            var tableData = PopulationTableData(
+              femaleCount: model.femaleCount,
+              maleCount: model.maleCount,
+              femaleHhCount: model.femaleHhCount,
+              maleHhCount: model.maleHhCount,
+              othersCount: model.othersCount,
+              surveyWardNumber: model.surveyWardNumber,
+              totalWardHhCount: model.totalWardHhCount,
+              totalWardPop: model.totalWardPop,
+            );
+            await addPopulation(tableData);
+          }
+          emit(PopulationSuccessState(populationModel: fetchedModel));
+        } else {
+          print('offline');
+          if (cachedData.isNotEmpty) {
+            final cachedModel = cachedData.map((e) {
+              return PopulationModel(
+                surveyWardNumber: e.surveyWardNumber,
+                maleCount: e.maleCount,
+                femaleCount: e.femaleCount,
+                othersCount: e.othersCount,
+                totalWardPop: e.totalWardPop,
+                maleHhCount: e.maleHhCount,
+                femaleHhCount: e.femaleHhCount,
+                totalWardHhCount: e.totalWardHhCount,
+              );
+            }).toList();
+            emit(PopulationSuccessState(populationModel: cachedModel));
+          } else {
+            emit(PopulationFailureState(
+                errmsg:
+                    'No internet connection and no cached data available.'));
+          }
+        }
       } catch (e) {
         emit(PopulationFailureState(errmsg: e.toString()));
       }
