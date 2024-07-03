@@ -2,9 +2,7 @@ import 'package:digital_profile/app_localization/l10n.dart';
 import 'package:digital_profile/constant/app_texts/app_title_text.dart';
 import 'package:digital_profile/constant/spacing.dart';
 import 'package:fl_chart/fl_chart.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 class AgePopulationBarChart extends StatelessWidget {
   int totalMaleLessThanSix;
@@ -59,13 +57,13 @@ class AgePopulationBarChart extends StatelessWidget {
           SingleChildScrollView(
             scrollDirection: Axis.horizontal,
             child: SizedBox(
-                height: 600,
+                height: 550,
                 width: 800,
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: BarChart(BarChartData(
                       minY: 0,
-                      maxY: 3000,
+                      maxY: 5000,
                       titlesData: FlTitlesData(
                           show: true,
                           topTitles: const AxisTitles(
@@ -98,12 +96,14 @@ class AgePopulationBarChart extends StatelessWidget {
                               width: 20,
                               borderRadius: BorderRadius.circular(2)),
                           BarChartRodData(
-                              toY: totalMaleLessThanSix.toDouble(),
+                              toY: totalFemaleLessThanSix.toDouble(),
                               width: 20,
+                              color: const Color(0xFF1976D2),
                               borderRadius: BorderRadius.circular(2)),
                           BarChartRodData(
-                              toY: totalMaleLessThanSix.toDouble(),
+                              toY: totalOthersLessThanSix.toDouble(),
                               width: 20,
+                              color: Colors.pinkAccent,
                               borderRadius: BorderRadius.circular(2)),
                         ]),
                         BarChartGroupData(x: 1, barRods: [
@@ -114,10 +114,12 @@ class AgePopulationBarChart extends StatelessWidget {
                           BarChartRodData(
                               toY: totalFemaleSixToFifteen.toDouble(),
                               width: 20,
+                              color: const Color(0xFF1976D2),
                               borderRadius: BorderRadius.circular(2)),
                           BarChartRodData(
                               toY: totalOthersSixToFifteen.toDouble(),
                               width: 20,
+                              color: Colors.pinkAccent,
                               borderRadius: BorderRadius.circular(2)),
                         ]),
                         BarChartGroupData(x: 2, barRods: [
@@ -128,10 +130,12 @@ class AgePopulationBarChart extends StatelessWidget {
                           BarChartRodData(
                               toY: totalFemaleSixteenToFortyNine.toDouble(),
                               width: 20,
+                              color: const Color(0xFF1976D2),
                               borderRadius: BorderRadius.circular(2)),
                           BarChartRodData(
                               toY: totalOthersSixteenToFortyNine.toDouble(),
                               width: 20,
+                              color: Colors.pinkAccent,
                               borderRadius: BorderRadius.circular(2)),
                         ]),
                         BarChartGroupData(x: 3, barRods: [
@@ -142,10 +146,12 @@ class AgePopulationBarChart extends StatelessWidget {
                           BarChartRodData(
                               toY: totalFemaleFiftyToSixtyNine.toDouble(),
                               width: 20,
+                              color: const Color(0xFF1976D2),
                               borderRadius: BorderRadius.circular(2)),
                           BarChartRodData(
                               toY: totalOthersFiftyToSixtyNine.toDouble(),
                               width: 20,
+                              color: Colors.pinkAccent,
                               borderRadius: BorderRadius.circular(2)),
                         ]),
                         BarChartGroupData(x: 4, barRods: [
@@ -156,10 +162,12 @@ class AgePopulationBarChart extends StatelessWidget {
                           BarChartRodData(
                               toY: totalFemaleSeventyToNinety.toDouble(),
                               width: 20,
+                              color: const Color(0xFF1976D2),
                               borderRadius: BorderRadius.circular(2)),
                           BarChartRodData(
                               toY: totalOthersSeventyToNinety.toDouble(),
                               width: 20,
+                              color: Colors.pinkAccent,
                               borderRadius: BorderRadius.circular(2)),
                         ]),
                         BarChartGroupData(x: 5, barRods: [
@@ -170,10 +178,12 @@ class AgePopulationBarChart extends StatelessWidget {
                           BarChartRodData(
                               toY: totalFemaleNinetyAbove.toDouble(),
                               width: 20,
+                              color: const Color(0xFF1976D2),
                               borderRadius: BorderRadius.circular(2)),
                           BarChartRodData(
                               toY: totalOthersAboveNinety.toDouble(),
                               width: 20,
+                              color: Colors.pinkAccent,
                               borderRadius: BorderRadius.circular(2)),
                         ]),
                       ])),

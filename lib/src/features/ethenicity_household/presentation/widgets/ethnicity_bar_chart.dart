@@ -7,8 +7,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../../app_localization/l10n.dart';
 import '../bloc/ethnicity_bloc.dart';
 
-
-
 class EthnicityBarGraph extends StatelessWidget {
   int? totalMuslim;
   int? totalHillBrahman;
@@ -53,7 +51,7 @@ class EthnicityBarGraph extends StatelessWidget {
             return SingleChildScrollView(
               scrollDirection: Axis.horizontal,
               child: SizedBox(
-                height: 500,
+                height: 550,
                 width: 700,
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),

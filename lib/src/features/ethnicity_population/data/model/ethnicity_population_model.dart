@@ -8,7 +8,6 @@ class EthnicityPopulationModel with _$EthnicityPopulationModel {
   EthnicityPopulationModel._();
 
   factory EthnicityPopulationModel({
-   // @JsonKey(name: "title") required String title,
     @JsonKey(name: "survey_ward_no") required int wardNumber,
     @JsonKey(name: "hill_brahman_count") required int? hillBrahman,
     @JsonKey(name: "terai_brahman_count") required int? teraiBrahman,

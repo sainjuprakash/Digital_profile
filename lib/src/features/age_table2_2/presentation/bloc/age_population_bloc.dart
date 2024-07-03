@@ -1,6 +1,9 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
+import 'package:connectivity_plus/connectivity_plus.dart';
+import 'package:digital_profile/src/features/age_table2_2/data/database/age_database.dart';
+import 'package:digital_profile/src/features/age_table2_2/data/table_helper/age_table_helper.dart';
 import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
 
@@ -17,10 +20,97 @@ class AgePopulationBloc extends Bloc<AgePopulationEvent, AgePopulationState> {
       : super(AgePopulationLoadingState()) {
     on<GetAgePopulationEvent>((event, emit) async {
       try {
-        List<AgePopulationModel> fetchedAgePopulationModel =
-            await _ageRepository.getAgeData(baseurl, endPoint);
-        emit(AgePopulationSuccessState(
-            agePopulationModel: fetchedAgePopulationModel));
+        final cachedData = await getAllAgePopulationData();
+        if (cachedData.isNotEmpty) {
+          final cachedModel = cachedData.map((e) {
+            return AgePopulationModel(
+                wardNumber: e.surveyWardNumber,
+                maleLessThanSix: e.maleLessThanSix,
+                maleSixToFifteen: e.maleSixToFifteen,
+                maleSixteenToFortyNine: e.maleSixteenToFortyNine,
+                maleFiftyToSixtyNine: e.maleFiftyToSixtyNine,
+                maleSeventyToNinety: e.maleSeventyToNinety,
+                maleAboveNinety: e.maleAboveNinety,
+                femaleLessThanSix: e.femaleLessThanSix,
+                femaleSixToFifteen: e.femaleSixToFifteen,
+                femaleSixteenToFortyNine: e.femaleSixteenToFortyNine,
+                femaleFiftyToSixtyNine: e.femaleFiftyToSixtyNine,
+                femaleSeventyToNinety: e.femaleSeventyToNinety,
+                femaleNinetyAbove: e.femaleNinetyAbove,
+                othersLessThanSix: e.othersLessThanSix,
+                othersSixToFifteen: e.othersSixToFifteen,
+                othersSixteenFortyNine: e.othersSixteenFortyNine,
+                othersFiftyToSixtyNine: e.othersFiftyToSixtyNine,
+                othersSeventyToNinety: e.othersSeventyToNinety,
+                othersAboveNinety: e.othersAboveNinety,
+                totalWardCount: e.totalWardCount);
+          }).toList();
+          emit(AgePopulationSuccessState(agePopulationModel: cachedModel));
+          return;
+        }
+        final connectivityResult = await Connectivity().checkConnectivity();
+        if (connectivityResult == ConnectivityResult.wifi ||
+            connectivityResult == ConnectivityResult.mobile) {
+          List<AgePopulationModel> fetchedAgePopulationModel =
+              await _ageRepository.getAgeData(baseurl, endPoint);
+          for (var e in fetchedAgePopulationModel) {
+            var tableData = AgeTableData(
+                surveyWardNumber: e.wardNumber,
+                maleLessThanSix: e.maleLessThanSix,
+                maleSixToFifteen: e.maleSixToFifteen,
+                maleSixteenToFortyNine: e.maleSixteenToFortyNine,
+                maleFiftyToSixtyNine: e.maleFiftyToSixtyNine,
+                maleSeventyToNinety: e.maleSeventyToNinety,
+                maleAboveNinety: e.maleAboveNinety,
+                femaleLessThanSix: e.femaleLessThanSix,
+                femaleSixToFifteen: e.femaleSixToFifteen,
+                femaleSixteenToFortyNine: e.femaleSixteenToFortyNine,
+                femaleFiftyToSixtyNine: e.femaleFiftyToSixtyNine,
+                femaleSeventyToNinety: e.femaleSeventyToNinety,
+                femaleNinetyAbove: e.femaleNinetyAbove,
+                othersLessThanSix: e.othersLessThanSix,
+                othersSixToFifteen: e.othersSixToFifteen,
+                othersSixteenFortyNine: e.othersSixteenFortyNine,
+                othersFiftyToSixtyNine: e.othersFiftyToSixtyNine,
+                othersSeventyToNinety: e.othersSeventyToNinety,
+                othersAboveNinety: e.othersAboveNinety,
+                totalWardCount: e.totalWardCount);
+            await addAgePopulation(tableData);
+          }
+          emit(AgePopulationSuccessState(
+              agePopulationModel: fetchedAgePopulationModel));
+        } else {
+          if (cachedData.isNotEmpty) {
+            final cachedModel = cachedData.map((e) {
+              return AgePopulationModel(
+                  wardNumber: e.surveyWardNumber,
+                  maleLessThanSix: e.maleLessThanSix,
+                  maleSixToFifteen: e.maleSixToFifteen,
+                  maleSixteenToFortyNine: e.maleSixteenToFortyNine,
+                  maleFiftyToSixtyNine: e.maleFiftyToSixtyNine,
+                  maleSeventyToNinety: e.maleSeventyToNinety,
+                  maleAboveNinety: e.maleAboveNinety,
+                  femaleLessThanSix: e.femaleLessThanSix,
+                  femaleSixToFifteen: e.femaleSixToFifteen,
+                  femaleSixteenToFortyNine: e.femaleSixteenToFortyNine,
+                  femaleFiftyToSixtyNine: e.femaleFiftyToSixtyNine,
+                  femaleSeventyToNinety: e.femaleSeventyToNinety,
+                  femaleNinetyAbove: e.femaleNinetyAbove,
+                  othersLessThanSix: e.othersLessThanSix,
+                  othersSixToFifteen: e.othersSixToFifteen,
+                  othersSixteenFortyNine: e.othersSixteenFortyNine,
+                  othersFiftyToSixtyNine: e.othersFiftyToSixtyNine,
+                  othersSeventyToNinety: e.othersSeventyToNinety,
+                  othersAboveNinety: e.othersAboveNinety,
+                  totalWardCount: e.totalWardCount);
+            }).toList();
+            emit(AgePopulationSuccessState(agePopulationModel: cachedModel));
+          } else {
+            emit(AgePopulationFailureState(
+                errMsg:
+                    'No internet connection and no cached data available.'));
+          }
+        }
       } catch (errMsg) {
         emit(AgePopulationFailureState(errMsg: errMsg.toString()));
       }

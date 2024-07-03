@@ -40,8 +40,6 @@ class PopulationBloc extends Bloc<PopulationEvent, PopulationState> {
 
         // Check for internet connectivity
         final connectivityResult = await Connectivity().checkConnectivity();
-        print(connectivityResult);
-
         if (connectivityResult == ConnectivityResult.wifi ||
             connectivityResult == ConnectivityResult.mobile) {
           // Fetch data from the API
@@ -62,7 +60,6 @@ class PopulationBloc extends Bloc<PopulationEvent, PopulationState> {
           }
           emit(PopulationSuccessState(populationModel: fetchedModel));
         } else {
-          print('offline');
           if (cachedData.isNotEmpty) {
             final cachedModel = cachedData.map((e) {
               return PopulationModel(
