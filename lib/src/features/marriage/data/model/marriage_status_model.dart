@@ -11,7 +11,7 @@ class MarriageStatusModel with _$MarriageStatusModel {
     @JsonKey(name: "survey_ward_no") required int wardNumber,
     @JsonKey(name: "ward_ms_single_count") required int? single,
     @JsonKey(name: "ward_ms_single_woman_count") required int? singleWoman,
-    @JsonKey(name: "ward_ms_single_man_count") required int? singleMana,
+    @JsonKey(name: "ward_ms_single_man_count") required int? singleMan,
     @JsonKey(name: "ward_ms_married_count") required int? married,
     @JsonKey(name: "ward_ms_polygami_count") required int? polygami,
     @JsonKey(name: "ward_ms_divorced_count") required int? divorced,

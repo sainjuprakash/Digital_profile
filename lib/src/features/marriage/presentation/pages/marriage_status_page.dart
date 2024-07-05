@@ -45,7 +45,7 @@ class _MarriageStatusPageState extends State<MarriageStatusPage> {
               totalSingleCount += fetchedMarriageData[key].single ?? 0;
               totalMarriedCount += fetchedMarriageData[key].married ?? 0;
               totalSingleWoman += fetchedMarriageData[key].singleWoman ?? 0;
-              totalSingleManCount += fetchedMarriageData[key].singleMana ?? 0;
+              totalSingleManCount += fetchedMarriageData[key].singleMan ?? 0;
               totalPolygami += fetchedMarriageData[key].polygami ?? 0;
               totalDivorced += fetchedMarriageData[key].divorced ?? 0;
               totalRemarried += fetchedMarriageData[key].remarried ?? 0;

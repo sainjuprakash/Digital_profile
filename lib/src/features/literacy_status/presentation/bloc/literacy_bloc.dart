@@ -1,4 +1,7 @@
 import 'package:bloc/bloc.dart';
+import 'package:connectivity_plus/connectivity_plus.dart';
+import 'package:digital_profile/src/features/literacy_status/data/database/literacy_database.dart';
+import 'package:digital_profile/src/features/literacy_status/data/table_helper/literacy_table_helper.dart';
 import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
 
@@ -15,10 +18,141 @@ class LiteracyBloc extends Bloc<LiteracyEvent, LiteracyState> {
       : super(LiteracyLoadingState()) {
     on<LiteracyEvent>((event, emit) async {
       try {
-        List<LiteracyModel> fetchedLiteracyData =
-            await _literacyRepository.getLiteracyData(baseUrl, endPoints);
-        emit(LiteracySuccessState(literacyModel: fetchedLiteracyData));
-        print('literacy success state');
+        final cacheData = await getAllLiteracyData();
+        if (cacheData.isNotEmpty) {
+          final cacheModel = cacheData.map((e) {
+            return LiteracyModel(
+                wardNumber: e.wardNumber,
+                maleLiterate: e.maleLiterate,
+                malePrePrimary: e.malePrePrimary,
+                malePrimary: e.malePrimary,
+                maleSecondary: e.maleSecondary,
+                maleTechnical: e.maleTechnical,
+                maleBachelor: e.maleBachelor,
+                maleMasters: e.maleMasters,
+                maleMphil: e.maleMphil,
+                maleUnderAge: e.maleUnderAge,
+                maleIlitrate: e.maleIlitrate,
+                maleNotAvailable: e.maleNotAvailable,
+                femaleLiterate: e.femaleLiterate,
+                femalePrePrimary: e.femalePrePrimary,
+                femalePrimary: e.femalePrimary,
+                femaleSecondary: e.femaleSecondary,
+                femaleTechincal: e.femaleTechincal,
+                femaleBachelor: e.femaleBachelor,
+                femaleMasters: e.femaleMasters,
+                femaleMphil: e.femaleMphil,
+                femaleUnderAge: e.femaleUnderAge,
+                femaleIliterate: e.femaleIliterate,
+                femaleNotAvailable: e.femaleNotAvailable,
+                othersLiterate: e.othersLiterate,
+                othersPrePrimary: e.othersPrePrimary,
+                othersPrimary: e.othersPrimary,
+                othersSecondary: e.othersSecondary,
+                othersTechnical: e.othersTechnical,
+                othersBachelor: e.othersBachelor,
+                othersMasters: e.othersMasters,
+                othersMphil: e.othersMphil,
+                othersUnderAge: e.othersUnderAge,
+                othersIliterate: e.othersIliterate,
+                othersNotAvailable: e.othersNotAvailable,
+                totalWardEdu: e.totalWardEdu);
+          }).toList();
+          emit(LiteracySuccessState(literacyModel: cacheModel));
+          return;
+        }
+        final connectivityResults = await Connectivity().checkConnectivity();
+        if (connectivityResults == ConnectivityResult.wifi ||
+            connectivityResults == ConnectivityResult.mobile) {
+          List<LiteracyModel> fetchedLiteracyData =
+              await _literacyRepository.getLiteracyData(baseUrl, endPoints);
+          for (var e in fetchedLiteracyData) {
+            var literacyOfflineData = LiteracyTableData(
+                wardNumber: e.wardNumber,
+                maleLiterate: e.maleLiterate,
+                malePrePrimary: e.malePrePrimary,
+                malePrimary: e.malePrimary,
+                maleSecondary: e.maleSecondary,
+                maleTechnical: e.maleTechnical,
+                maleBachelor: e.maleBachelor,
+                maleMasters: e.maleMasters,
+                maleMphil: e.maleMphil,
+                maleUnderAge: e.maleUnderAge,
+                maleIlitrate: e.maleIlitrate,
+                maleNotAvailable: e.maleNotAvailable,
+                femaleLiterate: e.femaleLiterate,
+                femalePrePrimary: e.femalePrePrimary,
+                femalePrimary: e.femalePrimary,
+                femaleSecondary: e.femaleSecondary,
+                femaleTechincal: e.femaleTechincal,
+                femaleBachelor: e.femaleBachelor,
+                femaleMasters: e.femaleMasters,
+                femaleMphil: e.femaleMphil,
+                femaleUnderAge: e.femaleUnderAge,
+                femaleIliterate: e.femaleIliterate,
+                femaleNotAvailable: e.femaleNotAvailable,
+                othersLiterate: e.othersLiterate,
+                othersPrePrimary: e.othersPrePrimary,
+                othersPrimary: e.othersPrimary,
+                othersSecondary: e.othersSecondary,
+                othersTechnical: e.othersTechnical,
+                othersBachelor: e.othersBachelor,
+                othersMasters: e.othersMasters,
+                othersMphil: e.othersMphil,
+                othersUnderAge: e.othersUnderAge,
+                othersIliterate: e.othersIliterate,
+                othersNotAvailable: e.othersNotAvailable,
+                totalWardEdu: e.totalWardEdu);
+            await addLiteracy(literacyOfflineData);
+          }
+          emit(LiteracySuccessState(literacyModel: fetchedLiteracyData));
+        } else {
+          if (cacheData.isNotEmpty) {
+            final cacheModel = cacheData.map((e) {
+              return LiteracyModel(
+                  wardNumber: e.wardNumber,
+                  maleLiterate: e.maleLiterate,
+                  malePrePrimary: e.malePrePrimary,
+                  malePrimary: e.malePrimary,
+                  maleSecondary: e.maleSecondary,
+                  maleTechnical: e.maleTechnical,
+                  maleBachelor: e.maleBachelor,
+                  maleMasters: e.maleMasters,
+                  maleMphil: e.maleMphil,
+                  maleUnderAge: e.maleUnderAge,
+                  maleIlitrate: e.maleIlitrate,
+                  maleNotAvailable: e.maleNotAvailable,
+                  femaleLiterate: e.femaleLiterate,
+                  femalePrePrimary: e.femalePrePrimary,
+                  femalePrimary: e.femalePrimary,
+                  femaleSecondary: e.femaleSecondary,
+                  femaleTechincal: e.femaleTechincal,
+                  femaleBachelor: e.femaleBachelor,
+                  femaleMasters: e.femaleMasters,
+                  femaleMphil: e.femaleMphil,
+                  femaleUnderAge: e.femaleUnderAge,
+                  femaleIliterate: e.femaleIliterate,
+                  femaleNotAvailable: e.femaleNotAvailable,
+                  othersLiterate: e.othersLiterate,
+                  othersPrePrimary: e.othersPrePrimary,
+                  othersPrimary: e.othersPrimary,
+                  othersSecondary: e.othersSecondary,
+                  othersTechnical: e.othersTechnical,
+                  othersBachelor: e.othersBachelor,
+                  othersMasters: e.othersMasters,
+                  othersMphil: e.othersMphil,
+                  othersUnderAge: e.othersUnderAge,
+                  othersIliterate: e.othersIliterate,
+                  othersNotAvailable: e.othersNotAvailable,
+                  totalWardEdu: e.totalWardEdu);
+            }).toList();
+
+            emit(LiteracySuccessState(literacyModel: cacheModel));
+          } else {
+            LiteracyFailureState(
+                errMsg: 'No internet connection and no cached data available.');
+          }
+        }
       } catch (errMsg) {
         emit(LiteracyFailureState(errMsg: errMsg.toString()));
       }

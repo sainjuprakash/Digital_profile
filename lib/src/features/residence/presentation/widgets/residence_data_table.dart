@@ -23,15 +23,15 @@ class ResidenceDataTable extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      child: SingleChildScrollView(
-          scrollDirection: Axis.horizontal,
-          child: BlocBuilder<ResidenceBloc, ResidenceState>(
-            builder: (context, state) {
-              if (state is ResidenceSuccessState) {
-                List<ResidenceModel> fetchedResidenceData =
-                    state.fetchedResidenceModel;
-                return DataTable(
+    return SingleChildScrollView(
+        scrollDirection: Axis.horizontal,
+        child: BlocBuilder<ResidenceBloc, ResidenceState>(
+          builder: (context, state) {
+            if (state is ResidenceSuccessState) {
+              List<ResidenceModel> fetchedResidenceData =
+                  state.fetchedResidenceModel;
+              return Card(
+                child: DataTable(
                   columns: [
                     DataColumn(label: Text(l10n.wardnumber)),
                     DataColumn(label: Text(l10n.defaultresidence)),
@@ -79,11 +79,11 @@ class ResidenceDataTable extends StatelessWidget {
                               "           ${totalNotAvailable.toString()}")),
                           DataCell(Text(totalLivingStatus.toString()))
                         ])),
-                );
-              }
-              return const Center(child: CircularProgressIndicator());
-            },
-          )),
-    );
+                ),
+              );
+            }
+            return const Center(child: CircularProgressIndicator());
+          },
+        ));
   }
 }

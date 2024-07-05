@@ -2670,10 +2670,10 @@ class AppLocalizations {
     );
   }
 
-  /// `घरपरिवार डेटा`
+  /// `घरधुरी तथ्याङ्क`
   String get householdData {
     return Intl.message(
-      'घरपरिवार डेटा',
+      'घरधुरी तथ्याङ्क',
       name: 'householdData',
       desc: '',
       args: [],

@@ -1,6 +1,5 @@
 import 'package:digital_profile/app_localization/l10n.dart';
 import 'package:digital_profile/core/services/shared_preferences_service.dart';
-import 'package:digital_profile/src/features/advance_search/presentation/pages/advance_search_page.dart';
 import 'package:digital_profile/src/features/age_table2_2/presentation/page/age_population_page.dart';
 import 'package:digital_profile/src/features/animal_husbandry/presentation/pages/animals_page.dart';
 import 'package:digital_profile/src/features/disability/presentation/pages/disability_page.dart';
@@ -20,8 +19,6 @@ import 'package:digital_profile/src/features/login/presentation/page/login_signu
 import 'package:digital_profile/src/features/maps/presentation/pages/map_page.dart';
 import 'package:digital_profile/src/features/marriage/presentation/pages/marriage_status_page.dart';
 import 'package:digital_profile/src/features/pages/report_page.dart';
-import 'package:digital_profile/src/features/population/data/population_database/population_database.dart';
-import 'package:digital_profile/src/features/population/presentation/pages/popn_page.dart';
 import 'package:digital_profile/src/features/population/presentation/pages/population_details_page.dart';
 import 'package:digital_profile/src/features/religion/presentation/page/religion_page.dart';
 import 'package:digital_profile/src/features/residence/presentation/pages/residence_page.dart';

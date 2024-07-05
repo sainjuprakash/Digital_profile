@@ -172,7 +172,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "बसोबास गरेको घरको स्वामित्व सम्बन्धी विवरण"),
         "houseWife": MessageLookupByLibrary.simpleMessage("गृहिणी"),
         "householdCount": MessageLookupByLibrary.simpleMessage("घरधुरी संख्या"),
-        "householdData": MessageLookupByLibrary.simpleMessage("घरपरिवार डेटा"),
+        "householdData":
+            MessageLookupByLibrary.simpleMessage("घरधुरी तथ्याङ्क"),
         "illiterate": MessageLookupByLibrary.simpleMessage("निरक्षर"),
         "incomeTitle": MessageLookupByLibrary.simpleMessage(
             "परिवारको सरदर वार्षिक आम्दानी"),

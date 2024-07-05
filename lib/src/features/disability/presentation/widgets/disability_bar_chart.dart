@@ -49,6 +49,12 @@ class DisabilityBarChart extends StatelessWidget {
           scrollDirection: Axis.horizontal,
           child: BlocBuilder<DisabilityBloc, DisabilityState>(
             builder: (context, state) {
+              if (state is DisabilityLoadingState) {
+                return const Padding(
+                  padding: EdgeInsets.all(8.0),
+                  child: Center(child: CircularProgressIndicator()),
+                );
+              }
               if (state is DisabilitySuccessState) {
                 return SizedBox(
                   height: 550,
@@ -58,7 +64,7 @@ class DisabilityBarChart extends StatelessWidget {
                     child: BarChart(BarChartData(
                       alignment: BarChartAlignment.spaceAround,
                       minY: 0,
-                      maxY: 13000,
+                      maxY: 15000,
                       titlesData: FlTitlesData(
                           show: true,
                           topTitles: const AxisTitles(
@@ -170,6 +176,12 @@ class DisabilityBarChart extends StatelessWidget {
                       ],
                     )),
                   ),
+                );
+              }
+              if (state is DisabilityFailureState) {
+                return const Padding(
+                  padding: EdgeInsets.all(8.0),
+                  child: Center(child: Text('Something went wrong')),
                 );
               }
               return const Padding(
