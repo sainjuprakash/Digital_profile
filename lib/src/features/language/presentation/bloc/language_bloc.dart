@@ -79,7 +79,30 @@ class LanguageBloc extends Bloc<LanguageEvent, LanguageState> {
             }).toList();
             emit(LanguageLoadedState(fetchedLanguageModel: cacheModel));
             return;
-          } else {}
+          } else {
+            if (cacheData.isNotEmpty) {
+              final cacheModel = cacheData.map((e) {
+                return LanguageModel(
+                    wardNo: e.wardNo,
+                    nepali: e.nepali,
+                    tamang: e.tamang,
+                    sherpa: e.sherpa,
+                    limbu: e.limbu,
+                    rai: e.rai,
+                    gurung: e.gurung,
+                    ghale: e.ghale,
+                    othersLanguage: e.othersLanguage,
+                    notAvailable: e.notAvailable,
+                    totalLanguageCount: e.totalLanguageCount);
+              }).toList();
+              emit(LanguageLoadedState(fetchedLanguageModel: cacheModel));
+              return;
+            } else {
+              emit(LanguageFailureState(
+                  errmsg:
+                      'No internet connection and no cached data available.'));
+            }
+          }
           emit(LanguageFailureState(
               errmsg: 'No internet connection and no cached data available'));
         }
