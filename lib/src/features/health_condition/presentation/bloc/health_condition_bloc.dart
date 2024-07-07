@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:bloc/bloc.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:digital_profile/src/features/health_condition/data/database/health_condition_database.dart';
@@ -33,8 +35,8 @@ class HealthConditionBloc
                 totalWardHealthCondition: e.totalWardHealthCondition);
           }).toList();
           emit(HealthConditionSuccessState(healthConditionModel: cacheModel));
+          return;
         }
-
         final connectivityResults = await Connectivity().checkConnectivity();
         if (connectivityResults == ConnectivityResult.wifi ||
             connectivityResults == ConnectivityResult.mobile) {
@@ -42,7 +44,8 @@ class HealthConditionBloc
               await _healthConditionRepository.getHealthCondition(
                   baseUrl, endPoints);
           for (var e in fetchedHealthModel) {
-            final healthModel = HealthConditionTableData(
+            print(e);
+            var healthData = HealthConditionTableData(
                 wardNumber: e.wardNumber,
                 healthy: e.healthy,
                 generalDisease: e.generalDisease,
@@ -50,8 +53,9 @@ class HealthConditionBloc
                 covid: e.covid,
                 notAvailable: e.notAvailable,
                 totalWardHealthCondition: e.totalWardHealthCondition);
-            await addHealthData(healthModel);
+            await addHealthData(healthData);
           }
+
           emit(HealthConditionSuccessState(
               healthConditionModel: fetchedHealthModel));
         } else {
@@ -68,8 +72,9 @@ class HealthConditionBloc
             }).toList();
             emit(HealthConditionSuccessState(healthConditionModel: cacheModel));
           } else {
-            HealthConditionFailureState(
-                errMsg: 'No internet connection and no cached data available.');
+            emit(HealthConditionFailureState(
+                errMsg:
+                    'No internet connection and no cached data available.'));
           }
         }
       } catch (errMsg) {

@@ -20,7 +20,9 @@ class LiteracyBloc extends Bloc<LiteracyEvent, LiteracyState> {
       try {
         final cacheData = await getAllLiteracyData();
         if (cacheData.isNotEmpty) {
+          print('entered');
           final cacheModel = cacheData.map((e) {
+            print(e);
             return LiteracyModel(
                 wardNumber: e.wardNumber,
                 maleLiterate: e.maleLiterate,

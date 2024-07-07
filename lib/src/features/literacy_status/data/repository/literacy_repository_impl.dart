@@ -1,7 +1,4 @@
 import 'dart:io';
-
-import 'package:digital_profile/src/features/disability/data/model/disability_model.dart';
-import 'package:digital_profile/src/features/disability/domain/repository/disability_repository.dart';
 import 'package:dio/dio.dart';
 import 'package:dio/io.dart';
 
@@ -30,6 +27,7 @@ class ImplLiteracyRepository extends LiteracyRepository {
           await dio.get('$baseUrl/${endPoints}7');
       if (responseFromServer.statusCode == 200) {
         List<dynamic> data = responseFromServer.data['result'];
+        print(data);
         return data.map((e) => LiteracyModel.fromJson(e)).toList();
       } else {
         throw Exception(responseFromServer.statusCode);

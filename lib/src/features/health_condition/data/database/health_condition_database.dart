@@ -24,7 +24,7 @@ class HealthConditionDatabase extends _$HealthConditionDatabase {
 LazyDatabase _openConnection() {
   return LazyDatabase(() async {
     final dbFolder = await getApplicationDocumentsDirectory();
-    final file = File(p.join(dbFolder.path, 'literacy.sqlite'));
+    final file = File(p.join(dbFolder.path, 'healthCondition.sqlite'));
 
     return NativeDatabase.createInBackground(file);
   });
