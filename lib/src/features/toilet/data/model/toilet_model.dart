@@ -8,7 +8,7 @@ class ToiletModel with _$ToiletModel {
   ToiletModel._();
 
   factory ToiletModel(
-      {@JsonKey(name: "survey_ward_no") required int? wardNumber,
+      {@JsonKey(name: "survey_ward_no") required int wardNumber,
       @JsonKey(name: "ward_f_no_toilet_count") required int? noToilet,
       @JsonKey(name: "ward_f_public_dhal_count") required int? publicDhal,
       @JsonKey(name: "ward_f_sefti_tank_count") required int? seftiTank,

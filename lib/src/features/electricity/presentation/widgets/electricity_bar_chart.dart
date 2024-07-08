@@ -51,7 +51,7 @@ class ElectricityBarChart extends StatelessWidget {
               return SingleChildScrollView(
                 scrollDirection: Axis.horizontal,
                 child: SizedBox(
-                  height: 600,
+                  height: 550,
                   width: 780,
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
