@@ -8,7 +8,7 @@ class HomeFacilitiesModel with _$HomeFacilitiesModel {
   HomeFacilitiesModel._();
 
   factory HomeFacilitiesModel({
-    @JsonKey(name: "survey_ward_no") required int? wardNumber,
+    @JsonKey(name: "survey_ward_no") required int wardNumber,
     @JsonKey(name: "ward_f_radio_count") required int? radio,
     @JsonKey(name: "ward_f_telivision_count") required int? television,
     @JsonKey(name: "ward_f_telephone_count") required int? telephone,
