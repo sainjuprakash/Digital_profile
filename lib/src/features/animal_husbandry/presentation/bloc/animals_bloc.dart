@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:bloc/bloc.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:digital_profile/src/features/animal_husbandry/data/database/animal_husbandry_database.dart';
