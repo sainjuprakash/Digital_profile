@@ -1,4 +1,3 @@
-import 'package:digital_profile/src/features/table_no_74/presentation/bloc/settlement_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 part 'settlement_model.freezed.dart';
 part 'settlement_model.g.dart';
