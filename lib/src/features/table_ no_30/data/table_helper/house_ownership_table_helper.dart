@@ -3,7 +3,7 @@ import 'package:digital_profile/src/features/table_%20no_30/data/database/house_
 final db = OwnershipDatabase();
 
 Future<int?> addHouseOwnershipData(OwnershipTableData entry) async {
-  db.createItem(entry);
+  await db.createItem(entry);
 }
 
 Future<List<OwnershipTableData>> getAllHouseOwnershipData() async {

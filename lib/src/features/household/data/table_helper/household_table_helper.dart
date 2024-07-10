@@ -5,14 +5,13 @@ import 'package:drift/drift.dart';
 
 import '../model/individual_family_model.dart';
 
+final db = HouseholdDatabase();
+
 Future<int?> addHousehold(HouseholdTableData entry) async {
-  final db = HouseholdDatabase();
-  final idEntered = await db.createItem(entry);
-  return idEntered;
+  await db.createItem(entry);
 }
 
 Future<List<HouseholdTableData>> getAllHouseholdData() async {
-  final db = HouseholdDatabase();
   try {
     final List<HouseholdTableData> householdData =
         await db.select(db.householdTable).get();
@@ -21,7 +20,6 @@ Future<List<HouseholdTableData>> getAllHouseholdData() async {
     throw Exception(e);
   }
 }
-
 
 class IndividualFamilyDataListConverter
     extends TypeConverter<List<IndividualFamilyData>, String> {
@@ -32,14 +30,14 @@ class IndividualFamilyDataListConverter
     final List<dynamic> jsonList = jsonDecode(fromDb);
     return jsonList
         .map((jsonItem) =>
-        IndividualFamilyData.fromJson(jsonItem as Map<String, dynamic>))
+            IndividualFamilyData.fromJson(jsonItem as Map<String, dynamic>))
         .toList();
   }
 
   @override
   String toSql(List<IndividualFamilyData> value) {
     final List<Map<String, dynamic>> jsonList =
-    value.map((item) => item.toJson()).toList();
+        value.map((item) => item.toJson()).toList();
     return jsonEncode(jsonList);
   }
 }

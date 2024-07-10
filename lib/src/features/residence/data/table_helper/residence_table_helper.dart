@@ -1,13 +1,12 @@
 import 'package:digital_profile/src/features/residence/data/database/residence_database.dart';
 
+final db = ResidenceDatabase();
+
 Future<int?> addResidence(ResidenceTableData entry) async {
-  final db = ResidenceDatabase();
-  final dataEntered = db.createItem(entry);
-  return dataEntered;
+  await db.createItem(entry);
 }
 
 Future<List<ResidenceTableData>> getAllResidenceData() async {
-  final db = ResidenceDatabase();
   try {
     final List<ResidenceTableData> residenceData =
         await db.select(db.residenceTable).get();

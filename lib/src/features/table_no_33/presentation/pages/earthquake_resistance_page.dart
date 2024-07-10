@@ -1,3 +1,4 @@
+import 'package:digital_profile/constant/spacing.dart';
 import 'package:digital_profile/src/features/table_no_33/data/repository/earthquake_resistance_repository_impl.dart';
 import 'package:digital_profile/src/features/table_no_33/presentation/widgets/earthquake_resistance_bar_chart.dart';
 import 'package:digital_profile/src/features/table_no_33/presentation/widgets/earthquake_resistance_data_table.dart';
@@ -45,6 +46,9 @@ class _EarthquakeResistancePageState extends State<EarthquakeResistancePage> {
             children: [
               EarthquakeResistanceBarChart(
                   totalResistance, totalNotResistance, totalResistanceData),
+              verticalspace(
+                height: 10,
+              ),
               EarthquakeResistanceDataTable(
                   totalResistance, totalNotResistance, totalResistanceData),
             ],

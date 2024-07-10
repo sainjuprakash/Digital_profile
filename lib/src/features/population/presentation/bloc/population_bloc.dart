@@ -1,6 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
-import 'package:digital_profile/src/features/population/data/table_helper/employee_table_helper.dart';
+import 'package:digital_profile/src/features/population/data/table_helper/population_table_helper.dart';
 import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
 import '../../data/models/population_model.dart';

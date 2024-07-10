@@ -1,6 +1,9 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
+import 'package:connectivity_plus/connectivity_plus.dart';
+import 'package:digital_profile/src/features/table_no_33/data/database/earthquake_database.dart';
+import 'package:digital_profile/src/features/table_no_33/data/table_helper/earthquake_table_helper.dart';
 import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
 
@@ -19,10 +22,50 @@ class EarthquakeResistanceBloc
       : super(EarthquakeResistanceInitialState()) {
     on<GetEarthquakeResistanceEvent>((event, emit) async {
       try {
-        List<EarthquakeResistanceModel> fetchedModel =
-            await earthquakeResistanceRepository.getResistanceData(
-                baseUrl, endPoint);
-        emit(EarthquakeResistanceSuccessState(fetchedModel));
+        final cacheData = await getALlEarthquakeResData();
+        if (cacheData.isNotEmpty) {
+          final cacheModel = cacheData.map((e) {
+            return EarthquakeResistanceModel(
+                wardNumber: e.wardNumber,
+                earthquakeResistance: e.earthquakeResistance,
+                notEarthquakeResistance: e.notEarthquakeResistance,
+                total: e.total);
+          }).toList();
+          emit(EarthquakeResistanceSuccessState(cacheModel));
+          return;
+        }
+        final connectivityResults = await Connectivity().checkConnectivity();
+        if (connectivityResults == ConnectivityResult.wifi ||
+            connectivityResults == ConnectivityResult.mobile) {
+          List<EarthquakeResistanceModel> fetchedModel =
+              await earthquakeResistanceRepository.getResistanceData(
+                  baseUrl, endPoint);
+          for (var e in fetchedModel) {
+            var earthquakeData = EarthquakeTableData(
+              wardNumber: e.wardNumber,
+              earthquakeResistance: e.earthquakeResistance,
+              notEarthquakeResistance: e.notEarthquakeResistance,
+              total: e.total,
+            );
+            await addEarthquakeData(earthquakeData);
+          }
+          emit(EarthquakeResistanceSuccessState(fetchedModel));
+        } else {
+          if (cacheData.isNotEmpty) {
+            final cacheModel = cacheData.map((e) {
+              return EarthquakeResistanceModel(
+                  wardNumber: e.wardNumber,
+                  earthquakeResistance: e.earthquakeResistance,
+                  notEarthquakeResistance: e.notEarthquakeResistance,
+                  total: e.total);
+            }).toList();
+            emit(EarthquakeResistanceSuccessState(cacheModel));
+            return;
+          } else {
+            emit(EarthquakeResistanceFailureState(
+                'No internet connection and no cached data available'));
+          }
+        }
       } catch (errMsg) {
         emit(EarthquakeResistanceFailureState(errMsg.toString()));
       }

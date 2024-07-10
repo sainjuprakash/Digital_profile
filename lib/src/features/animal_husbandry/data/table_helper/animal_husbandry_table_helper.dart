@@ -3,7 +3,7 @@ import 'package:digital_profile/src/features/animal_husbandry/data/database/anim
 final db = AnimalDatabase();
 
 Future<int?> addAnimalData(AnimalTableData entry) async {
-  db.createItem(entry);
+ await db.createItem(entry);
 }
 
 Future<List<AnimalTableData>> getAllAnimalData() async {

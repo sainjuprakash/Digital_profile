@@ -1,16 +1,20 @@
 import 'package:digital_profile/app_localization/l10n.dart';
 import 'package:digital_profile/constant/app_texts/app_title_text.dart';
 import 'package:digital_profile/constant/spacing.dart';
+import 'package:digital_profile/src/features/table_no_33/presentation/bloc/earthquake_resistance_bloc.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class EarthquakeResistanceBarChart extends StatelessWidget {
   int totalResistance, totalNotResistance, totalResistanceData;
+
   EarthquakeResistanceBarChart(
       this.totalResistance, this.totalNotResistance, this.totalResistanceData,
       {super.key});
+
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -22,51 +26,73 @@ class EarthquakeResistanceBarChart extends StatelessWidget {
             child: AppTitleText(text: l10n.earthquakeResistanceTitle),
           ),
           verticalspace(),
-          SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
-            child: SizedBox(
-                height: 550,
-                width: 400,
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: BarChart(BarChartData(
-                      alignment: BarChartAlignment.spaceAround,
-                      minY: 0,
-                      maxY: 3000,
-                      titlesData: FlTitlesData(
-                          topTitles: const AxisTitles(
-                              sideTitles: SideTitles(showTitles: false)),
-                          bottomTitles: AxisTitles(
-                              sideTitles: SideTitles(
-                                  showTitles: true,
-                                  reservedSize: 35,
-                                  getTitlesWidget: (value, meta) {
-                                    final residenceRepresentation = [
-                                      l10n.resistance,
-                                      l10n.notResistance,
-                                    ];
-                                    int index = value.toInt();
-                                    return Padding(
-                                      padding: const EdgeInsets.all(8.0),
-                                      child:
-                                          Text(residenceRepresentation[index]),
-                                    );
-                                  }))),
-                      barGroups: [
-                        BarChartGroupData(x: 0, barRods: [
-                          BarChartRodData(
-                              toY: totalResistance.toDouble(),
-                              width: 20,
-                              borderRadius: BorderRadius.circular(2))
-                        ]),
-                        BarChartGroupData(x: 1, barRods: [
-                          BarChartRodData(
-                              toY: totalNotResistance.toDouble(),
-                              width: 20,
-                              borderRadius: BorderRadius.circular(2))
-                        ]),
-                      ])),
-                )),
+          BlocBuilder<EarthquakeResistanceBloc, EarthquakeResistanceState>(
+            builder: (context, state) {
+              if (state is EarthquakeResistanceInitialState) {
+                return const Padding(
+                  padding: EdgeInsets.all(10.0),
+                  child: Center(child: CircularProgressIndicator()),
+                );
+              }
+              if (state is EarthquakeResistanceSuccessState) {
+                return SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: SizedBox(
+                      height: 550,
+                      width: 400,
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: BarChart(BarChartData(
+                            alignment: BarChartAlignment.spaceAround,
+                            minY: 0,
+                            maxY: 3000,
+                            titlesData: FlTitlesData(
+                                topTitles: const AxisTitles(
+                                    sideTitles: SideTitles(showTitles: false)),
+                                bottomTitles: AxisTitles(
+                                    sideTitles: SideTitles(
+                                        showTitles: true,
+                                        reservedSize: 35,
+                                        getTitlesWidget: (value, meta) {
+                                          final residenceRepresentation = [
+                                            l10n.resistance,
+                                            l10n.notResistance,
+                                          ];
+                                          int index = value.toInt();
+                                          return Padding(
+                                            padding: const EdgeInsets.all(8.0),
+                                            child: Text(
+                                                residenceRepresentation[index]),
+                                          );
+                                        }))),
+                            barGroups: [
+                              BarChartGroupData(x: 0, barRods: [
+                                BarChartRodData(
+                                    toY: totalResistance.toDouble(),
+                                    width: 20,
+                                    borderRadius: BorderRadius.circular(2))
+                              ]),
+                              BarChartGroupData(x: 1, barRods: [
+                                BarChartRodData(
+                                    toY: totalNotResistance.toDouble(),
+                                    width: 20,
+                                    borderRadius: BorderRadius.circular(2))
+                              ]),
+                            ])),
+                      )),
+                );
+              }
+              if (state is EarthquakeResistanceFailureState) {
+                return const Padding(
+                  padding: EdgeInsets.all(10.0),
+                  child: Center(child: Text('Unable to load data')),
+                );
+              }
+              return const Padding(
+                padding: EdgeInsets.all(10.0),
+                child: Center(child: Text('Something went wrong')),
+              );
+            },
           )
         ],
       ),

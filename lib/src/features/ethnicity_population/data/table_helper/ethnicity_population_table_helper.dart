@@ -1,13 +1,12 @@
 import '../database/ethnicity_population_database.dart';
 
+final db = EthnicityPopDatabase();
+
 Future<int?> addEthnicityPop(EthnicityPopTableData entry) async {
-  final db = EthnicityPopDatabase();
-  final dataEntered = await db.createItem(entry);
-  return dataEntered;
+  await db.createItem(entry);
 }
 
 Future<List<EthnicityPopTableData>> getALlEthnicityPop() async {
-  final db = EthnicityPopDatabase();
   try {
     final List<EthnicityPopTableData> ethnicityData =
         await db.select(db.ethnicityPopTable).get();

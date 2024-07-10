@@ -1,13 +1,12 @@
 import 'package:digital_profile/src/features/population/data/population_database/population_database.dart';
 
+final db = PopulationDatabase();
+
 Future<int?> addPopulation(PopulationTableData entry) async {
-  final db = PopulationDatabase();
-  final idEntered = await db.createItem(entry);
-  return idEntered;
+  await db.createItem(entry);
 }
 
 Future<List<PopulationTableData>> getAllPopulationData() async {
-  final db = PopulationDatabase();
   try {
     final List<PopulationTableData> populationData =
         await db.select(db.populationTable).get();
