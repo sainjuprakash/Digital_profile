@@ -65,7 +65,6 @@ class BankBloc extends Bloc<BankEvent, BankState> {
         }
       } catch (errMsg) {
         emit(BankFailureState(errMsg.toString()));
-        print(errMsg.toString());
       }
     });
   }

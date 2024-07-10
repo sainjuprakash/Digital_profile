@@ -1,28 +1,28 @@
 import 'dart:io';
 
-import 'package:digital_profile/src/features/table_no_37/data/table_helper/bank_table.dart';
+import 'package:digital_profile/src/features/table_no_45/data/table_helper/meat_table.dart';
 import 'package:drift/drift.dart';
 import 'package:drift/native.dart';
 import 'package:path/path.dart' as p;
 import 'package:path_provider/path_provider.dart';
-part 'bank_database.g.dart';
+part 'meat_database.g.dart';
 
-@DriftDatabase(tables: [BankTable])
-class BankDatabase extends _$BankDatabase {
-  BankDatabase() : super(_openConnection());
+@DriftDatabase(tables: [MeatTable])
+class MeatDatabase extends _$MeatDatabase {
+  MeatDatabase() : super(_openConnection());
 
   @override
   int get schemaVersion => 1;
 
-  Future<int> createItem(BankTableData entry) {
-    return into(bankTable).insert(entry);
+  Future<int> createItem(MeatTableData entry) {
+    return into(meatTable).insert(entry);
   }
 }
 
 LazyDatabase _openConnection() {
   return LazyDatabase(() async {
     final dbFolder = await getApplicationDocumentsDirectory();
-    final file = File(p.join(dbFolder.path, 'bank.sqlite'));
+    final file = File(p.join(dbFolder.path, 'meat.sqlite'));
 
     return NativeDatabase.createInBackground(file);
   });

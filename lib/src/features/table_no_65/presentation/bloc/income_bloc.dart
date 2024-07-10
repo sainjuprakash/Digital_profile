@@ -1,6 +1,9 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
+import 'package:connectivity_plus/connectivity_plus.dart';
+import 'package:digital_profile/src/features/table_no_65/data/database/income_database.dart';
+import 'package:digital_profile/src/features/table_no_65/data/table_helper/income_table_helper.dart';
 import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
 
@@ -17,9 +20,72 @@ class IncomeBloc extends Bloc<IncomeEvent, IncomeState> {
       : super(IncomeLoadingState()) {
     on<GetIncomeEvent>((event, emit) async {
       try {
-        List<IncomeModel> fetchedModel =
-            await incomeRepository.getIncomeData(baseUrl, endPoint);
-        emit(IncomeSuccessState(fetchedModel));
+        final cacheData = await getAllIncomeData();
+        if (cacheData.isNotEmpty) {
+          final cacheModel = cacheData.map((e) {
+            return IncomeModel(
+                wardNumber: e.wardNumber,
+                crops: e.crops,
+                fruits: e.fruits,
+                livestock: e.livestock,
+                vegi: e.vegi,
+                medi: e.medi,
+                labour: e.labour,
+                business: e.business,
+                foreignEmp: e.foreignEmp,
+                office: e.office,
+                others: e.others,
+                total: e.total);
+          }).toList();
+          emit(IncomeSuccessState(cacheModel));
+          return;
+        }
+        final connectivityResults = await Connectivity().checkConnectivity();
+        if (connectivityResults == ConnectivityResult.wifi ||
+            connectivityResults == ConnectivityResult.mobile) {
+          List<IncomeModel> fetchedModel =
+              await incomeRepository.getIncomeData(baseUrl, endPoint);
+          for (var e in fetchedModel) {
+            var incomeData = IncomeTableData(
+                wardNumber: e.wardNumber,
+                crops: e.crops,
+                fruits: e.fruits,
+                livestock: e.livestock,
+                vegi: e.vegi,
+                medi: e.medi,
+                labour: e.labour,
+                business: e.business,
+                foreignEmp: e.foreignEmp,
+                office: e.office,
+                others: e.others,
+                total: e.total);
+            await addIncomeData(incomeData);
+          }
+          emit(IncomeSuccessState(fetchedModel));
+        } else {
+          if (cacheData.isNotEmpty) {
+            final cacheModel = cacheData.map((e) {
+              return IncomeModel(
+                  wardNumber: e.wardNumber,
+                  crops: e.crops,
+                  fruits: e.fruits,
+                  livestock: e.livestock,
+                  vegi: e.vegi,
+                  medi: e.medi,
+                  labour: e.labour,
+                  business: e.business,
+                  foreignEmp: e.foreignEmp,
+                  office: e.office,
+                  others: e.others,
+                  total: e.total);
+            }).toList();
+            emit(IncomeSuccessState(cacheModel));
+            return;
+          } else {
+            emit(IncomeFailureState(
+                'No internet connection and no cached data available'));
+          }
+        }
       } catch (errMsg) {
         emit(IncomeFailureState(errMsg.toString()));
       }
