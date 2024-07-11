@@ -37,7 +37,7 @@ class SettlementBarChart extends StatelessWidget {
                   scrollDirection: Axis.horizontal,
                   child: SizedBox(
                       height: 550,
-                      width: 600,
+                      width:500,
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: BarChart(BarChartData(
