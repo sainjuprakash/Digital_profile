@@ -8,7 +8,7 @@ class LoanModel with _$LoanModel {
   LoanModel._();
 
   factory LoanModel({
-    @JsonKey(name: "survey_ward_no") required int? wardNumber,
+    @JsonKey(name: "survey_ward_no") required int wardNumber,
     @JsonKey(name: "ward_f_agri_loan_count") required int? agricultureLoan,
     @JsonKey(name: "ward_f_house_exp_loan_count") required int? houseExpLoan,
     @JsonKey(name: "ward_f_business_loan_count") required int? businessLoan,
