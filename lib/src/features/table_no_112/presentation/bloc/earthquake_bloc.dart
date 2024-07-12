@@ -1,6 +1,9 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
+import 'package:connectivity_plus/connectivity_plus.dart';
+import 'package:digital_profile/src/features/table_no_112/data/database/earthquake_damage_database.dart';
+import 'package:digital_profile/src/features/table_no_112/data/table_helper/earthquake_damage_table_helper.dart';
 import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
 
@@ -17,9 +20,50 @@ class EarthquakeBloc extends Bloc<EarthquakeEvent, EarthquakeState> {
       : super(EarthquakeLoadingState()) {
     on<GetEarthquakeEvent>((event, emit) async {
       try {
-        List<EarthquakeModel> fetchedModel =
-            await earthquakeRepository.getEarthquakeData(baseUrl, endPoint);
-        emit(EarthquakeSuccessState(fetchedModel));
+        final cacheData = await getAllEarthquakeDamageData();
+        if (cacheData.isNotEmpty) {
+          final cacheModel = cacheData.map((e) {
+            return EarthquakeModel(
+                wardNumber: e.wardNumber,
+                isDamaged: e.isDamaged,
+                isNotDamages: e.isNotDamages,
+                notAvailable: e.notAvailable,
+                total: e.total);
+          }).toList();
+          emit(EarthquakeSuccessState(cacheModel));
+          return;
+        }
+        final connectivityResults = await Connectivity().checkConnectivity();
+        if (connectivityResults == ConnectivityResult.wifi ||
+            connectivityResults == ConnectivityResult.mobile) {
+          List<EarthquakeModel> fetchedModel =
+              await earthquakeRepository.getEarthquakeData(baseUrl, endPoint);
+          for (var e in fetchedModel) {
+            final earthquakeData = EarthquakeDamageTableData(
+                wardNumber: e.wardNumber,
+                isDamaged: e.isDamaged,
+                isNotDamages: e.isNotDamages,
+                notAvailable: e.notAvailable,
+                total: e.total);
+            await addEarthquakeDamageData(earthquakeData);
+          }
+          emit(EarthquakeSuccessState(fetchedModel));
+        } else {
+          if (cacheData.isNotEmpty) {
+            final cacheModel = cacheData.map((e) {
+              return EarthquakeModel(
+                  wardNumber: e.wardNumber,
+                  isDamaged: e.isDamaged,
+                  isNotDamages: e.isNotDamages,
+                  notAvailable: e.notAvailable,
+                  total: e.total);
+            }).toList();
+            emit(EarthquakeSuccessState(cacheModel));
+          } else {
+            emit(EarthquakeFailureState(
+                'No internet connection and no cached data available'));
+          }
+        }
       } catch (errMsg) {
         emit(EarthquakeFailureState(errMsg.toString()));
       }

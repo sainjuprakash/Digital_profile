@@ -20,7 +20,7 @@ class PopulationPage extends StatelessWidget {
         child: BlocBuilder<PopulationBloc, PopulationState>(
           builder: (context, state) {
             if (state is PopulationLoadingState) {
-              return Center(child: CircularProgressIndicator());
+              return const Center(child: CircularProgressIndicator());
             } else if (state is PopulationSuccessState) {
               return ListView.builder(
                 itemCount: state.populationModel.length,
