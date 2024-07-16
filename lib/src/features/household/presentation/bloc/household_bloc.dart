@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:bloc/bloc.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:digital_profile/src/features/household/data/database/household_database.dart';
@@ -42,6 +40,7 @@ class HouseholdBloc extends Bloc<HouseholdEvent, HouseholdState> {
                 individualData: e.individualData);
           }).toList();
           emit(HouseholdSuccessState(cacheModel));
+          return;
         }
         final connectivityResults = await Connectivity().checkConnectivity();
         if (connectivityResults == ConnectivityResult.wifi ||
@@ -67,7 +66,6 @@ class HouseholdBloc extends Bloc<HouseholdEvent, HouseholdState> {
                 longitude: e.longitude,
                 individualData: e.individualData);
             await addHousehold(fetchedHhModel);
-            return;
           }
           emit(HouseholdSuccessState(fetchedModel));
         } else {

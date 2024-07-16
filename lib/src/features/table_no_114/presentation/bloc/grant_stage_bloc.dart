@@ -1,6 +1,10 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
+import 'package:connectivity_plus/connectivity_plus.dart';
+import 'package:digital_profile/src/features/table_no_113/data/table_helper/earthquake_grant_table_helper.dart';
+import 'package:digital_profile/src/features/table_no_114/data/database/grant_stage_database.dart';
+import 'package:digital_profile/src/features/table_no_114/data/table_helper/grant_stage_table_helper.dart';
 import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
 
@@ -17,9 +21,53 @@ class GrantStageBloc extends Bloc<GrantStageEvent, GrantStageState> {
       : super(GrantStageLoadingState()) {
     on<GetGrantStageEvent>((event, emit) async {
       try {
-        List<GrantStageModel> fetchedModel =
-            await grantStageRepository.getGrantData(baseUrl, endPoint);
-        emit(GrantStageSuccessState(fetchedModel));
+        final cacheData = await getAllGrantStage();
+        if (cacheData.isNotEmpty) {
+          final cacheModel = cacheData.map((e) {
+            return GrantStageModel(
+                wardNumber: e.wardNumber,
+                firstStage: e.firstStage,
+                secondStage: e.secondStage,
+                thirdStage: e.thirdStage,
+                notAvailable: e.notAvailable,
+                total: e.total);
+          }).toList();
+          emit(GrantStageSuccessState(cacheModel));
+          return;
+        }
+        final connectivityResults = await Connectivity().checkConnectivity();
+        if (connectivityResults == ConnectivityResult.wifi ||
+            connectivityResults == ConnectivityResult.mobile) {
+          List<GrantStageModel> fetchedModel =
+              await grantStageRepository.getGrantData(baseUrl, endPoint);
+          for (var e in fetchedModel) {
+            var grantModel = GrantStageTableData(
+                wardNumber: e.wardNumber,
+                firstStage: e.firstStage,
+                secondStage: e.secondStage,
+                thirdStage: e.thirdStage,
+                notAvailable: e.notAvailable,
+                total: e.total);
+            await addGrantStageData(grantModel);
+          }
+          emit(GrantStageSuccessState(fetchedModel));
+        } else {
+          if (cacheData.isNotEmpty) {
+            final cacheModel = cacheData.map((e) {
+              return GrantStageModel(
+                  wardNumber: e.wardNumber,
+                  firstStage: e.firstStage,
+                  secondStage: e.secondStage,
+                  thirdStage: e.thirdStage,
+                  notAvailable: e.notAvailable,
+                  total: e.total);
+            }).toList();
+            emit(GrantStageSuccessState(cacheModel));
+          } else {
+            emit(GrantStageFailureState(
+                'No internet connection and no cached data available'));
+          }
+        }
       } catch (errMsg) {
         emit(GrantStageFailureState(errMsg.toString()));
       }
