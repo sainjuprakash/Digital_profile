@@ -12,52 +12,51 @@ part 'meat_event.dart';
 part 'meat_state.dart';
 
 class MeatBloc extends Bloc<MeatEvent, MeatState> {
-  MeatRepository meatRepository;
-  String baseUrl, endPoint;
+  final MeatRepository meatRepository;
+  final String baseUrl;
+  final String endPoint;
+
   MeatBloc(this.meatRepository, this.baseUrl, this.endPoint)
       : super(MeatLoadingState()) {
     on<MeatEvent>((event, emit) async {
       try {
-        final cacheData = await getAllMeatData();
-        if (cacheData.isNotEmpty) {
-          final cacheModel = cacheData.map((e) {
-            return MeatModel(
-                wardNumber: e.wardNumber,
-                animalsQuantity: e.animalsQuantity,
-                meatKg: e.meatKg,
-                meatEarning: e.meatEarning,
-                houseCount: e.houseCount);
-          }).toList();
-          emit(MeatSuccessState(cacheModel));
-          return;
-        }
         final connectivityResults = await Connectivity().checkConnectivity();
-        if (connectivityResults == ConnectivityResult.wifi ||
-            connectivityResults == ConnectivityResult.mobile) {
+
+        if (connectivityResults == ConnectivityResult.wifi) {
+          // Fetch data from the API
           List<MeatModel> fetchedModel =
               await meatRepository.getMeatData(baseUrl, endPoint);
+
+          // Clear existing local data and insert fetched data
+          await clearMeatDatabase();
           for (var e in fetchedModel) {
             final meatModel = MeatTableData(
+              wardNumber: e.wardNumber,
+              animalsQuantity: e.animalsQuantity,
+              meatKg: e.meatKg,
+              meatEarning: e.meatEarning,
+              houseCount: e.houseCount,
+            );
+            await addMeatData(meatModel);
+          }
+
+          // Emit the fetched data
+          emit(MeatSuccessState(fetchedModel));
+        } else {
+          // Load data from the local database
+          final localData = await getAllMeatData();
+
+          if (localData.isNotEmpty) {
+            final localModel = localData.map((e) {
+              return MeatModel(
                 wardNumber: e.wardNumber,
                 animalsQuantity: e.animalsQuantity,
                 meatKg: e.meatKg,
                 meatEarning: e.meatEarning,
-                houseCount: e.houseCount);
-            await addMeatData(meatModel);
-          }
-          emit(MeatSuccessState(fetchedModel));
-        } else {
-          if (cacheData.isNotEmpty) {
-            final cacheModel = cacheData.map((e) {
-              return MeatModel(
-                  wardNumber: e.wardNumber,
-                  animalsQuantity: e.animalsQuantity,
-                  meatKg: e.meatKg,
-                  meatEarning: e.meatEarning,
-                  houseCount: e.houseCount);
+                houseCount: e.houseCount,
+              );
             }).toList();
-            emit(MeatSuccessState(cacheModel));
-            return;
+            emit(MeatSuccessState(localModel));
           } else {
             emit(MeatFailureState(
                 'No internet connection and no cached data available'));

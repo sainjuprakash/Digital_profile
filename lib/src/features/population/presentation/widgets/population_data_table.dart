@@ -95,6 +95,12 @@ class PopulationDatatable extends StatelessWidget {
             ),
           );
         }
+        if(state is PopulationFailureState){
+          return const Padding(
+            padding: EdgeInsets.all(8.0),
+            child: Center(child: Text('Unable to load data')),
+          );
+        }
 
         return const Center(child: CircularProgressIndicator());
       },

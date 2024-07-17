@@ -12,14 +12,14 @@ class InitialPage extends StatefulWidget {
 
 class _InitialPageState extends State<InitialPage> {
   List<String> baseUrls = [
-    'https://rubytest.git.com.np',
+    'https://rubivalleymun.digitalprofile.com.np',
     'https://chichila.git.com.np',
     'https://conjusum.git.com.np'
   ];
   List<String> endPoints = ['api/household/reports?table_no=table'];
   final List<String> _options = [
     'रुबी भ्याली',
-    'चिचिला',
+    'ऐरावती',
     'कोन्ज्योसोम',
   ];
   List<String> householdUrls = [

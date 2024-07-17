@@ -12,7 +12,19 @@ Future<List<PopulationTableData>> getAllPopulationData() async {
         await db.select(db.populationTable).get();
     return populationData;
   } catch (e) {
-    //print('Error retrieving data: $e');
     throw Exception(e);
   }
+}
+
+Future<void> clearPopulationDatabase() async {
+  // Get all tables in the database
+  final allTables = db.allTables;
+
+  // Create a transaction to ensure all deletions are performed atomically
+  await db.transaction(() async {
+    for (var tables in allTables) {
+      // Delete all rows from the current table
+      await db.delete(tables).go();
+    }
+  });
 }

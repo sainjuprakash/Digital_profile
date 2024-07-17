@@ -20,28 +20,27 @@ class PopulationBloc extends Bloc<PopulationEvent, PopulationState> {
     on<LoadPopulationEvent>((event, emit) async {
       try {
         // First, check for cached data in the local database
-        final cachedData = await getAllPopulationData();
-        if (cachedData.isNotEmpty) {
-          final cachedModel = cachedData.map((e) {
-            return PopulationModel(
-              surveyWardNumber: e.surveyWardNumber,
-              maleCount: e.maleCount,
-              femaleCount: e.femaleCount,
-              othersCount: e.othersCount,
-              totalWardPop: e.totalWardPop,
-              maleHhCount: e.maleHhCount,
-              femaleHhCount: e.femaleHhCount,
-              totalWardHhCount: e.totalWardHhCount,
-            );
-          }).toList();
-          emit(PopulationSuccessState(populationModel: cachedModel));
-          return;
-        }
-
+        // if (cachedData.isNotEmpty) {
+        //   final cachedModel = cachedData.map((e) {
+        //     return PopulationModel(
+        //       surveyWardNumber: e.surveyWardNumber,
+        //       maleCount: e.maleCount,
+        //       femaleCount: e.femaleCount,
+        //       othersCount: e.othersCount,
+        //       totalWardPop: e.totalWardPop,
+        //       maleHhCount: e.maleHhCount,
+        //       femaleHhCount: e.femaleHhCount,
+        //       totalWardHhCount: e.totalWardHhCount,
+        //     );
+        //   }).toList();
+        //   emit(PopulationSuccessState(populationModel: cachedModel));
+        //   return;
+        // }
         // Check for internet connectivity
         final connectivityResult = await Connectivity().checkConnectivity();
         if (connectivityResult == ConnectivityResult.wifi ||
             connectivityResult == ConnectivityResult.mobile) {
+          await clearPopulationDatabase();
           // Fetch data from the API
           List<PopulationModel> fetchedModel =
               await _populationRepository.getPopData(baseUrl, endPoint);
@@ -60,6 +59,8 @@ class PopulationBloc extends Bloc<PopulationEvent, PopulationState> {
           }
           emit(PopulationSuccessState(populationModel: fetchedModel));
         } else {
+          final cachedData = await getAllPopulationData();
+
           if (cachedData.isNotEmpty) {
             final cachedModel = cachedData.map((e) {
               return PopulationModel(

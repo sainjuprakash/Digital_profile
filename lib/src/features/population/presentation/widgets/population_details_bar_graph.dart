@@ -1,10 +1,8 @@
 import 'package:fl_chart/fl_chart.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../data/models/population_model.dart';
 import '../bloc/population_bloc.dart';
-import 'dart:math' as math;
 
 class PopulationBarGraph extends StatefulWidget {
   const PopulationBarGraph({super.key});
@@ -14,7 +12,6 @@ class PopulationBarGraph extends StatefulWidget {
 }
 
 class _PopulationBarGraphState extends State<PopulationBarGraph> {
-
   int touchedGroupIndex = -1;
   @override
   Widget build(BuildContext context) {
@@ -34,41 +31,28 @@ class _PopulationBarGraphState extends State<PopulationBarGraph> {
               child: BarChart(BarChartData(
                 alignment: BarChartAlignment.spaceAround,
                 minY: 0,
-                maxY: 2000,
+                maxY: 3000,
                 barGroups: populationData
                     .map((e) => BarChartGroupData(
                             x: (e.surveyWardNumber) ?? 0,
                             barRods: [
                               BarChartRodData(
                                 toY: e.maleCount?.toDouble() ?? 0,
-                                // toY: loadedPopulationData[index]
-                                //     .maleCount,
                                 width: 20,
-
                                 borderRadius: BorderRadius.circular(2),
                                 color: const Color(0xFF1976D2),
-                                //fromY: 20,
-                                //borderDashArray: [5, 10],
                               ),
                               BarChartRodData(
                                 toY: e.femaleCount?.toDouble() ?? 0,
-                                // toY: loadedPopulationData[index]
-                                //     .maleCount,
                                 width: 20,
                                 borderRadius: BorderRadius.circular(2),
                                 color: const Color(0xFF64B5F6),
-                                //fromY: 20,
-                                //borderDashArray: [5, 10],
                               ),
                               BarChartRodData(
                                 toY: e.othersCount?.toDouble() ?? 0,
-                                // toY: loadedPopulationData[index]
-                                //     .maleCount,
                                 width: 20,
                                 borderRadius: BorderRadius.circular(2),
                                 color: const Color(0xFF2196F3),
-                                //fromY: 20,
-                                //borderDashArray: [5, 10],
                               ),
                             ]))
                     .toList(),
@@ -95,6 +79,5 @@ class _PopulationBarGraphState extends State<PopulationBarGraph> {
         child: Text("Something went wrong"),
       );
     });
-
   }
 }

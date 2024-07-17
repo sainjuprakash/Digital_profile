@@ -1,4 +1,3 @@
-
 import 'package:bloc/bloc.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:digital_profile/src/features/age_table2_2/data/database/age_database.dart';
@@ -19,37 +18,10 @@ class AgePopulationBloc extends Bloc<AgePopulationEvent, AgePopulationState> {
       : super(AgePopulationLoadingState()) {
     on<GetAgePopulationEvent>((event, emit) async {
       try {
-        final cachedData = await getAllAgePopulationData();
-        if (cachedData.isNotEmpty) {
-          final cachedModel = cachedData.map((e) {
-            return AgePopulationModel(
-                wardNumber: e.surveyWardNumber,
-                maleLessThanSix: e.maleLessThanSix,
-                maleSixToFifteen: e.maleSixToFifteen,
-                maleSixteenToFortyNine: e.maleSixteenToFortyNine,
-                maleFiftyToSixtyNine: e.maleFiftyToSixtyNine,
-                maleSeventyToNinety: e.maleSeventyToNinety,
-                maleAboveNinety: e.maleAboveNinety,
-                femaleLessThanSix: e.femaleLessThanSix,
-                femaleSixToFifteen: e.femaleSixToFifteen,
-                femaleSixteenToFortyNine: e.femaleSixteenToFortyNine,
-                femaleFiftyToSixtyNine: e.femaleFiftyToSixtyNine,
-                femaleSeventyToNinety: e.femaleSeventyToNinety,
-                femaleNinetyAbove: e.femaleNinetyAbove,
-                othersLessThanSix: e.othersLessThanSix,
-                othersSixToFifteen: e.othersSixToFifteen,
-                othersSixteenFortyNine: e.othersSixteenFortyNine,
-                othersFiftyToSixtyNine: e.othersFiftyToSixtyNine,
-                othersSeventyToNinety: e.othersSeventyToNinety,
-                othersAboveNinety: e.othersAboveNinety,
-                totalWardCount: e.totalWardCount);
-          }).toList();
-          emit(AgePopulationSuccessState(agePopulationModel: cachedModel));
-          return;
-        }
         final connectivityResult = await Connectivity().checkConnectivity();
         if (connectivityResult == ConnectivityResult.wifi ||
-            connectivityResult == ConnectivityResult.mobile) {
+            connectivityResult == ConnectivityResult.mobile) {it
+          await clearAgePopulationDatabase();
           List<AgePopulationModel> fetchedAgePopulationModel =
               await _ageRepository.getAgeData(baseurl, endPoint);
           for (var e in fetchedAgePopulationModel) {
@@ -79,6 +51,7 @@ class AgePopulationBloc extends Bloc<AgePopulationEvent, AgePopulationState> {
           emit(AgePopulationSuccessState(
               agePopulationModel: fetchedAgePopulationModel));
         } else {
+          final cachedData = await getAllAgePopulationData();
           if (cachedData.isNotEmpty) {
             final cachedModel = cachedData.map((e) {
               return AgePopulationModel(

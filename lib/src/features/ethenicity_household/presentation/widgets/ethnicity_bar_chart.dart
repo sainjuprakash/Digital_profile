@@ -66,8 +66,6 @@ class EthnicityBarGraph extends StatelessWidget {
                             showTitles: true,
                             reservedSize: 33,
                             getTitlesWidget: (value, meta) {
-                              // print(value);
-                              // print(meta);
                               final lists = [
                                 l10n.hillbrahmen,
                                 l10n.teraiBrahman,
@@ -90,7 +88,7 @@ class EthnicityBarGraph extends StatelessWidget {
                         // topTitles: const AxisTitles(),
                       ),
                       minY: 0,
-                      maxY: 3000,
+                      maxY: 4000,
                       barGroups: [
                         BarChartGroupData(
                           x: 0,

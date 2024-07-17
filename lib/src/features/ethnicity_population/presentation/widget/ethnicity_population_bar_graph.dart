@@ -1,5 +1,4 @@
 import 'package:digital_profile/constant/spacing.dart';
-import 'package:digital_profile/src/features/ethnicity_population/data/repository/ethnicity_population_repository_impl.dart';
 import 'package:digital_profile/src/features/ethnicity_population/presentation/bloc/ethnicity_population_bloc.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/cupertino.dart';
@@ -7,7 +6,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../../app_localization/l10n.dart';
-import '../../data/model/ethnicity_population_model.dart';
 
 class EthnicityPopulationBarChart extends StatelessWidget {
   int? totalMuslim;
@@ -71,8 +69,6 @@ class EthnicityPopulationBarChart extends StatelessWidget {
                               showTitles: true,
                               reservedSize: 39,
                               getTitlesWidget: (value, meta) {
-                                // print(value);
-                                // print(meta);
                                 final lists = [
                                   l10n.hillbrahmen,
                                   l10n.teraiBrahman,
@@ -177,16 +173,6 @@ class EthnicityPopulationBarChart extends StatelessWidget {
                                   width: 20),
                             ],
                           ),
-                          /* BarChartGroupData(
-                            x: 8,
-                            barRods: [
-                              BarChartRodData(
-                                  borderRadius: BorderRadius.circular(2),
-                                  color: const Color(0xFF64B5F6),
-                                  toY: totalWardEthnicity?.toDouble() ?? 0,
-                                  width: 20),
-                            ],
-                          ),*/
                         ],
                       )),
                     )),

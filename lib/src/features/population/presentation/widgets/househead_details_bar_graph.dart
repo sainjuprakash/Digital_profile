@@ -1,5 +1,4 @@
 import 'package:fl_chart/fl_chart.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../data/models/population_model.dart';
@@ -35,9 +34,8 @@ class _HouseHeadBarGraphState extends State<HouseHeadBarGraph> {
                 top: 10.0,
               ),
               child: BarChart(BarChartData(
-                // titlesData: const FlTitlesData(),
                 minY: 0,
-                maxY: 1000,
+                maxY: 2000,
                 barGroups: populationData
                     .map((e) => BarChartGroupData(
                             x: (e.surveyWardNumber) ?? 0,
@@ -47,18 +45,12 @@ class _HouseHeadBarGraphState extends State<HouseHeadBarGraph> {
                                 width: 20,
                                 borderRadius: BorderRadius.circular(2),
                                 color: const Color(0xFF1976D2),
-                                //fromY: 20,
-                                //borderDashArray: [5, 10],
                               ),
                               BarChartRodData(
                                 toY: e.femaleHhCount?.toDouble() ?? 0,
-                                // toY: loadedPopulationData[index]
-                                //     .maleCount,
                                 width: 20,
                                 borderRadius: BorderRadius.circular(2),
                                 color: const Color(0xFF64B5F6),
-                                //fromY: 20,
-                                //borderDashArray: [5, 10],
                               ),
                             ]))
                     .toList(),
