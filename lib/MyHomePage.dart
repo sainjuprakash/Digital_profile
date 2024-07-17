@@ -230,8 +230,6 @@ class _MyHomePageState extends State<MyHomePage> {
           scrollDirection: Axis.vertical,
           child: Column(
             children: [
-              // Text(widget.baseUrl),
-              // Text(isUserLoggedIn.toString()),
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Container(
@@ -252,9 +250,11 @@ class _MyHomePageState extends State<MyHomePage> {
                         underline: Container(),
                         value: selectedItem,
                         onChanged: (String? newValue) {
-                          setState(() {
-                            selectedItem = newValue!;
-                          });
+                          if (newValue != selectedItem) {
+                            setState(() {
+                              selectedItem = newValue!;
+                            });
+                          }
                         },
                         items: dropDownOptions
                             .map<DropdownMenuItem<String>>((String value) {
@@ -269,7 +269,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   ),
                 ),
               ),
-              getPage(context)
+              getPage(context),
             ],
           ),
         ),
