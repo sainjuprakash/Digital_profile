@@ -16,3 +16,11 @@ Future<List<LanguageTableData>> getAllLanguageData() async {
     throw Exception(e);
   }
 }
+Future<void> clearLanguageData() async {
+  final allTables = db.allTables;
+  await db.transaction(() async {
+    for (var table in allTables) {
+      await db.delete(table).go();
+    }
+  });
+}

@@ -63,7 +63,7 @@ class AgePopulationBarChart extends StatelessWidget {
                   padding: const EdgeInsets.all(8.0),
                   child: BarChart(BarChartData(
                       minY: 0,
-                      maxY: 5000,
+                      maxY: 10000,
                       titlesData: FlTitlesData(
                           show: true,
                           topTitles: const AxisTitles(

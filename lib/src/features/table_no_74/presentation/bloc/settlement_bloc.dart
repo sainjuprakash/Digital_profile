@@ -19,21 +19,10 @@ class SettlementBloc extends Bloc<SettlementEvent, SettlementState> {
     on<GetSettlementEvent>((event, emit) async {
       try {
         final cacheData = await getAllSettlementData();
-        if (cacheData.isNotEmpty) {
-          final cacheModel = cacheData.map((e) {
-            return SettlementModel(
-                wardNumber: e.wardNumber,
-                permanent: e.permanent,
-                temporary: e.temporary,
-                others: e.others,
-                total: e.total);
-          }).toList();
-          emit(SettlementSuccessState(cacheModel));
-          return;
-        }
         final connectivityResults = await Connectivity().checkConnectivity();
         if (connectivityResults == ConnectivityResult.wifi ||
             connectivityResults == ConnectivityResult.mobile) {
+          await clearSettlementData();
           List<SettlementModel> fetchedModel =
               await settlementRepository.getSettlementData(baseUrl, endPoint);
           for (var e in fetchedModel) {

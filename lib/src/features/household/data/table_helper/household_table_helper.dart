@@ -41,3 +41,4 @@ class IndividualFamilyDataListConverter
     return jsonEncode(jsonList);
   }
 }
+

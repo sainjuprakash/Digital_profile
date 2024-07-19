@@ -20,7 +20,7 @@ class AgePopulationBloc extends Bloc<AgePopulationEvent, AgePopulationState> {
       try {
         final connectivityResult = await Connectivity().checkConnectivity();
         if (connectivityResult == ConnectivityResult.wifi ||
-            connectivityResult == ConnectivityResult.mobile) {it
+            connectivityResult == ConnectivityResult.mobile) {
           await clearAgePopulationDatabase();
           List<AgePopulationModel> fetchedAgePopulationModel =
               await _ageRepository.getAgeData(baseurl, endPoint);

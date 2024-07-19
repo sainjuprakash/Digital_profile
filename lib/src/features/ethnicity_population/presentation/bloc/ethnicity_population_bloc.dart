@@ -21,28 +21,10 @@ class EthnicityPopulationBloc
     on<GetEthnicityPopulationEvent>((event, emit) async {
       try {
         final cacheData = await getALlEthnicityPop();
-        if (cacheData.isNotEmpty) {
-          final cacheModel = cacheData.map((e) {
-            return EthnicityPopulationModel(
-                wardNumber: e.wardNumber,
-                hillBrahman: e.hillBrahman,
-                teraiBrahman: e.teraiBrahman,
-                hillJanajati: e.hillJanajati,
-                teraiJanajati: e.teraiJanajati,
-                hillDalit: e.hillDalit,
-                muslim: e.muslim,
-                others: e.others,
-                notAvailable: e.notAvailable,
-                totalWardEthnicity: e.totalEthnicity);
-          }).toList();
-          emit(EthnicityPopulationSuccessState(
-              ethnicityPopulationModel: cacheModel));
-          return;
-        }
-
         final connectivityResult = await Connectivity().checkConnectivity();
         if (connectivityResult == ConnectivityResult.wifi ||
             connectivityResult == ConnectivityResult.mobile) {
+          await clearEthnicityPopulationData();
           List<EthnicityPopulationModel> ethnicityPopulationModel =
               await _ethnicityPopulationRepository.getEthnicityPopulation(
                   baseUrl, endPoint);

@@ -23,21 +23,10 @@ class EarthquakeGrantBloc
     on<GetEarthquakeGrantEvent>((event, emit) async {
       try {
         final cacheData = await getAllEarthquakeGrantData();
-        if (cacheData.isNotEmpty) {
-          final cacheModel = cacheData.map((e) {
-            return EarthquakeGrantModel(
-                wardNumber: e.wardNumber,
-                gotGranted: e.gotGranted,
-                doesNotGotGranted: e.doesNotGotGranted,
-                notAvailable: e.notAvailable,
-                totalGranted: e.totalGranted);
-          }).toList();
-          emit(EarthquakeGrantSuccessState(cacheModel));
-          return;
-        }
         final connectivityResults = await Connectivity().checkConnectivity();
         if (connectivityResults == ConnectivityResult.wifi ||
             connectivityResults == ConnectivityResult.mobile) {
+          await clearEarthquakeGrantData();
           List<EarthquakeGrantModel> fetchedModel =
               await earthquakeGrantRepository.getEarthquakeGrantData(
                   baseUrl, endPoint);

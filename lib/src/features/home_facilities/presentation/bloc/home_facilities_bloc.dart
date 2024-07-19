@@ -23,29 +23,10 @@ class HomeFacilitiesBloc
     on<HomeFacilitiesEvent>((event, emit) async {
       try {
         final cacheData = await getAllHomeFacilities();
-        if (cacheData.isNotEmpty) {
-          final cacheModel = cacheData.map((e) {
-            return HomeFacilitiesModel(
-                wardNumber: e.wardNumber,
-                radio: e.radio,
-                television: e.television,
-                telephone: e.telephone,
-                computer: e.computer,
-                internet: e.internet,
-                motorcycle: e.motorcycle,
-                car: e.car,
-                refrigerator: e.refrigerator,
-                bus: e.bus,
-                none: e.none,
-                houseCount: e.houseCount,
-                totalWardAminity: e.totalWardAminity);
-          }).toList();
-          emit(HomeFacilitiesSuccessState(cacheModel));
-          return;
-        }
         final connectivityResults = await Connectivity().checkConnectivity();
         if (connectivityResults == ConnectivityResult.wifi ||
             connectivityResults == ConnectivityResult.mobile) {
+          await clearHomeFacilitiesData();
           List<HomeFacilitiesModel> fetchedModel =
               await _homeFacilitiesRepository.getHomeFacilities(
                   baseUrl, endPoint);

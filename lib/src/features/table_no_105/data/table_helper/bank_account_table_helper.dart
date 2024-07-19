@@ -6,7 +6,7 @@ Future<int?> addBankAccountData(BankAccountTableData entry) async {
   db.createItem(entry);
 }
 
-Future<List<BankAccountTableData>> getAllBankData() async {
+Future<List<BankAccountTableData>> getAllBankAccountData() async {
   try {
     List<BankAccountTableData> bankData =
         await db.select(db.bankAccountTable).get();
@@ -14,4 +14,12 @@ Future<List<BankAccountTableData>> getAllBankData() async {
   } catch (errMsg) {
     throw Exception(errMsg);
   }
+}
+Future<void> clearBankAccountData() async {
+  final allTables = db.allTables;
+  await db.transaction(() async {
+    for (var table in allTables) {
+      await db.delete(table).go();
+    }
+  });
 }

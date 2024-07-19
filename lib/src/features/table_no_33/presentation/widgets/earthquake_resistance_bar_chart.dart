@@ -45,7 +45,7 @@ class EarthquakeResistanceBarChart extends StatelessWidget {
                         child: BarChart(BarChartData(
                             alignment: BarChartAlignment.spaceAround,
                             minY: 0,
-                            maxY: 3000,
+                            maxY: 5000,
                             titlesData: FlTitlesData(
                                 topTitles: const AxisTitles(
                                     sideTitles: SideTitles(showTitles: false)),

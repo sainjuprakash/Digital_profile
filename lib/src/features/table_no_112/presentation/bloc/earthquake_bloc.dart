@@ -21,21 +21,10 @@ class EarthquakeBloc extends Bloc<EarthquakeEvent, EarthquakeState> {
     on<GetEarthquakeEvent>((event, emit) async {
       try {
         final cacheData = await getAllEarthquakeDamageData();
-        if (cacheData.isNotEmpty) {
-          final cacheModel = cacheData.map((e) {
-            return EarthquakeModel(
-                wardNumber: e.wardNumber,
-                isDamaged: e.isDamaged,
-                isNotDamages: e.isNotDamages,
-                notAvailable: e.notAvailable,
-                total: e.total);
-          }).toList();
-          emit(EarthquakeSuccessState(cacheModel));
-          return;
-        }
         final connectivityResults = await Connectivity().checkConnectivity();
         if (connectivityResults == ConnectivityResult.wifi ||
             connectivityResults == ConnectivityResult.mobile) {
+          await clearEarthquakeDamageData();
           List<EarthquakeModel> fetchedModel =
               await earthquakeRepository.getEarthquakeData(baseUrl, endPoint);
           for (var e in fetchedModel) {
@@ -59,6 +48,7 @@ class EarthquakeBloc extends Bloc<EarthquakeEvent, EarthquakeState> {
                   total: e.total);
             }).toList();
             emit(EarthquakeSuccessState(cacheModel));
+            return;
           } else {
             emit(EarthquakeFailureState(
                 'No internet connection and no cached data available'));

@@ -21,28 +21,10 @@ class ReligionBloc extends Bloc<ReligionEvent, ReligionState> {
     on<GetReligionEvent>((event, emit) async {
       try {
         final cacheData = await getALlReligionData();
-        if (cacheData.isNotEmpty) {
-          final cacheModel = cacheData.map((e) {
-            return ReligionModel(
-                wardNumber: e.wardNumber,
-                hindu: e.hindu,
-                boudha: e.boudha,
-                christian: e.christian,
-                muslim: e.muslim,
-                kirat: e.kirat,
-                jains: e.jains,
-                bon: e.bon,
-                others: e.others,
-                notAvailable: e.notAvailable,
-                wardRelCount: e.wardRelCount);
-          }).toList();
-          emit(ReligionSuccessState(religionModel: cacheModel));
-          return;
-        }
-
         final connectivityResults = await Connectivity().checkConnectivity();
         if (connectivityResults == ConnectivityResult.wifi ||
             connectivityResults == ConnectivityResult.mobile) {
+          await clearReligionData();
           List<ReligionModel> religionModel =
               await _religionRepository.getReligionData(baseUrl, endPoint);
           for (var e in religionModel) {

@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 
 class verticalspace extends StatelessWidget {
   double height;
-  verticalspace({super.key, this.height = 10});
+  verticalspace({super.key, this.height = 20});
 
   @override
   Widget build(BuildContext context) {

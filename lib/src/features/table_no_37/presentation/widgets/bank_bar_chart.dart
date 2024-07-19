@@ -45,7 +45,7 @@ class BankBarChart extends StatelessWidget {
                         padding: const EdgeInsets.all(8.0),
                         child: BarChart(BarChartData(
                             minY: 0,
-                            maxY: 4000,
+                            maxY: 5000,
                             alignment: BarChartAlignment.spaceAround,
                             titlesData: FlTitlesData(
                                 topTitles: const AxisTitles(

@@ -21,29 +21,10 @@ class DisabilityBloc extends Bloc<DisabilityEvent, DisabilityState> {
     on<DisabilityEvent>((event, emit) async {
       try {
         final cacheData = await getAllDisabilityData();
-        if (cacheData.isNotEmpty) {
-          final cacheModel = cacheData.map((e) {
-            return DisabilityModel(
-                wardNumber: e.wardNumber,
-                able: e.able,
-                disable: e.disable,
-                deaf: e.deaf,
-                blind: e.blind,
-                hearingLoss: e.hearingLoss,
-                slammer: e.slammer,
-                celeberal: e.celeberal,
-                redarded: e.redarded,
-                multiDisable: e.multiDisable,
-                mental: e.mental,
-                notAvailable: e.notAvailable,
-                totalDisabilityStatus: e.totalDisabilityStatus);
-          }).toList();
-          emit(DisabilitySuccessState(disabilityModel: cacheModel));
-          return;
-        }
         final connectivityResults = await Connectivity().checkConnectivity();
         if (connectivityResults == ConnectivityResult.wifi ||
             connectivityResults == ConnectivityResult.mobile) {
+          await clearDisabilityData();
           List<DisabilityModel> fetchedDisabilityData =
               await _disabilityRepository.getDisabilityData(baseUrl, endPoints);
           for (var e in fetchedDisabilityData) {

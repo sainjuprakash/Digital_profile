@@ -43,7 +43,7 @@ class GrantHouseBarChart extends StatelessWidget {
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: BarChart(BarChartData(
-                          maxY: 4000,
+                          maxY: 10000,
                           minY: 0,
                           alignment: BarChartAlignment.spaceAround,
                           titlesData: FlTitlesData(

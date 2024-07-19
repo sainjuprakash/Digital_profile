@@ -59,7 +59,7 @@ class HouseOwnershipBarChart extends StatelessWidget {
                         child: BarChart(BarChartData(
                             alignment: BarChartAlignment.spaceAround,
                             minY: 0,
-                            maxY: 3000,
+                            maxY: 10000,
                             titlesData: FlTitlesData(
                                 topTitles: const AxisTitles(
                                     sideTitles: SideTitles(showTitles: false)),

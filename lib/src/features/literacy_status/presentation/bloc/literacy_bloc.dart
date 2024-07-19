@@ -19,53 +19,10 @@ class LiteracyBloc extends Bloc<LiteracyEvent, LiteracyState> {
     on<LiteracyEvent>((event, emit) async {
       try {
         final cacheData = await getAllLiteracyData();
-        if (cacheData.isNotEmpty) {
-          print('entered');
-          final cacheModel = cacheData.map((e) {
-            print(e);
-            return LiteracyModel(
-                wardNumber: e.wardNumber,
-                maleLiterate: e.maleLiterate,
-                malePrePrimary: e.malePrePrimary,
-                malePrimary: e.malePrimary,
-                maleSecondary: e.maleSecondary,
-                maleTechnical: e.maleTechnical,
-                maleBachelor: e.maleBachelor,
-                maleMasters: e.maleMasters,
-                maleMphil: e.maleMphil,
-                maleUnderAge: e.maleUnderAge,
-                maleIlitrate: e.maleIlitrate,
-                maleNotAvailable: e.maleNotAvailable,
-                femaleLiterate: e.femaleLiterate,
-                femalePrePrimary: e.femalePrePrimary,
-                femalePrimary: e.femalePrimary,
-                femaleSecondary: e.femaleSecondary,
-                femaleTechincal: e.femaleTechincal,
-                femaleBachelor: e.femaleBachelor,
-                femaleMasters: e.femaleMasters,
-                femaleMphil: e.femaleMphil,
-                femaleUnderAge: e.femaleUnderAge,
-                femaleIliterate: e.femaleIliterate,
-                femaleNotAvailable: e.femaleNotAvailable,
-                othersLiterate: e.othersLiterate,
-                othersPrePrimary: e.othersPrePrimary,
-                othersPrimary: e.othersPrimary,
-                othersSecondary: e.othersSecondary,
-                othersTechnical: e.othersTechnical,
-                othersBachelor: e.othersBachelor,
-                othersMasters: e.othersMasters,
-                othersMphil: e.othersMphil,
-                othersUnderAge: e.othersUnderAge,
-                othersIliterate: e.othersIliterate,
-                othersNotAvailable: e.othersNotAvailable,
-                totalWardEdu: e.totalWardEdu);
-          }).toList();
-          emit(LiteracySuccessState(literacyModel: cacheModel));
-          return;
-        }
         final connectivityResults = await Connectivity().checkConnectivity();
         if (connectivityResults == ConnectivityResult.wifi ||
             connectivityResults == ConnectivityResult.mobile) {
+          await clearLiteracyData();
           List<LiteracyModel> fetchedLiteracyData =
               await _literacyRepository.getLiteracyData(baseUrl, endPoints);
           for (var e in fetchedLiteracyData) {
@@ -150,6 +107,7 @@ class LiteracyBloc extends Bloc<LiteracyEvent, LiteracyState> {
             }).toList();
 
             emit(LiteracySuccessState(literacyModel: cacheModel));
+            return;
           } else {
             LiteracyFailureState(
                 errMsg: 'No internet connection and no cached data available.');

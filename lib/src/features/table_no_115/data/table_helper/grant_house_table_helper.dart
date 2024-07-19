@@ -6,7 +6,7 @@ Future<int?> addGrantHouseDatabase(GrantHouseTableData entry) async {
   db.createItem(entry);
 }
 
-Future<List<GrantHouseTableData>> getAllHouseGrantData() async {
+Future<List<GrantHouseTableData>> getAllGrantHouseData() async {
   try {
     List<GrantHouseTableData> grantData =
         await db.select(db.grantHouseTable).get();
@@ -14,4 +14,13 @@ Future<List<GrantHouseTableData>> getAllHouseGrantData() async {
   } catch (errMsg) {
     throw Exception(errMsg);
   }
+}
+
+Future<void> clearGrantHouseData() async {
+  final allTables = db.allTables;
+  await db.transaction(() async {
+    for (var table in allTables) {
+      await db.delete(table).go();
+    }
+  });
 }

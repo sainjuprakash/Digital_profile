@@ -19,26 +19,10 @@ class HouseBloc extends Bloc<HouseEvent, HouseState> {
     on<GetHouseEvent>((event, emit) async {
       try {
         final cacheData = await getAllRoofData();
-        if (cacheData.isNotEmpty) {
-          final cacheModel = cacheData.map((e) {
-            return HouseConditionModel(
-                wardNumber: e.wardNumber,
-                khar: e.khar,
-                jasta: e.jasta,
-                stoneTile: e.stoneTile,
-                rcc: e.rcc,
-                wood: e.wood,
-                mud: e.mud,
-                others: e.others,
-                notAvailable: e.notAvailable,
-                totalRoof: e.totalRoof);
-          }).toList();
-          emit(HouseSuccessState(cacheModel));
-          return;
-        }
         final connectivityResults = await Connectivity().checkConnectivity();
         if (connectivityResults == ConnectivityResult.wifi ||
             connectivityResults == ConnectivityResult.mobile) {
+          await clearRoofConditionData();
           List<HouseConditionModel> fetchedModel =
               await _houseConditionRepository.getHomeData(baseUrl, endPoint);
           for (var e in fetchedModel) {

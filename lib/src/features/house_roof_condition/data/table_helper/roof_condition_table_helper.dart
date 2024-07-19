@@ -15,3 +15,12 @@ Future<List<RoofConditionTableData>> getAllRoofData() async {
     throw Exception(errMsg);
   }
 }
+
+Future<void> clearRoofConditionData() async {
+  final allTables = db.allTables;
+  await db.transaction(() async {
+    for (var table in allTables) {
+      await db.delete(table).go();
+    }
+  });
+}

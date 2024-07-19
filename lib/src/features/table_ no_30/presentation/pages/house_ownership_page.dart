@@ -1,3 +1,4 @@
+import 'package:digital_profile/constant/spacing.dart';
 import 'package:digital_profile/src/features/table_%20no_30/data/model/house_ownership_model.dart';
 import 'package:digital_profile/src/features/table_%20no_30/data/repository/house_ownership_repository_impl.dart';
 import 'package:digital_profile/src/features/table_%20no_30/presentation/widgets/house_ownership_bar_chart.dart';
@@ -59,6 +60,7 @@ class _HouseOwnershipPageState extends State<HouseOwnershipPage> {
                     totalOthers,
                     totalNotAvailable,
                     totalOwnerShip),
+                verticalspace(),
                 HouseOwnershipDataTable(
                     totalPersonal,
                     totalRental,

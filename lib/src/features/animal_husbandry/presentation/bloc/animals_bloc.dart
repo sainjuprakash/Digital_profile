@@ -20,20 +20,10 @@ class AnimalsBloc extends Bloc<AnimalsEvent, AnimalsState> {
     on<GetAnimalsEvent>((event, emit) async {
       try {
         final cacheData = await getAllAnimalData();
-        if (cacheData.isNotEmpty) {
-          final cacheModel = cacheData.map((e) {
-            return AnimalsModel(
-                wardNumber: e.wardNumber,
-                wardHouses: e.wardHouses,
-                wardBirds: e.wardBirds,
-                wardLivestock: e.wardLivestock);
-          }).toList();
-          emit(AnimalsSuccessState(cacheModel));
-          return;
-        }
         final connectivityResults = await Connectivity().checkConnectivity();
         if (connectivityResults == ConnectivityResult.wifi ||
             connectivityResults == ConnectivityResult.mobile) {
+          await clearAnimalHusbandryData();
           List<AnimalsModel> fetchedAnimalsData =
               await _animalsRepository.getAnimalsData(baseUrl, endPoint);
           for (var e in fetchedAnimalsData) {

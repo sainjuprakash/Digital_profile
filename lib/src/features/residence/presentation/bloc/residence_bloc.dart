@@ -19,22 +19,10 @@ class ResidenceBloc extends Bloc<ResidenceEvent, ResidenceState> {
     on<GetResidenceEvent>((event, emit) async {
       try {
         final cacheData = await getAllResidenceData();
-        if (cacheData.isNotEmpty) {
-          final cacheModel = cacheData.map((e) {
-            return ResidenceModel(
-                wardNumber: e.wardNumber,
-                lsDefault: e.lsDefault,
-                lsForeign: e.lsForeign,
-                lsCountrySide: e.lsCountrySide,
-                lsNotAvailable: e.lsNotAvailable,
-                lsTotalLivingStatus: e.lsTotalLivingStatus);
-          }).toList();
-          emit(ResidenceSuccessState(fetchedResidenceModel: cacheModel));
-          return;
-        }
         final connectivityResults = await Connectivity().checkConnectivity();
         if (connectivityResults == ConnectivityResult.wifi ||
             connectivityResults == ConnectivityResult.mobile) {
+          await clearResidenceData();
           List<ResidenceModel> fetchedResidenceModel =
               await _residenceRepository.getResidenceData(baseUrl, endPoints);
           for (var e in fetchedResidenceModel) {
@@ -61,6 +49,7 @@ class ResidenceBloc extends Bloc<ResidenceEvent, ResidenceState> {
                   lsTotalLivingStatus: e.lsTotalLivingStatus);
             }).toList();
             emit(ResidenceSuccessState(fetchedResidenceModel: cacheModel));
+            return;
           } else {
             ResidenceFailureState(
                 errMsg: 'No internet connection and no cached data available.');

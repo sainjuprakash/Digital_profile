@@ -19,25 +19,11 @@ class ElectricityBloc extends Bloc<ElectricityEvent, ElectricityState> {
     on<GetElectricityEvent>((event, emit) async {
       try {
         final cacheData = await getAllElectricityData();
-        if (cacheData.isNotEmpty) {
-          final cacheModel = cacheData.map((e) {
-            return ElectricityModel(
-                wardNumber: e.wardNumber,
-                kerosene: e.kerosene,
-                bioGas: e.bioGas,
-                solar: e.solar,
-                electricityLaghu: e.electricityLaghu,
-                electricityNational: e.electricityNational,
-                others: e.others,
-                notAvailable: e.notAvailable,
-                totalHouseCount: e.totalHouseCount);
-          }).toList();
-          emit(ElectricitySuccessState(electricityModel: cacheModel));
-          return;
-        }
+
         final connectivityResults = await Connectivity().checkConnectivity();
         if (connectivityResults == ConnectivityResult.wifi ||
             connectivityResults == ConnectivityResult.mobile) {
+          await clearElectricityData();
           List<ElectricityModel> fetchedElectricityModel =
               await _electricityRepository.getElectricityData(
                   baseUrl, endPoint);

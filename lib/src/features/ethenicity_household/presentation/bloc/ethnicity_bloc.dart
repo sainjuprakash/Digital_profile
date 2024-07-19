@@ -19,26 +19,10 @@ class EthnicityBloc extends Bloc<EthnicityEvent, EthnicityState> {
     on<LoadEthnicityEvent>((event, emit) async {
       try {
         final cacheData = await getALlEthnicityHousehold();
-        if (cacheData.isNotEmpty) {
-          final cacheModel = cacheData.map((e) {
-            return EthnicityModel(
-                wardNumber: e.wardNumber,
-                muslim: e.muslim,
-                hillBrahman: e.hillBrahman,
-                teraiBrahman: e.teraiBrahman,
-                hillJanajati: e.hillJanajati,
-                teraiJanajati: e.teraiJanajati,
-                hillDalit: e.hillDalit,
-                notAvailable: e.notAvailable,
-                totalEthnicity: e.totalEthnicity);
-          }).toList();
-          emit(EthnicitySuccessState(fetchedEthnicityModel: cacheModel));
-          return;
-        }
-
         final connectivityResult = await Connectivity().checkConnectivity();
         if (connectivityResult == ConnectivityResult.wifi ||
             connectivityResult == ConnectivityResult.mobile) {
+          await clearEthnicityHouseholdData();
           List<EthnicityModel> ethnicityModel =
               await _ethnicityRepository.getEthnicityData(baseUrl, endPoint);
           for (var e in ethnicityModel) {

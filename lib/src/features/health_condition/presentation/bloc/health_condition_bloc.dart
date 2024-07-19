@@ -23,28 +23,14 @@ class HealthConditionBloc
     on<GetHealthConditionEvent>((event, emit) async {
       try {
         final cacheData = await getAllHealthData();
-        if (cacheData.isNotEmpty) {
-          final cacheModel = cacheData.map((e) {
-            return HealthConditionModel(
-                wardNumber: e.wardNumber,
-                healthy: e.healthy,
-                generalDisease: e.generalDisease,
-                longTermDisease: e.longTermDisease,
-                covid: e.covid,
-                notAvailable: e.notAvailable,
-                totalWardHealthCondition: e.totalWardHealthCondition);
-          }).toList();
-          emit(HealthConditionSuccessState(healthConditionModel: cacheModel));
-          return;
-        }
         final connectivityResults = await Connectivity().checkConnectivity();
         if (connectivityResults == ConnectivityResult.wifi ||
             connectivityResults == ConnectivityResult.mobile) {
+          await clearHealthConditionData();
           List<HealthConditionModel> fetchedHealthModel =
               await _healthConditionRepository.getHealthCondition(
                   baseUrl, endPoints);
           for (var e in fetchedHealthModel) {
-            print(e);
             var healthData = HealthConditionTableData(
                 wardNumber: e.wardNumber,
                 healthy: e.healthy,

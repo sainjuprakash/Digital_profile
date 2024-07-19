@@ -1,6 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:digital_profile/src/features/population/data/table_helper/population_table_helper.dart';
+import 'package:digital_profile/src/initial_page/data/table_helper/village_table_helper.dart';
 import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
 import '../../data/models/population_model.dart';
@@ -60,7 +61,8 @@ class PopulationBloc extends Bloc<PopulationEvent, PopulationState> {
           emit(PopulationSuccessState(populationModel: fetchedModel));
         } else {
           final cachedData = await getAllPopulationData();
-
+          final villageData = await getAllVillageData();
+          print(villageData);
           if (cachedData.isNotEmpty) {
             final cachedModel = cachedData.map((e) {
               return PopulationModel(

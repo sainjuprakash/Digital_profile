@@ -1,7 +1,7 @@
 import 'dart:io';
 
 import 'package:digital_profile/app_localization/generated/l10n.dart';
-import 'package:digital_profile/initial_page.dart';
+import 'package:digital_profile/src/initial_page/presentation/pages/initial_page.dart';
 import 'package:digital_profile/src/features/age_table2_2/data/repository/population_acc_age_repository_impl.dart';
 import 'package:digital_profile/src/features/animal_husbandry/data/repository/animals_repository_impl.dart';
 import 'package:digital_profile/src/features/disability/data/repository/disability_repository_impl.dart';
@@ -40,7 +40,6 @@ import 'package:digital_profile/src/features/table_no_97/data/repository/road_di
 import 'package:digital_profile/src/features/toilet/data/repository/toilet_repository_impl.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'MyHomePage.dart';
 
 class MyHttpOverrides extends HttpOverrides {
   @override

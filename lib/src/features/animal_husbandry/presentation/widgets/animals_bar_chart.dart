@@ -47,7 +47,7 @@ class AnimalBarChart extends StatelessWidget {
                         width: 500,
                         child: BarChart(BarChartData(
                             minY: 0,
-                            maxY: 2000,
+                            maxY: 5000,
                             alignment: BarChartAlignment.spaceAround,
                             titlesData: FlTitlesData(
                                 topTitles: const AxisTitles(

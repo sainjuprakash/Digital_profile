@@ -1,3 +1,4 @@
+
 import 'package:digital_profile/src/features/table_no_95/data/database/allowance_database.dart';
 
 final db = AllowanceDatabase();
@@ -14,4 +15,12 @@ Future<List<AllowanceTableData>> getAllAllowanceData() async {
   } catch (errMsg) {
     throw Exception(errMsg);
   }
+}
+Future<void> clearAllowanceData() async {
+  final allTables = db.allTables;
+  await db.transaction(() async {
+    for (var table in allTables) {
+      await db.delete(table).go();
+    }
+  });
 }

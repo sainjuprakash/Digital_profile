@@ -21,28 +21,10 @@ class IncomeBloc extends Bloc<IncomeEvent, IncomeState> {
     on<GetIncomeEvent>((event, emit) async {
       try {
         final cacheData = await getAllIncomeData();
-        if (cacheData.isNotEmpty) {
-          final cacheModel = cacheData.map((e) {
-            return IncomeModel(
-                wardNumber: e.wardNumber,
-                crops: e.crops,
-                fruits: e.fruits,
-                livestock: e.livestock,
-                vegi: e.vegi,
-                medi: e.medi,
-                labour: e.labour,
-                business: e.business,
-                foreignEmp: e.foreignEmp,
-                office: e.office,
-                others: e.others,
-                total: e.total);
-          }).toList();
-          emit(IncomeSuccessState(cacheModel));
-          return;
-        }
         final connectivityResults = await Connectivity().checkConnectivity();
         if (connectivityResults == ConnectivityResult.wifi ||
             connectivityResults == ConnectivityResult.mobile) {
+          await clearIncomeData();
           List<IncomeModel> fetchedModel =
               await incomeRepository.getIncomeData(baseUrl, endPoint);
           for (var e in fetchedModel) {

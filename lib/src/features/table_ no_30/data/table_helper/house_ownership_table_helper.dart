@@ -15,3 +15,11 @@ Future<List<OwnershipTableData>> getAllHouseOwnershipData() async {
     throw Exception(errMsg);
   }
 }
+Future<void> clearHouseOwnershipData() async {
+  final allTables = db.allTables;
+  await db.transaction(() async {
+    for (var table in allTables) {
+      await db.delete(table).go();
+    }
+  });
+}

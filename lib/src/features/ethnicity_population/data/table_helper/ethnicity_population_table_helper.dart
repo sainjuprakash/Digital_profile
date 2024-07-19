@@ -15,3 +15,11 @@ Future<List<EthnicityPopTableData>> getALlEthnicityPop() async {
     throw Exception(e);
   }
 }
+Future<void> clearEthnicityPopulationData() async {
+  final allTables = db.allTables;
+  await db.transaction(() async {
+    for (var table in allTables) {
+      await db.delete(table).go();
+    }
+  });
+}

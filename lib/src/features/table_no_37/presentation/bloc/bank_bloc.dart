@@ -19,21 +19,10 @@ class BankBloc extends Bloc<BankEvent, BankState> {
     on<GetBankEvent>((event, emit) async {
       try {
         final cacheData = await getAllBankDetails();
-        if (cacheData.isNotEmpty) {
-          final cacheModel = cacheData.map((e) {
-            return BankModel(
-                wardNumber: e.wardNumber,
-                bankAccount: e.bankAccount,
-                noBankAccount: e.noBankAccount,
-                wardHouses: e.wardHouses,
-                totalBankAccount: e.totalBankAccount);
-          }).toList();
-          emit(BankSuccessState(cacheModel));
-          return;
-        }
         final connectivityResults = await Connectivity().checkConnectivity();
         if (connectivityResults == ConnectivityResult.wifi ||
             connectivityResults == ConnectivityResult.mobile) {
+          await clearBankData();
           List<BankModel> fetchedModel =
               await bankRepository.getBankData(baseUrl, endPoint);
           for (var e in fetchedModel) {

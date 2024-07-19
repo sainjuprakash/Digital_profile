@@ -23,20 +23,10 @@ class EarthquakeResistanceBloc
     on<GetEarthquakeResistanceEvent>((event, emit) async {
       try {
         final cacheData = await getALlEarthquakeResData();
-        if (cacheData.isNotEmpty) {
-          final cacheModel = cacheData.map((e) {
-            return EarthquakeResistanceModel(
-                wardNumber: e.wardNumber,
-                earthquakeResistance: e.earthquakeResistance,
-                notEarthquakeResistance: e.notEarthquakeResistance,
-                total: e.total);
-          }).toList();
-          emit(EarthquakeResistanceSuccessState(cacheModel));
-          return;
-        }
         final connectivityResults = await Connectivity().checkConnectivity();
         if (connectivityResults == ConnectivityResult.wifi ||
             connectivityResults == ConnectivityResult.mobile) {
+          await clearEarthquakeResistanceData();
           List<EarthquakeResistanceModel> fetchedModel =
               await earthquakeResistanceRepository.getResistanceData(
                   baseUrl, endPoint);

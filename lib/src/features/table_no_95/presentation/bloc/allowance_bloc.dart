@@ -21,27 +21,10 @@ class AllowanceBloc extends Bloc<AllowanceEvent, AllowanceState> {
     on<GetAllowanceEvent>((event, emit) async {
       try {
         final cacheData = await getAllAllowanceData();
-        if (cacheData.isNotEmpty) {
-          final cacheModel = cacheData.map((e) {
-            return AllowanceModel(
-                wardNumber: e.wardNumber,
-                processWrong: e.processWrong,
-                briddhaBhatta: e.briddhaBhatta,
-                widow: e.widow,
-                widower: e.widower,
-                disabled: e.disabled,
-                notTaken: e.notTaken,
-                notProcessed: e.notProcessed,
-                indigenous: e.indigenous,
-                notAvailable: e.notAvailable,
-                socialSecurity: e.socialSecurity);
-          }).toList();
-          emit(AllowanceSuccessState(cacheModel));
-          return;
-        }
         final connectivityResults = await Connectivity().checkConnectivity();
         if (connectivityResults == ConnectivityResult.wifi ||
             connectivityResults == ConnectivityResult.mobile) {
+          await clearAllowanceData();
           List<AllowanceModel> fetchedModel =
               await allowanceRepository.getAllowanceData(baseUrl, endPoint);
           for (var e in fetchedModel) {

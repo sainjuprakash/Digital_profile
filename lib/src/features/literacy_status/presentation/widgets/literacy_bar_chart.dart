@@ -132,7 +132,7 @@ class LiteracyBarChart extends StatelessWidget {
                       child: BarChart(BarChartData(
                           alignment: BarChartAlignment.spaceAround,
                           minY: 0,
-                          maxY: 12000,
+                          maxY: 15000,
                           titlesData: FlTitlesData(
                               topTitles: const AxisTitles(
                                   sideTitles: SideTitles(showTitles: false)),

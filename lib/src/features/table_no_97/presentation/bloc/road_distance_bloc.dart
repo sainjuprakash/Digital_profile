@@ -22,22 +22,10 @@ class RoadDistanceBloc extends Bloc<RoadDistanceEvent, RoadDistanceState> {
     on<GetRoadDistanceEvent>((event, emit) async {
       try {
         final cacheData = await getAllRoadDistanceData();
-        if (cacheData.isNotEmpty) {
-          final cacheModel = cacheData.map((e) {
-            return RoadDistanceModel(
-                wardNumber: e.wardNumber,
-                lessThanOneHours: e.lessThanOneHours,
-                twoHours: e.twoHours,
-                upToFiveHours: e.upToFiveHours,
-                moreThanFive: e.moreThanFive,
-                total: e.total);
-          }).toList();
-          emit(RoadDistanceSuccessState(cacheModel));
-          return;
-        }
         final connectivityResults = await Connectivity().checkConnectivity();
         if (connectivityResults == ConnectivityResult.wifi ||
             connectivityResults == ConnectivityResult.mobile) {
+          await clearRoadDistanceData();
           List<RoadDistanceModel> fetchedModel =
               await roadDistanceRepository.getRoadData(baseUrl, endPoint);
           for (var e in fetchedModel) {

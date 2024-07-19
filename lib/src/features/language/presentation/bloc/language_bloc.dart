@@ -21,27 +21,10 @@ class LanguageBloc extends Bloc<LanguageEvent, LanguageState> {
     on<LoadLanguageEvent>((event, emit) async {
       try {
         final cacheData = await getAllLanguageData();
-        if (cacheData.isNotEmpty) {
-          final cacheModel = cacheData.map((e) {
-            return LanguageModel(
-                wardNo: e.wardNo,
-                nepali: e.nepali,
-                tamang: e.tamang,
-                sherpa: e.sherpa,
-                limbu: e.limbu,
-                rai: e.rai,
-                gurung: e.gurung,
-                ghale: e.ghale,
-                othersLanguage: e.othersLanguage,
-                notAvailable: e.notAvailable,
-                totalLanguageCount: e.totalLanguageCount);
-          }).toList();
-          emit(LanguageLoadedState(fetchedLanguageModel: cacheModel));
-          return;
-        }
         final connectivityResults = await Connectivity().checkConnectivity();
         if (connectivityResults == ConnectivityResult.wifi ||
             connectivityResults == ConnectivityResult.mobile) {
+          await clearLanguageData();
           List<LanguageModel> fetchedLanguageData =
               await _languageRepository.getLanguageData(baseUrl, endPoint);
           for (var e in fetchedLanguageData) {

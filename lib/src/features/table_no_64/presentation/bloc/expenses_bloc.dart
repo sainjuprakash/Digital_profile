@@ -21,24 +21,10 @@ class ExpensesBloc extends Bloc<ExpensesEvent, ExpensesState> {
     on<GetExpensesEvent>((event, emit) async {
       try {
         final cacheData = await getAllExpensesData();
-        if (cacheData.isNotEmpty) {
-          final cacheModel = cacheData.map((e) {
-            return ExpensesModel(
-                wardNumber: e.wardNumber,
-                clothes: e.clothes,
-                education: e.education,
-                health: e.health,
-                festival: e.festival,
-                agriculture: e.agriculture,
-                others: e.others,
-                totalExpenses: e.totalExpenses);
-          }).toList();
-          emit(ExpensesSuccessState(cacheModel));
-          return;
-        }
         final connectivityResults = await Connectivity().checkConnectivity();
         if (connectivityResults == ConnectivityResult.wifi ||
             connectivityResults == ConnectivityResult.mobile) {
+          await clearExpensesData();
           List<ExpensesModel> fetchedModel =
               await expensesRepository.getExpensesData(baseUrl, endPoint);
           for (var e in fetchedModel) {

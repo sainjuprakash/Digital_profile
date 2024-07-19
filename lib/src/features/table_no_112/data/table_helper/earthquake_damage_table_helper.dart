@@ -1,3 +1,4 @@
+
 import 'package:digital_profile/src/features/table_no_112/data/database/earthquake_damage_database.dart';
 
 final db = EarthquakeDamageDatabase();
@@ -14,4 +15,12 @@ Future<List<EarthquakeDamageTableData>> getAllEarthquakeDamageData() async {
   } catch (errMsg) {
     throw Exception(errMsg);
   }
+}
+Future<void> clearEarthquakeDamageData() async {
+  final allTables = db.allTables;
+  await db.transaction(() async {
+    for (var table in allTables) {
+      await db.delete(table).go();
+    }
+  });
 }

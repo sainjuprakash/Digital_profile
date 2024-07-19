@@ -21,33 +21,10 @@ class OccupationBloc extends Bloc<OccupationEvent, OccupationState> {
     on<OccupationEvent>((event, emit) async {
       try {
         final cacheData = await getAllOccupationData();
-        if (cacheData.isNotEmpty) {
-          final cacheModel = cacheData.map((e) {
-            return OccupationModel(
-                wardNumber: e.wardNumber,
-                agriculture: e.agriculture,
-                office: e.office,
-                business: e.business,
-                worker: e.worker,
-                entrepreneur: e.entrepreneur,
-                foreignEmp: e.foreignEmp,
-                student: e.student,
-                houseWife: e.houseWife,
-                unemployed: e.unemployed,
-                underage: e.underage,
-                pension: e.pension,
-                technical: e.technical,
-                seniorCtzn: e.seniorCtzn,
-                others: e.others,
-                notAvailable: e.notAvailable,
-                total: e.total);
-          }).toList();
-          emit(OccupationSuccessState(cacheModel));
-          return;
-        }
         final connectivityResults = await Connectivity().checkConnectivity();
         if (connectivityResults == ConnectivityResult.wifi ||
             connectivityResults == ConnectivityResult.mobile) {
+          await clearOccupationData();
           List<OccupationModel> fetchedModel =
               await occupationRepository.getOccupationData(baseUrl, endPoint);
           for (var e in fetchedModel) {

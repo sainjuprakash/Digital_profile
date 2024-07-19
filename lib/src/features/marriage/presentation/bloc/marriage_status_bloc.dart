@@ -20,28 +20,10 @@ class MarriageStatusBloc
     on<GetMarriageStatusEvent>((event, emit) async {
       try {
         final cacheData = await getAllMarriageData();
-        if (cacheData.isNotEmpty) {
-          final cacheModel = cacheData.map((e) {
-            return MarriageStatusModel(
-                wardNumber: e.wardNumber,
-                single: e.single,
-                singleWoman: e.singleWoman,
-                singleMan: e.singleMan,
-                married: e.married,
-                polygami: e.polygami,
-                divorced: e.divorced,
-                remarried: e.remarried,
-                seperated: e.seperated,
-                underage: e.underage,
-                notAvailable: e.notAvailable,
-                totalMaritalStatus: e.totalMaritalStatus);
-          }).toList();
-          emit(MarriageSuccessState(marriageModel: cacheModel));
-          return;
-        }
         final connectivityResults = await Connectivity().checkConnectivity();
         if (connectivityResults == ConnectivityResult.wifi ||
             connectivityResults == ConnectivityResult.mobile) {
+          await clearMarriageData();
           List<MarriageStatusModel> fetchedModel =
               await _marriageRepository.getMarriageData(baseUrl, endPoints);
           for (var e in fetchedModel) {

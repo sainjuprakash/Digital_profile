@@ -14,3 +14,11 @@ Future<List<BankTableData>> getAllBankDetails() async {
     throw Exception(errMsg);
   }
 }
+Future<void> clearBankData() async {
+  final allTables = db.allTables;
+  await db.transaction(() async {
+    for (var table in allTables) {
+      await db.delete(table).go();
+    }
+  });
+}

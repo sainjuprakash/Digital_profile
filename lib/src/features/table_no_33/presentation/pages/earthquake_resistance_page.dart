@@ -46,9 +46,7 @@ class _EarthquakeResistancePageState extends State<EarthquakeResistancePage> {
             children: [
               EarthquakeResistanceBarChart(
                   totalResistance, totalNotResistance, totalResistanceData),
-              verticalspace(
-                height: 10,
-              ),
+              verticalspace(),
               EarthquakeResistanceDataTable(
                   totalResistance, totalNotResistance, totalResistanceData),
             ],

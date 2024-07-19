@@ -21,22 +21,10 @@ class ChildWorkerBloc extends Bloc<ChildWorkerEvent, ChildWorkerState> {
     on<GetChildWorkerEvent>((event, emit) async {
       try {
         final cacheData = await getAllChildData();
-        if (cacheData.isNotEmpty) {
-          final cacheModel = cacheData.map((e) {
-            return ChildWorkerModel(
-                wardNumber: e.wardNumber,
-                yes: e.yes,
-                no: e.no,
-                notAvailable: e.notAvailable,
-                wardHouses: e.wardHouses,
-                totalUnderSixteen: e.totalUnderSixteen);
-          }).toList();
-          emit(ChildWorkerSuccessState(cacheModel));
-          return;
-        }
         final connectivityResults = await Connectivity().checkConnectivity();
         if (connectivityResults == ConnectivityResult.wifi ||
             connectivityResults == ConnectivityResult.mobile) {
+          await clearChildData();
           List<ChildWorkerModel> fetchedModel =
               await childWorkerRepository.getChildData(baseUrl, endPoint);
           for (var e in fetchedModel) {

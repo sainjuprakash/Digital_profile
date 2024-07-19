@@ -1,3 +1,4 @@
+import 'package:digital_profile/constant/spacing.dart';
 import 'package:digital_profile/src/features/literacy_status/data/repository/literacy_repository_impl.dart';
 import 'package:digital_profile/src/features/literacy_status/presentation/widgets/literacy_bar_chart.dart';
 import 'package:digital_profile/src/features/literacy_status/presentation/widgets/literacy_data_table.dart';
@@ -196,6 +197,7 @@ class _LiteracyPageState extends State<LiteracyPage> {
                 totalFemaleIlliterate,
                 totalFemaleNotAvailable,
                 totalVillageEduCount),
+            verticalspace(),
             LiteracyDataTable(
                 totalLiterate,
                 totalPrePrimary,

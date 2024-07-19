@@ -20,24 +20,10 @@ class HouseOwnershipBloc
     on<GetHouseOwnershipEvent>((event, emit) async {
       try {
         final cacheData = await getAllHouseOwnershipData();
-        if (cacheData.isNotEmpty) {
-          final cacheModel = cacheData.map((e) {
-            return HouseOwnershipModel(
-                wardNumber: e.wardNumber,
-                personal: e.personal,
-                rental: e.rental,
-                organizational: e.organizational,
-                sukumbasi: e.sukumbasi,
-                others: e.others,
-                notAvailable: e.notAvailable,
-                total: e.total);
-          }).toList();
-          emit(HouseOwnershipSuccessState(cacheModel));
-          return;
-        }
         final connectivityResults = await Connectivity().checkConnectivity();
         if (connectivityResults == ConnectivityResult.wifi ||
             connectivityResults == ConnectivityResult.mobile) {
+          await clearHouseOwnershipData();
           List<HouseOwnershipModel> fetchedData = await houseOwnershipRepository
               .getHouseOwnershipData(baseUrl, endPoint);
           for (var e in fetchedData) {

@@ -19,27 +19,10 @@ class LoanBloc extends Bloc<LoanEvent, LoanState> {
     on<GetLoanEvent>((event, emit) async {
       try {
         final cacheData = await getAllLoanData();
-        if (cacheData.isNotEmpty) {
-          final cacheModel = cacheData.map((e) {
-            return LoanModel(
-                wardNumber: e.wardNumber,
-                agricultureLoan: e.agricultureLoan,
-                houseExpLoan: e.houseExpLoan,
-                businessLoan: e.businessLoan,
-                foreignEmpLoan: e.foreignEmpLoan,
-                educationLoan: e.educationLoan,
-                medicalLoan: e.medicalLoan,
-                othersLoan: e.othersLoan,
-                notAvailable: e.notAvailable,
-                wardHouses: e.wardHouses,
-                totalLoan: e.totalLoan);
-          }).toList();
-          emit(LoanSuccessState(cacheModel));
-          return;
-        }
         final connectivityResults = await Connectivity().checkConnectivity();
         if (connectivityResults == ConnectivityResult.wifi ||
             connectivityResults == ConnectivityResult.mobile) {
+          await clearLoanData();
           List<LoanModel> fetchedModel =
               await loanRepository.getLoanData(baseUrl, endPoint);
           for (var e in fetchedModel) {

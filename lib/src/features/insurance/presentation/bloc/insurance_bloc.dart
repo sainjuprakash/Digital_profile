@@ -19,23 +19,10 @@ class InsuranceBloc extends Bloc<InsuranceEvent, InsuranceState> {
     on<GetInsuranceEvent>((event, emit) async {
       try {
         final cacheData = await getAllInsuranceData();
-        if (cacheData.isNotEmpty) {
-          final cacheModel = cacheData.map((e) {
-            return InsuranceModel(
-                wardNumber: e.wardNumber,
-                lifeInsurance: e.lifeInsurance,
-                healthInsurance: e.healthInsurance,
-                liveStockInsurance: e.liveStockInsurance,
-                othersInsurance: e.othersInsurance,
-                notAvailable: e.notAvailable,
-                totalInsurance: e.totalInsurance);
-          }).toList();
-          emit(InsuranceSuccessState(insuranceModel: cacheModel));
-          return;
-        }
         final connectivityResults = await Connectivity().checkConnectivity();
         if (connectivityResults == ConnectivityResult.wifi ||
             connectivityResults == ConnectivityResult.mobile) {
+          await clearInsuranceData();
           List<InsuranceModel> fetchedInsModel =
               await _insuranceRepository.getInsuranceData(baseUrl, endPoint);
           for (var e in fetchedInsModel) {

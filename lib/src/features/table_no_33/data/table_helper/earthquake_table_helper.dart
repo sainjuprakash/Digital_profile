@@ -15,3 +15,11 @@ Future<List<EarthquakeTableData>> getALlEarthquakeResData() async {
     throw Exception(errMsg);
   }
 }
+Future<void> clearEarthquakeResistanceData() async {
+  final allTables = db.allTables;
+  await db.transaction(() async {
+    for (var table in allTables) {
+      await db.delete(table).go();
+    }
+  });
+}

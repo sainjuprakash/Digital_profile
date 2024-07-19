@@ -14,3 +14,11 @@ Future<List<ChildWorkerTableData>> getAllChildData() async {
     throw Exception(errMsg);
   }
 }
+Future<void> clearChildData() async {
+  final allTables = db.allTables;
+  await db.transaction(() async {
+    for (var table in allTables) {
+      await db.delete(table).go();
+    }
+  });
+}

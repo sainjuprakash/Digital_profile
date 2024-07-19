@@ -60,7 +60,7 @@ class ReligionBarChart extends StatelessWidget {
                     child: BarChart(BarChartData(
                         alignment: BarChartAlignment.spaceAround,
                         minY: 0,
-                        maxY: 8000,
+                        maxY: 25000,
                         titlesData: FlTitlesData(
                             show: true,
                             topTitles: const AxisTitles(

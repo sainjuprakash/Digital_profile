@@ -22,22 +22,10 @@ class GrantStageBloc extends Bloc<GrantStageEvent, GrantStageState> {
     on<GetGrantStageEvent>((event, emit) async {
       try {
         final cacheData = await getAllGrantStage();
-        if (cacheData.isNotEmpty) {
-          final cacheModel = cacheData.map((e) {
-            return GrantStageModel(
-                wardNumber: e.wardNumber,
-                firstStage: e.firstStage,
-                secondStage: e.secondStage,
-                thirdStage: e.thirdStage,
-                notAvailable: e.notAvailable,
-                total: e.total);
-          }).toList();
-          emit(GrantStageSuccessState(cacheModel));
-          return;
-        }
         final connectivityResults = await Connectivity().checkConnectivity();
         if (connectivityResults == ConnectivityResult.wifi ||
             connectivityResults == ConnectivityResult.mobile) {
+          await clearGrantStageData();
           List<GrantStageModel> fetchedModel =
               await grantStageRepository.getGrantData(baseUrl, endPoint);
           for (var e in fetchedModel) {
@@ -63,6 +51,7 @@ class GrantStageBloc extends Bloc<GrantStageEvent, GrantStageState> {
                   total: e.total);
             }).toList();
             emit(GrantStageSuccessState(cacheModel));
+            return;
           } else {
             emit(GrantStageFailureState(
                 'No internet connection and no cached data available'));

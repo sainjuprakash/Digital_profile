@@ -15,3 +15,11 @@ Future<List<MarriageTableData>> getAllMarriageData() async {
     throw Exception(errMsg);
   }
 }
+Future<void> clearMarriageData() async {
+  final allTables = db.allTables;
+  await db.transaction(() async {
+    for (var table in allTables) {
+      await db.delete(table).go();
+    }
+  });
+}

@@ -15,3 +15,11 @@ Future<List<SettlementTableData>> getAllSettlementData() async {
     throw Exception(errMsg);
   }
 }
+Future<void> clearSettlementData() async {
+  final allTables = db.allTables;
+  await db.transaction(() async {
+    for (var table in allTables) {
+      await db.delete(table).go();
+    }
+  });
+}

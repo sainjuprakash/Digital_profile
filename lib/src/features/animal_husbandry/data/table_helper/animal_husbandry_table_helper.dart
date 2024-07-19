@@ -3,7 +3,7 @@ import 'package:digital_profile/src/features/animal_husbandry/data/database/anim
 final db = AnimalDatabase();
 
 Future<int?> addAnimalData(AnimalTableData entry) async {
- await db.createItem(entry);
+  await db.createItem(entry);
 }
 
 Future<List<AnimalTableData>> getAllAnimalData() async {
@@ -13,4 +13,13 @@ Future<List<AnimalTableData>> getAllAnimalData() async {
   } catch (errMsg) {
     throw Exception(errMsg);
   }
+}
+
+Future<void> clearAnimalHusbandryData() async {
+  final allTables = db.allTables;
+  await db.transaction(() async {
+    for (var table in allTables) {
+      await db.delete(table).go();
+    }
+  });
 }

@@ -1,4 +1,3 @@
-import 'package:digital_profile/MyHomePage.dart';
 import 'package:digital_profile/app_localization/l10n.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';

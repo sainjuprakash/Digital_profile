@@ -1,6 +1,8 @@
 import 'dart:ui';
 
 import 'package:digital_profile/MyHomePage.dart';
+import 'package:digital_profile/src/initial_page/data/database/village_database.dart';
+import 'package:digital_profile/src/initial_page/data/table_helper/village_table_helper.dart';
 import 'package:flutter/material.dart';
 
 class InitialPage extends StatefulWidget {
@@ -13,10 +15,13 @@ class InitialPage extends StatefulWidget {
 class _InitialPageState extends State<InitialPage> {
   List<String> baseUrls = [
     'https://rubivalleymun.digitalprofile.com.np',
-    'https://chichila.git.com.np',
+    'https://airawatimun.digitalprofile.com.np',
     'https://conjusum.git.com.np'
   ];
-  List<String> endPoints = ['api/household/reports?table_no=table'];
+  List<String> endPoints = [
+    'api/household/reports?table_no=table',
+    'api/v1/household/reports?table_no=table'
+  ];
   final List<String> _options = [
     'रुबी भ्याली',
     'ऐरावती',
@@ -31,34 +36,23 @@ class _InitialPageState extends State<InitialPage> {
   String? _selectedOption;
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
-    //callFunc();
   }
-
-  // void callFunc() async {
-  //   print("calling add population");
-  //   addPopulation(const PopulationTableData(
-  //     id: 5,
-  //     femaleCount: 32,
-  //     maleCount: 43,
-  //     femaleHhCount: 4,
-  //     maleHhCount: 3,
-  //     othersCount: 2,
-  //     surveyWardNumber: 43,
-  //     totalWardHhCount: 23,
-  //     totalWardPop: 3,
-  //   ));
-  //   print("end");
-  // }
 
   @override
   Widget build(BuildContext context) {
+    final database = VillageDatabase();
+    final dao = VillageDao(database);
+    clearVillageData();
+    for (var data in _options) {
+      dao.insertVillage(data);
+     // print(data);
+    }
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (_selectedOption != null && _selectedOption == 'रुबी भ्याली') {
         getEndPoints(context);
       }
-      if (_selectedOption != null && _selectedOption == 'चिचिला') {
+      if (_selectedOption != null && _selectedOption == 'ऐरावती') {
         getEndPoints(context);
       }
       if (_selectedOption != null && _selectedOption == 'कोन्ज्योसोम') {
@@ -162,12 +156,12 @@ class _InitialPageState extends State<InitialPage> {
               builder: (context) => MyHomePage(
                   baseUrls[0], endPoints[0], _options[0], householdUrls[0])));
     }
-    if (_selectedOption == 'चिचिला') {
+    if (_selectedOption == 'ऐरावती') {
       Navigator.push(
           context,
           MaterialPageRoute(
               builder: (context) => MyHomePage(
-                  baseUrls[1], endPoints[0], _options[1], householdUrls[1])));
+                  baseUrls[1], endPoints[1], _options[1], householdUrls[1])));
     }
     if (_selectedOption == 'कोन्ज्योसोम') {
       Navigator.push(
