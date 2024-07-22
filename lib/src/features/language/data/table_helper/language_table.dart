@@ -1,6 +1,7 @@
 import 'package:drift/drift.dart';
 
 class LanguageTable extends Table {
+  TextColumn get villageName => text()();
   IntColumn get wardNo => integer()();
   IntColumn get nepali => integer().nullable()();
   IntColumn get tamang => integer().nullable()();

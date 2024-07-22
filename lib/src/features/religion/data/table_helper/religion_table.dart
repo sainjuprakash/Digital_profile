@@ -1,6 +1,7 @@
 import 'package:drift/drift.dart';
 
-class ReligionTable extends Table{
+class ReligionTable extends Table {
+  TextColumn get villageName => text()();
   IntColumn get wardNumber => integer()();
   IntColumn get hindu => integer().nullable()();
   IntColumn get boudha => integer().nullable()();

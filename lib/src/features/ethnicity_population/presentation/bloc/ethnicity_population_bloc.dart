@@ -6,6 +6,7 @@ import 'package:digital_profile/src/features/ethnicity_population/data/table_hel
 import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
 
+import '../../../../../core/services/shared_preferences_service.dart';
 import '../../domain/repository/ethnicity_population_repository.dart';
 
 part 'ethnicity_population_event.dart';
@@ -20,6 +21,8 @@ class EthnicityPopulationBloc
       : super(EthnicityPopulationLoadingState()) {
     on<GetEthnicityPopulationEvent>((event, emit) async {
       try {
+        final prefs = await PrefsService.getInstance();
+        final gauPalika = prefs.getString(PrefsServiceKeys.villageName);
         final cacheData = await getALlEthnicityPop();
         final connectivityResult = await Connectivity().checkConnectivity();
         if (connectivityResult == ConnectivityResult.wifi ||
@@ -30,6 +33,7 @@ class EthnicityPopulationBloc
                   baseUrl, endPoint);
           for (var e in ethnicityPopulationModel) {
             final ethnicityModel = EthnicityPopTableData(
+              villageName  : gauPalika!,
                 wardNumber: e.wardNumber,
                 hillBrahman: e.hillBrahman,
                 teraiBrahman: e.teraiBrahman,
@@ -45,7 +49,10 @@ class EthnicityPopulationBloc
                 ethnicityPopulationModel: ethnicityPopulationModel));
           }
         } else {
-          if (cacheData.isNotEmpty) {
+
+          final villageNames =
+          cacheData.map((data) => data.villageName).toSet();
+          if (cacheData.isNotEmpty && villageNames.contains(gauPalika)) {
             final cacheModel = cacheData.map((e) {
               return EthnicityPopulationModel(
                   wardNumber: e.wardNumber,

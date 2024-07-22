@@ -25,4 +25,3 @@ Future<void> clearVillageData() async {
     }
   });
 }
-

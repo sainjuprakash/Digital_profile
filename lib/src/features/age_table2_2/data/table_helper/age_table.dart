@@ -1,6 +1,7 @@
 import 'package:drift/drift.dart';
 
 class AgeTable extends Table {
+  TextColumn get villageName => text()();
   IntColumn get surveyWardNumber => integer()();
   IntColumn get maleLessThanSix => integer().nullable()();
   IntColumn get maleSixToFifteen => integer().nullable()();

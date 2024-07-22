@@ -1,9 +1,9 @@
 import 'package:bloc/bloc.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:digital_profile/src/features/population/data/table_helper/population_table_helper.dart';
-import 'package:digital_profile/src/initial_page/data/table_helper/village_table_helper.dart';
 import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
+import '../../../../../core/services/shared_preferences_service.dart';
 import '../../data/models/population_model.dart';
 import '../../data/population_database/population_database.dart';
 import '../../domain/repository/population_repository.dart';
@@ -37,6 +37,9 @@ class PopulationBloc extends Bloc<PopulationEvent, PopulationState> {
         //   emit(PopulationSuccessState(populationModel: cachedModel));
         //   return;
         // }
+        final prefs = await PrefsService.getInstance();
+        final gauPalika = prefs.getString(PrefsServiceKeys.villageName);
+        //print(gauPalika);
         // Check for internet connectivity
         final connectivityResult = await Connectivity().checkConnectivity();
         if (connectivityResult == ConnectivityResult.wifi ||
@@ -47,6 +50,7 @@ class PopulationBloc extends Bloc<PopulationEvent, PopulationState> {
               await _populationRepository.getPopData(baseUrl, endPoint);
           for (var model in fetchedModel) {
             var tableData = PopulationTableData(
+              villageName: gauPalika!,
               femaleCount: model.femaleCount,
               maleCount: model.maleCount,
               femaleHhCount: model.femaleHhCount,
@@ -61,9 +65,10 @@ class PopulationBloc extends Bloc<PopulationEvent, PopulationState> {
           emit(PopulationSuccessState(populationModel: fetchedModel));
         } else {
           final cachedData = await getAllPopulationData();
-          final villageData = await getAllVillageData();
-          print(villageData);
-          if (cachedData.isNotEmpty) {
+          final villageNames =
+              cachedData.map((data) => data.villageName).toSet();
+          //print(villageNames);
+          if (cachedData.isNotEmpty && villageNames.contains(gauPalika)) {
             final cachedModel = cachedData.map((e) {
               return PopulationModel(
                 surveyWardNumber: e.surveyWardNumber,
@@ -84,6 +89,7 @@ class PopulationBloc extends Bloc<PopulationEvent, PopulationState> {
           }
         }
       } catch (e) {
+        print(e);
         emit(PopulationFailureState(errmsg: e.toString()));
       }
     });

@@ -5,6 +5,8 @@ import 'package:digital_profile/src/initial_page/data/database/village_database.
 import 'package:digital_profile/src/initial_page/data/table_helper/village_table_helper.dart';
 import 'package:flutter/material.dart';
 
+import '../../../../core/services/shared_preferences_service.dart';
+
 class InitialPage extends StatefulWidget {
   const InitialPage({super.key});
 
@@ -41,13 +43,13 @@ class _InitialPageState extends State<InitialPage> {
 
   @override
   Widget build(BuildContext context) {
-    final database = VillageDatabase();
-    final dao = VillageDao(database);
-    clearVillageData();
-    for (var data in _options) {
-      dao.insertVillage(data);
-     // print(data);
-    }
+    // final database = VillageDatabase();
+    // final dao = VillageDao(database);
+    // clearVillageData();
+    // for (var data in _options) {
+    //   dao.insertVillage(data);
+    //   // print(data);
+    // }
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (_selectedOption != null && _selectedOption == 'रुबी भ्याली') {
         getEndPoints(context);
@@ -127,10 +129,14 @@ class _InitialPageState extends State<InitialPage> {
                   elevation: 50,
                   hint: const Text('गाउँपालिका छनोट गर्नुहोस'),
                   value: _selectedOption,
-                  onChanged: (String? newValue) {
+                  onChanged: (String? newValue) async {
+                    final prefs = await PrefsService.getInstance();
+                    await prefs.setString(
+                        PrefsServiceKeys.villageName, newValue!);
                     setState(() {
-                      _selectedOption = newValue!;
+                      _selectedOption = newValue;
                     });
+
                   },
                   items: _options.map<DropdownMenuItem<String>>((String value) {
                     return DropdownMenuItem<String>(

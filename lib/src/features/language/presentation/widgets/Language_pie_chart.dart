@@ -82,6 +82,12 @@ class LanguagePieChart extends StatelessWidget {
           ),
           BlocBuilder<LanguageBloc, LanguageState>(
             builder: (context, state) {
+              if(state is LanguageLoadingState){
+                return const Padding(
+                  padding: EdgeInsets.all(10.0),
+                  child: Center(child: CircularProgressIndicator()),
+                );
+              }
               if (state is LanguageLoadedState) {
                 return Column(
                   children: [
@@ -146,13 +152,7 @@ class LanguagePieChart extends StatelessWidget {
                   ],
                 );
               }
-              if (state is LanguageLoadingState) {
-                return const Center(
-                    child: Padding(
-                  padding: EdgeInsets.all(20.0),
-                  child: CircularProgressIndicator(),
-                ));
-              }
+
               if (state is LanguageFailureState) {
                 return const Padding(
                   padding: EdgeInsets.all(20.0),

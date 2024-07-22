@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
+import 'package:digital_profile/core/services/shared_preferences_service.dart';
 import 'package:digital_profile/src/features/religion/data/database/religion_database.dart';
 import 'package:digital_profile/src/features/religion/data/table_helper/religion_table_helper.dart';
 import 'package:equatable/equatable.dart';
@@ -20,7 +21,8 @@ class ReligionBloc extends Bloc<ReligionEvent, ReligionState> {
       : super(ReligionLoadingState()) {
     on<GetReligionEvent>((event, emit) async {
       try {
-        final cacheData = await getALlReligionData();
+        final prefs = await PrefsService.getInstance();
+        final gauPalika = prefs.getString(PrefsServiceKeys.villageName);
         final connectivityResults = await Connectivity().checkConnectivity();
         if (connectivityResults == ConnectivityResult.wifi ||
             connectivityResults == ConnectivityResult.mobile) {
@@ -29,6 +31,7 @@ class ReligionBloc extends Bloc<ReligionEvent, ReligionState> {
               await _religionRepository.getReligionData(baseUrl, endPoint);
           for (var e in religionModel) {
             var religionData = ReligionTableData(
+              villageName: gauPalika!,
               wardNumber: e.wardNumber,
               hindu: e.hindu,
               boudha: e.boudha,
@@ -45,7 +48,9 @@ class ReligionBloc extends Bloc<ReligionEvent, ReligionState> {
           }
           emit(ReligionSuccessState(religionModel: religionModel));
         } else {
-          if (cacheData.isNotEmpty) {
+          final cacheData = await getALlReligionData();
+          final villageName = cacheData.map((e) => e.villageName).toSet();
+          if (cacheData.isNotEmpty && villageName.contains(gauPalika)) {
             final cacheModel = cacheData.map((e) {
               return ReligionModel(
                   wardNumber: e.wardNumber,
@@ -68,6 +73,7 @@ class ReligionBloc extends Bloc<ReligionEvent, ReligionState> {
           }
         }
       } catch (errMsg) {
+        print(errMsg);
         emit(ReligionFailureState(errMsg: errMsg.toString()));
       }
     });

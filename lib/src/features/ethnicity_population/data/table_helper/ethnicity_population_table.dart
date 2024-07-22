@@ -1,6 +1,7 @@
 import 'package:drift/drift.dart';
 
 class EthnicityPopTable extends Table {
+  TextColumn get villageName => text()();
   IntColumn get wardNumber => integer()();
   IntColumn get muslim => integer().nullable()();
   IntColumn get hillBrahman => integer().nullable()();
