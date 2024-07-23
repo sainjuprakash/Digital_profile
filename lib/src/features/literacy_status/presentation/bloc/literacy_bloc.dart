@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'dart:async';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:digital_profile/core/services/shared_preferences_service.dart';
 import 'package:digital_profile/src/features/literacy_status/data/database/literacy_database.dart';
@@ -19,7 +20,6 @@ class LiteracyBloc extends Bloc<LiteracyEvent, LiteracyState> {
       : super(LiteracyLoadingState()) {
     on<LiteracyEvent>((event, emit) async {
       try {
-        print('entered literacy try');
         final prefs = await PrefsService.getInstance();
         final gauPalika = prefs.getString(PrefsServiceKeys.villageName);
         final connectivityResults = await Connectivity().checkConnectivity();
@@ -70,7 +70,6 @@ class LiteracyBloc extends Bloc<LiteracyEvent, LiteracyState> {
           }
           emit(LiteracySuccessState(literacyModel: fetchedLiteracyData));
         } else {
-          print('entered literacy else statement');
           final cacheData = await getAllLiteracyData();
           final villageName = cacheData.map((e) => e.villageName).toSet();
           if (cacheData.isNotEmpty && villageName.contains(gauPalika)) {
@@ -118,13 +117,12 @@ class LiteracyBloc extends Bloc<LiteracyEvent, LiteracyState> {
             emit(LiteracySuccessState(literacyModel: cacheModel));
             return;
           } else {
-            print('No internet connection and no cached data available.');
-            LiteracyFailureState(
-                errMsg: 'No internet connection and no cached data available.');
+            emit(LiteracyFailureState(
+                errMsg:
+                    'No internet connection and no cached data available.'));
           }
         }
       } catch (errMsg) {
-        print(errMsg);
         emit(LiteracyFailureState(errMsg: errMsg.toString()));
       }
     });

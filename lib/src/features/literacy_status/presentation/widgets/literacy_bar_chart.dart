@@ -116,7 +116,6 @@ class LiteracyBarChart extends StatelessWidget {
           BlocBuilder<LiteracyBloc, LiteracyState>(
             builder: (context, state) {
               if (state is LiteracyLoadingState) {
-                print('Loading state ');
                 return const Padding(
                   padding: EdgeInsets.all(8.0),
                   child: Center(child: CircularProgressIndicator()),
@@ -356,7 +355,6 @@ class LiteracyBarChart extends StatelessWidget {
                 );
               }
               if (state is LiteracyFailureState) {
-                print('failure state');
                 return const Padding(
                   padding: EdgeInsets.all(8.0),
                   child: Text('Unable to load data'),
