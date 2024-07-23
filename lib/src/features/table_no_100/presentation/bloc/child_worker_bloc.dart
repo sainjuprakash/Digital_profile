@@ -1,12 +1,11 @@
-import 'dart:async';
-
 import 'package:bloc/bloc.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
-import 'package:digital_profile/src/features/table_no_100/data/database/child_worker_database.dart';
 import 'package:digital_profile/src/features/table_no_100/data/table_helper/child_worker_table-helper.dart';
 import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
 
+import '../../../../../core/services/shared_preferences_service.dart';
+import '../../data/database/child_worker_database.dart';
 import '../../data/model/child_worker_model.dart';
 import '../../domain/repository/child_worker_repository.dart';
 
@@ -20,7 +19,8 @@ class ChildWorkerBloc extends Bloc<ChildWorkerEvent, ChildWorkerState> {
       : super(ChildWorkerLoadingState()) {
     on<GetChildWorkerEvent>((event, emit) async {
       try {
-        final cacheData = await getAllChildData();
+        final prefs = await PrefsService.getInstance();
+        final gauPalika = prefs.getString(PrefsServiceKeys.villageName);
         final connectivityResults = await Connectivity().checkConnectivity();
         if (connectivityResults == ConnectivityResult.wifi ||
             connectivityResults == ConnectivityResult.mobile) {
@@ -29,6 +29,7 @@ class ChildWorkerBloc extends Bloc<ChildWorkerEvent, ChildWorkerState> {
               await childWorkerRepository.getChildData(baseUrl, endPoint);
           for (var e in fetchedModel) {
             var childData = ChildWorkerTableData(
+                villageName: gauPalika!,
                 wardNumber: e.wardNumber,
                 yes: e.yes,
                 no: e.no,
@@ -39,7 +40,9 @@ class ChildWorkerBloc extends Bloc<ChildWorkerEvent, ChildWorkerState> {
           }
           emit(ChildWorkerSuccessState(fetchedModel));
         } else {
-          if (cacheData.isNotEmpty) {
+          final cacheData = await getAllChildData();
+          final villageName = cacheData.map((e) => e.villageName).toSet();
+          if (cacheData.isNotEmpty && villageName.contains(gauPalika)) {
             final cacheModel = cacheData.map((e) {
               return ChildWorkerModel(
                   wardNumber: e.wardNumber,

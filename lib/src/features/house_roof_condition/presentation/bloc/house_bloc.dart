@@ -5,6 +5,7 @@ import 'package:digital_profile/src/features/house_roof_condition/data/table_hel
 import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
 
+import '../../../../../core/services/shared_preferences_service.dart';
 import '../../data/model/house_condition_model.dart';
 import '../../domain/repository/house_condition_repository.dart';
 
@@ -18,7 +19,8 @@ class HouseBloc extends Bloc<HouseEvent, HouseState> {
       : super(HouseLoadingState()) {
     on<GetHouseEvent>((event, emit) async {
       try {
-        final cacheData = await getAllRoofData();
+        final prefs = await PrefsService.getInstance();
+        final gauPalika = prefs.getString(PrefsServiceKeys.villageName);
         final connectivityResults = await Connectivity().checkConnectivity();
         if (connectivityResults == ConnectivityResult.wifi ||
             connectivityResults == ConnectivityResult.mobile) {
@@ -27,6 +29,7 @@ class HouseBloc extends Bloc<HouseEvent, HouseState> {
               await _houseConditionRepository.getHomeData(baseUrl, endPoint);
           for (var e in fetchedModel) {
             var roofData = RoofConditionTableData(
+                villageName: gauPalika!,
                 wardNumber: e.wardNumber,
                 khar: e.khar,
                 jasta: e.jasta,
@@ -41,7 +44,9 @@ class HouseBloc extends Bloc<HouseEvent, HouseState> {
           }
           emit(HouseSuccessState(fetchedModel));
         } else {
-          if (cacheData.isNotEmpty) {
+          final cacheData = await getAllRoofData();
+          final villageName = cacheData.map((e) => e.villageName).toSet();
+          if (cacheData.isNotEmpty && villageName.contains(gauPalika)) {
             final cacheModel = cacheData.map((e) {
               return HouseConditionModel(
                   wardNumber: e.wardNumber,

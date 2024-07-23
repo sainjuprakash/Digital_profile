@@ -7,6 +7,7 @@ import 'package:digital_profile/src/features/table_no_34/data/table_helper/occup
 import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
 
+import '../../../../../core/services/shared_preferences_service.dart';
 import '../../data/model/occupation_model.dart';
 import '../../domain/repository/occupation_repository.dart';
 
@@ -20,7 +21,8 @@ class OccupationBloc extends Bloc<OccupationEvent, OccupationState> {
       : super(OccupationLoadingState()) {
     on<OccupationEvent>((event, emit) async {
       try {
-        final cacheData = await getAllOccupationData();
+        final prefs = await PrefsService.getInstance();
+        final gauPalika = prefs.getString(PrefsServiceKeys.villageName);
         final connectivityResults = await Connectivity().checkConnectivity();
         if (connectivityResults == ConnectivityResult.wifi ||
             connectivityResults == ConnectivityResult.mobile) {
@@ -29,6 +31,7 @@ class OccupationBloc extends Bloc<OccupationEvent, OccupationState> {
               await occupationRepository.getOccupationData(baseUrl, endPoint);
           for (var e in fetchedModel) {
             var occupationModel = OccupationTableData(
+                villageName: gauPalika!,
                 wardNumber: e.wardNumber,
                 agriculture: e.agriculture,
                 office: e.office,
@@ -50,7 +53,9 @@ class OccupationBloc extends Bloc<OccupationEvent, OccupationState> {
           }
           emit(OccupationSuccessState(fetchedModel));
         } else {
-          if (cacheData.isNotEmpty) {
+          final cacheData = await getAllOccupationData();
+          final villageName = cacheData.map((e) => e.villageName).toSet();
+          if (cacheData.isNotEmpty && villageName.contains(gauPalika)) {
             final cacheModel = cacheData.map((e) {
               return OccupationModel(
                   wardNumber: e.wardNumber,

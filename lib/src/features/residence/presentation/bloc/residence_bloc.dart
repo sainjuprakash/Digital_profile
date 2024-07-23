@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
+import 'package:digital_profile/core/services/shared_preferences_service.dart';
 import 'package:digital_profile/src/features/residence/data/database/residence_database.dart';
 import 'package:digital_profile/src/features/residence/data/table_helper/residence_table_helper.dart';
 import 'package:equatable/equatable.dart';
@@ -18,7 +19,8 @@ class ResidenceBloc extends Bloc<ResidenceEvent, ResidenceState> {
       : super(ResidenceLoadingState()) {
     on<GetResidenceEvent>((event, emit) async {
       try {
-        final cacheData = await getAllResidenceData();
+        final prefs = await PrefsService.getInstance();
+        final gauPalika = prefs.getString(PrefsServiceKeys.villageName);
         final connectivityResults = await Connectivity().checkConnectivity();
         if (connectivityResults == ConnectivityResult.wifi ||
             connectivityResults == ConnectivityResult.mobile) {
@@ -27,6 +29,7 @@ class ResidenceBloc extends Bloc<ResidenceEvent, ResidenceState> {
               await _residenceRepository.getResidenceData(baseUrl, endPoints);
           for (var e in fetchedResidenceModel) {
             var residenceData = ResidenceTableData(
+                villageName: gauPalika!,
                 wardNumber: e.wardNumber,
                 lsDefault: e.lsDefault,
                 lsForeign: e.lsForeign,
@@ -38,7 +41,9 @@ class ResidenceBloc extends Bloc<ResidenceEvent, ResidenceState> {
           emit(ResidenceSuccessState(
               fetchedResidenceModel: fetchedResidenceModel));
         } else {
-          if (cacheData.isNotEmpty) {
+          final cacheData = await getAllResidenceData();
+          final villageName = cacheData.map((e) => e.villageName);
+          if (cacheData.isNotEmpty && villageName.contains(gauPalika)) {
             final cacheModel = cacheData.map((e) {
               return ResidenceModel(
                   wardNumber: e.wardNumber,

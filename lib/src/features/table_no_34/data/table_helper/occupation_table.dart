@@ -1,6 +1,7 @@
 import 'package:drift/drift.dart';
 
 class OccupationTable extends Table {
+  TextColumn get villageName => text()();
   IntColumn get wardNumber => integer()();
   IntColumn get agriculture => integer().nullable()();
   IntColumn get office => integer().nullable()();

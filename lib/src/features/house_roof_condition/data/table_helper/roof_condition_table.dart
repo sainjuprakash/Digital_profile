@@ -1,7 +1,7 @@
 import 'package:drift/drift.dart';
 
-
 class RoofConditionTable extends Table {
+  TextColumn get villageName => text()();
   IntColumn get wardNumber => integer()();
   IntColumn get khar => integer().nullable()();
   IntColumn get jasta => integer().nullable()();

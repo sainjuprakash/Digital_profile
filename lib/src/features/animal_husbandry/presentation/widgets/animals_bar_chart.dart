@@ -43,7 +43,7 @@ class AnimalBarChart extends StatelessWidget {
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: SizedBox(
-                        height: 550,
+                        height: 500,
                         width: 500,
                         child: BarChart(BarChartData(
                             minY: 0,

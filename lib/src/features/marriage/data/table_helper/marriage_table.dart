@@ -1,6 +1,7 @@
 import 'package:drift/drift.dart';
 
-class MarriageTable extends Table{
+class MarriageTable extends Table {
+  TextColumn get villageName => text()();
   IntColumn get wardNumber => integer()();
   IntColumn get single => integer().nullable()();
   IntColumn get singleWoman => integer().nullable()();
@@ -13,6 +14,4 @@ class MarriageTable extends Table{
   IntColumn get underage => integer().nullable()();
   IntColumn get notAvailable => integer().nullable()();
   IntColumn get totalMaritalStatus => integer().nullable()();
-
-
 }

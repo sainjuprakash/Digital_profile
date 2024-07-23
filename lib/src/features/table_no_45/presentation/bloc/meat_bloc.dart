@@ -1,10 +1,11 @@
 import 'package:bloc/bloc.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
-import 'package:digital_profile/src/features/table_no_45/data/database/meat_database.dart';
 import 'package:digital_profile/src/features/table_no_45/data/table_helper/meat_table_helper.dart';
 import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
 
+import '../../../../../core/services/shared_preferences_service.dart';
+import '../../data/database/meat_database.dart';
 import '../../data/model/meat_model.dart';
 import '../../domain/repository/meat_repository.dart';
 
@@ -20,17 +21,16 @@ class MeatBloc extends Bloc<MeatEvent, MeatState> {
       : super(MeatLoadingState()) {
     on<MeatEvent>((event, emit) async {
       try {
+        final prefs = await PrefsService.getInstance();
+        final gauPalika = prefs.getString(PrefsServiceKeys.villageName);
         final connectivityResults = await Connectivity().checkConnectivity();
-
         if (connectivityResults == ConnectivityResult.wifi) {
-          // Fetch data from the API
           List<MeatModel> fetchedModel =
               await meatRepository.getMeatData(baseUrl, endPoint);
-
-          // Clear existing local data and insert fetched data
           await clearMeatDatabase();
           for (var e in fetchedModel) {
             final meatModel = MeatTableData(
+              villageName: gauPalika!,
               wardNumber: e.wardNumber,
               animalsQuantity: e.animalsQuantity,
               meatKg: e.meatKg,
@@ -40,14 +40,12 @@ class MeatBloc extends Bloc<MeatEvent, MeatState> {
             await addMeatData(meatModel);
           }
 
-          // Emit the fetched data
           emit(MeatSuccessState(fetchedModel));
         } else {
-          // Load data from the local database
-          final localData = await getAllMeatData();
-
-          if (localData.isNotEmpty) {
-            final localModel = localData.map((e) {
+          final cacheData = await getAllMeatData();
+          final villageName = cacheData.map((e) => e.villageName).toSet();
+          if (cacheData.isNotEmpty && villageName.contains(gauPalika)) {
+            final localModel = cacheData.map((e) {
               return MeatModel(
                 wardNumber: e.wardNumber,
                 animalsQuantity: e.animalsQuantity,

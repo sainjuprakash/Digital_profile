@@ -1,10 +1,11 @@
 import 'package:bloc/bloc.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
-import 'package:digital_profile/src/features/table_no_74/data/database/settlement_database.dart';
 import 'package:digital_profile/src/features/table_no_74/data/table_helper/settlement_table_helper.dart';
 import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
 
+import '../../../../../core/services/shared_preferences_service.dart';
+import '../../data/database/settlement_database.dart';
 import '../../data/model/settlement_model.dart';
 import '../../domain/repository/settlement_repository.dart';
 
@@ -18,7 +19,8 @@ class SettlementBloc extends Bloc<SettlementEvent, SettlementState> {
       : super(SettlementLoadingState()) {
     on<GetSettlementEvent>((event, emit) async {
       try {
-        final cacheData = await getAllSettlementData();
+        final prefs = await PrefsService.getInstance();
+        final gauPalika = prefs.getString(PrefsServiceKeys.villageName);
         final connectivityResults = await Connectivity().checkConnectivity();
         if (connectivityResults == ConnectivityResult.wifi ||
             connectivityResults == ConnectivityResult.mobile) {
@@ -27,6 +29,7 @@ class SettlementBloc extends Bloc<SettlementEvent, SettlementState> {
               await settlementRepository.getSettlementData(baseUrl, endPoint);
           for (var e in fetchedModel) {
             var settlementData = SettlementTableData(
+                villageName: gauPalika!,
                 wardNumber: e.wardNumber,
                 permanent: e.permanent,
                 temporary: e.temporary,
@@ -36,7 +39,9 @@ class SettlementBloc extends Bloc<SettlementEvent, SettlementState> {
           }
           emit(SettlementSuccessState(fetchedModel));
         } else {
-          if (cacheData.isNotEmpty) {
+          final cacheData = await getAllSettlementData();
+          final villageName = cacheData.map((e) => e.villageName).toSet();
+          if (cacheData.isNotEmpty && villageName.contains(gauPalika)) {
             final cacheModel = cacheData.map((e) {
               return SettlementModel(
                   wardNumber: e.wardNumber,

@@ -1,12 +1,11 @@
-import 'dart:async';
-
 import 'package:bloc/bloc.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
-import 'package:digital_profile/src/features/table_no_64/data/database/expenses_database.dart';
 import 'package:digital_profile/src/features/table_no_64/data/table_helper/expenses_table_helper.dart';
 import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
 
+import '../../../../../core/services/shared_preferences_service.dart';
+import '../../data/database/expenses_database.dart';
 import '../../data/model/expenses_model.dart';
 import '../../domain/repository/expenses_repository.dart';
 
@@ -20,7 +19,8 @@ class ExpensesBloc extends Bloc<ExpensesEvent, ExpensesState> {
       : super(ExpensesLoadingState()) {
     on<GetExpensesEvent>((event, emit) async {
       try {
-        final cacheData = await getAllExpensesData();
+        final prefs = await PrefsService.getInstance();
+        final gauPalika = prefs.getString(PrefsServiceKeys.villageName);
         final connectivityResults = await Connectivity().checkConnectivity();
         if (connectivityResults == ConnectivityResult.wifi ||
             connectivityResults == ConnectivityResult.mobile) {
@@ -29,6 +29,7 @@ class ExpensesBloc extends Bloc<ExpensesEvent, ExpensesState> {
               await expensesRepository.getExpensesData(baseUrl, endPoint);
           for (var e in fetchedModel) {
             final expensesModel = ExpensesTableData(
+                villageName: gauPalika!,
                 wardNumber: e.wardNumber,
                 clothes: e.clothes,
                 education: e.education,
@@ -41,7 +42,9 @@ class ExpensesBloc extends Bloc<ExpensesEvent, ExpensesState> {
           }
           emit(ExpensesSuccessState(fetchedModel));
         } else {
-          if (cacheData.isNotEmpty) {
+          final cacheData = await getAllExpensesData();
+          final villageName = cacheData.map((e) => e.villageName).toSet();
+          if (cacheData.isNotEmpty && villageName.contains(gauPalika)) {
             var cacheModel = cacheData.map((e) {
               return ExpensesModel(
                   wardNumber: e.wardNumber,

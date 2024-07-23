@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:bloc/bloc.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:digital_profile/src/features/table_no_33/data/database/earthquake_database.dart';
@@ -7,6 +5,7 @@ import 'package:digital_profile/src/features/table_no_33/data/table_helper/earth
 import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
 
+import '../../../../../core/services/shared_preferences_service.dart';
 import '../../data/model/earthquake_resistance_model.dart';
 import '../../domain/repository/eathquake_resistance_repository.dart';
 
@@ -22,7 +21,8 @@ class EarthquakeResistanceBloc
       : super(EarthquakeResistanceInitialState()) {
     on<GetEarthquakeResistanceEvent>((event, emit) async {
       try {
-        final cacheData = await getALlEarthquakeResData();
+        final prefs = await PrefsService.getInstance();
+        final gauPalika = prefs.getString(PrefsServiceKeys.villageName);
         final connectivityResults = await Connectivity().checkConnectivity();
         if (connectivityResults == ConnectivityResult.wifi ||
             connectivityResults == ConnectivityResult.mobile) {
@@ -32,6 +32,7 @@ class EarthquakeResistanceBloc
                   baseUrl, endPoint);
           for (var e in fetchedModel) {
             var earthquakeData = EarthquakeTableData(
+              villageName: gauPalika!,
               wardNumber: e.wardNumber,
               earthquakeResistance: e.earthquakeResistance,
               notEarthquakeResistance: e.notEarthquakeResistance,
@@ -41,7 +42,9 @@ class EarthquakeResistanceBloc
           }
           emit(EarthquakeResistanceSuccessState(fetchedModel));
         } else {
-          if (cacheData.isNotEmpty) {
+          final cacheData = await getALlEarthquakeResData();
+          final villageName = cacheData.map((e) => e.villageName).toSet();
+          if (cacheData.isNotEmpty && villageName.contains(gauPalika)) {
             final cacheModel = cacheData.map((e) {
               return EarthquakeResistanceModel(
                   wardNumber: e.wardNumber,

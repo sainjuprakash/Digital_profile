@@ -1,10 +1,11 @@
 import 'package:bloc/bloc.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
-import 'package:digital_profile/src/features/table_no_109/data/database/loan_database.dart';
 import 'package:digital_profile/src/features/table_no_109/data/table_helper/loan_table_helper.dart';
 import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
 
+import '../../../../../core/services/shared_preferences_service.dart';
+import '../../data/database/loan_database.dart';
 import '../../data/model/loan_model.dart';
 import '../../domain/repository/loan_repository.dart';
 
@@ -18,7 +19,8 @@ class LoanBloc extends Bloc<LoanEvent, LoanState> {
       : super(LoanLoadingState()) {
     on<GetLoanEvent>((event, emit) async {
       try {
-        final cacheData = await getAllLoanData();
+        final prefs = await PrefsService.getInstance();
+        final gauPalika = prefs.getString(PrefsServiceKeys.villageName);
         final connectivityResults = await Connectivity().checkConnectivity();
         if (connectivityResults == ConnectivityResult.wifi ||
             connectivityResults == ConnectivityResult.mobile) {
@@ -27,6 +29,7 @@ class LoanBloc extends Bloc<LoanEvent, LoanState> {
               await loanRepository.getLoanData(baseUrl, endPoint);
           for (var e in fetchedModel) {
             var loanModel = LoanTableData(
+              villageName : gauPalika!,
                 wardNumber: e.wardNumber,
                 agricultureLoan: e.agricultureLoan,
                 houseExpLoan: e.houseExpLoan,
@@ -42,7 +45,10 @@ class LoanBloc extends Bloc<LoanEvent, LoanState> {
           }
           emit(LoanSuccessState(fetchedModel));
         } else {
-          if (cacheData.isNotEmpty) {
+          final cacheData = await getAllLoanData();
+          final villageName = cacheData.map((e) => e.villageName).toSet();
+
+          if (cacheData.isNotEmpty && villageName.contains(gauPalika)) {
             final cacheModel = cacheData.map((e) {
               return LoanModel(
                   wardNumber: e.wardNumber,

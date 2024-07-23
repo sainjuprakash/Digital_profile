@@ -1,6 +1,7 @@
 import 'package:drift/drift.dart';
 
 class ElectricityTable extends Table {
+  TextColumn get villageName => text()();
   IntColumn get wardNumber => integer()();
   IntColumn get kerosene => integer().nullable()();
   IntColumn get bioGas => integer().nullable()();

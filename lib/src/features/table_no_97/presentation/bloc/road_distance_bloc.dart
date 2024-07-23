@@ -1,13 +1,11 @@
-import 'dart:async';
-
 import 'package:bloc/bloc.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
-import 'package:digital_profile/src/features/table_no_95/data/table_helper/allowance_table_helper.dart';
-import 'package:digital_profile/src/features/table_no_97/data/database/road_distance_database.dart';
 import 'package:digital_profile/src/features/table_no_97/data/table_helper/road_distance_table_helper.dart';
 import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
 
+import '../../../../../core/services/shared_preferences_service.dart';
+import '../../data/database/road_distance_database.dart';
 import '../../data/model/road_distance_model.dart';
 import '../../domain/repository/road_distance_repository.dart';
 
@@ -21,7 +19,8 @@ class RoadDistanceBloc extends Bloc<RoadDistanceEvent, RoadDistanceState> {
       : super(RoadDistanceLoadingState()) {
     on<GetRoadDistanceEvent>((event, emit) async {
       try {
-        final cacheData = await getAllRoadDistanceData();
+        final prefs = await PrefsService.getInstance();
+        final gauPalika = prefs.getString(PrefsServiceKeys.villageName);
         final connectivityResults = await Connectivity().checkConnectivity();
         if (connectivityResults == ConnectivityResult.wifi ||
             connectivityResults == ConnectivityResult.mobile) {
@@ -30,6 +29,7 @@ class RoadDistanceBloc extends Bloc<RoadDistanceEvent, RoadDistanceState> {
               await roadDistanceRepository.getRoadData(baseUrl, endPoint);
           for (var e in fetchedModel) {
             var roadModel = RoadDistanceTableData(
+                villageName: gauPalika!,
                 wardNumber: e.wardNumber,
                 lessThanOneHours: e.lessThanOneHours,
                 twoHours: e.twoHours,
@@ -40,7 +40,9 @@ class RoadDistanceBloc extends Bloc<RoadDistanceEvent, RoadDistanceState> {
           }
           emit(RoadDistanceSuccessState(fetchedModel));
         } else {
-          if (cacheData.isNotEmpty) {
+          final cacheData = await getAllRoadDistanceData();
+          final villageName = cacheData.map((e) => e.villageName).toSet();
+          if (cacheData.isNotEmpty && villageName.contains(gauPalika)) {
             final cacheModel = cacheData.map((e) {
               return RoadDistanceModel(
                   wardNumber: e.wardNumber,

@@ -5,6 +5,7 @@ import 'package:digital_profile/src/features/table_no_37/data/table_helper/bank_
 import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
 
+import '../../../../../core/services/shared_preferences_service.dart';
 import '../../data/model/bank_model.dart';
 import '../../domain/repository/bank_repository.dart';
 
@@ -18,7 +19,8 @@ class BankBloc extends Bloc<BankEvent, BankState> {
       : super(BankLoadingState()) {
     on<GetBankEvent>((event, emit) async {
       try {
-        final cacheData = await getAllBankDetails();
+        final prefs = await PrefsService.getInstance();
+        final gauPalika = prefs.getString(PrefsServiceKeys.villageName);
         final connectivityResults = await Connectivity().checkConnectivity();
         if (connectivityResults == ConnectivityResult.wifi ||
             connectivityResults == ConnectivityResult.mobile) {
@@ -27,6 +29,7 @@ class BankBloc extends Bloc<BankEvent, BankState> {
               await bankRepository.getBankData(baseUrl, endPoint);
           for (var e in fetchedModel) {
             final bankModel = BankTableData(
+                villageName: gauPalika!,
                 wardNumber: e.wardNumber,
                 bankAccount: e.bankAccount,
                 noBankAccount: e.noBankAccount,
@@ -36,7 +39,9 @@ class BankBloc extends Bloc<BankEvent, BankState> {
           }
           emit(BankSuccessState(fetchedModel));
         } else {
-          if (cacheData.isNotEmpty) {
+          final cacheData = await getAllBankDetails();
+          final villageName = cacheData.map((e) => e.villageName).toSet();
+          if (cacheData.isNotEmpty && villageName.contains(gauPalika)) {
             final cacheModel = cacheData.map((e) {
               return BankModel(
                   wardNumber: e.wardNumber,

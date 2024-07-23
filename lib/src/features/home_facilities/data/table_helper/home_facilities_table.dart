@@ -1,6 +1,7 @@
 import 'package:drift/drift.dart';
 
 class HomeFacilitiesTable extends Table{
+  TextColumn get villageName => text()();
   IntColumn get wardNumber => integer()();
   IntColumn get radio => integer().nullable()();
   IntColumn get television => integer().nullable()();

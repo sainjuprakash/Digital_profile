@@ -1,11 +1,11 @@
 import 'package:bloc/bloc.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
-import 'package:digital_profile/src/features/table_no_114/data/table_helper/grant_stage_table_helper.dart';
-import 'package:digital_profile/src/features/table_no_115/data/database/grant_house_database.dart';
 import 'package:digital_profile/src/features/table_no_115/data/table_helper/grant_house_table_helper.dart';
 import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
 
+import '../../../../../core/services/shared_preferences_service.dart';
+import '../../data/database/grant_house_database.dart';
 import '../../data/model/grant_house_model.dart';
 import '../../domain/repository/grant_house_repository.dart';
 
@@ -22,7 +22,8 @@ class GrantHouseBloc extends Bloc<GrantHouseEvent, GrantHouseState> {
   ) : super(GrantHouseLoadingState()) {
     on<GetGrantHouseEvent>((event, emit) async {
       try {
-        final cacheData = await getAllGrantHouseData();
+        final prefs = await PrefsService.getInstance();
+        final gauPalika = prefs.getString(PrefsServiceKeys.villageName);
         final connectivityResults = await Connectivity().checkConnectivity();
         if (connectivityResults == ConnectivityResult.wifi ||
             connectivityResults == ConnectivityResult.mobile) {
@@ -31,6 +32,7 @@ class GrantHouseBloc extends Bloc<GrantHouseEvent, GrantHouseState> {
               await grantHouseRepository.getGrantHousesData(baseUrl, endPoint);
           for (var e in fetchedModel) {
             var grantHouse = GrantHouseTableData(
+              villageName : gauPalika!,
                 wardNumber: e.wardNumber,
                 hasBuild: e.hasBuild,
                 hasNotBuild: e.hasNotBuild,
@@ -40,7 +42,9 @@ class GrantHouseBloc extends Bloc<GrantHouseEvent, GrantHouseState> {
           }
           emit(GrantHouseSuccessState(fetchedModel));
         } else {
-          if (cacheData.isNotEmpty) {
+          final cacheData = await getAllGrantHouseData();
+          final villageName = cacheData.map((e) => e.villageName).toSet();
+          if (cacheData.isNotEmpty && villageName.contains(gauPalika)) {
             final cacheModel = cacheData.map((e) {
               return GrantHouseModel(
                   wardNumber: e.wardNumber,

@@ -1,6 +1,7 @@
 import 'package:drift/drift.dart';
 
 class GrantStageTable extends Table {
+  TextColumn get villageName => text()();
   IntColumn get wardNumber => integer()();
   IntColumn get firstStage => integer().nullable()();
   IntColumn get secondStage => integer().nullable()();

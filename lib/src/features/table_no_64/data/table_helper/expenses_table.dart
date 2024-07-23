@@ -1,6 +1,7 @@
 import 'package:drift/drift.dart';
 
 class ExpensesTable extends Table {
+  TextColumn get villageName => text()();
   IntColumn get wardNumber => integer()();
   IntColumn get clothes => integer().nullable()();
   IntColumn get education => integer().nullable()();

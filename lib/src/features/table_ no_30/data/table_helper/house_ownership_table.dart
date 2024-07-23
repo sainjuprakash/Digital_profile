@@ -1,6 +1,7 @@
 import 'package:drift/drift.dart';
 
-class OwnershipTable extends Table{
+class OwnershipTable extends Table {
+  TextColumn get villageName => text()();
   IntColumn get wardNumber => integer()();
   IntColumn get personal => integer().nullable()();
   IntColumn get rental => integer().nullable()();
@@ -9,5 +10,4 @@ class OwnershipTable extends Table{
   IntColumn get others => integer().nullable()();
   IntColumn get notAvailable => integer().nullable()();
   IntColumn get total => integer().nullable()();
-
 }

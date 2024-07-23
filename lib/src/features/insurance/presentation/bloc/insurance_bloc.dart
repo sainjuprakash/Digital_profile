@@ -5,6 +5,7 @@ import 'package:digital_profile/src/features/insurance/data/table_helper/insuran
 import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
 
+import '../../../../../core/services/shared_preferences_service.dart';
 import '../../data/model/insurance_model.dart';
 import '../../domain/repository/insurance_repository.dart';
 
@@ -18,7 +19,8 @@ class InsuranceBloc extends Bloc<InsuranceEvent, InsuranceState> {
       : super(InsuranceLoadingState()) {
     on<GetInsuranceEvent>((event, emit) async {
       try {
-        final cacheData = await getAllInsuranceData();
+        final prefs = await PrefsService.getInstance();
+        final gauPalika = prefs.getString(PrefsServiceKeys.villageName);
         final connectivityResults = await Connectivity().checkConnectivity();
         if (connectivityResults == ConnectivityResult.wifi ||
             connectivityResults == ConnectivityResult.mobile) {
@@ -27,6 +29,7 @@ class InsuranceBloc extends Bloc<InsuranceEvent, InsuranceState> {
               await _insuranceRepository.getInsuranceData(baseUrl, endPoint);
           for (var e in fetchedInsModel) {
             var insuranceModel = InsuranceTableData(
+                villageName : gauPalika!,
                 wardNumber: e.wardNumber,
                 lifeInsurance: e.lifeInsurance,
                 healthInsurance: e.healthInsurance,
@@ -38,7 +41,9 @@ class InsuranceBloc extends Bloc<InsuranceEvent, InsuranceState> {
           }
           emit(InsuranceSuccessState(insuranceModel: fetchedInsModel));
         } else {
-          if (cacheData.isNotEmpty) {
+          final cacheData = await getAllInsuranceData();
+          final villageName = cacheData.map((e) => e.villageName).toSet();
+          if (cacheData.isNotEmpty && villageName.contains(gauPalika)) {
             final cacheModel = cacheData.map((e) {
               return InsuranceModel(
                   wardNumber: e.wardNumber,

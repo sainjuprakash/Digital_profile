@@ -1,10 +1,11 @@
 import 'package:bloc/bloc.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
-import 'package:digital_profile/src/features/table_no_105/data/database/bank_account_database.dart';
 import 'package:digital_profile/src/features/table_no_105/data/table_helper/bank_account_table_helper.dart';
 import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
 
+import '../../../../../core/services/shared_preferences_service.dart';
+import '../../data/database/bank_account_database.dart';
 import '../../data/model/bank_account_model.dart';
 import '../../domain/repository/bank_account_repository.dart';
 
@@ -18,7 +19,8 @@ class BankAccountBloc extends Bloc<BankAccountEvent, BankAccountState> {
       : super(BankAccountLoadingState()) {
     on<GetBankAccountEvent>((event, emit) async {
       try {
-        final cacheData = await getAllBankAccountData();
+        final prefs = await PrefsService.getInstance();
+        final gauPalika = prefs.getString(PrefsServiceKeys.villageName);
         final connectivityResults = await Connectivity().checkConnectivity();
         if (connectivityResults == ConnectivityResult.wifi ||
             connectivityResults == ConnectivityResult.mobile) {
@@ -27,6 +29,7 @@ class BankAccountBloc extends Bloc<BankAccountEvent, BankAccountState> {
               await bankAccountRepository.getBankDetails(baseUrl, endPoint);
           for (var e in fetchedModel) {
             final bankData = BankAccountTableData(
+                villageName: gauPalika!,
                 wardNumber: e.wardNumber,
                 devBank: e.devBank,
                 commercialBank: e.commercialBank,
@@ -39,7 +42,9 @@ class BankAccountBloc extends Bloc<BankAccountEvent, BankAccountState> {
           }
           emit(BankAccountSuccessState(fetchedModel));
         } else {
-          if (cacheData.isNotEmpty) {
+          final cacheData = await getAllBankAccountData();
+          final villageName = cacheData.map((e) => e.villageName).toSet();
+          if (cacheData.isNotEmpty && villageName.contains(gauPalika)) {
             final cacheModel = cacheData.map((e) {
               return BankAccountModel(
                   wardNumber: e.wardNumber,

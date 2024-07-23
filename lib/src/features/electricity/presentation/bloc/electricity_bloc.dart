@@ -5,6 +5,7 @@ import 'package:digital_profile/src/features/electricity/data/table_helper/elect
 import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
 
+import '../../../../../core/services/shared_preferences_service.dart';
 import '../../data/model/electricity_model.dart';
 import '../../domain/repository/electricity_repository.dart';
 
@@ -18,8 +19,8 @@ class ElectricityBloc extends Bloc<ElectricityEvent, ElectricityState> {
       : super(ElectricityLoadingState()) {
     on<GetElectricityEvent>((event, emit) async {
       try {
-        final cacheData = await getAllElectricityData();
-
+        final prefs = await PrefsService.getInstance();
+        final gauPalika = prefs.getString(PrefsServiceKeys.villageName);
         final connectivityResults = await Connectivity().checkConnectivity();
         if (connectivityResults == ConnectivityResult.wifi ||
             connectivityResults == ConnectivityResult.mobile) {
@@ -29,6 +30,7 @@ class ElectricityBloc extends Bloc<ElectricityEvent, ElectricityState> {
                   baseUrl, endPoint);
           for (var e in fetchedElectricityModel) {
             var electricityData = ElectricityTableData(
+                villageName: gauPalika!,
                 wardNumber: e.wardNumber,
                 kerosene: e.kerosene,
                 bioGas: e.bioGas,
@@ -43,7 +45,9 @@ class ElectricityBloc extends Bloc<ElectricityEvent, ElectricityState> {
           emit(ElectricitySuccessState(
               electricityModel: fetchedElectricityModel));
         } else {
-          if (cacheData.isNotEmpty) {
+          final cacheData = await getAllElectricityData();
+          final villageName = cacheData.map((e) => e.villageName).toSet();
+          if (cacheData.isNotEmpty && villageName.contains(gauPalika)) {
             final cacheModel = cacheData.map((e) {
               return ElectricityModel(
                   wardNumber: e.wardNumber,

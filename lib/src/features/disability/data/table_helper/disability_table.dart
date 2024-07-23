@@ -1,6 +1,7 @@
 import 'package:drift/drift.dart';
 
 class DisabilityTable extends Table {
+  TextColumn get villageName => text()();
   IntColumn get wardNumber => integer()();
   IntColumn get able => integer().nullable()();
   IntColumn get disable => integer().nullable()();

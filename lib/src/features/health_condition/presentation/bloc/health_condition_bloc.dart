@@ -7,6 +7,7 @@ import 'package:digital_profile/src/features/health_condition/data/table_helper/
 import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
 
+import '../../../../../core/services/shared_preferences_service.dart';
 import '../../data/model/health_condition_model.dart';
 import '../../domain/repository/health_condition_repository.dart';
 
@@ -22,7 +23,8 @@ class HealthConditionBloc
       : super(HealthConditionLoadingState()) {
     on<GetHealthConditionEvent>((event, emit) async {
       try {
-        final cacheData = await getAllHealthData();
+        final prefs = await PrefsService.getInstance();
+        final gauPalika = prefs.getString(PrefsServiceKeys.villageName);
         final connectivityResults = await Connectivity().checkConnectivity();
         if (connectivityResults == ConnectivityResult.wifi ||
             connectivityResults == ConnectivityResult.mobile) {
@@ -32,6 +34,7 @@ class HealthConditionBloc
                   baseUrl, endPoints);
           for (var e in fetchedHealthModel) {
             var healthData = HealthConditionTableData(
+                villageName : gauPalika!,
                 wardNumber: e.wardNumber,
                 healthy: e.healthy,
                 generalDisease: e.generalDisease,
@@ -45,7 +48,9 @@ class HealthConditionBloc
           emit(HealthConditionSuccessState(
               healthConditionModel: fetchedHealthModel));
         } else {
-          if (cacheData.isNotEmpty) {
+          final cacheData = await getAllHealthData();
+          final villageName = cacheData.map((e) => e.villageName).toSet();
+          if (cacheData.isNotEmpty && villageName.contains(gauPalika)) {
             final cacheModel = cacheData.map((e) {
               return HealthConditionModel(
                   wardNumber: e.wardNumber,

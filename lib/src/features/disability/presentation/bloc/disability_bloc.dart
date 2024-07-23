@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:bloc/bloc.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:digital_profile/src/features/disability/data/database/disability_database.dart';
@@ -7,6 +5,7 @@ import 'package:digital_profile/src/features/disability/data/table_helper/disabi
 import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
 
+import '../../../../../core/services/shared_preferences_service.dart';
 import '../../data/model/disability_model.dart';
 import '../../domain/repository/disability_repository.dart';
 
@@ -20,7 +19,8 @@ class DisabilityBloc extends Bloc<DisabilityEvent, DisabilityState> {
       : super(DisabilityLoadingState()) {
     on<DisabilityEvent>((event, emit) async {
       try {
-        final cacheData = await getAllDisabilityData();
+        final prefs = await PrefsService.getInstance();
+        final gauPalika = prefs.getString(PrefsServiceKeys.villageName);
         final connectivityResults = await Connectivity().checkConnectivity();
         if (connectivityResults == ConnectivityResult.wifi ||
             connectivityResults == ConnectivityResult.mobile) {
@@ -29,6 +29,7 @@ class DisabilityBloc extends Bloc<DisabilityEvent, DisabilityState> {
               await _disabilityRepository.getDisabilityData(baseUrl, endPoints);
           for (var e in fetchedDisabilityData) {
             final disabilityOfflineData = DisabilityTableData(
+                villageName: gauPalika!,
                 wardNumber: e.wardNumber,
                 able: e.able,
                 disable: e.disable,
@@ -46,7 +47,9 @@ class DisabilityBloc extends Bloc<DisabilityEvent, DisabilityState> {
           }
           emit(DisabilitySuccessState(disabilityModel: fetchedDisabilityData));
         } else {
-          if (cacheData.isNotEmpty) {
+          final cacheData = await getAllDisabilityData();
+          final villageName = cacheData.map((e) => e.villageName).toSet();
+          if (cacheData.isNotEmpty && villageName.contains(gauPalika)) {
             final cacheModel = cacheData.map((e) {
               return DisabilityModel(
                   wardNumber: e.wardNumber,

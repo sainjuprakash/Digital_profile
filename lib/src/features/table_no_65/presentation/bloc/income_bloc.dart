@@ -7,6 +7,7 @@ import 'package:digital_profile/src/features/table_no_65/data/table_helper/incom
 import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
 
+import '../../../../../core/services/shared_preferences_service.dart';
 import '../../data/model/income_model.dart';
 import '../../domain/repository/income_repository.dart';
 
@@ -20,7 +21,8 @@ class IncomeBloc extends Bloc<IncomeEvent, IncomeState> {
       : super(IncomeLoadingState()) {
     on<GetIncomeEvent>((event, emit) async {
       try {
-        final cacheData = await getAllIncomeData();
+        final prefs = await PrefsService.getInstance();
+        final gauPalika = prefs.getString(PrefsServiceKeys.villageName);
         final connectivityResults = await Connectivity().checkConnectivity();
         if (connectivityResults == ConnectivityResult.wifi ||
             connectivityResults == ConnectivityResult.mobile) {
@@ -29,6 +31,7 @@ class IncomeBloc extends Bloc<IncomeEvent, IncomeState> {
               await incomeRepository.getIncomeData(baseUrl, endPoint);
           for (var e in fetchedModel) {
             var incomeData = IncomeTableData(
+                villageName: gauPalika!,
                 wardNumber: e.wardNumber,
                 crops: e.crops,
                 fruits: e.fruits,
@@ -45,7 +48,9 @@ class IncomeBloc extends Bloc<IncomeEvent, IncomeState> {
           }
           emit(IncomeSuccessState(fetchedModel));
         } else {
-          if (cacheData.isNotEmpty) {
+          final cacheData = await getAllIncomeData();
+          final villageName = cacheData.map((e) => e.villageName).toSet();
+          if (cacheData.isNotEmpty && villageName.contains(gauPalika)) {
             final cacheModel = cacheData.map((e) {
               return IncomeModel(
                   wardNumber: e.wardNumber,

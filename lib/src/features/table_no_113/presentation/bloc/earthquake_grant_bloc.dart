@@ -1,12 +1,11 @@
-import 'dart:async';
-
 import 'package:bloc/bloc.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
-import 'package:digital_profile/src/features/table_no_113/data/database/earthquake_grant_database.dart';
 import 'package:digital_profile/src/features/table_no_113/data/table_helper/earthquake_grant_table_helper.dart';
 import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
 
+import '../../../../../core/services/shared_preferences_service.dart';
+import '../../data/database/earthquake_grant_database.dart';
 import '../../data/model/earthquake_grant_model.dart';
 import '../../domain/repository/earthquake_grant_repository.dart';
 
@@ -22,7 +21,8 @@ class EarthquakeGrantBloc
       : super(EarthquakeGrantLoadingState()) {
     on<GetEarthquakeGrantEvent>((event, emit) async {
       try {
-        final cacheData = await getAllEarthquakeGrantData();
+        final prefs = await PrefsService.getInstance();
+        final gauPalika = prefs.getString(PrefsServiceKeys.villageName);
         final connectivityResults = await Connectivity().checkConnectivity();
         if (connectivityResults == ConnectivityResult.wifi ||
             connectivityResults == ConnectivityResult.mobile) {
@@ -32,6 +32,7 @@ class EarthquakeGrantBloc
                   baseUrl, endPoint);
           for (var e in fetchedModel) {
             var earthquakeData = EarthquakeGrantTableData(
+              villageName : gauPalika!,
                 wardNumber: e.wardNumber,
                 gotGranted: e.gotGranted,
                 doesNotGotGranted: e.doesNotGotGranted,
@@ -41,7 +42,9 @@ class EarthquakeGrantBloc
           }
           emit(EarthquakeGrantSuccessState(fetchedModel));
         } else {
-          if (cacheData.isNotEmpty) {
+          final cacheData = await getAllEarthquakeGrantData();
+          final villageName = cacheData.map((e) => e.villageName).toSet();
+          if (cacheData.isNotEmpty && villageName.contains(gauPalika)) {
             final cacheModel = cacheData.map((e) {
               return EarthquakeGrantModel(
                   wardNumber: e.wardNumber,

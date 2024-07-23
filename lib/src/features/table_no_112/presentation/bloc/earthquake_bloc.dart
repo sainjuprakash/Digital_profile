@@ -7,6 +7,7 @@ import 'package:digital_profile/src/features/table_no_112/data/table_helper/eart
 import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
 
+import '../../../../../core/services/shared_preferences_service.dart';
 import '../../data/model/earthquake_model.dart';
 import '../../domain/repository/earthquake_repository.dart';
 
@@ -20,7 +21,8 @@ class EarthquakeBloc extends Bloc<EarthquakeEvent, EarthquakeState> {
       : super(EarthquakeLoadingState()) {
     on<GetEarthquakeEvent>((event, emit) async {
       try {
-        final cacheData = await getAllEarthquakeDamageData();
+        final prefs = await PrefsService.getInstance();
+        final gauPalika = prefs.getString(PrefsServiceKeys.villageName);
         final connectivityResults = await Connectivity().checkConnectivity();
         if (connectivityResults == ConnectivityResult.wifi ||
             connectivityResults == ConnectivityResult.mobile) {
@@ -29,6 +31,7 @@ class EarthquakeBloc extends Bloc<EarthquakeEvent, EarthquakeState> {
               await earthquakeRepository.getEarthquakeData(baseUrl, endPoint);
           for (var e in fetchedModel) {
             final earthquakeData = EarthquakeDamageTableData(
+              villageName : gauPalika!,
                 wardNumber: e.wardNumber,
                 isDamaged: e.isDamaged,
                 isNotDamages: e.isNotDamages,
@@ -38,7 +41,9 @@ class EarthquakeBloc extends Bloc<EarthquakeEvent, EarthquakeState> {
           }
           emit(EarthquakeSuccessState(fetchedModel));
         } else {
-          if (cacheData.isNotEmpty) {
+          final cacheData = await getAllEarthquakeDamageData();
+          final villageName = cacheData.map((e) => e.villageName).toSet();
+          if (cacheData.isNotEmpty && villageName.contains(gauPalika)) {
             final cacheModel = cacheData.map((e) {
               return EarthquakeModel(
                   wardNumber: e.wardNumber,

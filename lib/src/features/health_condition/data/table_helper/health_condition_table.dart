@@ -1,6 +1,7 @@
 import 'package:drift/drift.dart';
 
 class HealthConditionTable extends Table {
+  TextColumn get villageName => text()();
   IntColumn get wardNumber => integer()();
   IntColumn get healthy => integer().nullable()();
   IntColumn get generalDisease => integer().nullable()();

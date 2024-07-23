@@ -1,6 +1,7 @@
 import 'package:drift/drift.dart';
 
 class LiteracyTable extends Table {
+  TextColumn get villageName => text()();
   IntColumn get wardNumber => integer()();
   IntColumn get maleLiterate => integer().nullable()();
   IntColumn get malePrePrimary => integer().nullable()();

@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
+import 'package:digital_profile/core/services/shared_preferences_service.dart';
 import 'package:digital_profile/src/features/literacy_status/data/database/literacy_database.dart';
 import 'package:digital_profile/src/features/literacy_status/data/table_helper/literacy_table_helper.dart';
 import 'package:equatable/equatable.dart';
@@ -18,7 +19,9 @@ class LiteracyBloc extends Bloc<LiteracyEvent, LiteracyState> {
       : super(LiteracyLoadingState()) {
     on<LiteracyEvent>((event, emit) async {
       try {
-        final cacheData = await getAllLiteracyData();
+        print('entered literacy try');
+        final prefs = await PrefsService.getInstance();
+        final gauPalika = prefs.getString(PrefsServiceKeys.villageName);
         final connectivityResults = await Connectivity().checkConnectivity();
         if (connectivityResults == ConnectivityResult.wifi ||
             connectivityResults == ConnectivityResult.mobile) {
@@ -27,6 +30,7 @@ class LiteracyBloc extends Bloc<LiteracyEvent, LiteracyState> {
               await _literacyRepository.getLiteracyData(baseUrl, endPoints);
           for (var e in fetchedLiteracyData) {
             var literacyOfflineData = LiteracyTableData(
+                villageName: gauPalika!,
                 wardNumber: e.wardNumber,
                 maleLiterate: e.maleLiterate,
                 malePrePrimary: e.malePrePrimary,
@@ -66,7 +70,12 @@ class LiteracyBloc extends Bloc<LiteracyEvent, LiteracyState> {
           }
           emit(LiteracySuccessState(literacyModel: fetchedLiteracyData));
         } else {
-          if (cacheData.isNotEmpty) {
+          print('entered literacy else statement');
+          final cacheData = await getAllLiteracyData();
+          final villageName = cacheData.map((e) => e.villageName).toSet();
+          if (cacheData.isNotEmpty && villageName.contains(gauPalika)) {
+            print(gauPalika);
+            print(villageName);
             final cacheModel = cacheData.map((e) {
               return LiteracyModel(
                   wardNumber: e.wardNumber,
@@ -109,11 +118,13 @@ class LiteracyBloc extends Bloc<LiteracyEvent, LiteracyState> {
             emit(LiteracySuccessState(literacyModel: cacheModel));
             return;
           } else {
+            print('No internet connection and no cached data available.');
             LiteracyFailureState(
                 errMsg: 'No internet connection and no cached data available.');
           }
         }
       } catch (errMsg) {
+        print(errMsg);
         emit(LiteracyFailureState(errMsg: errMsg.toString()));
       }
     });

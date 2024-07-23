@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:bloc/bloc.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:digital_profile/src/features/home_facilities/data/database/home_facilities_database.dart';
@@ -7,6 +5,7 @@ import 'package:digital_profile/src/features/home_facilities/data/table_helper/h
 import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
 
+import '../../../../../core/services/shared_preferences_service.dart';
 import '../../data/model/home_facilities_model.dart';
 import '../../domain/repository/home_facilities_repository.dart';
 
@@ -22,7 +21,8 @@ class HomeFacilitiesBloc
       : super(HomeFacilitiesLoadingState()) {
     on<HomeFacilitiesEvent>((event, emit) async {
       try {
-        final cacheData = await getAllHomeFacilities();
+        final prefs = await PrefsService.getInstance();
+        final gauPalika = prefs.getString(PrefsServiceKeys.villageName);
         final connectivityResults = await Connectivity().checkConnectivity();
         if (connectivityResults == ConnectivityResult.wifi ||
             connectivityResults == ConnectivityResult.mobile) {
@@ -32,6 +32,7 @@ class HomeFacilitiesBloc
                   baseUrl, endPoint);
           for (var e in fetchedModel) {
             var homeFacilities = HomeFacilitiesTableData(
+              villageName : gauPalika!,
                 wardNumber: e.wardNumber,
                 radio: e.radio,
                 television: e.television,
@@ -49,7 +50,9 @@ class HomeFacilitiesBloc
           }
           emit(HomeFacilitiesSuccessState(fetchedModel));
         } else {
-          if (cacheData.isNotEmpty) {
+          final cacheData = await getAllHomeFacilities();
+          final villageName = cacheData.map((e) => e.villageName).toSet();
+          if (cacheData.isNotEmpty && villageName.contains(gauPalika)) {
             final cacheModel = cacheData.map((e) {
               return HomeFacilitiesModel(
                   wardNumber: e.wardNumber,

@@ -1,10 +1,11 @@
 import 'package:bloc/bloc.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
-import 'package:digital_profile/src/features/marriage/data/database/marriage_database.dart';
 import 'package:digital_profile/src/features/marriage/data/table_helper/marriage_table_helper.dart';
 import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
 
+import '../../../../../core/services/shared_preferences_service.dart';
+import '../../data/database/marriage_database.dart';
 import '../../data/model/marriage_status_model.dart';
 import '../../domain/repository/marriage_status_repository.dart';
 
@@ -19,7 +20,8 @@ class MarriageStatusBloc
       : super(MarriageLoadingState()) {
     on<GetMarriageStatusEvent>((event, emit) async {
       try {
-        final cacheData = await getAllMarriageData();
+        final prefs = await PrefsService.getInstance();
+        final gauPalika = prefs.getString(PrefsServiceKeys.villageName);
         final connectivityResults = await Connectivity().checkConnectivity();
         if (connectivityResults == ConnectivityResult.wifi ||
             connectivityResults == ConnectivityResult.mobile) {
@@ -28,6 +30,7 @@ class MarriageStatusBloc
               await _marriageRepository.getMarriageData(baseUrl, endPoints);
           for (var e in fetchedModel) {
             final marriageModel = MarriageTableData(
+                villageName: gauPalika!,
                 wardNumber: e.wardNumber,
                 single: e.single,
                 singleWoman: e.singleWoman,
@@ -45,7 +48,9 @@ class MarriageStatusBloc
 
           emit(MarriageSuccessState(marriageModel: fetchedModel));
         } else {
-          if (cacheData.isNotEmpty) {
+          final cacheData = await getAllMarriageData();
+          final villageName = cacheData.map((e) => e.villageName).toSet();
+          if (cacheData.isNotEmpty && villageName.contains(gauPalika)) {
             final cacheModel = cacheData.map((e) {
               return MarriageStatusModel(
                   wardNumber: e.wardNumber,

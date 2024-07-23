@@ -1,6 +1,7 @@
 import 'package:drift/drift.dart';
 
 class LoanTable extends Table {
+  TextColumn get villageName => text()();
   IntColumn get wardNumber => integer()();
   IntColumn get agricultureLoan => integer().nullable()();
   IntColumn get houseExpLoan => integer().nullable()();
