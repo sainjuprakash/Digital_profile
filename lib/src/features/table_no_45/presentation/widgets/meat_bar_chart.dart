@@ -27,6 +27,13 @@ class MeatDataTable extends StatelessWidget {
           verticalspace(),
           BlocBuilder<MeatBloc, MeatState>(
             builder: (context, state) {
+              if (state is MeatLoadingState) {
+                const Center(
+                    child: Padding(
+                  padding: EdgeInsets.all(8.0),
+                  child: CircularProgressIndicator(),
+                ));
+              }
               if (state is MeatSuccessState) {
                 List<MeatModel> fetchedData = state.fetchedModel;
                 return SingleChildScrollView(
@@ -73,12 +80,15 @@ class MeatDataTable extends StatelessWidget {
                             ]))),
                 );
               }
-
-              return const Center(
-                  child: Padding(
-                padding: EdgeInsets.all(8.0),
-                child: CircularProgressIndicator(),
-              ));
+              if (state is MeatFailureState) {
+                return const Padding(
+                  padding: EdgeInsets.all(10.0),
+                  child: Center(child: Text('Unable to load data')),
+                );
+              }
+              return const Padding(
+                  padding: EdgeInsets.all(10.0),
+                  child: Center(child: Text('Something went wrong')));
             },
           ),
         ],

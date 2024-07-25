@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:digital_profile/MyHomePage.dart';
 import 'package:digital_profile/app_localization/generated/l10n.dart';
 import 'package:digital_profile/src/initial_page/presentation/pages/initial_page.dart';
 import 'package:digital_profile/src/features/age_table2_2/data/repository/population_acc_age_repository_impl.dart';
@@ -41,6 +42,8 @@ import 'package:digital_profile/src/features/toilet/data/repository/toilet_repos
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import 'core/services/shared_preferences_service.dart';
+
 class MyHttpOverrides extends HttpOverrides {
   @override
   HttpClient createHttpClient(SecurityContext? context) {
@@ -55,8 +58,36 @@ void main() {
   runApp(const MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({super.key});
+
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  String baseUrl = '';
+  String endPoint = '';
+  String houseHoldUrl = '';
+  String villageName = '';
+  bool isUserLoggedIn = false;
+  void checkUser() async {
+    final prefs = await PrefsService.getInstance();
+    final aToken = prefs.getString(PrefsServiceKeys.accessTokem);
+
+    setState(() {
+      if (aToken != null) {
+        isUserLoggedIn = aToken.isEmpty ? false : true;
+      }
+    });
+  }
+
+  @override
+  void initState() {
+    print(isUserLoggedIn);
+    super.initState();
+    updateVillageData();
+  }
 
   // This widget is the root of your application.
   @override
@@ -121,8 +152,24 @@ class MyApp extends StatelessWidget {
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
           useMaterial3: true,
         ),
-        home: InitialPage(),
+        home: !isUserLoggedIn
+            ? const InitialPage()
+            : MyHomePage(baseUrl, endPoint, villageName, houseHoldUrl),
       ),
     );
+  }
+
+  Future<void> updateVillageData() async {
+    final prefs = await PrefsService.getInstance();
+    baseUrl = prefs.getString(PrefsServiceKeys.baseUrl)!;
+    print(baseUrl);
+    endPoint = prefs.getString(PrefsServiceKeys.endPoint)!;
+    print(endPoint);
+
+    houseHoldUrl = prefs.getString(PrefsServiceKeys.houseHoldUrl)!;
+    print(houseHoldUrl);
+
+    villageName = prefs.getString(PrefsServiceKeys.villageName)!;
+    print(villageName);
   }
 }

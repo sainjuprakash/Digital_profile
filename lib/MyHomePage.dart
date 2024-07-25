@@ -40,6 +40,7 @@ import 'package:digital_profile/src/features/table_no_74/presentation/pages/sett
 import 'package:digital_profile/src/features/table_no_95/presentation/pages/allowance_page.dart';
 import 'package:digital_profile/src/features/table_no_97/presentation/pages/road_distance_page.dart';
 import 'package:digital_profile/src/features/toilet/presentation/pages/toilet_page.dart';
+import 'package:digital_profile/src/initial_page/presentation/pages/initial_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -107,6 +108,7 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   void initState() {
     super.initState();
+    print(isUserLoggedIn);
     checkUser();
   }
 
@@ -214,11 +216,7 @@ class _MyHomePageState extends State<MyHomePage> {
                           checkUser();
                           Navigator.of(context).pushAndRemoveUntil(
                               MaterialPageRoute(
-                                  builder: (context) => MyHomePage(
-                                      widget.baseUrl,
-                                      widget.endPoint,
-                                      widget.villageName,
-                                      widget.householdUrl)),
+                                  builder: (context) => const InitialPage()),
                               (route) => false);
                         },
                       ),

@@ -9,7 +9,11 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class PrefsServiceKeys {
   static const String accessTokem = 'accessTokem';
-  static const String villageName = '';
+  static const String villageName = 'रुबी भ्याली';
+  static const String baseUrl = 'https://rubivalleymun.digitalprofile.com.np';
+  static const String endPoint = 'api/household/reports?table_no=table';
+  static const String houseHoldUrl =
+      'http://rubytest.git.com.np/api/household/reports/all';
 }
 
 class PrefsService {

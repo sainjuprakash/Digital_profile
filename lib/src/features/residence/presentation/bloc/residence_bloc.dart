@@ -56,8 +56,9 @@ class ResidenceBloc extends Bloc<ResidenceEvent, ResidenceState> {
             emit(ResidenceSuccessState(fetchedResidenceModel: cacheModel));
             return;
           } else {
-            ResidenceFailureState(
-                errMsg: 'No internet connection and no cached data available.');
+            emit(ResidenceFailureState(
+                errMsg:
+                    'No internet connection and no cached data available.'));
           }
         }
       } catch (errMsg) {

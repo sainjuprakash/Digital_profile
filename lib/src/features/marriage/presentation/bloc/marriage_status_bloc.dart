@@ -68,8 +68,9 @@ class MarriageStatusBloc
             }).toList();
             emit(MarriageSuccessState(marriageModel: cacheModel));
           } else {
-            MarriageFailureState(
-                errMsg: 'No internet connection and no cached data available.');
+            emit(MarriageFailureState(
+                errMsg:
+                    'No internet connection and no cached data available.'));
           }
         }
       } catch (errMsg) {

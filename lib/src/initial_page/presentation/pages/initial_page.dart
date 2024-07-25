@@ -136,7 +136,6 @@ class _InitialPageState extends State<InitialPage> {
                     setState(() {
                       _selectedOption = newValue;
                     });
-
                   },
                   items: _options.map<DropdownMenuItem<String>>((String value) {
                     return DropdownMenuItem<String>(
@@ -154,8 +153,13 @@ class _InitialPageState extends State<InitialPage> {
     );
   }
 
-  void getEndPoints(BuildContext context) {
+  Future<void> getEndPoints(BuildContext context) async {
+    final prefs = await PrefsService.getInstance();
     if (_selectedOption == 'रुबी भ्याली') {
+      await prefs.setString(PrefsServiceKeys.baseUrl, baseUrls[0]);
+      await prefs.setString(PrefsServiceKeys.endPoint, endPoints[0]);
+      await prefs.setString(PrefsServiceKeys.villageName, _options[0]);
+      await prefs.setString(PrefsServiceKeys.houseHoldUrl, householdUrls[0]);
       Navigator.push(
           context,
           MaterialPageRoute(
@@ -163,6 +167,9 @@ class _InitialPageState extends State<InitialPage> {
                   baseUrls[0], endPoints[0], _options[0], householdUrls[0])));
     }
     if (_selectedOption == 'ऐरावती') {
+      await prefs.setString(PrefsServiceKeys.baseUrl, baseUrls[1]);
+      await prefs.setString(PrefsServiceKeys.endPoint, endPoints[1]);
+      await prefs.setString(PrefsServiceKeys.houseHoldUrl, householdUrls[1]);
       Navigator.push(
           context,
           MaterialPageRoute(
@@ -170,6 +177,11 @@ class _InitialPageState extends State<InitialPage> {
                   baseUrls[1], endPoints[1], _options[1], householdUrls[1])));
     }
     if (_selectedOption == 'कोन्ज्योसोम') {
+      await prefs.setString(
+          PrefsServiceKeys.baseUrl, 'https://aialprofile.com.np');
+      await prefs.setString(
+          PrefsServiceKeys.endPoint, 'api/v1/hos?table_no=table');
+      await prefs.setString(PrefsServiceKeys.houseHoldUrl, '');
       Navigator.push(
           context,
           MaterialPageRoute(

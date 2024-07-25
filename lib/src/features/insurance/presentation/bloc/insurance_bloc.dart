@@ -29,7 +29,7 @@ class InsuranceBloc extends Bloc<InsuranceEvent, InsuranceState> {
               await _insuranceRepository.getInsuranceData(baseUrl, endPoint);
           for (var e in fetchedInsModel) {
             var insuranceModel = InsuranceTableData(
-                villageName : gauPalika!,
+                villageName: gauPalika!,
                 wardNumber: e.wardNumber,
                 lifeInsurance: e.lifeInsurance,
                 healthInsurance: e.healthInsurance,
@@ -57,8 +57,8 @@ class InsuranceBloc extends Bloc<InsuranceEvent, InsuranceState> {
             emit(InsuranceSuccessState(insuranceModel: cacheModel));
             return;
           } else {
-            InsuranceFailureState(
-                errMsg: 'No internet connection and no cached data available');
+            emit(InsuranceFailureState(
+                errMsg: 'No internet connection and no cached data available'));
           }
         }
       } catch (errMsg) {
