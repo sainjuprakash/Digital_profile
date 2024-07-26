@@ -26,6 +26,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("प्रमुख पेशा अनुसार जनसंख्या"),
         "Undisclosed": MessageLookupByLibrary.simpleMessage("नखुलाइएकाे"),
         "able": MessageLookupByLibrary.simpleMessage("अपाङ्गता नभएको"),
+        "aboutUs": MessageLookupByLibrary.simpleMessage("हाम्रोबारे"),
         "above90": MessageLookupByLibrary.simpleMessage("९० माथि"),
         "age": MessageLookupByLibrary.simpleMessage("उमेर"),
         "agriculture": MessageLookupByLibrary.simpleMessage("कृषि कार्य"),
@@ -207,6 +208,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "livingStatus": MessageLookupByLibrary.simpleMessage("बसोबासको अवस्था"),
         "loanTitle": MessageLookupByLibrary.simpleMessage(
             "ऋणको उद्देश्य अनुसार घरपरिवार विवरण"),
+        "logOut": MessageLookupByLibrary.simpleMessage("लग आउत"),
         "login": MessageLookupByLibrary.simpleMessage("लग-इन"),
         "longTermDisease":
             MessageLookupByLibrary.simpleMessage("दीर्घ राेग लागेकाे"),
@@ -220,6 +222,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "malehhcount": MessageLookupByLibrary.simpleMessage("पुरुष घरमुली"),
         "malelessthan6":
             MessageLookupByLibrary.simpleMessage("पुरुष(६ भन्दा कम)"),
+        "map": MessageLookupByLibrary.simpleMessage("नक्सा"),
         "maritalStatus": MessageLookupByLibrary.simpleMessage("वैवाहिक स्थिति"),
         "marriagetitle": MessageLookupByLibrary.simpleMessage("वैवाहिक स्थिति"),
         "married": MessageLookupByLibrary.simpleMessage("विवाहित"),

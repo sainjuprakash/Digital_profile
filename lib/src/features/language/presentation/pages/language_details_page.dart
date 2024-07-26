@@ -86,9 +86,6 @@ class _LanguageDetailsState extends State<LanguageDetails> {
                     totalOthers: totalOthers,
                     totalNotAvailable: totalNotAvailable,
                     totalTotal: totalTotal),
-                const SizedBox(
-                  height: 20,
-                ),
               ],
             )),
           );

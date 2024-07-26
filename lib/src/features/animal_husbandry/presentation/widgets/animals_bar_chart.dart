@@ -41,53 +41,26 @@ class AnimalBarChart extends StatelessWidget {
                 return SingleChildScrollView(
                   scrollDirection: Axis.horizontal,
                   child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: SizedBox(
-                        height: 500,
-                        width: 500,
-                        child: BarChart(BarChartData(
-                            minY: 0,
-                            maxY: 5000,
-                            alignment: BarChartAlignment.spaceAround,
-                            titlesData: FlTitlesData(
-                                topTitles: const AxisTitles(
-                                    sideTitles: SideTitles(showTitles: false)),
-                                bottomTitles: AxisTitles(
-                                    sideTitles: SideTitles(
-                                        showTitles: true,
-                                        reservedSize: 36,
-                                        getTitlesWidget: (value, meta) {
-                                          final animalList = [
-                                            l10n.birds,
-                                            l10n.animals,
-                                            l10n.noAnimals
-                                          ];
-                                          int index = value.toInt();
-                                          return Padding(
-                                            padding: const EdgeInsets.all(8.0),
-                                            child: Text(animalList[index]),
-                                          );
-                                        }))),
-                            barGroups: [
-                              BarChartGroupData(x: 0, barRods: [
-                                BarChartRodData(
-                                    toY: totalBirds.toDouble(),
-                                    width: 20,
-                                    borderRadius: BorderRadius.circular(2))
-                              ]),
-                              BarChartGroupData(x: 1, barRods: [
-                                BarChartRodData(
-                                    toY: totalLiveStock.toDouble(),
-                                    width: 20,
-                                    borderRadius: BorderRadius.circular(2))
-                              ]),
-                              BarChartGroupData(x: 2, barRods: [
-                                BarChartRodData(
-                                    toY: totalNoAnimals.toDouble(),
-                                    width: 20,
-                                    borderRadius: BorderRadius.circular(2))
-                              ]),
-                            ]))),
+                      padding: const EdgeInsets.only(top: 8.0,bottom: 40),
+                      child: SizedBox(
+                          height: 250,
+                          width: 250,
+                          child: PieChart(
+                              swapAnimationDuration:
+                                  const Duration(milliseconds: 300),
+                              PieChartData(
+                                  sections: [
+                                PieChartSectionData(
+                                    color: const Color(0xFF009688),
+                                    value: totalBirds.toDouble(),
+                                    badgeWidget: Text(l10n.birds),
+                                    badgePositionPercentageOffset: 1.5),
+                                PieChartSectionData(
+                                    color: const Color(0xFF1976D2),
+                                    value: totalLiveStock.toDouble(),
+                                    badgeWidget: Text(l10n.livestock),
+                                    badgePositionPercentageOffset: 1.5),
+                              ]))),
                   ),
                 );
               }

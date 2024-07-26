@@ -1,3 +1,4 @@
+import 'package:digital_profile/constant/spacing.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -63,9 +64,7 @@ class _EthnicityPageState extends State<EthnicityPage> {
                 totalHillDalit: totalHillDalit,
                 totalNotAvailable: totalNotAvailable,
                 totalTotalEthnicity: totalTotalEthnicity),
-            const SizedBox(
-              height: 10,
-            ),
+            verticalspace(),
             EthnicityDataTable(
                 totalMuslim: totalMuslim,
                 totalHillBrahman: totalHillBrahman,

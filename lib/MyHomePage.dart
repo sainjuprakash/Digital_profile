@@ -1,4 +1,5 @@
 import 'package:digital_profile/app_localization/l10n.dart';
+import 'package:digital_profile/constant/spacing.dart';
 import 'package:digital_profile/core/services/shared_preferences_service.dart';
 import 'package:digital_profile/src/features/age_table2_2/presentation/page/age_population_page.dart';
 import 'package:digital_profile/src/features/animal_husbandry/presentation/pages/animals_page.dart';
@@ -42,7 +43,9 @@ import 'package:digital_profile/src/features/table_no_97/presentation/pages/road
 import 'package:digital_profile/src/features/toilet/presentation/pages/toilet_page.dart';
 import 'package:digital_profile/src/initial_page/presentation/pages/initial_page.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import 'core/network/endpoints.dart';
 
@@ -59,7 +62,7 @@ class _MyHomePageState extends State<MyHomePage> {
   List<String> dropDownOptions = [
     'Table 1 - 1.1 पारिवारिक तथा जनसंख्या विवरण',
     'Table 2 - 1.2 उमेर वर्गीकरण अनुसार जनसंख्या',
-    'Table 3 - 1.3 जातजाती अनुसार घरपरिवार संख्या',
+    //'Table 3 - 1.3 जातजाती अनुसार घरपरिवार संख्या',
     'Table 4 - 1.4 जातजाती अनुसार जनसंख्या',
     'Table 5 - 1.5 मातृभाषाको आधारमा जनसंख्या',
     'Table 6 - 1.6 धर्मको आधारमा जनसंख्या',
@@ -108,7 +111,6 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   void initState() {
     super.initState();
-    print(isUserLoggedIn);
     checkUser();
   }
 
@@ -116,6 +118,25 @@ class _MyHomePageState extends State<MyHomePage> {
     final prefs = await PrefsService.getInstance();
     await prefs.remove(PrefsServiceKeys.accessTokem);
     Endpoints.api_token = '';
+  }
+
+  final Uri _url = Uri.parse('https://csds.com.np/');
+
+  Future<void> _launchURL() async {
+    if (!await launchUrl(_url)) {
+      throw 'Could not launch $_url';
+    }
+  }
+
+  void _copyText() {
+    Clipboard.setData(const ClipboardData(text: 'https://csds.com.np'));
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        backgroundColor: Colors.blueAccent.withOpacity(0.5),
+        content: const Text('Copied to clipboard'),
+        duration: const Duration(milliseconds: 300),
+      ),
+    );
   }
 
   @override
@@ -167,12 +188,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   child: ListView(
                     children: [
                       ListTile(
-                        leading: const Icon(Icons.data_exploration_outlined),
-                        title: Text(l10n.instutionaldata),
-                        onTap: () {},
-                      ),
-                      ListTile(
-                        leading: const Icon(Icons.warehouse),
+                        leading: const Icon(Icons.house_outlined),
                         title: Text(l10n.householdData),
                         onTap: () {
                           Navigator.pop(context);
@@ -185,8 +201,9 @@ class _MyHomePageState extends State<MyHomePage> {
                       ),
                       ListTile(
                         leading: const Icon(Icons.map_outlined),
-                        title: const Text('Maps'),
+                        title: Text(l10n.map),
                         onTap: () {
+                          Navigator.pop(context);
                           Navigator.push(
                               context,
                               MaterialPageRoute(
@@ -198,9 +215,10 @@ class _MyHomePageState extends State<MyHomePage> {
                         },
                       ),
                       ListTile(
-                        leading: const Icon(Icons.report),
-                        title: Text(l10n.report),
+                        leading: const Icon(Icons.account_circle_outlined),
+                        title: Text(l10n.aboutUs),
                         onTap: () {
+                          Navigator.pop(context);
                           Navigator.push(
                               context,
                               MaterialPageRoute(
@@ -209,7 +227,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       ),
                       ListTile(
                         leading: const Icon(Icons.login),
-                        title: const Text('Log Out'),
+                        title: Text(l10n.logOut),
                         onTap: () async {
                           Navigator.pop(context);
                           logout();
@@ -268,6 +286,24 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
               ),
               getPage(context),
+
+              GestureDetector(
+                onTap: _launchURL,
+                onLongPress: _copyText,
+                child: const Text(
+                  'https://csds.com.np',
+                  style: TextStyle(
+                    fontStyle: FontStyle.italic,
+                    fontSize: 15,
+                    color: Colors.blue, // Add color to indicate it's a link
+                    decoration: TextDecoration
+                        .underline, // Underline to indicate it's a link
+                  ),
+                ),
+              ),
+              verticalspace(
+                height: 4,
+              ),
             ],
           ),
         ),
@@ -281,9 +317,11 @@ class _MyHomePageState extends State<MyHomePage> {
     }
     if (selectedItem == "Table 2 - 1.2 उमेर वर्गीकरण अनुसार जनसंख्या") {
       return AgePopulationPage(widget.baseUrl, widget.endPoint);
-    } else if (selectedItem == "Table 3 - 1.3 जातजाती अनुसार घरपरिवार संख्या") {
-      return EthnicityPage(widget.baseUrl, widget.endPoint);
-    } else if (selectedItem == "Table 4 - 1.4 जातजाती अनुसार जनसंख्या") {
+    }
+    // else if (selectedItem == "Table 3 - 1.3 जातजाती अनुसार घरपरिवार संख्या") {
+    //   return EthnicityPage(widget.baseUrl, widget.endPoint);
+    // }
+    else if (selectedItem == "Table 4 - 1.4 जातजाती अनुसार जनसंख्या") {
       return EthnicityPopulationPage(widget.baseUrl, widget.endPoint);
     } else if (selectedItem == "Table 5 - 1.5 मातृभाषाको आधारमा जनसंख्या") {
       return LanguageDetails(widget.baseUrl, widget.endPoint);

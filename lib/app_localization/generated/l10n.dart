@@ -70,6 +70,36 @@ class AppLocalizations {
     );
   }
 
+  /// `नक्सा`
+  String get map {
+    return Intl.message(
+      'नक्सा',
+      name: 'map',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `हाम्रोबारे`
+  String get aboutUs {
+    return Intl.message(
+      'हाम्रोबारे',
+      name: 'aboutUs',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `लग आउत`
+  String get logOut {
+    return Intl.message(
+      'लग आउत',
+      name: 'logOut',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `रिपोर्ट`
   String get report {
     return Intl.message(

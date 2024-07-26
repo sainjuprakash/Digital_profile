@@ -3,12 +3,9 @@ import 'package:digital_profile/src/features/health_condition/data/model/health_
 import 'package:digital_profile/src/features/health_condition/data/repository/health_condition_repository_impl.dart';
 import 'package:digital_profile/src/features/health_condition/presentation/widgets/health_condition_bar_chart.dart';
 import 'package:digital_profile/src/features/health_condition/presentation/widgets/health_condition_data_table.dart';
-import 'package:digital_profile/src/features/marriage/data/model/marriage_status_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
-import '../../../marriage/presentation/bloc/marriage_status_bloc.dart';
 import '../bloc/health_condition_bloc.dart';
 
 class HealthConditionPage extends StatefulWidget {

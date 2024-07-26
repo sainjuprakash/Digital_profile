@@ -84,8 +84,8 @@ class _MyAppState extends State<MyApp> {
 
   @override
   void initState() {
-    print(isUserLoggedIn);
     super.initState();
+    checkUser();
     updateVillageData();
   }
 
@@ -102,9 +102,9 @@ class _MyAppState extends State<MyApp> {
         RepositoryProvider(
           create: (context) => GetLanguageRepository(),
         ),
-        RepositoryProvider(
-          create: (context) => GetEthnicityRepository(),
-        ),
+        // RepositoryProvider(
+        //   create: (context) => GetEthnicityRepository(),
+        // ),
         RepositoryProvider(create: (context) => ImplLoginRepository()),
         RepositoryProvider(
             create: (context) => ImplEthnicityPopulationRepository()),
@@ -162,14 +162,8 @@ class _MyAppState extends State<MyApp> {
   Future<void> updateVillageData() async {
     final prefs = await PrefsService.getInstance();
     baseUrl = prefs.getString(PrefsServiceKeys.baseUrl)!;
-    print(baseUrl);
     endPoint = prefs.getString(PrefsServiceKeys.endPoint)!;
-    print(endPoint);
-
     houseHoldUrl = prefs.getString(PrefsServiceKeys.houseHoldUrl)!;
-    print(houseHoldUrl);
-
     villageName = prefs.getString(PrefsServiceKeys.villageName)!;
-    print(villageName);
   }
 }

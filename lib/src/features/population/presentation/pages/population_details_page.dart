@@ -131,9 +131,7 @@ class _PopulationDetailsPageState extends State<PopulationDetailsPage> {
               height: 10,
             ),
             PopulationDatatable(),
-            const SizedBox(
-              height: 10,
-            ),
+
           ],
         ),
       ),
