@@ -2,9 +2,7 @@ import 'package:digital_profile/app_localization/l10n.dart';
 import 'package:digital_profile/constant/app_texts/app_title_text.dart';
 import 'package:digital_profile/constant/spacing.dart';
 import 'package:fl_chart/fl_chart.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../bloc/allowance_bloc.dart';
@@ -41,7 +39,6 @@ class AllowanceBarChart extends StatelessWidget {
         children: [
           verticalspace(),
           AppTitleText(text: l10n.allowanceTitle),
-          verticalspace(),
           BlocBuilder<AllowanceBloc, AllowanceState>(
             builder: (context, state) {
               if (state is AllowanceLoadingState) {
@@ -154,17 +151,19 @@ class AllowanceBarChart extends StatelessWidget {
                 );
               }
               if (state is AllowanceFailureState) {
-                return const Center(
-                    child: Padding(
-                  padding: EdgeInsets.all(8.0),
-                  child: Text('Unable to load data'),
-                ));
-              }
-              return const Center(
+                return Center(
                   child: Padding(
-                padding: EdgeInsets.all(8.0),
-                child: Text('something went wrong'),
-              ));
+                    padding: const EdgeInsets.all(20.0),
+                    child: Text(l10n.loadDataFail),
+                  ),
+                );
+              }
+              return Center(
+                child: Padding(
+                  padding: const EdgeInsets.all(20.0),
+                  child: Text(l10n.unknownError),
+                ),
+              );
             },
           ),
         ],

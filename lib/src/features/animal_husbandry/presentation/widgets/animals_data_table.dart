@@ -17,59 +17,81 @@ class AnimalDataTable extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<AnimalsBloc, AnimalsState>(
-      builder: (context, state) {
-        if (state is AnimalsSuccessState) {
-          List<AnimalsModel> fetchedAnimalsData = state.fetchedAnimalsModel;
-          return SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
-            child: SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              child: Card(
-                child: DataTable(
-                  columns: [
-                    DataColumn(label: Text(l10n.wardnumber)),
-                    DataColumn(label: Text(l10n.birds)),
-                    DataColumn(label: Text(l10n.animals)),
-                   // DataColumn(label: Text(l10n.noAnimals)),
-                    DataColumn(label: Text(l10n.total)),
-                  ],
-                  rows: fetchedAnimalsData.asMap().entries.map((e) {
-                    int totalNoAnimals = e.value.wardHouses! -
-                        (e.value.wardBirds! + e.value.wardLivestock!);
-                    return DataRow(
-                        color: MaterialStateProperty.resolveWith((states) {
-                          if (e.key % 2 == 0) {
-                            return Colors.grey.withOpacity(0.3);
-                          } else {
-                            return null;
-                          }
-                        }),
-                        cells: [
-                          DataCell(Text(e.value.wardNumber.toString())),
-                          DataCell(Text(e.value.wardBirds?.toString() ?? '-')),
-                          DataCell(Text(e.value.wardLivestock.toString())),
-                         // DataCell(Text(totalNoAnimals.toString())),
-                          DataCell(Text(e.value.wardHouses.toString())),
-                        ]);
-                  }).toList()
-                    ..add(DataRow(
-                        color: MaterialStateProperty.resolveWith(
-                            (states) => Colors.grey.withOpacity(0.6)),
-                        cells: [
-                          DataCell(Text(l10n.total)),
-                          DataCell(Text(totalBirds.toString())),
-                          DataCell(Text(totalLiveStock.toString())),
-                         // DataCell(Text(totalNoAnimals.toString())),
-                          DataCell(Text(totalHouses.toString())),
-                        ])),
+    return Card(
+      child: BlocBuilder<AnimalsBloc, AnimalsState>(
+        builder: (context, state) {
+          if (state is AnimalsLoadingState) {
+            return const SizedBox(
+              height: 60,
+              width: double.maxFinite,
+              child: Center(
+                child: Padding(
+                  padding: EdgeInsets.all(8.0),
+                  child: CircularProgressIndicator(),
                 ),
               ),
+            );
+          }
+          if (state is AnimalsSuccessState) {
+            List<AnimalsModel> fetchedAnimalsData = state.fetchedAnimalsModel;
+            return SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: DataTable(
+                columns: [
+                  DataColumn(label: Text(l10n.wardnumber)),
+                  DataColumn(label: Text(l10n.birds)),
+                  DataColumn(label: Text(l10n.animals)),
+                  // DataColumn(label: Text(l10n.noAnimals)),
+                  DataColumn(label: Text(l10n.total)),
+                ],
+                rows: fetchedAnimalsData.asMap().entries.map((e) {
+                  // int totalNoAnimals = e.value.wardHouses! -
+                  //     (e.value.wardBirds! + e.value.wardLivestock!);
+                  return DataRow(
+                      color: MaterialStateProperty.resolveWith((states) {
+                        if (e.key % 2 == 0) {
+                          return Colors.grey.withOpacity(0.3);
+                        } else {
+                          return null;
+                        }
+                      }),
+                      cells: [
+                        DataCell(Text(e.value.wardNumber.toString())),
+                        DataCell(Text(e.value.wardBirds?.toString() ?? '-')),
+                        DataCell(Text(e.value.wardLivestock.toString())),
+                        // DataCell(Text(totalNoAnimals.toString())),
+                        DataCell(Text(e.value.wardHouses.toString())),
+                      ]);
+                }).toList()
+                  ..add(DataRow(
+                      color: MaterialStateProperty.resolveWith(
+                          (states) => Colors.grey.withOpacity(0.6)),
+                      cells: [
+                        DataCell(Text(l10n.total)),
+                        DataCell(Text(totalBirds.toString())),
+                        DataCell(Text(totalLiveStock.toString())),
+                        // DataCell(Text(totalNoAnimals.toString())),
+                        DataCell(Text(totalHouses.toString())),
+                      ])),
+              ),
+            );
+          }
+          if (state is AnimalsFailureState) {
+            return Center(
+              child: Padding(
+                padding: const EdgeInsets.all(20.0),
+                child: Text(l10n.loadDataFail),
+              ),
+            );
+          }
+          return Center(
+            child: Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: Text(l10n.unknownError),
             ),
           );
-        }
-        return const Center(child: CircularProgressIndicator());
-      },
+        },
+      ),
     );
   }
 }

@@ -35,7 +35,7 @@ class EthnicityPopulationBarChart extends StatelessWidget {
     return Card(
       child: Column(
         children: [
-         verticalspace(),
+          verticalspace(),
           const Center(
             child: Text(
               'जातजाती अनुसार जनसंख्या',
@@ -45,7 +45,8 @@ class EthnicityPopulationBarChart extends StatelessWidget {
           BlocBuilder<EthnicityPopulationBloc, EthnicityPopulationState>(
               builder: (context, state) {
             if (state is EthnicityPopulationLoadingState) {
-              return const Center(child: Padding(
+              return const Center(
+                  child: Padding(
                 padding: EdgeInsets.all(8.0),
                 child: CircularProgressIndicator(),
               ));
@@ -179,15 +180,17 @@ class EthnicityPopulationBarChart extends StatelessWidget {
               );
             }
             if (state is EthnicityPopulationFailureState) {
-              return const Padding(
-                padding: EdgeInsets.all(8.0),
-                child: Center(
-                    child: Text('Unable to load ethnicity population data')),
-              );
+              return Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Center(
+                    child: Text(l10n.loadDataFail),
+                  ));
             }
-            return const Padding(
-              padding: EdgeInsets.all(8.0),
-              child: Center(child: Text('Something went wrong')),
+            return Center(
+              child: Padding(
+                padding: const EdgeInsets.all(20.0),
+                child: Text(l10n.unknownError),
+              ),
             );
           }),
         ],

@@ -1,10 +1,7 @@
 import 'dart:ui';
 
 import 'package:digital_profile/MyHomePage.dart';
-import 'package:digital_profile/src/initial_page/data/database/village_database.dart';
-import 'package:digital_profile/src/initial_page/data/table_helper/village_table_helper.dart';
 import 'package:flutter/material.dart';
-
 import '../../../../core/services/shared_preferences_service.dart';
 
 class InitialPage extends StatefulWidget {

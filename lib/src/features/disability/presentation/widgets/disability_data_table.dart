@@ -39,9 +39,14 @@ class DisabilityDataTable extends StatelessWidget {
       scrollDirection: Axis.horizontal,
       child: SizedBox(child: BlocBuilder<DisabilityBloc, DisabilityState>(
         builder: (context, state) {
+          if (state is DisabilityLoadingState) {
+            return const Padding(
+              padding: EdgeInsets.all(8.0),
+              child: Center(child: CircularProgressIndicator()),
+            );
+          }
           if (state is DisabilitySuccessState) {
-            List<DisabilityModel> fetchedDisabilityData =
-                state.disabilityModel;
+            List<DisabilityModel> fetchedDisabilityData = state.disabilityModel;
             return Card(
               child: DataTable(
                 columns: [
@@ -131,9 +136,21 @@ class DisabilityDataTable extends StatelessWidget {
                       ])),
               ),
             );
-          } else {
-            return const Center(child: CircularProgressIndicator());
           }
+          if (state is DisabilityFailureState) {
+            return Center(
+              child: Padding(
+                padding: const EdgeInsets.all(20.0),
+                child: Text(l10n.loadDataFail),
+              ),
+            );
+          }
+          return Center(
+            child: Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: Text(l10n.unknownError),
+            ),
+          );
         },
       )),
     );

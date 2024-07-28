@@ -29,6 +29,13 @@ class HealthConditionDataTable extends StatelessWidget {
       scrollDirection: Axis.horizontal,
       child: BlocBuilder<HealthConditionBloc, HealthConditionState>(
         builder: (context, state) {
+          if (state is HealthConditionLoadingState) {
+            return const Center(
+                child: Padding(
+              padding: EdgeInsets.all(8.0),
+              child: CircularProgressIndicator(),
+            ));
+          }
           if (state is HealthConditionSuccessState) {
             List<HealthConditionModel> fetchedHealthData =
                 state.healthConditionModel;
@@ -81,7 +88,20 @@ class HealthConditionDataTable extends StatelessWidget {
               ),
             );
           }
-          return const Center(child: CircularProgressIndicator());
+          if (state is HealthConditionFailureState) {
+            return Center(
+              child: Padding(
+                padding: const EdgeInsets.all(20.0),
+                child: Text(l10n.loadDataFail),
+              ),
+            );
+          }
+          return Center(
+            child: Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: Text(l10n.unknownError),
+            ),
+          );
         },
       ),
     );

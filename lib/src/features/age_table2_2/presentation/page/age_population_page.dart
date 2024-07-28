@@ -46,11 +46,6 @@ class _AgePopulationPageState extends State<AgePopulationPage> {
         ..add(GetAgePopulationEvent()),
       child: BlocBuilder<AgePopulationBloc, AgePopulationState>(
         builder: (context, state) {
-          if (state is AgePopulationLoadingState) {
-            return const Center(
-              child: CircularProgressIndicator(),
-            );
-          }
           if (state is AgePopulationSuccessState) {
             List<AgePopulationModel> fetchedAgeData = state.agePopulationModel;
             fetchedAgeData.asMap().forEach((key, value) {

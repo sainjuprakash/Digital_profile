@@ -33,11 +33,6 @@ class _AnimalsPageState extends State<AnimalsPage> {
         ..add(GetAnimalsEvent()),
       child: BlocBuilder<AnimalsBloc, AnimalsState>(
         builder: (context, state) {
-          if (state is AnimalsLoadingState) {
-            return const Center(
-              child: CircularProgressIndicator(),
-            );
-          }
           if (state is AnimalsSuccessState) {
             List<AnimalsModel> fetchedAnimalsData = state.fetchedAnimalsModel;
             fetchedAnimalsData.asMap().forEach((key, value) {

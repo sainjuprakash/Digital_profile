@@ -140,17 +140,17 @@ class HouseRoofBarChart extends StatelessWidget {
                 );
               }
               if (state is HouseFailureState) {
-                return const Center(
+                return Center(
                   child: Padding(
-                    padding: EdgeInsets.all(8.0),
-                    child: Text("Unable to load data"),
+                    padding: const EdgeInsets.all(20.0),
+                    child: Text(l10n.loadDataFail),
                   ),
                 );
               }
-              return const Center(
+              return Center(
                 child: Padding(
-                  padding: EdgeInsets.all(8.0),
-                  child: Text("Something went Wrong"),
+                  padding: const EdgeInsets.all(20.0),
+                  child: Text(l10n.unknownError),
                 ),
               );
             },

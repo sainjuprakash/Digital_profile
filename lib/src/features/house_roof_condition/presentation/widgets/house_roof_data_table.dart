@@ -29,13 +29,25 @@ class HouseRoofDataTable extends StatelessWidget {
       {super.key});
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      scrollDirection: Axis.horizontal,
+    return Card(
       child: BlocBuilder<HouseBloc, HouseState>(
         builder: (context, state) {
+          if (state is HouseLoadingState) {
+            return const SizedBox(
+              height: 60,
+              width: double.maxFinite,
+              child: Center(
+                child: Padding(
+                  padding: EdgeInsets.all(8.0),
+                  child: CircularProgressIndicator(),
+                ),
+              ),
+            );
+          }
           if (state is HouseSuccessState) {
             List<HouseConditionModel> fetchedRoofData = state.houseModel;
-            return Card(
+            return SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
               child: DataTable(
                 columns: [
                   DataColumn(label: Text(l10n.wardnumber)),
@@ -90,7 +102,20 @@ class HouseRoofDataTable extends StatelessWidget {
               ),
             );
           }
-          return const Center(child: CircularProgressIndicator());
+          if (state is HouseFailureState) {
+            return Center(
+              child: Padding(
+                padding: const EdgeInsets.all(20.0),
+                child: Text(l10n.loadDataFail),
+              ),
+            );
+          }
+          return Center(
+            child: Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: Text(l10n.unknownError),
+            ),
+          );
         },
       ),
     );

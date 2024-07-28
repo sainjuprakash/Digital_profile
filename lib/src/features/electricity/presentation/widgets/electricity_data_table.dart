@@ -31,6 +31,14 @@ class ElectricityDataTable extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<ElectricityBloc, ElectricityState>(
       builder: (context, state) {
+        if (state is ElectricityLoadingState) {
+          return const Center(
+            child: Padding(
+              padding: EdgeInsets.all(8.0),
+              child: CircularProgressIndicator(),
+            ),
+          );
+        }
         if (state is ElectricitySuccessState) {
           List<ElectricityModel> fetchedElectricityModel =
               state.electricityModel;
@@ -92,7 +100,20 @@ class ElectricityDataTable extends StatelessWidget {
             ),
           );
         }
-        return const Center(child: CircularProgressIndicator());
+        if (state is ElectricityFailureState) {
+          return Center(
+            child: Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: Text(l10n.loadDataFail),
+            ),
+          );
+        }
+        return Center(
+          child: Padding(
+            padding: const EdgeInsets.all(20.0),
+            child: Text(l10n.unknownError),
+          ),
+        );
       },
     );
   }

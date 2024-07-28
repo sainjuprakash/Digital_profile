@@ -1,10 +1,7 @@
-import 'dart:math';
-
 import 'package:digital_profile/app_localization/l10n.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import '../../data/model/marriage_status_model.dart';
 import '../bloc/marriage_status_bloc.dart';
 
@@ -41,9 +38,14 @@ class MarriageDatatable extends StatelessWidget {
       scrollDirection: Axis.horizontal,
       child: BlocBuilder<MarriageStatusBloc, MarriageStatusState>(
         builder: (context, state) {
+          if (state is MarriageLoadingState) {
+            return const Padding(
+              padding: EdgeInsets.all(8.0),
+              child: Center(child: CircularProgressIndicator()),
+            );
+          }
           if (state is MarriageSuccessState) {
-            List<MarriageStatusModel> fetchedMarriageData =
-                state.marriageModel;
+            List<MarriageStatusModel> fetchedMarriageData = state.marriageModel;
             return Card(
               child: DataTable(
                 columns: [
@@ -104,7 +106,20 @@ class MarriageDatatable extends StatelessWidget {
               ),
             );
           }
-          return const Center(child: CircularProgressIndicator());
+          if (state is MarriageFailureState) {
+            return Center(
+              child: Padding(
+                padding: const EdgeInsets.all(20.0),
+                child: Text(l10n.loadDataFail),
+              ),
+            );
+          }
+          return Center(
+            child: Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: Text(l10n.unknownError),
+            ),
+          );
         },
       ),
     );

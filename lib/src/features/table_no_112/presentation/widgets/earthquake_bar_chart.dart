@@ -23,7 +23,6 @@ class EarthquakeBarChart extends StatelessWidget {
         children: [
           verticalspace(),
           AppTitleText(text: l10n.earthquakeTitle),
-          verticalspace(),
           BlocBuilder<EarthquakeBloc, EarthquakeState>(
             builder: (context, state) {
               if (state is EarthquakeLoadingState) {
@@ -96,14 +95,18 @@ class EarthquakeBarChart extends StatelessWidget {
                 );
               }
               if (state is EarthquakeFailureState) {
-                return const Padding(
-                  padding: EdgeInsets.all(8.0),
-                  child: Center(child: Text("Unable to load data")),
+                return Center(
+                  child: Padding(
+                    padding: const EdgeInsets.all(20.0),
+                    child: Text(l10n.loadDataFail),
+                  ),
                 );
               }
-              return const Padding(
-                padding: EdgeInsets.all(8.0),
-                child: Center(child: Text("Something went wrong")),
+              return Center(
+                child: Padding(
+                  padding: const EdgeInsets.all(20.0),
+                  child: Text(l10n.unknownError),
+                ),
               );
             },
           )

@@ -1,12 +1,8 @@
 import 'package:digital_profile/app_localization/l10n.dart';
 import 'package:digital_profile/constant/app_texts/app_title_text.dart';
 import 'package:digital_profile/constant/spacing.dart';
-import 'package:fl_chart/fl_chart.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import '../../data/model/meat_model.dart';
 import '../bloc/meat_bloc.dart';
 
@@ -24,7 +20,6 @@ class MeatDataTable extends StatelessWidget {
         children: [
           verticalspace(),
           AppTitleText(text: l10n.meatTitle),
-          verticalspace(),
           BlocBuilder<MeatBloc, MeatState>(
             builder: (context, state) {
               if (state is MeatLoadingState) {
@@ -48,7 +43,7 @@ class MeatDataTable extends StatelessWidget {
                       ],
                       rows: fetchedData.asMap().entries.map((e) {
                         return DataRow(
-                            color: MaterialStateProperty.resolveWith((states) {
+                            color: WidgetStateProperty.resolveWith((states) {
                               if (e.key % 2 == 0) {
                                 return Colors.grey.withOpacity(0.3);
                               } else {
@@ -67,7 +62,7 @@ class MeatDataTable extends StatelessWidget {
                             ]);
                       }).toList()
                         ..add(DataRow(
-                            color: MaterialStateProperty.resolveWith<Color>(
+                            color: WidgetStateProperty.resolveWith<Color>(
                                 (states) {
                               return Colors.grey.withOpacity(0.6);
                             }),

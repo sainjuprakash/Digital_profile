@@ -37,6 +37,12 @@ class ReligionDataTable extends StatelessWidget {
       scrollDirection: Axis.horizontal,
       child: BlocBuilder<ReligionBloc, ReligionState>(
         builder: (context, state) {
+          if (state is ReligionLoadingState) {
+            return const Padding(
+              padding: EdgeInsets.all(8.0),
+              child: Center(child: CircularProgressIndicator()),
+            );
+          }
           if (state is ReligionSuccessState) {
             List<ReligionModel> fetchedReligionData = state.religionModel;
             return Card(
@@ -97,7 +103,18 @@ class ReligionDataTable extends StatelessWidget {
               ),
             );
           }
-          return const Center(child: CircularProgressIndicator());
+          if (state is ReligionFailureState) {
+            return Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text(l10n.loadDataFail),
+            );
+          }
+          return Center(
+            child: Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: Text(l10n.unknownError),
+            ),
+          );
         },
       ),
     );

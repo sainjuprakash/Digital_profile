@@ -38,7 +38,6 @@ class HouseOwnershipBarChart extends StatelessWidget {
             padding: const EdgeInsets.only(left: 15.0),
             child: AppTitleText(text: l10n.houseOwnershipTitle),
           ),
-          verticalspace(),
           BlocBuilder<HouseOwnershipBloc, HouseOwnershipState>(
             builder: (context, state) {
               if (state is HouseOwnershipLoadingState) {
@@ -125,17 +124,19 @@ class HouseOwnershipBarChart extends StatelessWidget {
                 );
               }
               if (state is HouseOwnershipFailureState) {
-                return const Center(
-                    child: Padding(
-                  padding: EdgeInsets.all(8.0),
-                  child: Text('Unable to load data'),
-                ));
-              }
-              return const Center(
+                return Center(
                   child: Padding(
-                padding: EdgeInsets.all(8.0),
-                child: Text('Something went wrong'),
-              ));
+                    padding: const EdgeInsets.all(20.0),
+                    child: Text(l10n.loadDataFail),
+                  ),
+                );
+              }
+              return Center(
+                child: Padding(
+                  padding: const EdgeInsets.all(20.0),
+                  child: Text(l10n.unknownError),
+                ),
+              );
             },
           )
         ],

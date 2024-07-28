@@ -55,8 +55,6 @@ class _LanguageDetailsState extends State<LanguageDetails> {
                   (fetchedLanguageData[index].notAvailable ?? 0);
               totalTotal +=
                   (fetchedLanguageData[index].totalLanguageCount ?? 0);
-              // print(fetchedLanguageData[index].nepali);
-              // print(totalNepali);
             });
           }
           return SingleChildScrollView(

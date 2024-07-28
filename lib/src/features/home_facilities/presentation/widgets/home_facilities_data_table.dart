@@ -37,14 +37,26 @@ class HomeFacilitiesDataTable extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      scrollDirection: Axis.horizontal,
+    return Card(
       child: BlocBuilder<HomeFacilitiesBloc, HomeFacilitiesState>(
         builder: (context, state) {
+          if (state is HomeFacilitiesLoadingState) {
+            return const SizedBox(
+              height: 60,
+              width: double.maxFinite,
+              child: Center(
+                child: Padding(
+                  padding: EdgeInsets.all(8.0),
+                  child: CircularProgressIndicator(),
+                ),
+              ),
+            );
+          }
           if (state is HomeFacilitiesSuccessState) {
             List<HomeFacilitiesModel> fetchedHomeFacilitiesData =
                 state.homeFacilitiesModel;
-            return Card(
+            return SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
               child: DataTable(
                 columns: [
                   DataColumn(label: Text(l10n.wardnumber)),
@@ -107,7 +119,20 @@ class HomeFacilitiesDataTable extends StatelessWidget {
               ),
             );
           }
-          return const Center(child: CircularProgressIndicator());
+          if (state is HomeFacilitiesFailureState) {
+            return Center(
+              child: Padding(
+                padding: const EdgeInsets.all(20.0),
+                child: Text(l10n.loadDataFail),
+              ),
+            );
+          }
+          return Center(
+            child: Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: Text(l10n.unknownError),
+            ),
+          );
         },
       ),
     );

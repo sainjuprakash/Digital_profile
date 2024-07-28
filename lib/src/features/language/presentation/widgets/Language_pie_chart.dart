@@ -2,7 +2,6 @@ import 'package:digital_profile/app_localization/l10n.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../bloc/language_bloc.dart';
@@ -72,7 +71,6 @@ class LanguagePieChart extends StatelessWidget {
         ),
       );
     });
-    // print(totalNepali);
     return Card(
       child: Column(
         children: [
@@ -82,7 +80,7 @@ class LanguagePieChart extends StatelessWidget {
           ),
           BlocBuilder<LanguageBloc, LanguageState>(
             builder: (context, state) {
-              if(state is LanguageLoadingState){
+              if (state is LanguageLoadingState) {
                 return const Padding(
                   padding: EdgeInsets.all(10.0),
                   child: Center(child: CircularProgressIndicator()),
@@ -91,7 +89,6 @@ class LanguagePieChart extends StatelessWidget {
               if (state is LanguageLoadedState) {
                 return Column(
                   children: [
-                    // Text(totalNepali.toString()),
                     SizedBox(
                       height: 300,
                       width: double.maxFinite,
@@ -154,12 +151,17 @@ class LanguagePieChart extends StatelessWidget {
               }
 
               if (state is LanguageFailureState) {
-                return const Padding(
-                  padding: EdgeInsets.all(20.0),
-                  child: Center(child: Text('Unable to load language data')),
+                return Padding(
+                  padding: const EdgeInsets.all(20.0),
+                  child: Center(child: Text(l10n.loadDataFail)),
                 );
               }
-              return const Text("Something went wrong");
+              return Center(
+                child: Padding(
+                  padding: const EdgeInsets.all(20.0),
+                  child: Text(l10n.unknownError),
+                ),
+              );
             },
           ),
           SingleChildScrollView(

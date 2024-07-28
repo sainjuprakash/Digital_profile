@@ -27,6 +27,14 @@ class ResidenceDataTable extends StatelessWidget {
         scrollDirection: Axis.horizontal,
         child: BlocBuilder<ResidenceBloc, ResidenceState>(
           builder: (context, state) {
+            if (state is ResidenceLoadingState) {
+              return const Center(
+                child: Padding(
+                  padding: EdgeInsets.all(8.0),
+                  child: CircularProgressIndicator(),
+                ),
+              );
+            }
             if (state is ResidenceSuccessState) {
               List<ResidenceModel> fetchedResidenceData =
                   state.fetchedResidenceModel;
@@ -82,7 +90,20 @@ class ResidenceDataTable extends StatelessWidget {
                 ),
               );
             }
-            return const Center(child: CircularProgressIndicator());
+            if (state is ResidenceFailureState) {
+              return Center(
+                child: Padding(
+                  padding: const EdgeInsets.all(20.0),
+                  child: Text(l10n.loadDataFail),
+                ),
+              );
+            }
+            return Center(
+              child: Padding(
+                padding: const EdgeInsets.all(20.0),
+                child: Text(l10n.unknownError),
+              ),
+            );
           },
         ));
   }

@@ -25,7 +25,6 @@ class RoadDistanceBarGraph extends StatelessWidget {
         children: [
           verticalspace(),
           AppTitleText(text: l10n.roadDistanceTitle),
-          verticalspace(),
           BlocBuilder<RoadDistanceBloc, RoadDistanceState>(
             builder: (context, state) {
               if (state is RoadDistanceLoadingState) {
@@ -65,7 +64,6 @@ class RoadDistanceBarGraph extends StatelessWidget {
                                     l10n.moreThanFive,
                                   ];
                                   final index = value.toInt();
-                                  //print(index);
                                   return Padding(
                                     padding: const EdgeInsets.all(8.0),
                                     child: Text(lists[index]),
@@ -105,14 +103,18 @@ class RoadDistanceBarGraph extends StatelessWidget {
                 );
               }
               if (state is RoadDistanceFailureState) {
-                return const Padding(
-                  padding: EdgeInsets.all(8.0),
-                  child: Center(child: Text("Unable to load data")),
+                return Center(
+                  child: Padding(
+                    padding: const EdgeInsets.all(20.0),
+                    child: Text(l10n.loadDataFail),
+                  ),
                 );
               }
-              return const Padding(
-                padding: EdgeInsets.all(8.0),
-                child: Center(child: Text("Something went wrong")),
+              return Center(
+                child: Padding(
+                  padding: const EdgeInsets.all(20.0),
+                  child: Text(l10n.unknownError),
+                ),
               );
             },
           )

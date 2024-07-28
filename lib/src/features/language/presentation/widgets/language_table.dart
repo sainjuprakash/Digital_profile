@@ -118,18 +118,18 @@ class LanguageTable extends StatelessWidget {
                         ]))),
             );
           }
-          // if (state is LanguageFailureState) {
-          //   return const Padding(
-          //     padding: EdgeInsets.all(20.0),
-          //     child: Center(child: Text('Unable to load data')),
-          //   );
-          // } else {
-          //   return const Padding(
-          //     padding: EdgeInsets.all(20.0),
-          //     child: Center(child: Text('Something went wrong')),
-          //   );
-          // }
-          return Center(child: const CircularProgressIndicator());
+          if (state is LanguageFailureState) {
+            return Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: Center(child: Text(l10n.loadDataFail)),
+            );
+          }
+          return Center(
+            child: Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: Text(l10n.unknownError),
+            ),
+          );
         },
       ),
     );

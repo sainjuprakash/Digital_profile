@@ -25,7 +25,6 @@ class EarthquakeResistanceBarChart extends StatelessWidget {
             padding: const EdgeInsets.only(left: 15.0),
             child: AppTitleText(text: l10n.earthquakeResistanceTitle),
           ),
-          verticalspace(),
           BlocBuilder<EarthquakeResistanceBloc, EarthquakeResistanceState>(
             builder: (context, state) {
               if (state is EarthquakeResistanceInitialState) {
@@ -83,14 +82,18 @@ class EarthquakeResistanceBarChart extends StatelessWidget {
                 );
               }
               if (state is EarthquakeResistanceFailureState) {
-                return const Padding(
-                  padding: EdgeInsets.all(10.0),
-                  child: Center(child: Text('Unable to load data')),
+                return Center(
+                  child: Padding(
+                    padding: const EdgeInsets.all(20.0),
+                    child: Text(l10n.loadDataFail),
+                  ),
                 );
               }
-              return const Padding(
-                padding: EdgeInsets.all(10.0),
-                child: Center(child: Text('Something went wrong')),
+              return Center(
+                child: Padding(
+                  padding: const EdgeInsets.all(20.0),
+                  child: Text(l10n.unknownError),
+                ),
               );
             },
           )

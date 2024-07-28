@@ -34,12 +34,24 @@ class IncomeDataTable extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<IncomeBloc, IncomeState>(
-      builder: (context, state) {
-        if (state is IncomeSuccessState) {
-          List<IncomeModel> fetchedData = state.fetchedModel;
-          return Card(
-            child: SingleChildScrollView(
+    return Card(
+      child: BlocBuilder<IncomeBloc, IncomeState>(
+        builder: (context, state) {
+          if (state is IncomeLoadingState) {
+            return const SizedBox(
+              height: 60,
+              width: double.maxFinite,
+              child: Center(
+                child: Padding(
+                  padding: EdgeInsets.all(8.0),
+                  child: CircularProgressIndicator(),
+                ),
+              ),
+            );
+          }
+          if (state is IncomeSuccessState) {
+            List<IncomeModel> fetchedData = state.fetchedModel;
+            return SingleChildScrollView(
               scrollDirection: Axis.horizontal,
               child: DataTable(
                 columns: [
@@ -58,8 +70,8 @@ class IncomeDataTable extends StatelessWidget {
                 ],
                 rows: fetchedData.asMap().entries.map((e) {
                   return DataRow(
-                      color: MaterialStateProperty.resolveWith(
-                          (Set<MaterialState> state) {
+                      color: WidgetStateProperty.resolveWith(
+                          (Set<WidgetState> state) {
                         if (e.key % 2 == 0) {
                           return Colors.grey.withOpacity(0.3);
                         } else {
@@ -82,8 +94,8 @@ class IncomeDataTable extends StatelessWidget {
                       ]);
                 }).toList()
                   ..add(DataRow(
-                      color: MaterialStateProperty.resolveWith<Color>(
-                          (Set<MaterialState> states) {
+                      color: WidgetStateProperty.resolveWith<Color>(
+                          (Set<WidgetState> states) {
                         return Colors.grey.withOpacity(0.6);
                       }),
                       cells: [
@@ -101,11 +113,24 @@ class IncomeDataTable extends StatelessWidget {
                         DataCell(Text(totalIncome.toString())),
                       ])),
               ),
+            );
+          }
+          if (state is IncomeFailureState) {
+            return Center(
+              child: Padding(
+                padding: const EdgeInsets.all(20.0),
+                child: Text(l10n.loadDataFail),
+              ),
+            );
+          }
+          return Center(
+            child: Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: Text(l10n.unknownError),
             ),
           );
-        }
-        return const Center(child: CircularProgressIndicator());
-      },
+        },
+      ),
     );
   }
 }

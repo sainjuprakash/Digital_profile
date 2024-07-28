@@ -28,7 +28,6 @@ class ToiletBarChart extends StatelessWidget {
         children: [
           verticalspace(),
           AppTitleText(text: l10n.toiletTitle),
-          verticalspace(),
           BlocBuilder<ToiletBloc, ToiletState>(
             builder: (context, state) {
               if (state is ToiletLoadingState) {
@@ -115,14 +114,18 @@ class ToiletBarChart extends StatelessWidget {
                 );
               }
               if (state is ToiletFailureState) {
-                return const Padding(
-                  padding: EdgeInsets.all(8.0),
-                  child: Center(child: Text("Unable to load data")),
+                return Center(
+                  child: Padding(
+                    padding: const EdgeInsets.all(20.0),
+                    child: Text(l10n.loadDataFail),
+                  ),
                 );
               }
-              return const Padding(
-                padding: EdgeInsets.all(8.0),
-                child: Center(child: Text("Something went wrong")),
+              return Center(
+                child: Padding(
+                  padding: const EdgeInsets.all(20.0),
+                  child: Text(l10n.unknownError),
+                ),
               );
             },
           )

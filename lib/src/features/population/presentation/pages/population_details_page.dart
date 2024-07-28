@@ -10,9 +10,9 @@ import '../widgets/househead_details_bar_graph.dart';
 import '../widgets/population_details_bar_graph.dart';
 
 class PopulationDetailsPage extends StatefulWidget {
-  String baseUrl,endPoint;
+  String baseUrl, endPoint;
 
-  PopulationDetailsPage(this.baseUrl, this.endPoint,{super.key});
+  PopulationDetailsPage(this.baseUrl, this.endPoint, {super.key});
 
   @override
   State<PopulationDetailsPage> createState() => _PopulationDetailsPageState();
@@ -71,7 +71,8 @@ class _PopulationDetailsPageState extends State<PopulationDetailsPage> {
     return BlocProvider(
       create: (context) => PopulationBloc(
           RepositoryProvider.of<GetPopulationRepository>(context),
-          widget.baseUrl,widget.endPoint)
+          widget.baseUrl,
+          widget.endPoint)
         ..add(LoadPopulationEvent()),
       child: SingleChildScrollView(
         scrollDirection: Axis.vertical,
@@ -131,7 +132,6 @@ class _PopulationDetailsPageState extends State<PopulationDetailsPage> {
               height: 10,
             ),
             PopulationDatatable(),
-
           ],
         ),
       ),

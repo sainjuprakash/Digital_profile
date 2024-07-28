@@ -1,5 +1,4 @@
 import 'package:digital_profile/app_localization/l10n.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -15,12 +14,24 @@ class GrantStageDataTable extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<GrantStageBloc, GrantStageState>(
-      builder: (context, state) {
-        if (state is GrantStageSuccessState) {
-          List<GrantStageModel> fetchedData = state.fetchedModel;
-          return Card(
-            child: SingleChildScrollView(
+    return Card(
+      child: BlocBuilder<GrantStageBloc, GrantStageState>(
+        builder: (context, state) {
+          if (state is GrantStageLoadingState) {
+            return const SizedBox(
+              height: 60,
+              width: double.maxFinite,
+              child: Center(
+                child: Padding(
+                  padding: EdgeInsets.all(8.0),
+                  child: CircularProgressIndicator(),
+                ),
+              ),
+            );
+          }
+          if (state is GrantStageSuccessState) {
+            List<GrantStageModel> fetchedData = state.fetchedModel;
+            return SingleChildScrollView(
               scrollDirection: Axis.horizontal,
               child: DataTable(
                 columns: [
@@ -33,8 +44,8 @@ class GrantStageDataTable extends StatelessWidget {
                 ],
                 rows: fetchedData.asMap().entries.map((e) {
                   return DataRow(
-                      color: MaterialStateProperty.resolveWith(
-                          (Set<MaterialState> states) {
+                      color: WidgetStateProperty.resolveWith(
+                          (Set<WidgetState> states) {
                         if (e.key % 2 == 0) {
                           return Colors.grey.withOpacity(0.3);
                         } else {
@@ -42,7 +53,7 @@ class GrantStageDataTable extends StatelessWidget {
                         }
                       }),
                       cells: [
-                        DataCell(Text(e.value.wardNumber.toString() ?? '0')),
+                        DataCell(Text(e.value.wardNumber.toString())),
                         DataCell(Text(e.value.firstStage?.toString() ?? '0')),
                         DataCell(Text(e.value.secondStage?.toString() ?? '0')),
                         DataCell(Text(e.value.thirdStage?.toString() ?? '0')),
@@ -51,7 +62,7 @@ class GrantStageDataTable extends StatelessWidget {
                       ]);
                 }).toList()
                   ..add(DataRow(
-                      color: MaterialStateProperty.resolveWith<Color>(
+                      color: WidgetStateProperty.resolveWith<Color>(
                           (states) => Colors.grey.withOpacity(0.6)),
                       cells: [
                         DataCell(Text(l10n.total)),
@@ -62,11 +73,24 @@ class GrantStageDataTable extends StatelessWidget {
                         DataCell(Text(totalTotal.toString())),
                       ])),
               ),
+            );
+          }
+          if (state is GrantStageFailureState) {
+            return Center(
+              child: Padding(
+                padding: const EdgeInsets.all(20.0),
+                child: Text(l10n.loadDataFail),
+              ),
+            );
+          }
+          return Center(
+            child: Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: Text(l10n.unknownError),
             ),
           );
-        }
-        return const Center(child: CircularProgressIndicator());
-      },
+        },
+      ),
     );
   }
 }

@@ -44,7 +44,6 @@ class DisabilityBarChart extends StatelessWidget {
       child: Column(children: [
         verticalspace(),
         Center(child: AppTitleText(text: l10n.disabilitytitle)),
-        verticalspace(),
         SingleChildScrollView(
           scrollDirection: Axis.horizontal,
           child: BlocBuilder<DisabilityBloc, DisabilityState>(
@@ -58,7 +57,7 @@ class DisabilityBarChart extends StatelessWidget {
               if (state is DisabilitySuccessState) {
                 return SizedBox(
                   height: 550,
-                  width: 1800,
+                  width: 1500,
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: BarChart(BarChartData(
@@ -74,18 +73,18 @@ class DisabilityBarChart extends StatelessWidget {
                           bottomTitles: AxisTitles(
                               sideTitles: SideTitles(
                                   showTitles: true,
-                                  reservedSize: 35,
+                                  reservedSize: 55,
                                   getTitlesWidget: (value, meta) {
                                     final religionLists = [
                                       l10n.able,
                                       l10n.disable,
-                                      l10n.deaf,
-                                      l10n.blind,
+                                      '${l10n.deaf}\n(सुन्न र बोल्न नसक्ने)',
+                                      '${l10n.blind}\n(अाखा नदेख्ने)',
                                       l10n.hearingloss,
                                       l10n.slammer,
                                       l10n.celeberal,
-                                      l10n.retarded,
-                                      l10n.mental,
+                                      '${l10n.retarded}\nअपाङगता भएको',
+                                      '${l10n.mental}\nभएको',
                                       l10n.multidisable,
                                       l10n.others
                                     ];
@@ -179,14 +178,18 @@ class DisabilityBarChart extends StatelessWidget {
                 );
               }
               if (state is DisabilityFailureState) {
-                return const Padding(
-                  padding: EdgeInsets.all(8.0),
-                  child: Center(child: Text('Something went wrong')),
+                return Center(
+                  child: Padding(
+                    padding: const EdgeInsets.all(20.0),
+                    child: Text(l10n.loadDataFail),
+                  ),
                 );
               }
-              return const Padding(
-                padding: EdgeInsets.all(8.0),
-                child: Center(child: Text('Something went wrong')),
+              return Center(
+                child: Padding(
+                  padding: const EdgeInsets.all(20.0),
+                  child: Text(l10n.unknownError),
+                ),
               );
             },
           ),

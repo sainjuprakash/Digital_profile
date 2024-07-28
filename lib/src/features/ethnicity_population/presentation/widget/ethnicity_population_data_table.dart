@@ -35,6 +35,13 @@ class EthnicityPopulationDataTable extends StatelessWidget {
       scrollDirection: Axis.horizontal,
       child: BlocBuilder<EthnicityPopulationBloc, EthnicityPopulationState>(
           builder: (context, state) {
+        if (state is EthnicityPopulationLoadingState) {
+          return const Center(
+              child: Padding(
+            padding: EdgeInsets.all(8.0),
+            child: CircularProgressIndicator(),
+          ));
+        }
         if (state is EthnicityPopulationSuccessState) {
           List<EthnicityPopulationModel> fetchedEthPopData =
               state.ethnicityPopulationModel;
@@ -97,7 +104,19 @@ class EthnicityPopulationDataTable extends StatelessWidget {
           );
         }
 
-        return const CircularProgressIndicator();
+        if (state is EthnicityPopulationFailureState) {
+          return Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Center(
+                child: Text(l10n.loadDataFail),
+              ));
+        }
+        return Center(
+          child: Padding(
+            padding: const EdgeInsets.all(20.0),
+            child: Text(l10n.unknownError),
+          ),
+        );
       }),
     );
   }

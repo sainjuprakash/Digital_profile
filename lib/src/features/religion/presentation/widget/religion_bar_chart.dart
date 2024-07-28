@@ -39,7 +39,6 @@ class ReligionBarChart extends StatelessWidget {
         children: [
           verticalspace(),
           Center(child: AppTitleText(text: l10n.religiontitle)),
-          verticalspace(),
           BlocBuilder<ReligionBloc, ReligionState>(builder: (context, state) {
             if (state is ReligionLoadingState) {
               return const Padding(
@@ -98,7 +97,6 @@ class ReligionBarChart extends StatelessWidget {
                                 width: 20,
                                 borderRadius: BorderRadius.circular(2))
                           ]),
-
                           BarChartGroupData(x: 2, barRods: [
                             BarChartRodData(
                                 toY: totalChristian.toDouble(),
@@ -147,14 +145,16 @@ class ReligionBarChart extends StatelessWidget {
               );
             }
             if (state is ReligionFailureState) {
-              return const Padding(
-                padding: EdgeInsets.all(8.0),
-                child: Text('Unable to load religion data'),
+              return Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text(l10n.loadDataFail),
               );
             }
-            return const Padding(
-              padding: EdgeInsets.all(8.0),
-              child: Center(child: Text('Something went wrong')),
+            return Center(
+              child: Padding(
+                padding: const EdgeInsets.all(20.0),
+                child: Text(l10n.unknownError),
+              ),
             );
           }),
         ],

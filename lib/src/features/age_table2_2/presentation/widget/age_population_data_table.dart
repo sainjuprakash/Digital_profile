@@ -49,16 +49,21 @@ class AgePopulationDataTable extends StatelessWidget {
       required this.totalWardCount});
   @override
   Widget build(BuildContext context) {
-    return Card(
-      child: SingleChildScrollView(
-        scrollDirection: Axis.horizontal,
-        child:
-            SizedBox(child: BlocBuilder<AgePopulationBloc, AgePopulationState>(
-          builder: (context, state) {
-            if (state is AgePopulationSuccessState) {
-              List<AgePopulationModel> fetchedAgeData =
-                  state.agePopulationModel;
-              return DataTable(
+    return SingleChildScrollView(
+      scrollDirection: Axis.horizontal,
+      child: BlocBuilder<AgePopulationBloc, AgePopulationState>(
+        builder: (context, state) {
+          if (state is AgePopulationLoadingState) {
+            return const Center(
+                child: Padding(
+              padding: EdgeInsets.all(20.0),
+              child: CircularProgressIndicator(),
+            ));
+          }
+          if (state is AgePopulationSuccessState) {
+            List<AgePopulationModel> fetchedAgeData = state.agePopulationModel;
+            return Card(
+              child: DataTable(
                 columns: [
                   DataColumn(label: Text(l10n.wardnumber)),
                   DataColumn(label: Text(l10n.malelessthan6)),
@@ -187,12 +192,24 @@ class AgePopulationDataTable extends StatelessWidget {
                         DataCell(Text(totalOthersAboveNinety.toString())),
                         DataCell(Text(totalWardCount.toString())),
                       ])),
-              );
-            } else {
-              return const Center(child: CircularProgressIndicator());
-            }
-          },
-        )),
+              ),
+            );
+          }
+          if (state is AgePopulationFailureState) {
+            return Center(
+              child: Padding(
+                padding: const EdgeInsets.all(20.0),
+                child: Text(l10n.loadDataFail),
+              ),
+            );
+          }
+          return Center(
+            child: Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: Text(l10n.unknownError),
+            ),
+          );
+        },
       ),
     );
   }

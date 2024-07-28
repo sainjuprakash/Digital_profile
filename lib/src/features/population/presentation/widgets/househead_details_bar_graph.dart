@@ -1,6 +1,7 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../../../../app_localization/l10n.dart';
 import '../../data/models/population_model.dart';
 import '../bloc/population_bloc.dart';
 
@@ -17,9 +18,11 @@ class _HouseHeadBarGraphState extends State<HouseHeadBarGraph> {
     return BlocBuilder<PopulationBloc, PopulationState>(
         builder: (context, state) {
       if (state is PopulationLoadingState) {
-        return const Padding(
-          padding: EdgeInsets.all(20.0),
-          child: CircularProgressIndicator(),
+        return const Center(
+          child: Padding(
+            padding: EdgeInsets.all(20.0),
+            child: CircularProgressIndicator(),
+          ),
         );
       }
       if (state is PopulationSuccessState) {
@@ -60,15 +63,17 @@ class _HouseHeadBarGraphState extends State<HouseHeadBarGraph> {
         );
       }
       if (state is PopulationFailureState) {
-        return const Padding(
-          padding: EdgeInsets.all(20.0),
-          child: Center(child: Text('Unable to load data')),
+        return Center(
+          child: Padding(
+            padding: const EdgeInsets.all(20.0),
+            child: Text(l10n.loadDataFail),
+          ),
         );
       }
-      return const Center(
+      return Center(
         child: Padding(
-          padding: EdgeInsets.all(20.0),
-          child: Text("Something went wrong"),
+          padding: const EdgeInsets.all(20.0),
+          child: Text(l10n.unknownError),
         ),
       );
     });

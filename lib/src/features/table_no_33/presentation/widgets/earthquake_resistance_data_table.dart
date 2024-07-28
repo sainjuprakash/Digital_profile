@@ -14,12 +14,24 @@ class EarthquakeResistanceDataTable extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<EarthquakeResistanceBloc, EarthquakeResistanceState>(
-      builder: (context, state) {
-        if (state is EarthquakeResistanceSuccessState) {
-          List<EarthquakeResistanceModel> fetchedData = state.fetchedModel;
-          return Card(
-            child: SingleChildScrollView(
+    return Card(
+      child: BlocBuilder<EarthquakeResistanceBloc, EarthquakeResistanceState>(
+        builder: (context, state) {
+          if (state is EarthquakeResistanceInitialState) {
+            return const SizedBox(
+              height: 60,
+              width: double.maxFinite,
+              child: Center(
+                child: Padding(
+                  padding: EdgeInsets.all(8.0),
+                  child: CircularProgressIndicator(),
+                ),
+              ),
+            );
+          }
+          if (state is EarthquakeResistanceSuccessState) {
+            List<EarthquakeResistanceModel> fetchedData = state.fetchedModel;
+            return SingleChildScrollView(
               scrollDirection: Axis.horizontal,
               child: DataTable(
                   columns: [
@@ -30,7 +42,7 @@ class EarthquakeResistanceDataTable extends StatelessWidget {
                   ],
                   rows: fetchedData.asMap().entries.map((e) {
                     return DataRow(
-                        color: MaterialStateProperty.resolveWith((states) {
+                        color: WidgetStateProperty.resolveWith((states) {
                           if (e.key % 2 == 0) {
                             return Colors.grey.withOpacity(0.3);
                           } else {
@@ -47,8 +59,7 @@ class EarthquakeResistanceDataTable extends StatelessWidget {
                         ]);
                   }).toList()
                     ..add(DataRow(
-                        color:
-                            MaterialStateProperty.resolveWith<Color>((states) {
+                        color: WidgetStateProperty.resolveWith<Color>((states) {
                           return Colors.grey.withOpacity(0.6);
                         }),
                         cells: [
@@ -57,11 +68,24 @@ class EarthquakeResistanceDataTable extends StatelessWidget {
                           DataCell(Text(totalNotResistance.toString())),
                           DataCell(Text(totalResistanceData.toString())),
                         ]))),
+            );
+          }
+          if (state is EarthquakeResistanceFailureState) {
+            return Center(
+              child: Padding(
+                padding: const EdgeInsets.all(20.0),
+                child: Text(l10n.loadDataFail),
+              ),
+            );
+          }
+          return Center(
+            child: Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: Text(l10n.unknownError),
             ),
           );
-        }
-        return const Center(child: CircularProgressIndicator());
-      },
+        },
+      ),
     );
   }
 }

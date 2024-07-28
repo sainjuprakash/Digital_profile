@@ -1,3 +1,4 @@
+import 'package:digital_profile/app_localization/l10n.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -17,6 +18,13 @@ class _PopulationBarGraphState extends State<PopulationBarGraph> {
   Widget build(BuildContext context) {
     return BlocBuilder<PopulationBloc, PopulationState>(
         builder: (context, state) {
+      if (state is PopulationLoadingState) {
+        return const Center(
+            child: Padding(
+          padding: EdgeInsets.all(20.0),
+          child: CircularProgressIndicator(),
+        ));
+      }
       if (state is PopulationSuccessState) {
         List<PopulationModel>? populationData = state.populationModel;
         return SingleChildScrollView(
@@ -60,23 +68,20 @@ class _PopulationBarGraphState extends State<PopulationBarGraph> {
             ),
           ),
         );
-      } else if (state is PopulationLoadingState) {
-        return const Center(
-            child: Padding(
-          padding: EdgeInsets.all(20.0),
-          child: CircularProgressIndicator(),
-        ));
-      } else if (state is PopulationFailureState) {
-        return const Center(
+      }
+      if (state is PopulationFailureState) {
+        return Center(
           child: Padding(
-            padding: EdgeInsets.all(20.0),
-            child: Text("Unable to load data"),
+            padding: const EdgeInsets.all(20.0),
+            child: Text(l10n.loadDataFail),
           ),
         );
       }
-      return const Padding(
-        padding: EdgeInsets.all(20.0),
-        child: Text("Something went wrong"),
+      return Center(
+        child: Padding(
+          padding: const EdgeInsets.all(20.0),
+          child: Text(l10n.unknownError),
+        ),
       );
     });
   }

@@ -40,9 +40,6 @@ class _HomeFacilitiesPageState extends State<HomeFacilitiesPage> {
         ..add(GetHomeFacilitiesEvent()),
       child: BlocBuilder<HomeFacilitiesBloc, HomeFacilitiesState>(
         builder: (context, state) {
-          if (state is HomeFacilitiesLoadingState) {
-            return const Center(child: CircularProgressIndicator());
-          }
           if (state is HomeFacilitiesSuccessState) {
             List<HomeFacilitiesModel> fetchedHomeFacilitiesData =
                 state.homeFacilitiesModel;

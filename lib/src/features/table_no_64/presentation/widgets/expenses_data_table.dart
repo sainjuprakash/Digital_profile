@@ -1,8 +1,6 @@
 import 'package:digital_profile/app_localization/l10n.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import '../../data/model/expenses_model.dart';
 import '../bloc/expenses_bloc.dart';
 
@@ -27,12 +25,24 @@ class ExpensesDataTable extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<ExpensesBloc, ExpensesState>(
-      builder: (context, state) {
-        if (state is ExpensesSuccessState) {
-          List<ExpensesModel> fetchedData = state.fetchedModel;
-          return Card(
-            child: SingleChildScrollView(
+    return Card(
+      child: BlocBuilder<ExpensesBloc, ExpensesState>(
+        builder: (context, state) {
+          if (state is ExpensesLoadingState) {
+            return const SizedBox(
+              height: 60,
+              width: double.maxFinite,
+              child: Center(
+                child: Padding(
+                  padding: EdgeInsets.all(8.0),
+                  child: CircularProgressIndicator(),
+                ),
+              ),
+            );
+          }
+          if (state is ExpensesSuccessState) {
+            List<ExpensesModel> fetchedData = state.fetchedModel;
+            return SingleChildScrollView(
               scrollDirection: Axis.horizontal,
               child: DataTable(
                   columns: [
@@ -47,8 +57,8 @@ class ExpensesDataTable extends StatelessWidget {
                   ],
                   rows: fetchedData.asMap().entries.map((e) {
                     return DataRow(
-                        color: MaterialStateProperty.resolveWith(
-                            (Set<MaterialState> state) {
+                        color: WidgetStateProperty.resolveWith(
+                            (Set<WidgetState> state) {
                           if (e.key % 2 == 0) {
                             return Colors.grey.withOpacity(0.3);
                           } else {
@@ -69,8 +79,8 @@ class ExpensesDataTable extends StatelessWidget {
                         ]);
                   }).toList()
                     ..add(DataRow(
-                        color: MaterialStateProperty.resolveWith<Color>(
-                            (Set<MaterialState> states) {
+                        color: WidgetStateProperty.resolveWith<Color>(
+                            (Set<WidgetState> states) {
                           return Colors.grey.withOpacity(0.6);
                         }),
                         cells: [
@@ -83,11 +93,24 @@ class ExpensesDataTable extends StatelessWidget {
                           DataCell(Text(totalOthers.toString())),
                           DataCell(Text(totalExpenses.toString())),
                         ]))),
+            );
+          }
+          if (state is ExpensesFailureState) {
+            return Center(
+              child: Padding(
+                padding: const EdgeInsets.all(20.0),
+                child: Text(l10n.loadDataFail),
+              ),
+            );
+          }
+          return Center(
+            child: Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: Text(l10n.unknownError),
             ),
           );
-        }
-        return const Center(child: CircularProgressIndicator());
-      },
+        },
+      ),
     );
   }
 }

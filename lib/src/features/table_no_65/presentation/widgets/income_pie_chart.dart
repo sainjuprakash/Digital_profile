@@ -2,11 +2,8 @@ import 'package:digital_profile/app_localization/l10n.dart';
 import 'package:digital_profile/constant/app_texts/app_title_text.dart';
 import 'package:digital_profile/constant/spacing.dart';
 import 'package:fl_chart/fl_chart.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
-import '../../../table_no_74/presentation/bloc/settlement_bloc.dart';
 import '../bloc/income_bloc.dart';
 
 class IncomePieChart extends StatelessWidget {
@@ -43,7 +40,6 @@ class IncomePieChart extends StatelessWidget {
         children: [
           verticalspace(),
           AppTitleText(text: l10n.incomeTitle),
-          verticalspace(),
           BlocBuilder<IncomeBloc, IncomeState>(
             builder: (context, state) {
               if (state is IncomeLoadingState) {
@@ -116,17 +112,17 @@ class IncomePieChart extends StatelessWidget {
                 );
               }
               if (state is IncomeFailureState) {
-                return const Center(
+                return Center(
                   child: Padding(
-                    padding: EdgeInsets.all(8.0),
-                    child: Text('Unable to load data'),
+                    padding: const EdgeInsets.all(20.0),
+                    child: Text(l10n.loadDataFail),
                   ),
                 );
               }
-              return const Center(
+              return Center(
                 child: Padding(
-                  padding: EdgeInsets.all(8.0),
-                  child: Text('Something went wrong'),
+                  padding: const EdgeInsets.all(20.0),
+                  child: Text(l10n.unknownError),
                 ),
               );
             },

@@ -49,8 +49,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "birds": MessageLookupByLibrary.simpleMessage("पशुपन्छी पालन गर्ने"),
         "bittiyaSanstha":
             MessageLookupByLibrary.simpleMessage("वित्तीय संस्था"),
-        "blind":
-            MessageLookupByLibrary.simpleMessage("दृश्टिबिहिन(अाखा नदेख्ने)"),
+        "blind": MessageLookupByLibrary.simpleMessage("दृश्टिबिहिन"),
         "bon": MessageLookupByLibrary.simpleMessage("बोन"),
         "boudha": MessageLookupByLibrary.simpleMessage("बौद्ध"),
         "briddhaBhatta": MessageLookupByLibrary.simpleMessage("बृद्घा भत्ता"),
@@ -71,8 +70,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("स्वदेशमा अन्यत्र बसेको"),
         "covid": MessageLookupByLibrary.simpleMessage("covid-19"),
         "crops": MessageLookupByLibrary.simpleMessage("अन्नवालि"),
-        "deaf":
-            MessageLookupByLibrary.simpleMessage("बहिरा(सुन्न र बोल्न नसक्ने)"),
+        "deaf": MessageLookupByLibrary.simpleMessage("बहिरा"),
         "deathQty": MessageLookupByLibrary.simpleMessage("मृत्यु संख्या"),
         "defaultresidence":
             MessageLookupByLibrary.simpleMessage("गणना गरेकै ठाउँमा बसेको"),
@@ -206,6 +204,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "liveStockInsurance": MessageLookupByLibrary.simpleMessage("पशु विमा"),
         "livestock": MessageLookupByLibrary.simpleMessage("पशुपन्छी"),
         "livingStatus": MessageLookupByLibrary.simpleMessage("बसोबासको अवस्था"),
+        "loadDataFail":
+            MessageLookupByLibrary.simpleMessage("डाटा लोड गर्न असमर्थ"),
         "loanTitle": MessageLookupByLibrary.simpleMessage(
             "ऋणको उद्देश्य अनुसार घरपरिवार विवरण"),
         "logOut": MessageLookupByLibrary.simpleMessage("लग आउत"),
@@ -236,7 +236,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "meatTitle": MessageLookupByLibrary.simpleMessage(
             "मासु तथा अन्य प्रयाेजनकाे लागि पालिने चाैपायकाे बिवरण"),
         "medicalLoan": MessageLookupByLibrary.simpleMessage("औषधि उपचार"),
-        "mental": MessageLookupByLibrary.simpleMessage("बौद्विक अपाङगता भएको"),
+        "mental": MessageLookupByLibrary.simpleMessage("बौद्विक अपाङगता"),
         "migrationType":
             MessageLookupByLibrary.simpleMessage("बसाईसराईको प्रकार"),
         "moreThanFive": MessageLookupByLibrary.simpleMessage("५ घण्टा"),
@@ -307,8 +307,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("प्रतिवादीको नाम"),
         "respondentNumber":
             MessageLookupByLibrary.simpleMessage("प्रतिवादीको मोबाइल नम्बर"),
-        "retarded":
-            MessageLookupByLibrary.simpleMessage("मनोसामाजिक अपाङगता भएको"),
+        "retarded": MessageLookupByLibrary.simpleMessage("मनोसामाजिक"),
         "road": MessageLookupByLibrary.simpleMessage("सडक"),
         "roadDistanceTitle": MessageLookupByLibrary.simpleMessage(
             "घरबाट हिडेर नजिकको बजार पुग्न लाग्ने समय (घरधुरी संख्या)"),
@@ -360,6 +359,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "twoHours": MessageLookupByLibrary.simpleMessage("२ घण्टा"),
         "underage": MessageLookupByLibrary.simpleMessage("उमेर कम"),
         "unemployed": MessageLookupByLibrary.simpleMessage("बेरोजगार"),
+        "unknownError": MessageLookupByLibrary.simpleMessage("केहि गलत भयो"),
         "upToFiveHours": MessageLookupByLibrary.simpleMessage("२ देखि ५ घण्टा"),
         "vegetables": MessageLookupByLibrary.simpleMessage("तरकारी"),
         "wardnumber": MessageLookupByLibrary.simpleMessage("वडा नम्बर"),

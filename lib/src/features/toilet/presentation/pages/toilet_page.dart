@@ -35,9 +35,6 @@ class _ToiletPageState extends State<ToiletPage> {
         ..add(GetToiletEvent()),
       child: BlocBuilder<ToiletBloc, ToiletState>(
         builder: (context, state) {
-          if (state is ToiletLoadingState) {
-            return const Center(child: CircularProgressIndicator());
-          }
           if (state is ToiletSuccessState) {
             List<ToiletModel> fetchedToiletData = state.toiletModel;
             fetchedToiletData.asMap().forEach((key, value) {

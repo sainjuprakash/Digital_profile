@@ -34,7 +34,6 @@ class InsuranceBarChart extends StatelessWidget {
         children: [
           verticalspace(),
           AppTitleText(text: l10n.insuranceTitle),
-          verticalspace(),
           BlocBuilder<InsuranceBloc, InsuranceState>(
             builder: (context, state) {
               if (state is InsuranceLoadingState) {
@@ -115,17 +114,17 @@ class InsuranceBarChart extends StatelessWidget {
                 );
               }
               if (state is InsuranceFailureState) {
-                return const Center(
+                return Center(
                   child: Padding(
-                    padding: EdgeInsets.all(8.0),
-                    child: Text("Unable to load insurance data"),
+                    padding: const EdgeInsets.all(20.0),
+                    child: Text(l10n.loadDataFail),
                   ),
                 );
               }
-              return const Center(
+              return Center(
                 child: Padding(
-                  padding: EdgeInsets.all(8.0),
-                  child: Text("Something went Wrong"),
+                  padding: const EdgeInsets.all(20.0),
+                  child: Text(l10n.unknownError),
                 ),
               );
             },

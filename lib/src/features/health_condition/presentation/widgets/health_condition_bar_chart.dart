@@ -31,7 +31,6 @@ class HealthConditionBarChart extends StatelessWidget {
       children: [
         verticalspace(),
         Center(child: AppTitleText(text: l10n.healthconditiontitle)),
-        verticalspace(),
         BlocBuilder<HealthConditionBloc, HealthConditionState>(
             builder: (context, state) {
           if (state is HealthConditionLoadingState) {
@@ -112,14 +111,18 @@ class HealthConditionBarChart extends StatelessWidget {
             );
           }
           if (state is HealthConditionFailureState) {
-            return const Padding(
-              padding: EdgeInsets.all(8.0),
-              child: Center(child: Text('Unable to load health data')),
+            return Center(
+              child: Padding(
+                padding: const EdgeInsets.all(20.0),
+                child: Text(l10n.loadDataFail),
+              ),
             );
           }
-          return const Padding(
-            padding: EdgeInsets.all(8.0),
-            child: Center(child: Text('Something went wrong')),
+          return Center(
+            child: Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: Text(l10n.unknownError),
+            ),
           );
         }),
       ],

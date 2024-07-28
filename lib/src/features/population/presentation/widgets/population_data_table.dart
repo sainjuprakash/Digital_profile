@@ -17,24 +17,28 @@ class PopulationDatatable extends StatelessWidget {
   int totalWardHh = 0;
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<PopulationBloc, PopulationState>(
-      builder: (context, state) {
-        if (state is PopulationLoadingState) {
-          return const Center(child: CircularProgressIndicator());
-        }
-        if (state is PopulationSuccessState) {
-          List<PopulationModel>? populationData = state.populationModel;
-          populationData.asMap().forEach((key, value) {
-            totalMale += populationData[key].maleCount ?? 0;
-            totalFemale += populationData[key].femaleCount ?? 0;
-            totalOthers += populationData[key].othersCount ?? 0;
-            totalMaleFemale += populationData[key].totalWardPop ?? 0;
-            totalHhMale += populationData[key].maleHhCount ?? 0;
-            totalHhFemale += populationData[key].femaleHhCount ?? 0;
-          });
+    return Card(
+      child: BlocBuilder<PopulationBloc, PopulationState>(
+        builder: (context, state) {
+          if (state is PopulationLoadingState) {
+            return const Center(
+                child: Padding(
+              padding: EdgeInsets.all(8.0),
+              child: CircularProgressIndicator(),
+            ));
+          }
+          if (state is PopulationSuccessState) {
+            List<PopulationModel>? populationData = state.populationModel;
+            populationData.asMap().forEach((key, value) {
+              totalMale += populationData[key].maleCount ?? 0;
+              totalFemale += populationData[key].femaleCount ?? 0;
+              totalOthers += populationData[key].othersCount ?? 0;
+              totalMaleFemale += populationData[key].totalWardPop ?? 0;
+              totalHhMale += populationData[key].maleHhCount ?? 0;
+              totalHhFemale += populationData[key].femaleHhCount ?? 0;
+            });
 
-          return Card(
-            child: SingleChildScrollView(
+            return SingleChildScrollView(
               scrollDirection: Axis.horizontal,
               child: DataTable(
                   columns: [
@@ -92,18 +96,23 @@ class PopulationDatatable extends StatelessWidget {
                           DataCell(Text(totalHhFemale.toString())),
                           DataCell(Text(totalWardHh.toString())),
                         ]))),
-            ),
-          );
-        }
-        if(state is PopulationFailureState){
-          return const Padding(
-            padding: EdgeInsets.all(8.0),
-            child: Center(child: Text('Unable to load data')),
-          );
-        }
+            );
+          }
+          if (state is PopulationFailureState) {
+            return Center(
+              child: Padding(
+                padding: const EdgeInsets.all(20.0),
+                child: Text(l10n.loadDataFail),
+              ),
+            );
+          }
 
-        return const Center(child: CircularProgressIndicator());
-      },
+          return Padding(
+            padding: const EdgeInsets.all(20.0),
+            child: Text(l10n.unknownError),
+          );
+        },
+      ),
     );
   }
 }

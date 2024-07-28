@@ -1,5 +1,4 @@
 import 'package:digital_profile/app_localization/l10n.dart';
-import 'package:digital_profile/constant/app_texts/app_title_text.dart';
 import 'package:digital_profile/constant/spacing.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -106,15 +105,20 @@ class LiteracyDataTable extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<LiteracyBloc, LiteracyState>(
-
       builder: (context, state) {
+        if (state is LiteracyLoadingState) {
+          return const Padding(
+            padding: EdgeInsets.all(8.0),
+            child: Center(child: CircularProgressIndicator()),
+          );
+        }
         if (state is LiteracySuccessState) {
           List<LiteracyModel> fetchedLiteracyModel = state.literacyModel;
           return Column(
             children: [
-              Card(
-                child: SingleChildScrollView(
-                  scrollDirection: Axis.horizontal,
+              SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Card(
                   child: DataTable(
                       columns: [
                         DataColumn(label: Text(l10n.wardnumber)),
@@ -215,10 +219,10 @@ class LiteracyDataTable extends StatelessWidget {
                 ),
               ),
               verticalspace(),
-              Card(
-                color: Colors.blueAccent.withOpacity(0.8),
-                child: SingleChildScrollView(
-                  scrollDirection: Axis.horizontal,
+              SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Card(
+                  color: Colors.blueAccent.withOpacity(0.8),
                   child: DataTable(
                       columns: [
                         DataColumn(label: Text(l10n.wardnumber)),
@@ -306,9 +310,9 @@ class LiteracyDataTable extends StatelessWidget {
                 ),
               ),
               verticalspace(),
-              Card(
-                child: SingleChildScrollView(
-                  scrollDirection: Axis.horizontal,
+              SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Card(
                   child: DataTable(
                       columns: [
                         DataColumn(label: Text(l10n.wardnumber)),
@@ -399,7 +403,20 @@ class LiteracyDataTable extends StatelessWidget {
             ],
           );
         }
-        return const Center(child: CircularProgressIndicator());
+        if (state is LiteracyFailureState) {
+          return Center(
+            child: Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: Text(l10n.loadDataFail),
+            ),
+          );
+        }
+        return Center(
+          child: Padding(
+            padding: const EdgeInsets.all(20.0),
+            child: Text(l10n.unknownError),
+          ),
+        );
       },
     );
   }

@@ -100,6 +100,26 @@ class AppLocalizations {
     );
   }
 
+  /// `डाटा लोड गर्न असमर्थ`
+  String get loadDataFail {
+    return Intl.message(
+      'डाटा लोड गर्न असमर्थ',
+      name: 'loadDataFail',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `केहि गलत भयो`
+  String get unknownError {
+    return Intl.message(
+      'केहि गलत भयो',
+      name: 'unknownError',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `रिपोर्ट`
   String get report {
     return Intl.message(
@@ -860,20 +880,20 @@ class AppLocalizations {
     );
   }
 
-  /// `बहिरा(सुन्न र बोल्न नसक्ने)`
+  /// `बहिरा`
   String get deaf {
     return Intl.message(
-      'बहिरा(सुन्न र बोल्न नसक्ने)',
+      'बहिरा',
       name: 'deaf',
       desc: '',
       args: [],
     );
   }
 
-  /// `दृश्टिबिहिन(अाखा नदेख्ने)`
+  /// `दृश्टिबिहिन`
   String get blind {
     return Intl.message(
-      'दृश्टिबिहिन(अाखा नदेख्ने)',
+      'दृश्टिबिहिन',
       name: 'blind',
       desc: '',
       args: [],
@@ -910,10 +930,10 @@ class AppLocalizations {
     );
   }
 
-  /// `मनोसामाजिक अपाङगता भएको`
+  /// `मनोसामाजिक`
   String get retarded {
     return Intl.message(
-      'मनोसामाजिक अपाङगता भएको',
+      'मनोसामाजिक',
       name: 'retarded',
       desc: '',
       args: [],
@@ -930,10 +950,10 @@ class AppLocalizations {
     );
   }
 
-  /// `बौद्विक अपाङगता भएको`
+  /// `बौद्विक अपाङगता`
   String get mental {
     return Intl.message(
-      'बौद्विक अपाङगता भएको',
+      'बौद्विक अपाङगता',
       name: 'mental',
       desc: '',
       args: [],

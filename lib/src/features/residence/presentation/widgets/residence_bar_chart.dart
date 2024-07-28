@@ -30,8 +30,15 @@ class ResidenceBarChart extends StatelessWidget {
         children: [
           verticalspace(),
           AppTitleText(text: l10n.residencetitle),
-          verticalspace(),
           BlocBuilder<ResidenceBloc, ResidenceState>(builder: (context, state) {
+            if (state is ResidenceLoadingState) {
+              return const Center(
+                child: Padding(
+                  padding: EdgeInsets.all(8.0),
+                  child: CircularProgressIndicator(),
+                ),
+              );
+            }
             if (state is ResidenceSuccessState) {
               return SingleChildScrollView(
                 scrollDirection: Axis.horizontal,
@@ -100,26 +107,19 @@ class ResidenceBarChart extends StatelessWidget {
                 ),
               );
             }
-            if (state is ResidenceLoadingState) {
-              return const Center(
-                child: Padding(
-                  padding: EdgeInsets.all(8.0),
-                  child: CircularProgressIndicator(),
-                ),
-              );
-            }
+
             if (state is ResidenceFailureState) {
-              return const Center(
+              return Center(
                 child: Padding(
-                  padding: EdgeInsets.all(8.0),
-                  child: Text('Unable to load residence data'),
+                  padding: const EdgeInsets.all(20.0),
+                  child: Text(l10n.loadDataFail),
                 ),
               );
             }
-            return const Center(
+            return Center(
               child: Padding(
-                padding: EdgeInsets.all(8.0),
-                child: Text('Something went wrong'),
+                padding: const EdgeInsets.all(20.0),
+                child: Text(l10n.unknownError),
               ),
             );
           }),

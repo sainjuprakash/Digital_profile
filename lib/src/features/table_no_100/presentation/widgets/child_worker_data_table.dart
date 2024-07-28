@@ -1,5 +1,4 @@
 import 'package:digital_profile/app_localization/l10n.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -15,12 +14,24 @@ class ChildWorkerDataTable extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<ChildWorkerBloc, ChildWorkerState>(
-      builder: (context, state) {
-        if (state is ChildWorkerSuccessState) {
-          List<ChildWorkerModel> fetchedData = state.fetchedModel;
-          return Card(
-            child: SingleChildScrollView(
+    return Card(
+      child: BlocBuilder<ChildWorkerBloc, ChildWorkerState>(
+        builder: (context, state) {
+          if (state is ChildWorkerLoadingState) {
+            return const SizedBox(
+              height: 60,
+              width: double.maxFinite,
+              child: Center(
+                child: Padding(
+                  padding: EdgeInsets.all(8.0),
+                  child: CircularProgressIndicator(),
+                ),
+              ),
+            );
+          }
+          if (state is ChildWorkerSuccessState) {
+            List<ChildWorkerModel> fetchedData = state.fetchedModel;
+            return SingleChildScrollView(
               scrollDirection: Axis.horizontal,
               child: DataTable(
                 columns: [
@@ -32,8 +43,8 @@ class ChildWorkerDataTable extends StatelessWidget {
                 ],
                 rows: fetchedData.asMap().entries.map((e) {
                   return DataRow(
-                      color: MaterialStateProperty.resolveWith(
-                          (Set<MaterialState> states) {
+                      color: WidgetStateProperty.resolveWith(
+                          (Set<WidgetState> states) {
                         if (e.key % 2 == 0) {
                           return Colors.grey.withOpacity(0.3);
                         } else {
@@ -49,7 +60,7 @@ class ChildWorkerDataTable extends StatelessWidget {
                       ]);
                 }).toList()
                   ..add(DataRow(
-                      color: MaterialStateProperty.resolveWith<Color>(
+                      color: WidgetStateProperty.resolveWith<Color>(
                           (states) => Colors.grey.withOpacity(0.6)),
                       cells: [
                         DataCell(Text(l10n.total)),
@@ -59,11 +70,24 @@ class ChildWorkerDataTable extends StatelessWidget {
                         DataCell(Text(totalWardHouses.toString()))
                       ])),
               ),
+            );
+          }
+          if (state is ChildWorkerFailureState) {
+            return Center(
+              child: Padding(
+                padding: const EdgeInsets.all(20.0),
+                child: Text(l10n.loadDataFail),
+              ),
+            );
+          }
+          return Center(
+            child: Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: Text(l10n.unknownError),
             ),
           );
-        }
-        return const Center(child: CircularProgressIndicator());
-      },
+        },
+      ),
     );
   }
 }

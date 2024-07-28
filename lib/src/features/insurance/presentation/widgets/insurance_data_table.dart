@@ -30,6 +30,13 @@ class InsuranceDataTable extends StatelessWidget {
       scrollDirection: Axis.horizontal,
       child: BlocBuilder<InsuranceBloc, InsuranceState>(
         builder: (context, state) {
+          if (state is InsuranceLoadingState) {
+            return const Center(
+                child: Padding(
+              padding: EdgeInsets.all(8.0),
+              child: CircularProgressIndicator(),
+            ));
+          }
           if (state is InsuranceSuccessState) {
             List<InsuranceModel> fetchedInsuranceData = state.insuranceModel;
             return Card(
@@ -83,7 +90,20 @@ class InsuranceDataTable extends StatelessWidget {
               ),
             );
           }
-          return const Center(child: CircularProgressIndicator());
+          if (state is InsuranceFailureState) {
+            return Center(
+              child: Padding(
+                padding: const EdgeInsets.all(20.0),
+                child: Text(l10n.loadDataFail),
+              ),
+            );
+          }
+          return Center(
+            child: Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: Text(l10n.unknownError),
+            ),
+          );
         },
       ),
     );

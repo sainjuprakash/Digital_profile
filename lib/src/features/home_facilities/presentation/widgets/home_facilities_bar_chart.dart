@@ -44,7 +44,6 @@ class HomeFacilitiesBarChart extends StatelessWidget {
         children: [
           verticalspace(),
           AppTitleText(text: l10n.homeFacilitiesTitle),
-          verticalspace(),
           BlocBuilder<HomeFacilitiesBloc, HomeFacilitiesState>(
             builder: (context, state) {
               if (state is HomeFacilitiesLoadingState) {
@@ -77,8 +76,6 @@ class HomeFacilitiesBarChart extends StatelessWidget {
                                 showTitles: true,
                                 reservedSize: 36,
                                 getTitlesWidget: (value, meta) {
-                                  // print(value);
-                                  // print(meta);
                                   final lists = [
                                     l10n.radio,
                                     l10n.television,
@@ -168,14 +165,18 @@ class HomeFacilitiesBarChart extends StatelessWidget {
                 );
               }
               if (state is HomeFacilitiesFailureState) {
-                return const Padding(
-                  padding: EdgeInsets.all(8.0),
-                  child: Center(child: Text("Unable to load data")),
+                return Center(
+                  child: Padding(
+                    padding: const EdgeInsets.all(20.0),
+                    child: Text(l10n.loadDataFail),
+                  ),
                 );
               }
-              return const Padding(
-                padding: EdgeInsets.all(8.0),
-                child: Center(child: Text("Something went wrong")),
+              return Center(
+                child: Padding(
+                  padding: const EdgeInsets.all(20.0),
+                  child: Text(l10n.unknownError),
+                ),
               );
             },
           )
