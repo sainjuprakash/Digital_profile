@@ -1,5 +1,4 @@
 import 'package:digital_profile/app_localization/l10n.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -26,8 +25,7 @@ class InsuranceDataTable extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      scrollDirection: Axis.horizontal,
+    return Card(
       child: BlocBuilder<InsuranceBloc, InsuranceState>(
         builder: (context, state) {
           if (state is InsuranceLoadingState) {
@@ -39,7 +37,8 @@ class InsuranceDataTable extends StatelessWidget {
           }
           if (state is InsuranceSuccessState) {
             List<InsuranceModel> fetchedInsuranceData = state.insuranceModel;
-            return Card(
+            return SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
               child: DataTable(
                 columns: [
                   DataColumn(label: Text(l10n.wardnumber)),
@@ -52,7 +51,7 @@ class InsuranceDataTable extends StatelessWidget {
                 ],
                 rows: fetchedInsuranceData.asMap().entries.map((e) {
                   return DataRow(
-                      color: MaterialStateProperty.resolveWith((states) {
+                      color: WidgetStateProperty.resolveWith((states) {
                         if (e.key % 2 == 0) {
                           return Colors.grey.withOpacity(0.3);
                         } else {
@@ -75,7 +74,7 @@ class InsuranceDataTable extends StatelessWidget {
                       ]);
                 }).toList()
                   ..add(DataRow(
-                      color: MaterialStateProperty.resolveWith<Color>((states) {
+                      color: WidgetStateProperty.resolveWith<Color>((states) {
                         return Colors.grey.withOpacity(0.6);
                       }),
                       cells: [

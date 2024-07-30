@@ -1,5 +1,4 @@
 import 'package:digital_profile/app_localization/l10n.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -29,21 +28,21 @@ class ElectricityDataTable extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<ElectricityBloc, ElectricityState>(
-      builder: (context, state) {
-        if (state is ElectricityLoadingState) {
-          return const Center(
-            child: Padding(
-              padding: EdgeInsets.all(8.0),
-              child: CircularProgressIndicator(),
-            ),
-          );
-        }
-        if (state is ElectricitySuccessState) {
-          List<ElectricityModel> fetchedElectricityModel =
-              state.electricityModel;
-          return Card(
-            child: SingleChildScrollView(
+    return Card(
+      child: BlocBuilder<ElectricityBloc, ElectricityState>(
+        builder: (context, state) {
+          if (state is ElectricityLoadingState) {
+            return const Center(
+              child: Padding(
+                padding: EdgeInsets.all(8.0),
+                child: CircularProgressIndicator(),
+              ),
+            );
+          }
+          if (state is ElectricitySuccessState) {
+            List<ElectricityModel> fetchedElectricityModel =
+                state.electricityModel;
+            return SingleChildScrollView(
               scrollDirection: Axis.horizontal,
               child: DataTable(
                   columns: [
@@ -59,8 +58,8 @@ class ElectricityDataTable extends StatelessWidget {
                   ],
                   rows: fetchedElectricityModel.asMap().entries.map((e) {
                     return DataRow(
-                        color: MaterialStateProperty.resolveWith(
-                            (Set<MaterialState> states) {
+                        color: WidgetStateProperty.resolveWith(
+                            (Set<WidgetState> states) {
                           if (e.key % 2 == 0) {
                             return Colors.grey.withOpacity(0.3);
                           } else {
@@ -84,7 +83,7 @@ class ElectricityDataTable extends StatelessWidget {
                         ]);
                   }).toList()
                     ..add(DataRow(
-                        color: MaterialStateProperty.resolveWith<Color>(
+                        color: WidgetStateProperty.resolveWith<Color>(
                             (states) => Colors.grey.withOpacity(0.6)),
                         cells: [
                           DataCell(Text(l10n.total)),
@@ -97,24 +96,24 @@ class ElectricityDataTable extends StatelessWidget {
                           DataCell(Text(totalNotAvailable.toString())),
                           DataCell(Text(totalHouseCount.toString())),
                         ]))),
-            ),
-          );
-        }
-        if (state is ElectricityFailureState) {
+            );
+          }
+          if (state is ElectricityFailureState) {
+            return Center(
+              child: Padding(
+                padding: const EdgeInsets.all(20.0),
+                child: Text(l10n.loadDataFail),
+              ),
+            );
+          }
           return Center(
             child: Padding(
               padding: const EdgeInsets.all(20.0),
-              child: Text(l10n.loadDataFail),
+              child: Text(l10n.unknownError),
             ),
           );
-        }
-        return Center(
-          child: Padding(
-            padding: const EdgeInsets.all(20.0),
-            child: Text(l10n.unknownError),
-          ),
-        );
-      },
+        },
+      ),
     );
   }
 }

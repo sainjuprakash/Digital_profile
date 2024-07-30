@@ -33,8 +33,7 @@ class ReligionDataTable extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      scrollDirection: Axis.horizontal,
+    return Card(
       child: BlocBuilder<ReligionBloc, ReligionState>(
         builder: (context, state) {
           if (state is ReligionLoadingState) {
@@ -45,7 +44,8 @@ class ReligionDataTable extends StatelessWidget {
           }
           if (state is ReligionSuccessState) {
             List<ReligionModel> fetchedReligionData = state.religionModel;
-            return Card(
+            return SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
               child: DataTable(
                 columns: [
                   DataColumn(label: Text(l10n.wardnumber)),
@@ -62,7 +62,7 @@ class ReligionDataTable extends StatelessWidget {
                 ],
                 rows: fetchedReligionData.asMap().entries.map((e) {
                   return DataRow(
-                      color: MaterialStateProperty.resolveWith((states) {
+                      color: WidgetStateProperty.resolveWith((states) {
                         if (e.key % 2 == 0) {
                           return Colors.grey.withOpacity(0.3);
                         } else {
@@ -84,7 +84,7 @@ class ReligionDataTable extends StatelessWidget {
                       ]);
                 }).toList()
                   ..add(DataRow(
-                      color: MaterialStateProperty.resolveWith((states) {
+                      color: WidgetStateProperty.resolveWith((states) {
                         return Colors.grey.withOpacity(0.6);
                       }),
                       cells: [
@@ -105,8 +105,8 @@ class ReligionDataTable extends StatelessWidget {
           }
           if (state is ReligionFailureState) {
             return Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Text(l10n.loadDataFail),
+              padding: const EdgeInsets.all(20.0),
+              child: Center(child: Text(l10n.loadDataFail)),
             );
           }
           return Center(

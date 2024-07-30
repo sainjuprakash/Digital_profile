@@ -33,8 +33,7 @@ class LanguageTable extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      scrollDirection: Axis.horizontal,
+    return Card(
       child: BlocBuilder<LanguageBloc, LanguageState>(
         builder: (context, state) {
           if (state is LanguageLoadingState) {
@@ -47,75 +46,80 @@ class LanguageTable extends StatelessWidget {
             List<LanguageModel> fetchedLanguageData =
                 state.fetchedLanguageModel;
             return Card(
-              child: DataTable(
-                  columns: [
-                    DataColumn(label: Text(l10n.wardnumber)),
-                    DataColumn(label: Text(l10n.nepali)),
-                    DataColumn(label: Text(l10n.tamang)),
-                    DataColumn(label: Text(l10n.sherpa)),
-                    DataColumn(label: Text(l10n.limbu)),
-                    DataColumn(label: Text(l10n.rai)),
-                    DataColumn(label: Text(l10n.gurung)),
-                    DataColumn(label: Text(l10n.ghale)),
-                    DataColumn(label: Text(l10n.others)),
-                    DataColumn(label: Text(l10n.notavailable)),
-                    DataColumn(label: Text(l10n.total)),
-                  ],
-                  rows: fetchedLanguageData.asMap().entries.map((languageData) {
-                    return DataRow(
-                        color: MaterialStateProperty.resolveWith(
-                            (Set<MaterialState> state) {
-                          if (languageData.key % 2 == 0) {
-                            return Colors.grey.withOpacity(0.3);
-                          } else {
-                            return null;
-                          }
-                        }),
-                        cells: [
-                          DataCell(Text(languageData.value.wardNo.toString())),
-                          DataCell(Text(
-                              languageData.value.nepali?.toString() ?? '-')),
-                          DataCell(Text(
-                              languageData.value.tamang?.toString() ?? '-')),
-                          DataCell(Text(
-                              languageData.value.sherpa?.toString() ?? '-')),
-                          DataCell(Text(
-                              languageData.value.limbu?.toString() ?? '-')),
-                          DataCell(
-                              Text(languageData.value.rai?.toString() ?? '-')),
-                          DataCell(Text(
-                              languageData.value.gurung?.toString() ?? '-')),
-                          DataCell(Text(
-                              languageData.value.ghale?.toString() ?? '-')),
-                          DataCell(Text(
-                              languageData.value.othersLanguage?.toString() ??
-                                  '-')),
-                          DataCell(Text(
-                              languageData.value.notAvailable?.toString() ??
-                                  '-')),
-                          DataCell(Text(languageData.value.totalLanguageCount
-                                  ?.toString() ??
-                              '-')),
-                        ]);
-                  }).toList()
-                    ..add(DataRow(
-                        color: MaterialStateProperty.resolveWith<Color>(
-                            (Set<MaterialState> states) {
-                          return Colors.grey.withOpacity(0.6);
-                        }),
-                        cells: [
-                          DataCell(Text(l10n.total)),
-                          DataCell(Text(totalNepali.toString())),
-                          DataCell(Text(totalTamang.toString())),
-                          DataCell(Text(totalSherpa.toString())),
-                          DataCell(Text(totalLimbu.toString())),
-                          DataCell(Text(totalRai.toString())),
-                          DataCell(Text(totalGurung.toString())),
-                          DataCell(Text(totalGhale.toString())),
-                          DataCell(Text(totalOthers.toString())),
-                          DataCell(Text(totalNotAvailable.toString())),
-                          DataCell(Text(totalTotal.toString())),
-                        ]))),
+              child: SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: DataTable(
+                    columns: [
+                      DataColumn(label: Text(l10n.wardnumber)),
+                      DataColumn(label: Text(l10n.nepali)),
+                      DataColumn(label: Text(l10n.tamang)),
+                      DataColumn(label: Text(l10n.sherpa)),
+                      DataColumn(label: Text(l10n.limbu)),
+                      DataColumn(label: Text(l10n.rai)),
+                      DataColumn(label: Text(l10n.gurung)),
+                      DataColumn(label: Text(l10n.ghale)),
+                      DataColumn(label: Text(l10n.others)),
+                      DataColumn(label: Text(l10n.notavailable)),
+                      DataColumn(label: Text(l10n.total)),
+                    ],
+                    rows:
+                        fetchedLanguageData.asMap().entries.map((languageData) {
+                      return DataRow(
+                          color: MaterialStateProperty.resolveWith(
+                              (Set<MaterialState> state) {
+                            if (languageData.key % 2 == 0) {
+                              return Colors.grey.withOpacity(0.3);
+                            } else {
+                              return null;
+                            }
+                          }),
+                          cells: [
+                            DataCell(
+                                Text(languageData.value.wardNo.toString())),
+                            DataCell(Text(
+                                languageData.value.nepali?.toString() ?? '-')),
+                            DataCell(Text(
+                                languageData.value.tamang?.toString() ?? '-')),
+                            DataCell(Text(
+                                languageData.value.sherpa?.toString() ?? '-')),
+                            DataCell(Text(
+                                languageData.value.limbu?.toString() ?? '-')),
+                            DataCell(Text(
+                                languageData.value.rai?.toString() ?? '-')),
+                            DataCell(Text(
+                                languageData.value.gurung?.toString() ?? '-')),
+                            DataCell(Text(
+                                languageData.value.ghale?.toString() ?? '-')),
+                            DataCell(Text(
+                                languageData.value.othersLanguage?.toString() ??
+                                    '-')),
+                            DataCell(Text(
+                                languageData.value.notAvailable?.toString() ??
+                                    '-')),
+                            DataCell(Text(languageData.value.totalLanguageCount
+                                    ?.toString() ??
+                                '-')),
+                          ]);
+                    }).toList()
+                          ..add(DataRow(
+                              color: MaterialStateProperty.resolveWith<Color>(
+                                  (Set<MaterialState> states) {
+                                return Colors.grey.withOpacity(0.6);
+                              }),
+                              cells: [
+                                DataCell(Text(l10n.total)),
+                                DataCell(Text(totalNepali.toString())),
+                                DataCell(Text(totalTamang.toString())),
+                                DataCell(Text(totalSherpa.toString())),
+                                DataCell(Text(totalLimbu.toString())),
+                                DataCell(Text(totalRai.toString())),
+                                DataCell(Text(totalGurung.toString())),
+                                DataCell(Text(totalGhale.toString())),
+                                DataCell(Text(totalOthers.toString())),
+                                DataCell(Text(totalNotAvailable.toString())),
+                                DataCell(Text(totalTotal.toString())),
+                              ]))),
+              ),
             );
           }
           if (state is LanguageFailureState) {

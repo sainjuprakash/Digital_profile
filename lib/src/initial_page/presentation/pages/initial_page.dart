@@ -103,7 +103,7 @@ class _InitialPageState extends State<InitialPage> {
                   borderRadius: BorderRadius.circular(10),
                   color: Colors.transparent,
                   image: const DecorationImage(
-                    image: AssetImage('assets/gov_logo/nepal_sarkar.jpg'),
+                    image: AssetImage('assets/images/nepal_sarkar.jpg'),
                     fit: BoxFit.cover,
                   )),
             ),

@@ -34,8 +34,7 @@ class MarriageDatatable extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      scrollDirection: Axis.horizontal,
+    return Card(
       child: BlocBuilder<MarriageStatusBloc, MarriageStatusState>(
         builder: (context, state) {
           if (state is MarriageLoadingState) {
@@ -46,7 +45,9 @@ class MarriageDatatable extends StatelessWidget {
           }
           if (state is MarriageSuccessState) {
             List<MarriageStatusModel> fetchedMarriageData = state.marriageModel;
-            return Card(
+            return SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+            
               child: DataTable(
                 columns: [
                   DataColumn(label: Text(l10n.wardnumber)),
@@ -64,7 +65,7 @@ class MarriageDatatable extends StatelessWidget {
                 ],
                 rows: fetchedMarriageData.asMap().entries.map((e) {
                   return DataRow(
-                      color: MaterialStateProperty.resolveWith((states) {
+                      color: WidgetStateProperty.resolveWith((states) {
                         if (e.key % 2 == 0) {
                           return Colors.grey.withOpacity(0.3);
                         } else {
@@ -87,7 +88,7 @@ class MarriageDatatable extends StatelessWidget {
                       ]);
                 }).toList()
                   ..add(DataRow(
-                      color: MaterialStateProperty.resolveWith<Color>((states) {
+                      color: WidgetStateProperty.resolveWith<Color>((states) {
                         return Colors.grey.withOpacity(0.6);
                       }),
                       cells: [

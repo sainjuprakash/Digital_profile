@@ -14,24 +14,24 @@ class EarthquakeGrantDatatable extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<EarthquakeGrantBloc, EarthquakeGrantState>(
-      builder: (context, state) {
-        if (state is EarthquakeGrantLoadingState) {
-          return const SizedBox(
-            height: 60,
-            width: double.maxFinite,
-            child: Center(
-              child: Padding(
-                padding: EdgeInsets.all(8.0),
-                child: CircularProgressIndicator(),
+    return Card(
+      child: BlocBuilder<EarthquakeGrantBloc, EarthquakeGrantState>(
+        builder: (context, state) {
+          if (state is EarthquakeGrantLoadingState) {
+            return const SizedBox(
+              height: 60,
+              width: double.maxFinite,
+              child: Center(
+                child: Padding(
+                  padding: EdgeInsets.all(8.0),
+                  child: CircularProgressIndicator(),
+                ),
               ),
-            ),
-          );
-        }
-        if (state is EarthquakeGrantSuccessState) {
-          List<EarthquakeGrantModel> fetchedData = state.fetchedModel;
-          return Card(
-            child: SingleChildScrollView(
+            );
+          }
+          if (state is EarthquakeGrantSuccessState) {
+            List<EarthquakeGrantModel> fetchedData = state.fetchedModel;
+            return SingleChildScrollView(
               scrollDirection: Axis.horizontal,
               child: DataTable(
                 columns: [
@@ -71,24 +71,24 @@ class EarthquakeGrantDatatable extends StatelessWidget {
                         DataCell(Text(totalTotal.toString())),
                       ])),
               ),
-            ),
-          );
-        }
-        if (state is EarthquakeGrantFailureState) {
+            );
+          }
+          if (state is EarthquakeGrantFailureState) {
+            return Center(
+              child: Padding(
+                padding: const EdgeInsets.all(20.0),
+                child: Text(l10n.loadDataFail),
+              ),
+            );
+          }
           return Center(
             child: Padding(
               padding: const EdgeInsets.all(20.0),
-              child: Text(l10n.loadDataFail),
+              child: Text(l10n.unknownError),
             ),
           );
-        }
-        return Center(
-          child: Padding(
-            padding: const EdgeInsets.all(20.0),
-            child: Text(l10n.unknownError),
-          ),
-        );
-      },
+        },
+      ),
     );
   }
 }

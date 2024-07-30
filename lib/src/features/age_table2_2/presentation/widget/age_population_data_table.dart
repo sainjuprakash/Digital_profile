@@ -49,8 +49,7 @@ class AgePopulationDataTable extends StatelessWidget {
       required this.totalWardCount});
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      scrollDirection: Axis.horizontal,
+    return Card(
       child: BlocBuilder<AgePopulationBloc, AgePopulationState>(
         builder: (context, state) {
           if (state is AgePopulationLoadingState) {
@@ -62,7 +61,8 @@ class AgePopulationDataTable extends StatelessWidget {
           }
           if (state is AgePopulationSuccessState) {
             List<AgePopulationModel> fetchedAgeData = state.agePopulationModel;
-            return Card(
+            return SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
               child: DataTable(
                 columns: [
                   DataColumn(label: Text(l10n.wardnumber)),

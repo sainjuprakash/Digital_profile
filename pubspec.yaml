@@ -45,13 +45,11 @@ dev_dependencies:
   json_serializable: ^6.7.1
   drift_dev: ^2.18.0
 
-
-
-
 flutter:
   uses-material-design: true
   assets:
-    - assets/gov_logo/
+    - assets/images/
+
 flutter_intl:
   enabled: true
   class_name: AppLocalizations

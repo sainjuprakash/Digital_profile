@@ -7,7 +7,6 @@ import 'package:digital_profile/src/features/age_table2_2/data/repository/popula
 import 'package:digital_profile/src/features/animal_husbandry/data/repository/animals_repository_impl.dart';
 import 'package:digital_profile/src/features/disability/data/repository/disability_repository_impl.dart';
 import 'package:digital_profile/src/features/electricity/data/repository/electricity_repository_impl.dart';
-import 'package:digital_profile/src/features/ethenicity_household/data/repository/ethnicity_repository_impl.dart';
 import 'package:digital_profile/src/features/ethnicity_population/data/repository/ethnicity_population_repository_impl.dart';
 import 'package:digital_profile/src/features/health_condition/data/repository/health_condition_repository_impl.dart';
 import 'package:digital_profile/src/features/home_facilities/data/repository/home_facilities_repository_impl.dart';
@@ -41,7 +40,6 @@ import 'package:digital_profile/src/features/table_no_97/data/repository/road_di
 import 'package:digital_profile/src/features/toilet/data/repository/toilet_repository_impl.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import 'core/services/shared_preferences_service.dart';
 
 class MyHttpOverrides extends HttpOverrides {
@@ -53,7 +51,7 @@ class MyHttpOverrides extends HttpOverrides {
   }
 }
 
-void main() {
+void main() async {
   HttpOverrides.global = MyHttpOverrides();
   runApp(const MyApp());
 }

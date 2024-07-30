@@ -5,7 +5,6 @@ import 'package:digital_profile/src/features/age_table2_2/presentation/page/age_
 import 'package:digital_profile/src/features/animal_husbandry/presentation/pages/animals_page.dart';
 import 'package:digital_profile/src/features/disability/presentation/pages/disability_page.dart';
 import 'package:digital_profile/src/features/electricity/presentation/pages/electricity_page.dart';
-import 'package:digital_profile/src/features/ethenicity_household/presentation/pages/ethnicity_details_page.dart';
 import 'package:digital_profile/src/features/ethnicity_population/presentation/page/ethnicity_population_page.dart';
 import 'package:digital_profile/src/features/health_condition/presentation/pages/health_condition_page.dart';
 import 'package:digital_profile/src/features/home_facilities/presentation/pages/home_facilities_page.dart';

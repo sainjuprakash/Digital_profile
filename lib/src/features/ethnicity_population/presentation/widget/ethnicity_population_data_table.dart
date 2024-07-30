@@ -31,21 +31,26 @@ class EthnicityPopulationDataTable extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      scrollDirection: Axis.horizontal,
+    return Card(
       child: BlocBuilder<EthnicityPopulationBloc, EthnicityPopulationState>(
           builder: (context, state) {
         if (state is EthnicityPopulationLoadingState) {
-          return const Center(
+          return const SizedBox(
+            height: 60,
+            width: double.maxFinite,
+            child: Center(
               child: Padding(
-            padding: EdgeInsets.all(8.0),
-            child: CircularProgressIndicator(),
-          ));
+                padding: EdgeInsets.all(8.0),
+                child: CircularProgressIndicator(),
+              ),
+            ),
+          );
         }
         if (state is EthnicityPopulationSuccessState) {
           List<EthnicityPopulationModel> fetchedEthPopData =
               state.ethnicityPopulationModel;
-          return Card(
+          return SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
             child: DataTable(
                 columns: [
                   DataColumn(label: Text(l10n.wardnumber)),

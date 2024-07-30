@@ -1,5 +1,4 @@
 import 'package:digital_profile/app_localization/l10n.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -25,8 +24,7 @@ class HealthConditionDataTable extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      scrollDirection: Axis.horizontal,
+    return Card(
       child: BlocBuilder<HealthConditionBloc, HealthConditionState>(
         builder: (context, state) {
           if (state is HealthConditionLoadingState) {
@@ -39,7 +37,8 @@ class HealthConditionDataTable extends StatelessWidget {
           if (state is HealthConditionSuccessState) {
             List<HealthConditionModel> fetchedHealthData =
                 state.healthConditionModel;
-            return Card(
+            return SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
               child: DataTable(
                 columns: [
                   DataColumn(label: Text(l10n.wardnumber)),
@@ -52,7 +51,7 @@ class HealthConditionDataTable extends StatelessWidget {
                 ],
                 rows: fetchedHealthData.asMap().entries.map((e) {
                   return DataRow(
-                      color: MaterialStateProperty.resolveWith((states) {
+                      color: WidgetStateProperty.resolveWith((states) {
                         if (e.key % 2 == 0) {
                           return Colors.grey.withOpacity(0.3);
                         } else {
@@ -74,7 +73,7 @@ class HealthConditionDataTable extends StatelessWidget {
                       ]);
                 }).toList()
                   ..add(DataRow(
-                      color: MaterialStateProperty.resolveWith(
+                      color: WidgetStateProperty.resolveWith(
                           (states) => Colors.grey.withOpacity(0.6)),
                       cells: [
                         DataCell(Text(l10n.total)),
