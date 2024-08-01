@@ -34,6 +34,19 @@ dependencies:
   connectivity_plus: ^2.0.2
   sqlite3_flutter_libs: ^0.5.0
   path_provider: ^2.0.0
+  flutter_native_splash: ^2.4.1
+
+flutter_native_splash:
+  color: "#000000"
+  android: true
+  ios: true
+  image : assets/images/splash_scrren_icon1.png
+  android_12 :
+    color: "#000000"
+    image : assets/images/splash_scrren_icon1.png
+    android_gravity: center
+    ios_content_mode: center
+    fullscreen : true
 
 dev_dependencies:
   flutter_test:

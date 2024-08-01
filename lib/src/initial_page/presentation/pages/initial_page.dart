@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:digital_profile/MyHomePage.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 import '../../../../core/services/shared_preferences_service.dart';
 
 class InitialPage extends StatefulWidget {
@@ -36,6 +37,7 @@ class _InitialPageState extends State<InitialPage> {
   @override
   void initState() {
     super.initState();
+    FlutterNativeSplash.remove();
   }
 
   @override

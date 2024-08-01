@@ -40,6 +40,8 @@ import 'package:digital_profile/src/features/table_no_97/data/repository/road_di
 import 'package:digital_profile/src/features/toilet/data/repository/toilet_repository_impl.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
+
 import 'core/services/shared_preferences_service.dart';
 
 class MyHttpOverrides extends HttpOverrides {
@@ -52,6 +54,9 @@ class MyHttpOverrides extends HttpOverrides {
 }
 
 void main() async {
+  await Future.delayed(const Duration(milliseconds: 300));
+  WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
+  FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
   HttpOverrides.global = MyHttpOverrides();
   runApp(const MyApp());
 }
@@ -64,10 +69,10 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  String baseUrl = '';
-  String endPoint = '';
-  String houseHoldUrl = '';
-  String villageName = '';
+  String baseUrl = 'https://rubivalleymun.digitalprofile.com.np';
+  String endPoint = 'api/household/reports?table_no=table';
+  String houseHoldUrl = 'http://rubytest.git.com.np/api/household/reports/all';
+  String villageName = 'रुबी भ्याली';
   bool isUserLoggedIn = false;
   void checkUser() async {
     final prefs = await PrefsService.getInstance();
