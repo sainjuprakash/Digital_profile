@@ -69,10 +69,10 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  String baseUrl = 'https://rubivalleymun.digitalprofile.com.np';
-  String endPoint = 'api/household/reports?table_no=table';
-  String houseHoldUrl = 'http://rubytest.git.com.np/api/household/reports/all';
-  String villageName = 'रुबी भ्याली';
+  late String baseUrl;
+  late String endPoint;
+  late String houseHoldUrl;
+  late String villageName;
   bool isUserLoggedIn = false;
   void checkUser() async {
     final prefs = await PrefsService.getInstance();
@@ -164,9 +164,18 @@ class _MyAppState extends State<MyApp> {
 
   Future<void> updateVillageData() async {
     final prefs = await PrefsService.getInstance();
-    baseUrl = prefs.getString(PrefsServiceKeys.baseUrl)!;
-    endPoint = prefs.getString(PrefsServiceKeys.endPoint)!;
-    houseHoldUrl = prefs.getString(PrefsServiceKeys.houseHoldUrl)!;
-    villageName = prefs.getString(PrefsServiceKeys.villageName)!;
+    bool? firstRun = prefs.getBool(PrefsServiceKeys.applaunched) ?? true;
+    if (firstRun == true) {
+      prefs.setBool(PrefsServiceKeys.applaunched, false);
+      baseUrl = 'https://rubivalleymun.digitalprofile.com.np';
+      endPoint = 'api/household/reports?table_no=table';
+      houseHoldUrl = 'http://rubytest.git.com.np/api/household/reports/all';
+      villageName = 'रुबी भ्याली';
+    } else {
+      baseUrl = prefs.getString(PrefsServiceKeys.baseUrl)!;
+      endPoint = prefs.getString(PrefsServiceKeys.endPoint)!;
+      houseHoldUrl = prefs.getString(PrefsServiceKeys.houseHoldUrl)!;
+      villageName = prefs.getString(PrefsServiceKeys.villageName)!;
+    }
   }
 }

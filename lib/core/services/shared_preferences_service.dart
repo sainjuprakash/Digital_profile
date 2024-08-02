@@ -8,6 +8,7 @@
 import 'package:shared_preferences/shared_preferences.dart';
 
 class PrefsServiceKeys {
+  static const String applaunched = 'firstRun';
   static const String accessTokem = 'accessTokem';
   static const String villageName = 'रुबी भ्याली';
   static const String baseUrl = 'https://rubivalleymun.digitalprofile.com.np';
