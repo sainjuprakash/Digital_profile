@@ -121,22 +121,22 @@ class _MyHomePageState extends State<MyHomePage> {
 
   final Uri _url = Uri.parse('https://csds.com.np/');
 
-  Future<void> _launchURL() async {
-    if (!await launchUrl(_url)) {
-      throw 'Could not launch $_url';
-    }
-  }
-
-  void _copyText() {
-    Clipboard.setData(const ClipboardData(text: 'https://csds.com.np'));
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        backgroundColor: Colors.blueAccent.withOpacity(0.5),
-        content: const Text('Copied to clipboard'),
-        duration: const Duration(milliseconds: 300),
-      ),
-    );
-  }
+  // Future<void> _launchURL() async {
+  //   if (!await launchUrl(_url)) {
+  //     throw 'Could not launch $_url';
+  //   }
+  // }
+  //
+  // void _copyText() {
+  //   Clipboard.setData(const ClipboardData(text: 'https://csds.com.np'));
+  //   ScaffoldMessenger.of(context).showSnackBar(
+  //     SnackBar(
+  //       backgroundColor: Colors.blueAccent.withOpacity(0.5),
+  //       content: const Text('Copied to clipboard'),
+  //       duration: const Duration(milliseconds: 300),
+  //     ),
+  //   );
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -286,20 +286,20 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
               getPage(context),
 
-              GestureDetector(
-                onTap: _launchURL,
-                onLongPress: _copyText,
-                child: const Text(
-                  'https://csds.com.np',
-                  style: TextStyle(
-                    fontStyle: FontStyle.italic,
-                    fontSize: 15,
-                    color: Colors.blue, // Add color to indicate it's a link
-                    decoration: TextDecoration
-                        .underline, // Underline to indicate it's a link
-                  ),
-                ),
-              ),
+              // GestureDetector(
+              //   onTap: _launchURL,
+              //   onLongPress: _copyText,
+              //   child: const Text(
+              //     'https://csds.com.np',
+              //     style: TextStyle(
+              //       fontStyle: FontStyle.italic,
+              //       fontSize: 15,
+              //       color: Colors.blue, // Add color to indicate it's a link
+              //       decoration: TextDecoration
+              //           .underline, // Underline to indicate it's a link
+              //     ),
+              //   ),
+              // ),
               verticalspace(
                 height: 4,
               ),

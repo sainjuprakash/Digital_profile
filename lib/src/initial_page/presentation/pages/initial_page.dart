@@ -1,6 +1,10 @@
 import 'dart:ui';
 
 import 'package:digital_profile/MyHomePage.dart';
+import 'package:digital_profile/constant/spacing.dart';
+import 'package:digital_profile/src/features/pages/report_page.dart';
+import 'package:digital_profile/src/initial_page/presentation/pages/help_centre_page.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import '../../../../core/services/shared_preferences_service.dart';
@@ -123,28 +127,78 @@ class _InitialPageState extends State<InitialPage> {
               ),
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: DropdownButton<String>(
-                  underline: Container(),
-                  elevation: 50,
-                  hint: const Text('गाउँपालिका छनोट गर्नुहोस'),
-                  value: _selectedOption,
-                  onChanged: (String? newValue) async {
-                    final prefs = await PrefsService.getInstance();
-                    await prefs.setString(
-                        PrefsServiceKeys.villageName, newValue!);
-                    setState(() {
-                      _selectedOption = newValue;
-                    });
-                  },
-                  items: _options.map<DropdownMenuItem<String>>((String value) {
-                    return DropdownMenuItem<String>(
-                      value: value,
-                      child: Text(value),
-                      onTap: () {},
-                    );
-                  }).toList(),
+                child: SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: DropdownButton<String>(
+                    underline: Container(),
+                    elevation: 50,
+                    hint: const Text('गाउँपालिका छनोट गर्नुहोस'),
+                    value: _selectedOption,
+                    onChanged: (String? newValue) async {
+                      final prefs = await PrefsService.getInstance();
+                      await prefs.setString(
+                          PrefsServiceKeys.villageName, newValue!);
+                      setState(() {
+                        _selectedOption = newValue;
+                      });
+                    },
+                    items:
+                        _options.map<DropdownMenuItem<String>>((String value) {
+                      return DropdownMenuItem<String>(
+                        value: value,
+                        child: Text(value),
+                        onTap: () {},
+                      );
+                    }).toList(),
+                  ),
                 ),
               ),
+            ),
+          ),
+          Align(
+            alignment: const Alignment(0, 0.88),
+            child: InkWell(
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const ReportPage()));
+              },
+              child: const Text(
+                'About Us',
+                style: TextStyle(decoration: TextDecoration.underline),
+              ),
+            ),
+          ),
+          Align(
+            alignment: const Alignment(0, 0.95),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const Text(
+                  'Terms & Policies',
+                  style: TextStyle(decoration: TextDecoration.underline),
+                ),
+                horizontalspace(
+                  width: 4,
+                ),
+                const Text('|'),
+                horizontalspace(
+                  width: 4,
+                ),
+                InkWell(
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const HelpCentrePage()));
+                  },
+                  child: const Text(
+                    'Help Centre',
+                    style: TextStyle(decoration: TextDecoration.underline),
+                  ),
+                ),
+              ],
             ),
           ),
         ],

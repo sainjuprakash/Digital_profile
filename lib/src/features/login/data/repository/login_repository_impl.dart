@@ -29,7 +29,6 @@ class ImplLoginRepository extends LoginRepository {
         throw Exception('Failed to login');
       }
     } catch (errMsg) {
-      print(errMsg);
       throw Exception("login fail : $errMsg");
     }
   }

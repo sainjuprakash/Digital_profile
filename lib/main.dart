@@ -166,11 +166,11 @@ class _MyAppState extends State<MyApp> {
     final prefs = await PrefsService.getInstance();
     bool? firstRun = prefs.getBool(PrefsServiceKeys.applaunched) ?? true;
     if (firstRun == true) {
-      prefs.setBool(PrefsServiceKeys.applaunched, false);
       baseUrl = 'https://rubivalleymun.digitalprofile.com.np';
       endPoint = 'api/household/reports?table_no=table';
       houseHoldUrl = 'http://rubytest.git.com.np/api/household/reports/all';
       villageName = 'रुबी भ्याली';
+      prefs.setBool(PrefsServiceKeys.applaunched, false);
     } else {
       baseUrl = prefs.getString(PrefsServiceKeys.baseUrl)!;
       endPoint = prefs.getString(PrefsServiceKeys.endPoint)!;
