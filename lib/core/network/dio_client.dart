@@ -30,7 +30,7 @@ class DioClient {
   DioClient._internal()
       : _dio = Dio(
           BaseOptions(
-              baseUrl: Endpoints.baseUrl,
+              baseUrl: Endpoints.loginBaseUrl,
               queryParameters: {'api_key': _key},
               connectTimeout: Endpoints.connectTimeout,
               receiveTimeout: Endpoints.receiveTimeout,

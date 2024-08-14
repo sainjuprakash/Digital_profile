@@ -111,6 +111,7 @@ class _MyHomePageState extends State<MyHomePage> {
   void initState() {
     super.initState();
     checkUser();
+    print(Endpoints.loginBaseUrl);
   }
 
   void logout() async {
@@ -119,7 +120,7 @@ class _MyHomePageState extends State<MyHomePage> {
     Endpoints.api_token = '';
   }
 
-  final Uri _url = Uri.parse('https://csds.com.np/');
+  //final Uri _url = Uri.parse('https://csds.com.np/');
 
   // Future<void> _launchURL() async {
   //   if (!await launchUrl(_url)) {

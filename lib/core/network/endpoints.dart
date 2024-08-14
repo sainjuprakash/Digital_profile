@@ -7,8 +7,8 @@
 // ignore_for_file: constant_identifier_names
 
 class Endpoints {
-  static const String baseUrl = 'https://rubytest.git.com.np/api';
-  static const String login = '/login';
+  static String loginBaseUrl = '';
+  static const String login = 'login';
 
   static const String api_key = '';
 

@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:digital_profile/MyHomePage.dart';
 import 'package:digital_profile/constant/spacing.dart';
+import 'package:digital_profile/core/network/endpoints.dart';
 import 'package:digital_profile/src/features/pages/report_page.dart';
 import 'package:digital_profile/src/initial_page/presentation/pages/help_centre_page.dart';
 import 'package:flutter/cupertino.dart';
@@ -140,6 +141,7 @@ class _InitialPageState extends State<InitialPage> {
                           PrefsServiceKeys.villageName, newValue!);
                       setState(() {
                         _selectedOption = newValue;
+                        setBaseUrl(newValue);
                       });
                     },
                     items:
@@ -241,5 +243,19 @@ class _InitialPageState extends State<InitialPage> {
               builder: (context) => MyHomePage(
                   baseUrls[2], endPoints[0], _options[2], householdUrls[2])));
     }
+  }
+}
+
+setBaseUrl(villageName) {
+  switch (villageName) {
+    case 'रुबी भ्याली':
+      print(villageName);
+      Endpoints.loginBaseUrl =
+          'https://rubivalleymun.digitalprofile.com.np/api';
+
+    case 'ऐरावती':
+      print(villageName);
+      Endpoints.loginBaseUrl =
+          'https://airawatimun.digitalprofile.com.np/api/v1';
   }
 }
