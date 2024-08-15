@@ -14,6 +14,7 @@ class ImplLoginRepository extends LoginRepository {
       final response = await _dioClient.post(
         '/login',
         data: {'email': email, 'password': password},
+        baseurl: Endpoints.loginBaseUrl,
       );
       if (response.statusCode == 200) {
         final accessToken = response.data['token'];
