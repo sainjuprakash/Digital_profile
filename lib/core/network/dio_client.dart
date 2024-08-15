@@ -5,9 +5,6 @@
  * yakami.mahesh@gmail.com
  */
 
-// ignore_for_file: constant_identifier_names
-
-import 'package:digital_profile/core/network/refresh_token_interceptor.dart';
 import 'package:dio/dio.dart';
 
 import 'endpoints.dart';
@@ -58,8 +55,12 @@ class DioClient {
     Options? options,
     CancelToken? cancelToken,
     ProgressCallback? onReceiveProgress,
+    String? baseurl,
   }) async {
     try {
+      if (baseurl != null) {
+        _dio.options.baseUrl = baseurl;
+      }
       final Response response = await _dio.get(
         url,
         queryParameters: queryParameters,
@@ -81,8 +82,12 @@ class DioClient {
     Options? options,
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
+    String? baseurl,
   }) async {
     try {
+      if (baseurl != null) {
+        _dio.options.baseUrl = baseurl;
+      }
       final Response response = await _dio.post(
         url,
         data: data,
@@ -105,8 +110,12 @@ class DioClient {
     CancelToken? cancelToken,
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
+    String? baseurl,
   }) async {
     try {
+      if (baseurl != null) {
+        _dio.options.baseUrl = baseurl;
+      }
       final Response response = await _dio.put(
         url,
         data: data,
@@ -129,8 +138,12 @@ class DioClient {
     Map<String, dynamic>? queryParameters,
     Options? options,
     CancelToken? cancelToken,
+    String? baseurl,
   }) async {
     try {
+      if (baseurl != null) {
+        _dio.options.baseUrl = baseurl;
+      }
       final Response response = await _dio.delete(
         url,
         data: data,
