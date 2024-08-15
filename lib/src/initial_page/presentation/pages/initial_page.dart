@@ -2,12 +2,13 @@ import 'dart:ui';
 
 import 'package:digital_profile/MyHomePage.dart';
 import 'package:digital_profile/constant/spacing.dart';
+import 'package:digital_profile/core/network/dio_client.dart';
 import 'package:digital_profile/core/network/endpoints.dart';
 import 'package:digital_profile/src/features/pages/report_page.dart';
 import 'package:digital_profile/src/initial_page/presentation/pages/help_centre_page.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
+
 import '../../../../core/services/shared_preferences_service.dart';
 
 class InitialPage extends StatefulWidget {
@@ -247,15 +248,18 @@ class _InitialPageState extends State<InitialPage> {
 }
 
 setBaseUrl(villageName) {
+  final DioClient dio = DioClient();
   switch (villageName) {
     case 'रुबी भ्याली':
       print(villageName);
       Endpoints.loginBaseUrl =
           'https://rubivalleymun.digitalprofile.com.np/api';
+      dio.updateBaseUrl('https://rubivalleymun.digitalprofile.com.np/api');
 
     case 'ऐरावती':
       print(villageName);
       Endpoints.loginBaseUrl =
           'https://airawatimun.digitalprofile.com.np/api/v1';
+      dio.updateBaseUrl('https://airawatimun.digitalprofile.com.np/api/v1');
   }
 }

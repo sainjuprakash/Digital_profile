@@ -48,6 +48,11 @@ class DioClient {
             LoggerInterceptor(),
           ]);
 
+  // Method to update the base URL
+  void updateBaseUrl(String newBaseUrl) {
+    _dio.options.baseUrl = newBaseUrl;
+  }
+
   // GET METHOD
   Future<Response> get(
     String url, {
@@ -55,12 +60,8 @@ class DioClient {
     Options? options,
     CancelToken? cancelToken,
     ProgressCallback? onReceiveProgress,
-    String? baseurl,
   }) async {
     try {
-      if (baseurl != null) {
-        _dio.options.baseUrl = baseurl;
-      }
       final Response response = await _dio.get(
         url,
         queryParameters: queryParameters,
@@ -82,12 +83,8 @@ class DioClient {
     Options? options,
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
-    String? baseurl,
   }) async {
     try {
-      if (baseurl != null) {
-        _dio.options.baseUrl = baseurl;
-      }
       final Response response = await _dio.post(
         url,
         data: data,
@@ -110,12 +107,8 @@ class DioClient {
     CancelToken? cancelToken,
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
-    String? baseurl,
   }) async {
     try {
-      if (baseurl != null) {
-        _dio.options.baseUrl = baseurl;
-      }
       final Response response = await _dio.put(
         url,
         data: data,
@@ -138,12 +131,8 @@ class DioClient {
     Map<String, dynamic>? queryParameters,
     Options? options,
     CancelToken? cancelToken,
-    String? baseurl,
   }) async {
     try {
-      if (baseurl != null) {
-        _dio.options.baseUrl = baseurl;
-      }
       final Response response = await _dio.delete(
         url,
         data: data,
