@@ -51,7 +51,9 @@ class _LoginPageState extends State<LoginPage> {
           });
         }
         if (state is LoginFailureState) {
-          signInRequired = false;
+          setState(() {
+            signInRequired = false;
+          });
         }
       },
       child: Scaffold(
